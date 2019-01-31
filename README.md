@@ -38,6 +38,8 @@ const Button = styled("button")`
 # API
 As you can see it supports most of the syntaxes of CSS. If you find any issues, please submit a ticket or even a PR with a fix.
 
+*styled*
+
 # Motivation
 As far as I can tell, emotion is moving away from it's previous approach.
 
