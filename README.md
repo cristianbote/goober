@@ -1,4 +1,4 @@
-basket 🧺
+goober 🌰
 ===
 800B css-in-js solution.
 
@@ -11,7 +11,7 @@ I was heavily inspired by emotion and styled-components. The solution that they 
 The API is inspired by emotion(v9).
 
 ```jsx
-import { styled } from "basket";
+import { styled } from "goober";
 
 const Icon = styled("i")`
   display: flex;
