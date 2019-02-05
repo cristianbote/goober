@@ -1,6 +1,6 @@
 {
   "name": "goober",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "800B css-in-js solution",
   "main": "dist/goober.js",
   "umd:main": "dist/goober.umd.js",
