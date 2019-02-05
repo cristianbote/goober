@@ -35,11 +35,15 @@ const Button = styled("button")`
     color: black;
   }
 `;
-
 ```
 
+# Examples
+* [React](https://codesandbox.io/s/k0mnp40n7v)
+* [Preact](https://codesandbox.io/s/r15wj2qm7o)
+* [SSR with Preact](https://codesandbox.io/s/7m9zzl6746)
+
 # SSR
-You can get the critical CSS for SSR, via `extractCss`. Take a look at this example: (codesandbox link)
+You can get the critical CSS for SSR, via `extractCss`. Take a look at this example: [CodeSandbox: SSR with Preact and goober](https://codesandbox.io/s/7m9zzl6746)
 
 # API
 As you can see it supports most of the syntaxes of CSS. If you find any issues, please submit a ticket or even a PR with a fix.
