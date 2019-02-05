@@ -55,8 +55,8 @@ As you can see it supports most of the syntaxes of CSS. If you find any issues, 
 - [x] Basic CSS parsing
 - [x] Nested rules with pseudo selectors
 - [x] Nested styled components
-- [ ] Media queries (@media)
-- [ ] Keyframes (@keyframes)
+- [x] Media queries (@media)
+- [x] Keyframes (@keyframes)
 - [ ] Smart(lazy) client-side hydration
 
 # FAQ

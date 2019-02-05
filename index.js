@@ -1,6 +1,12 @@
 const styles = {};
 const replaceRule = /(\s|\n)/gim;
-const replaceSpacesRule = /\s+/gi;
+
+// Parser rules
+const NEW_LINES_SEL = /(\s{2,})/gm;
+const AT_SEL = /@/gm;
+const REGULAR_SEL = /^(\.|&\.|&\:)/gm;
+const COMMA_SEL = /(,\n+)/gm;
+
 const sheetId = "__goober";
 let sheet;
 
@@ -27,12 +33,26 @@ const parseBlock = (hash, block) => {
     return block;
   }
 
+  // If this is part of the default block
   if (block.indexOf("{") === -1) {
     return `${hash}{${block}}`;
   }
+
+  // Nested selectors
   if (block.startsWith("&")) {
     return block.replace(/&/g, hash);
   }
+
+  // @media queries
+  if (block.startsWith("@media")) {
+    return block.replace("}", "}}").replace("{", `{ ${hash} {`);
+  }
+
+  // Animations
+  if (block.startsWith("@keyframes")) {
+    return block;
+  }
+
   return `${hash} ${block}`;
 };
 
@@ -42,31 +62,13 @@ const parseBlock = (hash, block) => {
  * @param {String} val Value to be parsed
  */
 const parse = (hash, val) => {
-  const lines = val.split("\n");
-  let currentBlock = "";
-  const blocks = [];
+  const normalized = val
+    .replace(NEW_LINES_SEL, "\n")
+    .replace(AT_SEL, "\n$&")
+    .replace(REGULAR_SEL, "\n$&")
+    .replace(COMMA_SEL, ",\n");
 
-  // Go over each line and parse it
-  lines.forEach(line => {
-    line = line.replace(replaceSpacesRule, "");
-    if (line.endsWith(";")) {
-      currentBlock += line;
-    } else if (line.startsWith("&") || line.startsWith(".")) {
-      // If this is not continued, push the new block
-      if (!currentBlock.endsWith(",")) {
-        blocks.push(parseBlock(hash, currentBlock));
-        currentBlock = "";
-      }
-
-      currentBlock += line;
-    } else if (line.endsWith("}")) {
-      currentBlock += line;
-      blocks.push(parseBlock(hash, currentBlock));
-      currentBlock = "";
-    }
-  });
-
-  return blocks;
+  return normalized.split("\n\n").map(block => parseBlock(hash, block).replace(/\n+/gi, ""));
 };
 
 /**
@@ -81,9 +83,12 @@ const addStyle = (hash, css) => {
   // If we're no the client
   if (typeof document !== "undefined") {
     if (!sheet || !sheet.parentElement) {
-      sheet = document.createElement("style");
-      sheet.setAttribute("id", sheetId);
-      document.head.appendChild(sheet);
+      sheet = document.getElementById(sheetId);    
+      if (!sheet) {
+        sheet = document.createElement("style");
+        sheet.setAttribute("id", sheetId);
+        document.head.appendChild(sheet);
+      }
     }
 
     // TODO: Should check first if the css is present

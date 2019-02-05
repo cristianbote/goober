@@ -1,7 +1,7 @@
 {
   "name": "goober",
   "version": "0.0.3",
-  "description": "700B css-in-js solution",
+  "description": "800B css-in-js solution",
   "main": "dist/goober.js",
   "umd:main": "dist/goober.umd.js",
   "module": "dist/goober.mjs",
@@ -15,6 +15,7 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "npm run clean && microbundle --entry index.js --output dist --name goober --sourcemap false",
+    "dev": "npm run clean && microbundle watch --entry index.js --output dist --name goober --sourcemap false",
     "deploy": "npm run build && npm publish"
   },
   "keywords": [
@@ -28,6 +29,7 @@
     "preact"
   ],
   "author": "Cristian <botecristian@yahoo.com>",
+  "repository": "https://github.com/cristianbote/goober",
   "license": "ISC",
   "devDependencies": {
     "microbundle": "^0.9.0"
