@@ -13,6 +13,7 @@
     "package.json"
   ],
   "scripts": {
+    "test": "npm run build && npm run size-check",
     "clean": "rm -rf dist",
     "size-check": "bundlesize",
     "build": "npm run clean && microbundle --entry index.js --output dist --name goober --sourcemap false && npm run size-check",
