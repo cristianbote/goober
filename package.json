@@ -1,13 +1,31 @@
 {
   "name": "goober",
-  "version": "3.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "700B css-in-js solution",
+  "main": "dist/goober.js",
+  "umd:main": "dist/goober.umd.js",
+  "module": "dist/goober.mjs",
+  "source": "index.js",
+  "files": [
+    "index.js",
+    "README.md",
+    "dist",
+    "package.json"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "microbundle --entry index.js --output dist --name goober --sourcemap false"
+    "clean": "rm -rf dist",
+    "build": "npm run clean && microbundle --entry index.js --output dist --name goober --sourcemap false"
   },
-  "keywords": [],
+  "keywords": [
+    "css-in-js",
+    "goober",
+    "styled",
+    "emotion",
+    "styled-components",
+    "javascript",
+    "react",
+    "preact"
+  ],
   "author": "Cristian <botecristian@yahoo.com>",
   "license": "ISC",
   "devDependencies": {

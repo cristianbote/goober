@@ -1,8 +1,15 @@
 const styles = {};
 const replaceRule = /(\s|\n)/gim;
 const replaceSpacesRule = /\s+/gi;
+const sheetId = "__goober";
 let sheet;
 
+/**
+ * Hashing function. Borrowed from... `JAVA` 💥
+ * Code name: hashCode.
+ * God help us all.
+ * @param {*} str 
+ */
 const hush = str =>
   [].reduce.call(
     str,
@@ -10,6 +17,11 @@ const hush = str =>
     0
   );
 
+/**
+ * Parses the block for nested rules.
+ * @param {String} hash 
+ * @param {String} block 
+ */
 const parseBlock = (hash, block) => {
   if (!block) {
     return block;
@@ -24,6 +36,11 @@ const parseBlock = (hash, block) => {
   return `${hash} ${block}`;
 };
 
+/**
+ * Parses the css syntax, line by line
+ * @param {String} hash The className
+ * @param {String} val Value to be parsed
+ */
 const parse = (hash, val) => {
   const lines = val.split("\n");
   let currentBlock = "";
@@ -65,18 +82,24 @@ const addStyle = (hash, css) => {
   if (typeof document !== "undefined") {
     if (!sheet || !sheet.parentElement) {
       sheet = document.createElement("style");
-      sheet.setAttribute("id", "__basket");
+      sheet.setAttribute("id", sheetId);
       document.head.appendChild(sheet);
     }
 
+    // TODO: Should check first if the css is present
     // Append the css into the style sheet
     sheet.innerHTML += `${css}\n`;
   }
 };
 
+/**
+ * Does the hush-ing of the css declaration and returns the className.
+ * @param {String} css 
+ * @return {String}
+ */
 const getClassNameForCss = css => {
   const trimmed = css.replace(replaceRule, "");
-  const hash = "c-" + hush(trimmed).toString(16);
+  const hash = "g-" + hush(trimmed).toString(16);
   const parsed = parse("." + hash, css).join("\n");
 
   if (styles[hash]) return hash;
@@ -86,6 +109,13 @@ const getClassNameForCss = css => {
   return hash;
 };
 
+/**
+ * Returns the css parsed. This is the tag template parser.
+ * @param {String} str 
+ * @param {Array} defs 
+ * @param {Object} props 
+ * @return {String}
+ */
 const getCss = (str, defs, props) =>
   str.reduce((out, next, i) => {
     if (typeof defs[i] === "function") {
@@ -107,10 +137,15 @@ try {
   try {
     h = require("preact").h;
   } catch (e) {
-    console.warn("[🧺] Could not find target to render JSX");
+    console.warn("[goober] Could not find a target to return a vDOM component");
   }
 }
 
+/**
+ * Styled function. Returns a vDOM component with a className that defines it's style.
+ * @param {String} tag DOM tagName
+ * @return {Function}
+ */
 const styled = tag => (str, ...defs) => props => {
   const className = getClassNameForCss(getCss(str, defs, props));
   return h(tag, {
@@ -119,6 +154,9 @@ const styled = tag => (str, ...defs) => props => {
   });
 };
 
-const extractCss = () => Object.values(styles).join("\n");
+/**
+ * Returns the `<style>` tag to be used on SSR.
+ */
+const extractCss = () => `<style id="${sheetId}">Object.values(styles).join("\n")</style>`;
 
-export { extractCss, styled };
+export { extractCss, styled }
