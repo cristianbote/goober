@@ -14,7 +14,8 @@
   ],
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "npm run clean && microbundle --entry index.js --output dist --name goober --sourcemap false"
+    "build": "npm run clean && microbundle --entry index.js --output dist --name goober --sourcemap false",
+    "deploy": "npm run build && npm publish"
   },
   "keywords": [
     "css-in-js",
