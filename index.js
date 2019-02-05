@@ -157,6 +157,6 @@ const styled = tag => (str, ...defs) => props => {
 /**
  * Returns the `<style>` tag to be used on SSR.
  */
-const extractCss = () => `<style id="${sheetId}">Object.values(styles).join("\n")</style>`;
+const extractCss = () => `<style id="${sheetId}">${Object.values(styles).join("\n")}</style>`;
 
 export { extractCss, styled }
