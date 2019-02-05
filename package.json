@@ -1,7 +1,7 @@
 {
   "name": "goober",
   "version": "0.0.4",
-  "description": "800B css-in-js solution",
+  "description": "900B css-in-js solution",
   "main": "dist/goober.js",
   "umd:main": "dist/goober.umd.js",
   "module": "dist/goober.mjs",
@@ -14,7 +14,8 @@
   ],
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "npm run clean && microbundle --entry index.js --output dist --name goober --sourcemap false",
+    "size-check": "bundlesize",
+    "build": "npm run clean && microbundle --entry index.js --output dist --name goober --sourcemap false && npm run size-check",
     "dev": "npm run clean && microbundle watch --entry index.js --output dist --name goober --sourcemap false",
     "deploy": "npm run build && npm publish"
   },
@@ -32,6 +33,13 @@
   "repository": "https://github.com/cristianbote/goober",
   "license": "ISC",
   "devDependencies": {
+    "bundlesize": "^0.17.1",
     "microbundle": "^0.9.0"
-  }
+  },
+  "bundlesize": [
+    {
+      "path": "./dist/*.*",
+      "maxSize": "900B"
+    }
+  ]
 }
