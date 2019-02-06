@@ -4,7 +4,7 @@ const styles = {};
 const TRIM_RULE = /(\s|\n)/gim;
 const NEW_LINES_SEL = /(\s{2,})/gm;
 const AT_SEL = /@/gm;
-const REGULAR_SEL = /^(\.|&\.|&\:)/gm;
+const REGULAR_SEL = /^(\.|&|\#)/gm;
 const COMMA_SEL = /(,\n+)/gm;
 
 // Values
