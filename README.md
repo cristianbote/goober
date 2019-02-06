@@ -67,7 +67,7 @@ As you can see it supports most of the syntaxes of CSS. If you find any issues, 
 - [x] Nested styled components
 - [x] Media queries (@media)
 - [x] Keyframes (@keyframes)
-- [ ] Smart(lazy) client-side hydration
+- [x] Smart(lazy) client-side hydration
 - [ ] `globalStyle` so one would be able to create global styles
 - [ ] Vendor prefixing
 
