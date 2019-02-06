@@ -1,25 +1,28 @@
 const styles = {};
-const replaceRule = /(\s|\n)/gim;
 
 // Parser rules
+const TRIM_RULE = /(\s|\n)/gim;
 const NEW_LINES_SEL = /(\s{2,})/gm;
 const AT_SEL = /@/gm;
 const REGULAR_SEL = /^(\.|&\.|&\:)/gm;
 const COMMA_SEL = /(,\n+)/gm;
 
-const sheetId = "__goober";
+// Values
+const SHEET_ID = "data-goober";
+const NEW_LINE = "\n";
+
 let sheet;
 
 /**
  * Hashing function. Borrowed from... `JAVA` 💥
- * Code name: hashCode.
  * God help us all.
- * @param {*} str 
+ * @param {String} str 
+ * @returns {String}
  */
 const hush = str =>
   [].reduce.call(
     str,
-    (out, char, i, str) => (out << 5) - out + str.charCodeAt(i),
+    (out, _, i, str) => (out << 5) - out + str.charCodeAt(i),
     0
   );
 
@@ -63,12 +66,12 @@ const parseBlock = (hash, block) => {
  */
 const parse = (hash, val) => {
   const normalized = val
-    .replace(NEW_LINES_SEL, "\n")
-    .replace(AT_SEL, "\n$&")
-    .replace(REGULAR_SEL, "\n$&")
-    .replace(COMMA_SEL, ",\n");
+    .replace(NEW_LINES_SEL, NEW_LINE)
+    .replace(AT_SEL, NEW_LINE + "$&")
+    .replace(REGULAR_SEL, NEW_LINE + "$&")
+    .replace(COMMA_SEL, "," + NEW_LINE);
 
-  return normalized.split("\n\n").map(block => parseBlock(hash, block).replace(/\n+/gi, ""));
+  return normalized.split(NEW_LINE + NEW_LINE).map(block => parseBlock(hash, block).replace(/\n+/gi, ""));
 };
 
 /**
@@ -83,17 +86,16 @@ const addStyle = (hash, css) => {
   // If we're no the client
   if (typeof document !== "undefined") {
     if (!sheet || !sheet.parentElement) {
-      sheet = document.getElementById(sheetId);    
+      sheet = document.querySelector(`style[${SHEET_ID}]`);
       if (!sheet) {
         sheet = document.createElement("style");
-        sheet.setAttribute("id", sheetId);
+        sheet.setAttribute(SHEET_ID, "");
         document.head.appendChild(sheet);
       }
     }
 
-    // TODO: Should check first if the css is present
     // Append the css into the style sheet
-    sheet.innerHTML += `${css}\n`;
+    sheet.innerHTML = Object.values(styles).join(NEW_LINE);
   }
 };
 
@@ -102,13 +104,12 @@ const addStyle = (hash, css) => {
  * @param {String} css 
  * @return {String}
  */
-const getClassNameForCss = css => {
-  const trimmed = css.replace(replaceRule, "");
-  const hash = "g-" + hush(trimmed).toString(16);
-  const parsed = parse("." + hash, css).join("\n");
+const getClassNameForCss = (compiled, css) => {
+  const trimmed = css.replace(TRIM_RULE, "");
+  const hash = "g" + hush(trimmed).toString(16);
+  const parsed = parse("." + hash, compiled).join(NEW_LINE);
 
-  if (styles[hash]) return hash;
-
+  // This methods adds or updates the new style
   addStyle(hash, parsed);
 
   return hash;
@@ -142,7 +143,7 @@ try {
   try {
     h = require("preact").h;
   } catch (e) {
-    console.warn("[goober] Could not find a target to return a vDOM component");
+    console.warn("[goober] Could not find react or preact");
   }
 }
 
@@ -152,7 +153,7 @@ try {
  * @return {Function}
  */
 const styled = tag => (str, ...defs) => props => {
-  const className = getClassNameForCss(getCss(str, defs, props));
+  const className = getClassNameForCss(getCss(str, defs, props), str.join(""));
   return h(tag, {
     ...props,
     className: [props.className, className].filter(Boolean).join(" ")
@@ -162,6 +163,6 @@ const styled = tag => (str, ...defs) => props => {
 /**
  * Returns the `<style>` tag to be used on SSR.
  */
-const extractCss = () => `<style id="${sheetId}">${Object.values(styles).join("\n")}</style>`;
+const extractCss = () => `<style data-goober>${Object.values(styles).join(NEW_LINE)}</style>`;
 
 export { extractCss, styled }
