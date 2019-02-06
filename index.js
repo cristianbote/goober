@@ -95,7 +95,7 @@ const addStyle = (hash, css) => {
     }
 
     // Append the css into the style sheet
-    sheet.innerHTML = Object.values(styles).join(NEW_LINE);
+    sheet.innerHTML += css + NEW_LINE;
   }
 };
 
@@ -104,8 +104,8 @@ const addStyle = (hash, css) => {
  * @param {String} css 
  * @return {String}
  */
-const getClassNameForCss = (compiled, css) => {
-  const trimmed = css.replace(TRIM_RULE, "");
+const getClassNameForCss = compiled => {
+  const trimmed = compiled.replace(TRIM_RULE, "");
   const hash = "g" + hush(trimmed).toString(16);
   const parsed = parse("." + hash, compiled).join(NEW_LINE);
 
@@ -153,7 +153,7 @@ try {
  * @return {Function}
  */
 const styled = tag => (str, ...defs) => props => {
-  const className = getClassNameForCss(getCss(str, defs, props), str.join(""));
+  const className = getClassNameForCss(getCss(str, defs, props));
   return h(tag, {
     ...props,
     className: [props.className, className].filter(Boolean).join(" ")
