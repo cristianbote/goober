@@ -4,7 +4,6 @@
   "description": "900B css-in-js solution",
   "main": "dist/goober.js",
   "umd:main": "dist/goober.umd.js",
-  "module": "dist/goober.mjs",
   "source": "index.js",
   "files": [
     "index.js",
@@ -16,8 +15,8 @@
     "test": "npm run build && npm run size-check",
     "clean": "rm -rf dist",
     "size-check": "bundlesize",
-    "build": "npm run clean && microbundle --entry index.js --output dist --name goober --sourcemap false && npm run size-check",
-    "dev": "npm run clean && microbundle watch --entry index.js --output dist --name goober --sourcemap false",
+    "build": "npm run clean && microbundle --entry index.js --output dist --name goober --sourcemap false --format cjs,umd && npm run size-check",
+    "dev": "npm run clean && microbundle watch --entry index.js --output dist --name goober --sourcemap false --format cjs,umd",
     "deploy": "npm run build && npm publish"
   },
   "keywords": [
