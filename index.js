@@ -4,7 +4,7 @@ const styles = {};
 const TRIM_RULE = /(\s|\n)/gim;
 const NEW_LINES_SEL = /(\s{2,})/gm;
 const AT_SEL = /@/gm;
-const REGULAR_SEL = /^(\.|&|\#)/gm;
+const REGULAR_SEL = /^(\.|\*|&|\#)/gm;
 const COMMA_SEL = /(,\n+)/gm;
 
 // Values
@@ -32,7 +32,8 @@ const hush = str =>
  * @param {String} block 
  */
 const parseBlock = (hash, block) => {
-  if (!block) {
+  // Animations (@keyframes)
+  if (!block || (block && block.startsWith("@k"))) {
     return block;
   }
 
@@ -47,13 +48,11 @@ const parseBlock = (hash, block) => {
   }
 
   // @media queries
-  if (block.startsWith("@media")) {
-    return block.replace("}", "}}").replace("{", `{ ${hash} {`);
-  }
-
-  // Animations
-  if (block.startsWith("@keyframes")) {
-    return block;
+  if (block.startsWith("@m")) {
+    const lines = block.split(NEW_LINE);
+    return lines.shift() +
+      parseBlock(hash, lines.slice(0, lines.length - 1).join(NEW_LINE)) +
+      lines.pop();
   }
 
   return `${hash} ${block}`;
