@@ -20,8 +20,7 @@ let sheet;
  * @returns {String}
  */
 const hush = str =>
-  [].reduce.call(
-    str,
+  str.split("").reduce(
     (out, _, i) => (out << 8) - out + str.charCodeAt(i),
     0
   );
@@ -52,7 +51,8 @@ const parseBlock = (hash, block) => {
     const lines = block.split(NEW_LINE);
     return lines.shift() +
       parseBlock(hash, lines.slice(0, lines.length - 1).join("")) +
-      lines.pop();
+      // This block will always end with the bracket
+      "}";
   }
 
   return `${hash} ${block}`;
