@@ -22,7 +22,7 @@ let sheet;
 const hush = str =>
   [].reduce.call(
     str,
-    (out, _, i, str) => (out << 5) - out + str.charCodeAt(i),
+    (out, _, i) => (out << 8) - out + str.charCodeAt(i),
     0
   );
 
@@ -51,7 +51,7 @@ const parseBlock = (hash, block) => {
   if (block.startsWith("@m")) {
     const lines = block.split(NEW_LINE);
     return lines.shift() +
-      parseBlock(hash, lines.slice(0, lines.length - 1).join(NEW_LINE)) +
+      parseBlock(hash, lines.slice(0, lines.length - 1).join("")) +
       lines.pop();
   }
 
@@ -79,6 +79,12 @@ const parse = (hash, val) => {
  * @param {String} css
  */
 const addStyle = (hash, css) => {
+
+  // If this is already present just stop
+  if (styles[hash] == css) {
+    return;
+  }
+
   // Keep the hash and the value in _cache_
   styles[hash] = css;
 
@@ -86,6 +92,7 @@ const addStyle = (hash, css) => {
   if (typeof document !== "undefined") {
     if (!sheet || !sheet.parentElement) {
       sheet = document.querySelector(`style[${SHEET_ID}]`);
+
       if (!sheet) {
         sheet = document.createElement("style");
         sheet.setAttribute(SHEET_ID, "");
@@ -93,8 +100,12 @@ const addStyle = (hash, css) => {
       }
     }
 
+    if (!sheet.firstChild) {
+      sheet.appendChild(document.createTextNode(''));
+    }
+
     // Append the css into the style sheet
-    sheet.innerHTML += css + NEW_LINE;
+    sheet.firstChild.data += css;
   }
 };
 
@@ -106,7 +117,7 @@ const addStyle = (hash, css) => {
 const getClassNameForCss = compiled => {
   const trimmed = compiled.replace(TRIM_RULE, "");
   const hash = "g" + hush(trimmed).toString(16);
-  const parsed = parse("." + hash, compiled).join(NEW_LINE);
+  const parsed = parse("." + hash, compiled).join("");
 
   // This methods adds or updates the new style
   addStyle(hash, parsed);
@@ -131,7 +142,7 @@ const getCss = (str, defs, props) =>
       }
       return `${out}${next}${res}`;
     }
-    return `${out}${next}${defs[i] || ""}`;
+    return out + next + (defs[i] || "");
   }, "");
 
 let h;
@@ -142,7 +153,7 @@ try {
   try {
     h = require("preact").h;
   } catch (e) {
-    console.warn("[goober] Could not find react or preact");
+    throw(e);
   }
 }
 
@@ -155,7 +166,7 @@ const styled = tag => (str, ...defs) => props => {
   const className = getClassNameForCss(getCss(str, defs, props));
   return h(tag, {
     ...props,
-    className: [props.className, className].filter(Boolean).join(" ")
+    className: props.className || "" + " " + className
   });
 };
 
