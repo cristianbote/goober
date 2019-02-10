@@ -73,6 +73,11 @@ const getCss = (str, defs, props) =>
       if (res.attributes && res.attributes.className) {
         return `${out}${next}.${res.attributes.className}`;
       }
+
+      // TODO: Should figure out a better _detection_
+      if (res[0] == "g" && res[1] == "0") {
+        return `${out}${next}.${res}`;
+      }
       
       return `${out}${next}${res}`;
     }

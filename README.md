@@ -58,8 +58,37 @@ As you can see it supports most of the syntaxes of CSS. If you find any issues, 
 * `@param {String} tagName` The name of the dom element you'd like the styled to be applied to
 * `@returns {Function}` Returns the tag template function.
 
+```js
+import { styled } from "goober";
+
+const Btn = styled("button")`
+  border-radius: 4px;
+`;
+```
+
+`css` Same as `styled` but without the tagName and vNode generation. In the end the output will be a className.
+* `@returns {Function}` Returns the tag template function.
+
+```js
+import { css } from "goober";
+
+const BtnClassName = css`
+  border-radius: 4px;
+`();
+// (!) Note the empty param at the end. If you wanna use `props` throughout the syntax this is the place to put them
+
+const btn = document.querySelector("#btn");
+btn.classList.add(BtnClassName);
+```
+
 `extractCss()`
 * `@returns {String}` Returns the `<style>` tag should be rendered in your document `<head>`.
+```js
+const { extractCss } = require("goober");
+
+// After your app has rendered, just call it:
+const styleTag  = extractCss();
+```
 
 # Features
 - [x] Basic CSS parsing

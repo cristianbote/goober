@@ -65,7 +65,7 @@ const addStyle = (hash, css) => {
  */
 const getClassNameForCss = compiled => {
   const trimmed = compiled.replace(TRIM_RULE, "");
-  const hash = "g" + hush(trimmed).toString(16);
+  const hash = "g0" + hush(trimmed).toString(16);
   const parsed = parse("." + hash, compiled).join("");
 
   // This methods adds or updates the new style
