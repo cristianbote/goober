@@ -44,6 +44,7 @@ const Button = styled("button")`
 ```
 
 # Examples
+* [Vanilla](https://codesandbox.io/s/jlooovjvv5)
 * [React](https://codesandbox.io/s/k0mnp40n7v)
 * [Preact](https://codesandbox.io/s/r15wj2qm7o)
 * [SSR with Preact](https://codesandbox.io/s/7m9zzl6746)
