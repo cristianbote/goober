@@ -15,8 +15,8 @@
     "test": "npm run build && npm run size-check",
     "clean": "rm -rf dist",
     "size-check": "bundlesize",
-    "build": "npm run clean && microbundle --entry index.js --output dist --name goober --sourcemap false --format cjs,umd && npm run size-check",
-    "dev": "npm run clean && microbundle watch --entry index.js --output dist --name goober --sourcemap false --format cjs,umd",
+    "build": "npm run clean && microbundle --entry src/index.js --output dist --name goober --sourcemap false --format cjs,umd && npm run size-check",
+    "dev": "npm run clean && microbundle watch --entry src/index.js --output dist --name goober --sourcemap false --format cjs,umd",
     "deploy": "npm run build && npm publish"
   },
   "keywords": [
