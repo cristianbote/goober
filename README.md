@@ -70,6 +70,7 @@ As you can see it supports most of the syntaxes of CSS. If you find any issues, 
 - [x] Smart(lazy) client-side hydration
 - [ ] `globalStyle` so one would be able to create global styles
 - [ ] Vendor prefixing
+- [ ] Vanilla(via `css` function)
 
 # Contributing
 Feel free to try it out and checkout the examples. If you wanna fix something feel free to open a issue or a PR.
