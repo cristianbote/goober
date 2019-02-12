@@ -24,8 +24,7 @@ export const styled = tag => (str, ...defs) => props => {
     // To be used for 'vanilla'
     if (!h || !tag) return className;
 
-    return h(tag, {
-      ...props,
-      className: (props ? props.className : "") + " " + className
-    });
+    return h(tag, Object.assign({}, props, {
+      className: ((props && props.className ? props.className : "") + " ") + className
+    }));
 };

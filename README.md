@@ -83,7 +83,7 @@ btn.classList.add(BtnClassName);
 ```
 
 `extractCss()`
-* `@returns {String}` Returns the `<style>` tag should be rendered in your document `<head>`.
+* `@returns {String}` Returns the `<style>` tag should be rendered in your document `<head>` and clears the cache.
 ```js
 const { extractCss } = require("goober");
 

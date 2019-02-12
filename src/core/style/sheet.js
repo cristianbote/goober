@@ -1,10 +1,17 @@
 import { SHEET_ID } from "../constants";
 
 let sheet;
+let styles = {};
 
-const styles = {};
-
-export const get = () => Object.values(styles);
+/**
+ * Returns the values and clear the styles
+ * @return {Array}
+ */
+export const flush = () => {
+  const values = Object.values(styles);
+  styles = {};
+  return values;
+};
 
 /**
  * Adds the hash and it's css to cache and to appends it to stylesheet
