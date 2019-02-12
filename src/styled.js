@@ -26,7 +26,7 @@ const styled = tag => (str, ...defs) => props => {
 
     return h(tag, {
       ...props,
-      className: props ? props.className : "" + " " + className
+      className: (props ? props.className : "") + " " + className
     });
 };
 
