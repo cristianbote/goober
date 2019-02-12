@@ -1,5 +1,5 @@
-import { getClassNameForCss } from "./core/style";
-import { getCss } from "./core/parser";
+import { getClassNameForCss } from "./core/style/get-class-name";
+import { getCss } from "./core/parser/get-css";
 
 let h;
 
@@ -18,7 +18,7 @@ try {
  * @param {String} tag DOM tagName
  * @return {Function}
  */
-const styled = tag => (str, ...defs) => props => {
+export const styled = tag => (str, ...defs) => props => {
     const className = getClassNameForCss(getCss(str, defs, props));
 
     // To be used for 'vanilla'
@@ -29,7 +29,3 @@ const styled = tag => (str, ...defs) => props => {
       className: (props ? props.className : "") + " " + className
     });
 };
-
-export {
-  styled
-}
