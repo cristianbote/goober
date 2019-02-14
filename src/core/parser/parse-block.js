@@ -24,8 +24,8 @@ export const parseBlock = (hash, block) => {
     // @media queries
     if (block.startsWith("@m")) {
       const lines = block.split(NEW_LINE);
-      return lines.shift() +
-        parseBlock(hash, lines.slice(0, lines.length - 1).join("")) +
+      return lines[0] +
+        parseBlock(hash, lines.slice(1, lines.length - 1).join("")) +
         // This block will always end with the bracket
         "}";
     }

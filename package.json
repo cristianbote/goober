@@ -12,7 +12,7 @@
     "package.json"
   ],
   "scripts": {
-    "test": "npm run build && npm run size-check",
+    "test": "jest",
     "clean": "rm -rf dist",
     "size-check": "bundlesize",
     "build": "npm run clean && microbundle --entry src/index.js --output dist --name goober --sourcemap false --format cjs,umd && npm run size-check",
@@ -33,7 +33,11 @@
   "repository": "https://github.com/cristianbote/goober",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "babel-jest": "^24.1.0",
     "bundlesize": "^0.17.1",
+    "jest": "^24.1.0",
     "microbundle": "^0.9.0"
   },
   "bundlesize": [
