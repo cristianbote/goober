@@ -56,6 +56,25 @@ describe("normalizer", () => {
         ].join("\n"));
     });
 
+    xit("cra", () => {
+        const out = normalizer(`
+            animation: App-logo-spin infinite 20s linear;
+            height: 40vmin;
+            pointer-events: none;
+
+            @keyframes App-logo-spin {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        `);
+
+        expect(out).toEqual("");
+    });
+
     xit("unsupported", () => {
         const out = normalizer(`
             foo: baz;
