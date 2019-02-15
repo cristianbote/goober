@@ -12,7 +12,8 @@
     "package.json"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "npm run test-unit && npm run build",
+    "test-unit": "jest",
     "clean": "rm -rf dist",
     "size-check": "bundlesize",
     "build": "npm run clean && microbundle --entry src/index.js --output dist --name goober --sourcemap false --format cjs,umd && npm run size-check",

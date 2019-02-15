@@ -9,6 +9,7 @@ export const getCss = (str, defs, props) =>
   str.reduce((out, next, i) => {
     if (typeof defs[i] == "function") {
       const res = defs[i](props);
+
       // If this is a vNode with a className
       if (res.attributes && res.attributes.className) {
         return out + next + "." + res.attributes.className
