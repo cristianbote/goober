@@ -39,7 +39,8 @@
     "babel-jest": "^24.1.0",
     "bundlesize": "^0.17.1",
     "jest": "^24.1.0",
-    "microbundle": "^0.9.0"
+    "microbundle": "^0.9.0",
+    "preact": "^8.4.2"
   },
   "bundlesize": [
     {
