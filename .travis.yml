@@ -1,5 +1,9 @@
 language: node_js
 node_js:
   - "node"
+before_install:
+  - pip install --user codecov
 scripts:
-  - "npm run build"
+  - "npm run test"
+after_success:
+  - codecov --file coverage/lcov.info --disable search
