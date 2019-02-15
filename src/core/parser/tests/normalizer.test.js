@@ -20,6 +20,13 @@ describe("normalizer", () => {
             @media all {
                 block: display;
             }
+
+
+            @media with nested selector {
+                #id {
+                    color: foo;
+                }
+            }
         `);
 
         expect(out).toEqual([
@@ -39,7 +46,13 @@ describe("normalizer", () => {
             "@media all {",
             "block: display;",
             "}",
-            ""  // newline
+            "",  // newline
+            "@media with nested selector {",
+            "#id {",
+            "color: foo;",
+            "}",
+            "}",
+            ""
         ].join("\n"));
     });
 

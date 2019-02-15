@@ -13,7 +13,7 @@ export const parseBlock = (hash, block) => {
   
     // If this is part of the default block
     if (block.indexOf("{") == -1) {
-      return `${hash}{${block}}`;
+      return hash + "{" + block + "}";
     }
   
     // Nested selectors
@@ -25,10 +25,8 @@ export const parseBlock = (hash, block) => {
     if (block.startsWith("@m")) {
       const lines = block.split(NEW_LINE);
       return lines[0] +
-        parseBlock(hash, lines.slice(1, lines.length - 1).join("")) +
-        // This block will always end with the bracket
-        "}";
+        parseBlock(hash, lines.slice(1).join(""));
     }
   
-    return `${hash} ${block}`;
+    return hash + " " + block;
   };

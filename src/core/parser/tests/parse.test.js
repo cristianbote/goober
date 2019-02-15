@@ -39,7 +39,7 @@ describe("parse", () => {
         ]);
     });
 
-    xit("@media", () => {
+    it("@media", () => {
         const out = parse("hush", `
             @media any all (no-really-anything) {
                 position: super-absolute;
