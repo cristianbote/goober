@@ -6,6 +6,6 @@
  */
 export const hush = str =>
   str.split("").reduce(
-    (out, c) => (out << 8) - out + c.charCodeAt(0),
+    (out, c) => out + c.charCodeAt(0),
     0
   );
