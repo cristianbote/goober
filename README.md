@@ -2,7 +2,7 @@
   <img src="https://i.imgur.com/hHXmkvE.png" width="500" alt="goober" />
 </p>
 
-🥜 goober, a 900B css-in-js solution.
+🥜 goober, a less than 1KB css-in-js solution.
 
 [![npm version](https://badge.fury.io/js/goober.svg?bust)](https://badge.fury.io/js/goober)
 [![Build Status](https://travis-ci.org/cristianbote/goober.svg?branch=master)](https://travis-ci.org/cristianbote/goober)

@@ -10,7 +10,7 @@ import { TRIM_RULE } from "../constants";
  */
 export const getClassNameForCss = compiled => {
     const trimmed = compiled.replace(TRIM_RULE, "");
-    const hash = "g0" + hush(trimmed).toString(16);
+    const hash = "g0" + hush(trimmed).toString(8);
     const parsed = parse("." + hash, compiled).join("");
   
     // This methods adds or updates the new style

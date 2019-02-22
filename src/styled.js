@@ -3,15 +3,11 @@ import { getCss } from "./core/parser/get-css";
 
 let h;
 
-try {
-  h = require("react").createElement;
-} catch (e) {
-  try {
-    h = require("preact").h;
-  } catch (e) {
-    // do nothing, not our business to know it
-  }
-}
+/**
+ * Sets custom pragma to be used in contexts
+ * @param {function} val 
+ */
+export const setPragma = val => (h = val);
 
 /**
  * Styled function. Returns a vDOM component with a className that defines it's style.
@@ -26,5 +22,5 @@ export const styled = tag => (str, ...defs) => props => {
 
     return h(tag, Object.assign({}, props, {
       className: ((props && props.className ? props.className : "") + " ") + className
-    }));
+      }));
 };

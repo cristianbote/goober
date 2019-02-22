@@ -1,4 +1,4 @@
-import { styled } from "../styled";
+import { styled, setPragma } from "../styled";
 import { getCss } from "../core/parser/get-css";
 import { getClassNameForCss } from "../core/style/get-class-name";
 
@@ -20,16 +20,17 @@ describe("styled", () => {
         expect(vanilla).toEqual('getClassNameForCss');
     });
 
-    it("should the vdom", () => {
+    it("should not call the pragma if not set", () => {
         const Comp = styled("tag")`css`({});
         
-        expect(Comp).toEqual({
-            "attributes": {
-                "className": " getClassNameForCss"
-            },
-            "children": [],
-            "key": undefined,
-            "nodeName": "tag"
-        });
+        expect(Comp).toEqual("getClassNameForCss");
+    });
+
+    it("should not call the pragma if not set", () => {
+        const fn = jest.fn();
+        setPragma(fn);
+
+        const Comp = styled("tag")`css`({});
+        expect(fn).toBeCalled();
     });
 });

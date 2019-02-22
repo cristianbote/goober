@@ -5,6 +5,7 @@ describe("goober", () => {
         expect(Object.keys(goober).sort()).toEqual([
             "css",
             "extractCss",
+            "setPragma",
             "styled"
         ]);
     });
