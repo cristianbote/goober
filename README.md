@@ -59,7 +59,7 @@ You can get the critical CSS for SSR, via `extractCss`. Take a look at this exam
 # API
 As you can see it supports most of the syntaxes of CSS. If you find any issues, please submit a ticket or even a PR with a fix.
 
-`styled(tagName)`
+### `styled(tagName)`
 * `@param {String} tagName` The name of the dom element you'd like the styled to be applied to
 * `@returns {Function}` Returns the tag template function.
 
@@ -71,8 +71,8 @@ const Btn = styled("button")`
 `;
 ```
 
-`setPragma(pragma)`
-* `@param {function} pragma` Given the fact that `react` uses `createElement` for the transformed elements and `preact` uses `h`, `setPragma` should be called with the proper _pragma_ function. This was added to reduce the bundled size and being able to bundle esmodule version. At the moment I think it's the best tradeoff we can have.
+### `setPragma(pragma: Function)`
+Given the fact that `react` uses `createElement` for the transformed elements and `preact` uses `h`, `setPragma` should be called with the proper _pragma_ function. This was added to reduce the bundled size and being able to bundle esmodule version. At the moment I think it's the best tradeoff we can have.
 
 ```js
 import React from "react";
@@ -81,8 +81,10 @@ import { setPragma } from "goober";
 setPragma(React.createElement);
 ```
 
-`css` Same as `styled` but without the tagName and vNode generation. In the end the output will be a className.
+### `css(taggedTemplate)`
 * `@returns {Function}` Returns the tag template function.
+
+Same as `styled` but without the tagName and vNode generation. In the end the output will be a className.
 
 ```js
 import { css } from "goober";
@@ -96,8 +98,11 @@ const btn = document.querySelector("#btn");
 btn.classList.add(BtnClassName);
 ```
 
-`extractCss()`
-* `@returns {String}` Returns the `<style>` tag should be rendered in your document `<head>` and clears the cache.
+### `extractCss()`
+* `@returns {String}`
+
+Returns the `<style>` tag should be rendered in your document `<head>` and clears the cache.
+
 ```js
 const { extractCss } = require("goober");
 
