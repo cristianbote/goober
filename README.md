@@ -12,10 +12,14 @@
 I always wondered, if you can get a working solution for css-in-js with a smaller footprint. I started a project and wanted a to use styled-components. Looking at their sizes, it seems that I would rather not include ~16kB([styled-components](https://github.com/styled-components/styled-components)) or ~11kB([emotion](https://github.com/emotion-js/emotion)) just so I can use the `styled` paradigm. So, I embarked in a mission to create a smaller alternative for these well established apis.
 
 # Usage
-The API is inspired by emotion, `styled` function. Meaning, you call it with your `tagName` and returns a vDOM component for that tag.
+The API is inspired by emotion, `styled` function. Meaning, you call it with your `tagName` and returns a vDOM component for that tag. Note, `setPragma` is needed to be run before the `styled` function is used.
 
 ```jsx
-import { styled } from "goober";
+import { h } from "preact";
+import { styled, setPragma } from "goober";
+
+// Should be called here, and just once
+setPragma(h);
 
 const Icon = styled("i")`
   display: flex;
@@ -67,6 +71,16 @@ const Btn = styled("button")`
 `;
 ```
 
+`setPragma(pragma)`
+* `@param {function} pragma` Given the fact that `react` uses `createElement` for the transformed elements and `preact` uses `h`, `setPragma` should be called with the proper _pragma_ function. This was added to reduce the bundled size and being able to bundle esmodule version. At the moment I think it's the best tradeoff we can have.
+
+```js
+import React from "react";
+import { setPragma } from "goober";
+
+setPragma(React.createElement);
+```
+
 `css` Same as `styled` but without the tagName and vNode generation. In the end the output will be a className.
 * `@returns {Function}` Returns the tag template function.
 
@@ -98,9 +112,9 @@ const styleTag  = extractCss();
 - [x] Media queries (@media)
 - [x] Keyframes (@keyframes)
 - [x] Smart(lazy) client-side hydration
+- [x] Vanilla(via `css` function)
 - [ ] `globalStyle` so one would be able to create global styles
 - [ ] Vendor prefixing
-- [ ] Vanilla(via `css` function)
 
 # Contributing
 Feel free to try it out and checkout the examples. If you wanna fix something feel free to open a issue or a PR.
