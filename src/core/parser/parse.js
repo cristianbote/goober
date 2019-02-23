@@ -1,23 +1,18 @@
 import { astish } from "./astish";
 
 /**
- * Holds the compiled values
- */
-const values = [];
-
-/**
  * Inner compile function to construct the css from a object
  * @param {object} obj 
  * @param {string} [paren] 
  * @param {string} [wrapper]
  */
 const compile = (obj, paren, wrapper) => {
-  let current = [];
+  let current = "";
+  let blocks = "";
   
   // If we're dealing with keyframes just flatten them
   if (/^@k/.test(wrapper)) {
-  	values.push(wrapper + JSON.stringify(obj).replace(/","/g, ";").replace(/"|,"/g, "").replace(/:{/g, "{"));
-    return;
+  	return wrapper + JSON.stringify(obj).replace(/","/g, ";").replace(/"|,"/g, "").replace(/:{/g, "{");
   }
   
 	for (let key in obj) {
@@ -28,31 +23,34 @@ const compile = (obj, paren, wrapper) => {
       // Regular selector
       let next = paren + " " + key;
       
-      // Nsted
+      // Nested
       if (/&/g.test(key)) next = key.replace(/&/g, paren);
 
       // Media queries or other
       if (key[0] == '@') next = paren;
-      
+
       // Call the compile for this block
-      compile(val, next, next == paren ? key : wrapper || '');
+      blocks += compile(val, next, next == paren ? key : wrapper || '');
     } else {
 
       // Push the line for this property
-	    current.push(`${key}:${val};`);
+	    current += key + ":" + val + ";";
     }
   }
   
   // If we have properties
   if (current.length) {
     // Standard rule compostion
-    const rule = `${paren}{${current.join("")}}`;
+    const rule = paren + "{" + current + "}";
     
     // With wrapper
-    if (wrapper) values.push(`${wrapper}{${rule}}`);
+    if (wrapper) return blocks + wrapper + "{" + rule + "}";
+
     // Else just push the rule
-  	else values.push(rule);
+  	return rule + blocks;
   }
+
+  return blocks;
 };
 
 /**
@@ -61,16 +59,9 @@ const compile = (obj, paren, wrapper) => {
  * @param {String} val Value to be parsed
  */
 export const parse = (hash, val) => {
-  values.length = 0;
-
   // Kick the compilation
-  compile(
+  return compile(
     astish(val),
     hash
   );
-
-  // The last item, compiled is the first rule
-  values.unshift(values.pop());
-
-  return values.slice();
 };

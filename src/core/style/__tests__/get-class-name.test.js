@@ -8,7 +8,7 @@ jest.mock("../sheet", () => ({
 }));
 
 jest.mock("../../parser/parse", () => ({
-    parse: jest.fn().mockReturnValue(["parsed"])
+    parse: jest.fn().mockReturnValue("parsed")
 }));
 
 jest.mock("../../hush", () => ({

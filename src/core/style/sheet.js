@@ -1,4 +1,4 @@
-import { SHEET_ID } from "../constants";
+const SHEET_ID = "data-goober";
 
 let sheet;
 let styles = {};
@@ -29,9 +29,9 @@ export const add = (hash, css) => {
     styles[hash] = css;
   
     // If we're no the client
-    if (typeof document !== "undefined") {
+    if (typeof document != "undefined") {
       if (!sheet || !sheet.parentElement) {
-        sheet = document.querySelector(`style[${SHEET_ID}]`);
+        sheet = document.querySelector("style[" + SHEET_ID + "]");
   
         if (!sheet) {
           sheet = document.createElement("style");
@@ -41,7 +41,7 @@ export const add = (hash, css) => {
       }
   
       if (!sheet.firstChild) {
-        sheet.appendChild(document.createTextNode(''));
+        sheet.appendChild(document.createTextNode(""));
       }
   
       // Append the css into the style sheet

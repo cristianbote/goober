@@ -19,7 +19,7 @@ describe("parse", () => {
             "hush{display:value;}",
             "hush button{border:0;}",
             "hush.nested{foo:1px;baz:scale(1), translate(1);}"
-        ]);
+        ].join(""));
     });
 
     it("keyframes", () => {
@@ -42,9 +42,9 @@ describe("parse", () => {
         `);
 
         expect(out).toEqual([
-            "@keyframes foo{to{baz:1px;foo:1px}}",
-            "@keyframes superAnimation{11.1%{opacity:0.9999}111%{opacity:1}}"
-        ]);
+            "@keyframes superAnimation{11.1%{opacity:0.9999}111%{opacity:1}}",
+            "@keyframes foo{to{baz:1px;foo:1px}}"
+        ].join(""));
     });
 
     it("@media", () => {
@@ -56,7 +56,7 @@ describe("parse", () => {
 
         expect(out).toEqual([
             "@media any all (no-really-anything){hush{position:super-absolute;}}"
-        ]);
+        ].join(""));
     });
 
     it("cra", () => {
@@ -98,6 +98,6 @@ describe("parse", () => {
             "App .header{background-color:#282c34;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:calc(10px + 2vmin);color:white;}",
             "App .link{color:#61dafb;}",
             "@keyframes App-logo-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}"
-        ]);
+        ].join(""));
     });
 });
