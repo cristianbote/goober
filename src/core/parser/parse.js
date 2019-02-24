@@ -12,10 +12,12 @@ const compile = (obj, paren, wrapper) => {
   
   // If we're dealing with keyframes just flatten them
   if (/^@k/.test(wrapper)) {
-  	return wrapper + JSON.stringify(obj).replace(/","/g, ";").replace(/"|,"/g, "").replace(/:{/g, "{");
+    // Return the wrapper, which should be the @keyframes selector
+    // and stringify the obj which should be just flatten 
+    return wrapper + JSON.stringify(obj).replace(/","/g, ";").replace(/"|,"/g, "").replace(/:{/g, "{");
   }
   
-	for (let key in obj) {
+  for (let key in obj) {
     const val = obj[key];
     
     // If this is a 'block'
@@ -34,7 +36,7 @@ const compile = (obj, paren, wrapper) => {
     } else {
 
       // Push the line for this property
-	    current += key + ":" + val + ";";
+      current += key + ":" + val + ";";
     }
   }
   
@@ -47,14 +49,14 @@ const compile = (obj, paren, wrapper) => {
     if (wrapper) return blocks + wrapper + "{" + rule + "}";
 
     // Else just push the rule
-  	return rule + blocks;
+    return rule + blocks;
   }
 
   return blocks;
 };
 
 /**
- * Parses the css syntax, line by line
+ * Parses the string value and does a string(style) -> object -> string(css) transformation
  * @param {String} hash The className
  * @param {String} val Value to be parsed
  */

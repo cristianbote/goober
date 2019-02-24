@@ -1,5 +1,4 @@
-const ruleStructure = /(?:([a-z0-9-%]+) *: *([^{;]+?);|([^;}{]*?) +({))/g;
-const ruleComma = /("|})(")/g;
+const newRule = /(?:([a-z0-9-%]+) *: *([^{;]+?);|([^;}{]*?) +{)|(})/gi;
 const ruleClean = /\/\*.*?\*\/|\s{2,}|\n/gm;
 
 /**
@@ -9,14 +8,23 @@ const ruleClean = /\/\*.*?\*\/|\s{2,}|\n/gm;
  */
 export const astish = val => {
     let target = val = val.replace(ruleClean, "");
+    let tree = [{}];
 
     let block;
-    while ((block = ruleStructure.exec(target))) {
-        val = val.replace(block[0], '"' + (block[1] || block[3]) + '":' + (block[2] ? '"' + block[2] + '"' : block[4]));
+    while ((block = newRule.exec(target))) {
+        const key = block[3];
+      
+        // Remove the current entry
+        if (block[4]) tree.shift();
+
+        const entry = tree[0];
+        
+        if (key) {
+            tree.unshift((entry[key] = {}));
+        } else if (!block[4]) {
+            entry[block[1]] = block[2];
+        }
     }
     
-    // Add the needed commas
-    val = val.replace(ruleComma, "$1,$2");
-
-    return JSON.parse("{" + val + "}");
+    return tree[0];
 }

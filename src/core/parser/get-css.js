@@ -9,18 +9,10 @@ export const getCss = (str, defs, props) =>
   str.reduce((out, next, i) => {
     if (typeof defs[i] == "function") {
       const res = defs[i](props);
+      const attr = res.attributes;
+      const end = (attr && attr.className) || (/^g0/.test(res) && res);
 
-      // If this is a vNode with a className
-      if (res.attributes && res.attributes.className) {
-        return out + next + "." + res.attributes.className
-      }
-
-      // TODO: Should figure out a better _detection_
-      if (res[0] == "g" && res[1] == "0") {
-        return out + next + "." + res;
-      }
-      
-      return out+next+res;
+      return out + next + (end ? "." + end : (attr ? "" : res));
     }
     return out + next + (defs[i] || "");
   }, "");

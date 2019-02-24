@@ -15,6 +15,12 @@ describe("get-css", () => {
         expect(
             template`prop: 1; ${() => ({ attributes: { className: "class" }})}`({})
         ).toEqual("prop: 1; .class");
+
+
+        // Empty or falsy
+        expect(
+            template`prop: 1; ${() => ({ attributes: { }})}`({})
+        ).toEqual("prop: 1; ");
     });
 
     it("vanilla classname", () => {
