@@ -30,7 +30,7 @@ const Icon = styled("i")`
 const Button = styled("button")`
   background: dodgerblue;
   color: white;
-  border: 0;
+  border: ${Math.random()}px solid white;
 
   &:focus,
   &:hover {
@@ -48,7 +48,7 @@ const Button = styled("button")`
 ```
 
 # Examples
-* [Vanilla](https://codesandbox.io/s/jlooovjvv5)
+* [Vanilla](https://codesandbox.io/s/qlywyp7z4q)
 * [React](https://codesandbox.io/s/k0mnp40n7v)
 * [Preact](https://codesandbox.io/s/r15wj2qm7o)
 * [SSR with Preact](https://codesandbox.io/s/7m9zzl6746)
