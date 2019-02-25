@@ -33,5 +33,5 @@ export const styled = tag =>
         })
       );
     };
-    return !tag ? processStyles() : processStyles;
+    return tag ? processStyles : processStyles();
   };
