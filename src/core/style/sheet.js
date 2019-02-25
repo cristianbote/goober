@@ -1,6 +1,4 @@
 const SHEET_ID = "data-goober";
-
-let sheet;
 let styles = {};
 
 /**
@@ -18,33 +16,29 @@ export const flush = () => {
  * @param {String} hash
  * @param {String} css
  */
-export const add = (hash, css) => {
+export const add = (hash, css, target) => {
+  // If this is already present just stop
+  if (styles[hash] == css) {
+    return;
+  }
 
-    // If this is already present just stop
-    if (styles[hash] == css) {
-      return;
+  // Keep the hash and the value in _cache_
+  styles[hash] = css;
+
+  // If we're no the client
+  if (target) {
+    let sheet = target.querySelector("style[" + SHEET_ID + "]");
+    if (!sheet) {
+      sheet = document.createElement("style");
+      sheet.setAttribute(SHEET_ID, "");
+      target.appendChild(sheet);
     }
-  
-    // Keep the hash and the value in _cache_
-    styles[hash] = css;
-  
-    // If we're no the client
-    if (typeof document != "undefined") {
-      if (!sheet || !sheet.parentElement) {
-        sheet = document.querySelector("style[" + SHEET_ID + "]");
-  
-        if (!sheet) {
-          sheet = document.createElement("style");
-          sheet.setAttribute(SHEET_ID, "");
-          document.head.appendChild(sheet);
-        }
-      }
-  
-      if (!sheet.firstChild) {
-        sheet.appendChild(document.createTextNode(""));
-      }
-  
-      // Append the css into the style sheet
-      sheet.firstChild.data += css;
+
+    if (!sheet.firstChild) {
+      sheet.appendChild(document.createTextNode(""));
     }
-  };
+
+    // Append the css into the style sheet
+    sheet.firstChild.data += css;
+  }
+};
