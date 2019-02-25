@@ -10,18 +10,21 @@ export const styled = function(tag) {
   let context = this || {};
   const h = context.h;
   let target = context.target || (document && document.head);
-  return (str, ...defs) => props => {
-    const className = getClassNameForCss(getCss(str, defs, props), target);
+  return (str, ...defs) => {
+    const processStyles = props => {
+      const className = getClassNameForCss(getCss(str, defs, props), target);
 
-    // To be used for 'vanilla'
-    if (!h || !tag) return className;
+      // To be used for 'vanilla'
+      if (!h || !tag) return className;
 
-    return h(
-      tag,
-      Object.assign({}, props, {
-        className:
-          (props && props.className ? props.className + " " : "") + className
-      })
-    );
+      return h(
+        tag,
+        Object.assign({}, props, {
+          className:
+            (props && props.className ? props.className + " " : "") + className
+        })
+      );
+    };
+    return !tag ? processStyles() : processStyles;
   };
 };
