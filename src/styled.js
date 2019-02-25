@@ -14,7 +14,8 @@ export const setPragma = val => (h = val);
  * @param {String} tag DOM tagName
  * @return {Function}
  */
-export const styled = tag => (str, ...defs) => props => {
+export const styled = tag => (str, ...defs) => {  
+  const processStyles = props => {
     const className = getClassNameForCss(getCss(str, defs, props));
 
     // To be used for 'vanilla'
@@ -23,4 +24,6 @@ export const styled = tag => (str, ...defs) => props => {
     return h(tag, Object.assign({}, props, {
       className: (props && props.className ? props.className + " " : "") + className
     }));
+  }
+  return !tag ? processStyles() : processStyles
 };
