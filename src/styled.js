@@ -19,7 +19,7 @@ export const styled = tag =>
     const args = [].slice.call(arguments);
     const processStyles = props => {
       const className = getClassNameForCss(
-        getCss(args[0], args.slice(1), props)
+        args[0].map ? getCss(args[0], args.slice(1), props) : args[0]
       );
 
       // To be used for 'vanilla'

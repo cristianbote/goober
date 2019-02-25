@@ -63,7 +63,7 @@ const compile = (obj, paren, wrapper) => {
 export const parse = (hash, val) => {
   // Kick the compilation
   return compile(
-    astish(val),
+    val.big ? astish(val) : val,
     hash
   );
 };

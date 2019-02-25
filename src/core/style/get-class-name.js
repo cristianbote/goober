@@ -8,9 +8,7 @@ import { parse } from "../parser/parse";
  * @return {String}
  */
 export const getClassNameForCss = compiled => {
-  const hash = "g0" + hush(
-      compiled.replace(/\s|\n/gm, "")
-    ).toString(8);
+  const hash = "g0" + hush(compiled).toString(8);
   const parsed = parse("." + hash, compiled);
   
     // This methods adds or updates the new style
