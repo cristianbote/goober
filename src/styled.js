@@ -5,7 +5,7 @@ let h;
 
 /**
  * Sets custom pragma to be used in contexts
- * @param {function} val 
+ * @param {function} val
  */
 export const setPragma = val => (h = val);
 
@@ -14,16 +14,24 @@ export const setPragma = val => (h = val);
  * @param {String} tag DOM tagName
  * @return {Function}
  */
-export const styled = tag => (str, ...defs) => {  
-  const processStyles = props => {
-    const className = getClassNameForCss(getCss(str, defs, props));
+export const styled = tag =>
+  function() {
+    const args = [].slice.call(arguments);
+    const processStyles = props => {
+      const className = getClassNameForCss(
+        getCss(args[0], args.slice(1), props)
+      );
 
-    // To be used for 'vanilla'
-    if (!h || !tag) return className;
+      // To be used for 'vanilla'
+      if (!h || !tag) return className;
 
-    return h(tag, Object.assign({}, props, {
-      className: (props && props.className ? props.className + " " : "") + className
-    }));
-  }
-  return !tag ? processStyles() : processStyles
-};
+      return h(
+        tag,
+        Object.assign({}, props, {
+          className:
+            (props && props.className ? props.className + " " : "") + className
+        })
+      );
+    };
+    return !tag ? processStyles() : processStyles;
+  };
