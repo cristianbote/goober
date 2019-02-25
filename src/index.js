@@ -1,3 +1,3 @@
-export { styled, setPragma } from "./styled";
+export { setPragma, withTarget } from "./styled";
+export { css, styled } from "./base-css-and-styled";
 export { extractCss } from "./extract-css";
-export { css } from "./css";
