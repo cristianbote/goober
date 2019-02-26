@@ -1,4 +1,4 @@
-export const SHEET_ID = "data-goober";
+const SHEET_ID = "data-goober";
 let styles = "";
 /**
  * Returns the values and clear the styles
