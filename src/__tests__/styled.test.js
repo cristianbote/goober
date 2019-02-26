@@ -33,4 +33,9 @@ describe("styled", () => {
         const Comp = styled("tag")`css`({});
         expect(fn).toBeCalled();
     });
+
+    it("object style notation", () => {
+        const Comp = styled("tag")({ foo: 1 })({});
+        expect(getClassNameForCss).toBeCalledWith("getCss", true);
+    })
 });

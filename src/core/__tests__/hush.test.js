@@ -8,4 +8,11 @@ describe("hush", () => {
         expect(hush(val)).toEqual("g0638");
     });
 
+    it("object", () => {
+        const val = { foo: 1 };
+
+        expect(hush(val)).toEqual("g0747");
+        expect(hush(val)).toEqual("g0747");
+    });
+
 });

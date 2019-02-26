@@ -20,31 +20,33 @@ export const flush = () => {
  */
 export const add = (hash, css) => {
 
-    // If this is already present just stop
-    if (styles[hash] == css) {
-      return;
-    }
-  
-    // Keep the hash and the value in _cache_
-    styles[hash] = css;
-  
-    // If we're no the client
-    if (typeof document != "undefined") {
-      if (!sheet || !sheet.parentElement) {
-        sheet = document.querySelector("style[" + SHEET_ID + "]");
-  
-        if (!sheet) {
-          sheet = document.createElement("style");
-          sheet.setAttribute(SHEET_ID, "");
-          document.head.appendChild(sheet);
-        }
+  // If this is already present just stop
+  if (styles[hash] == css) {
+    return;
+  }
+
+  // Keep the hash and the value in _cache_
+  styles[hash] = css;
+
+  // If we're no the client
+  try {
+    if (!sheet || !sheet.parentElement) {
+      sheet = document.querySelector("style[" + SHEET_ID + "]");
+
+      if (!sheet) {
+        sheet = document.createElement("style");
+        sheet.setAttribute(SHEET_ID, "");
+        document.head.appendChild(sheet);
       }
-  
-      if (!sheet.firstChild) {
-        sheet.appendChild(document.createTextNode(""));
-      }
-  
-      // Append the css into the style sheet
-      sheet.firstChild.data += css;
     }
-  };
+
+    if (!sheet.firstChild) {
+      sheet.appendChild(document.createTextNode(""));
+    }
+
+    // Append the css into the style sheet
+    sheet.firstChild.data += css;
+  } catch (e) {
+    // Just ignore it, we're on the server
+  }
+};
