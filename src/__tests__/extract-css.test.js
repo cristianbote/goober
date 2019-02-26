@@ -2,7 +2,8 @@ import { extractCss } from "../extract-css";
 import { flush } from "../core/style/sheet";
 
 jest.mock("../core/style/sheet", () => ({
-  flush: jest.fn().mockReturnValue("flushedrule")
+  flush: jest.fn().mockReturnValue("flushedrule"),
+  SHEET_ID: "data-goober"
 }));
 
 describe("extract-css", () => {

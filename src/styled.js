@@ -17,8 +17,10 @@ export const setPragma = val => (h = val);
 export const styled = function(tag) {
   const styledContext = this || {};
   const pragma = styledContext.pragma || h;
-  const target = styledContext.target || (document && document.head);
   return function() {
+    const cssContext = this || {};
+    const target =
+      styledContext.target || cssContext.target || (document && document.head);
     tag = tag == "global" ? 0 : tag;
     const args = [].slice.call(arguments);
     const processStyles = props => {

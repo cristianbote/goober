@@ -16,14 +16,13 @@ jest.mock("../../hush", () => ({
 }));
 
 describe("get-class-name", () => {
-    it("should generate proper class", () => {
-        const className = getClassNameForCss("random", "valid");
-        const expected = 1e3.toString(8);
+  it("should generate proper class", () => {
+    const className = getClassNameForCss("random", "valid");
+    const expected = (1e3).toString(8);
 
-        expect(hush).toBeCalledWith("random");
-        expect(parse).toBeCalledWith("." + expected, "random");
-        expect(add).toBeCalledWith(expected, undefined);
+    expect(hush).toBeCalledWith("random");
+    expect(parse).toBeCalledWith("." + expected, "random");
 
-        expect(className).toEqual(expected);
-    })
+    expect(className).toEqual(expected);
+  });
 });
