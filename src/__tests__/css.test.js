@@ -15,11 +15,4 @@ describe("css", () => {
   it("should be a fn", () => {
     expect(typeof css).toEqual("function");
   });
-
-  it("should not call the pragma even if one is bound to css", () => {
-    const fn = jest.fn();
-    const c = css.bind({ pragma: fn });
-    c`css`;
-    expect(fn).not.toBeCalled();
-  });
 });

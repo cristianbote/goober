@@ -12,10 +12,14 @@ jest.mock("../core/parser/get-css", () => ({
 
 describe("styled", () => {
   it("should return the className for vanilla", () => {
-    const vanilla = styled("")`css`;
+    const vanilla = styled()`css`;
 
     expect(getCss).toHaveBeenCalledWith(["css"], [], undefined);
-    expect(getClassNameForCss).toHaveBeenCalledWith("getCss", document.head);
+    expect(getClassNameForCss).toHaveBeenCalledWith(
+      "getCss",
+      true,
+      document.head
+    );
 
     expect(vanilla).toEqual("getClassNameForCss");
   });
@@ -24,7 +28,11 @@ describe("styled", () => {
     const s = styled.bind({ target: document.body });
     s("tag")`css`({});
     expect(getCss).toHaveBeenCalledWith(["css"], [], undefined);
-    expect(getClassNameForCss).toHaveBeenCalledWith("getCss", document.body);
+    expect(getClassNameForCss).toHaveBeenCalledWith(
+      "getCss",
+      true,
+      document.body
+    );
   });
 
   it("should not call the pragma if not bound to styled", () => {
@@ -53,5 +61,10 @@ describe("styled", () => {
 
     const Comp = styled("tag")`css`({});
     expect(fn).toBeCalled();
+  });
+
+  it("object style notation", () => {
+    const Comp = styled("tag")({ foo: 1 })({});
+    expect(getClassNameForCss).toBeCalledWith({ foo: 1 }, true, document.head);
   });
 });

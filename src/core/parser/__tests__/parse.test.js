@@ -100,4 +100,15 @@ describe("parse", () => {
             "@keyframes App-logo-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}"
         ].join(""));
     });
+
+    describe("object style notation", () => {
+        it("should work", () => {
+            expect(parse(".object", {
+                "text-align": "center",
+                "padding": 1 + "px"
+            })).toEqual([
+                ".object{text-align:center;padding:1px;}"
+            ].join(""))
+        })
+    });
 });

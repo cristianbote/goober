@@ -9,7 +9,7 @@ export const getCss = (str, defs, props) =>
   str.reduce((out, next, i) => {
     if (typeof defs[i] == "function") {
       const res = defs[i](props);
-      const attr = res.attributes;
+      const attr = res.attributes || res.props;
       const end = (attr && attr.className) || (/^g0/.test(res) && res);
 
       return out + next + (end ? "." + end : (attr ? "" : res));
