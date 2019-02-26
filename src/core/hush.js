@@ -5,7 +5,7 @@
  * @returns {String}
  */
 export const hush = str =>
-  str.split("").reduce(
+  "g0" + str.split("").reduce(
     (out, c) => out + c.charCodeAt(0),
     0
   );

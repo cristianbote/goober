@@ -12,10 +12,10 @@ jest.mock("../core/parser/get-css", () => ({
 
 describe("styled", () => {
     it("should return the className for vanilla", () => {
-        const vanilla = styled("")`css`;
+        const vanilla = styled()`css`;
 
         expect(getCss).toHaveBeenCalledWith(["css"], [], undefined);
-        expect(getClassNameForCss).toHaveBeenCalledWith("getCss");
+        expect(getClassNameForCss).toHaveBeenCalledWith("getCss", undefined);
         
         expect(vanilla).toEqual('getClassNameForCss');
     });

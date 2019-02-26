@@ -17,8 +17,8 @@ jest.mock("../../hush", () => ({
 
 describe("get-class-name", () => {
     it("should generate proper class", () => {
-        const className = getClassNameForCss("random");
-        const expected = "g0" + 1e3.toString(8);
+        const className = getClassNameForCss("random", "valid");
+        const expected = 1e3.toString(8);
 
         expect(hush).toBeCalledWith("random");
         expect(parse).toBeCalledWith("." + expected, "random");
