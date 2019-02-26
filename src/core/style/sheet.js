@@ -1,4 +1,4 @@
-const SHEET_ID = "data-goober";
+let SHEET_ID = "data-goober";
 let styles = "";
 /**
  * Returns the values and clear the styles
@@ -22,7 +22,7 @@ export const add = (css, target) => {
   styles += css;
 
   // If we're not the client
-  if (target) {
+  if (typeof document != "undefined" && (target = target || document.head)) {
     let sheet = target.querySelector("style[" + SHEET_ID + "]");
     if (!sheet) {
       sheet = document.createElement("style");

@@ -18,7 +18,7 @@ describe("styled", () => {
     expect(getClassNameForCss).toHaveBeenCalledWith(
       "getCss",
       true,
-      document.head
+      undefined
     );
 
     expect(vanilla).toEqual("getClassNameForCss");
@@ -51,6 +51,6 @@ describe("styled", () => {
 
   it("object style notation", () => {
     const Comp = styled("tag")({ foo: 1 })({});
-    expect(getClassNameForCss).toBeCalledWith({ foo: 1 }, true, document.head);
+    expect(getClassNameForCss).toBeCalledWith({ foo: 1 }, true, undefined);
   });
 });
