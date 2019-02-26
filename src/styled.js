@@ -7,12 +7,18 @@ import { getCss } from "./core/parser/get-css";
  * @return {Function}
  */
 export const styled = function(tag) {
-  let context = this || {};
-  const h = context.h;
-  let target = context.target || (document && document.head);
-  return (str, ...defs) => {
+  const styledContext = this || {};
+  const h = styledContext.h;
+  return function() {
+    const cssContext = this || {};
+    const target =
+      styledContext.target || cssContext.target || (document && document.head);
+    const args = [].slice.call(arguments);
     const processStyles = props => {
-      const className = getClassNameForCss(getCss(str, defs, props), target);
+      const className = getClassNameForCss(
+        getCss(args[0], args.slice(1), props),
+        target
+      );
 
       // To be used for 'vanilla'
       if (!h || !tag) return className;
@@ -25,6 +31,6 @@ export const styled = function(tag) {
         })
       );
     };
-    return !tag ? processStyles() : processStyles;
+    return tag ? processStyles : processStyles();
   };
 };

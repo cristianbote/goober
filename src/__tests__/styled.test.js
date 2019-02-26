@@ -20,17 +20,24 @@ describe("styled", () => {
     expect(vanilla).toEqual("getClassNameForCss");
   });
 
-  it("should not call the pragma if not set", () => {
-    const Comp = styled("tag")`css`({});
-
-    expect(Comp).toEqual("getClassNameForCss");
+  it("should use the target that is bound to styled", () => {
+    const s = styled.bind({ target: document.body });
+    s("tag")`css`({});
+    expect(getCss).toHaveBeenCalledWith(["css"], [], undefined);
+    expect(getClassNameForCss).toHaveBeenCalledWith("getCss", document.body);
   });
 
-  it("should not call the pragma if not set", () => {
+  it("should not call the pragma if not bound to styled", () => {
+    const output = styled("tag")`css`({});
+
+    expect(typeof output).toEqual("string");
+  });
+
+  it("should call the pragma if bound to styled", () => {
     const fn = jest.fn();
     const s = styled.bind({ h: fn });
 
-    const Comp = s("tag")`css`({});
+    s("tag")`css`({});
     expect(fn).toBeCalled();
   });
 });
