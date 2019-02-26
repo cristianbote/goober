@@ -16,7 +16,7 @@ export const flush = () => {
  * @param {Element} target
  */
 export function add(css, target) {
-  if (styles.indexOf(css) > -1) {
+  if (~styles.indexOf(css)) {
     return;
   }
   styles += css;
@@ -28,6 +28,8 @@ export function add(css, target) {
       sheet = document.createElement("style");
       sheet.setAttribute(SHEET_ID, "");
       target.appendChild(sheet).innerHTML = css;
-    } else sheet.firstChild.data += css;
+    } else {
+      sheet.firstChild.data += css;
+    }
   }
 }
