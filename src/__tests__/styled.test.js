@@ -15,7 +15,7 @@ describe("styled", () => {
         const vanilla = styled()`css`;
 
         expect(getCss).toHaveBeenCalledWith(["css"], [], undefined);
-        expect(getClassNameForCss).toHaveBeenCalledWith("getCss", undefined);
+        expect(getClassNameForCss).toHaveBeenCalledWith("getCss", true);
         
         expect(vanilla).toEqual('getClassNameForCss');
     });

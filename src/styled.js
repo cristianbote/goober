@@ -22,7 +22,7 @@ export const styled = tag =>
     const processStyles = props => {
       const className = getClassNameForCss(
         getCss(args[0], args.slice(1), props),
-        tag
+        tag != 0
       );
 
       // To be used for 'vanilla' or isGlobal
