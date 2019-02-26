@@ -1,5 +1,6 @@
 import { getClassNameForCss } from "./core/style/get-class-name";
 import { getCss } from "./core/parser/get-css";
+import { add } from "./core/style/sheet";
 
 let h;
 
@@ -16,13 +17,15 @@ export const setPragma = val => (h = val);
  */
 export const styled = tag =>
   function() {
+    tag = tag == "global" ? 0 : tag;
     const args = [].slice.call(arguments);
     const processStyles = props => {
       const className = getClassNameForCss(
-        getCss(args[0], args.slice(1), props)
+        getCss(args[0], args.slice(1), props),
+        tag != 0
       );
 
-      // To be used for 'vanilla'
+      // To be used for 'vanilla' or isGlobal
       if (!h || !tag) return className;
 
       return h(

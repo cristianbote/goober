@@ -9,10 +9,6 @@ describe("css", () => {
     it("should call styled", () => {
         css();
 
-        expect(styled).toBeCalledWith("");
-    });
-
-    it("should be a fn", () => {
-        expect(typeof css).toEqual("function");
+        expect(styled).toBeCalled();
     });
 });
