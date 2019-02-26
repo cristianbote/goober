@@ -35,20 +35,6 @@ describe("styled", () => {
     );
   });
 
-  it("should not call the pragma if not bound to styled", () => {
-    const output = styled("tag")`css`({});
-
-    expect(typeof output).toEqual("string");
-  });
-
-  it("should call the pragma if bound to styled", () => {
-    const fn = jest.fn();
-    const s = styled.bind({ pragma: fn });
-
-    s("tag")`css`({});
-    expect(fn).toBeCalled();
-  });
-
   it("should not call the pragma if not set", () => {
     const Comp = styled("tag")`css`({});
 
