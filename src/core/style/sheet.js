@@ -15,7 +15,7 @@ export const flush = () => {
  * @param {String} css
  * @param {Element} target
  */
-export function add(css, target) {
+export const add = (css, target) => {
   if (~styles.indexOf(css)) {
     return;
   }
@@ -32,4 +32,4 @@ export function add(css, target) {
       sheet.firstChild.data += css;
     }
   }
-}
+};
