@@ -35,7 +35,7 @@ describe("styled", () => {
 
   it("should call the pragma if bound to styled", () => {
     const fn = jest.fn();
-    const s = styled.bind({ h: fn });
+    const s = styled.bind({ pragma: fn });
 
     s("tag")`css`({});
     expect(fn).toBeCalled();

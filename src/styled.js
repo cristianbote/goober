@@ -1,14 +1,22 @@
 import { getClassNameForCss } from "./core/style/get-class-name";
 import { getCss } from "./core/parser/get-css";
 
+let pragma;
+
+/**
+ * Sets custom pragma to be used in contexts
+ * @param {function} val
+ */
+export const setPragma = val => (pragma = val);
+
 /**
  * Styled function. Returns a vDOM component with a className that defines it's style.
  * @param {String} tag DOM tagName
  * @return {Function}
  */
 export const styled = function(tag) {
-  const styledContext = this || {};
-  const h = styledContext.h;
+  const styledContext = this || { pragma };
+  const h = pragma || styledContext.pragma;
   return function() {
     const cssContext = this || {};
     const target =
