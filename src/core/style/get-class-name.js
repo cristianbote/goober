@@ -5,6 +5,7 @@ import { parse } from "../parser/parse";
 /**
  * Does the hush-ing of the css declaration and returns the className.
  * @param {String} css
+ * @param {Element} target
  * @return {String}
  */
 export const getClassNameForCss = (compiled, target) => {
@@ -12,7 +13,7 @@ export const getClassNameForCss = (compiled, target) => {
   const parsed = parse("." + hash, compiled);
 
   // This methods adds or updates the new style
-  add(hash, parsed, target);
+  add(parsed, target);
 
   return hash;
 };

@@ -22,7 +22,7 @@ describe("get-class-name", () => {
 
     expect(hush).toBeCalledWith("random");
     expect(parse).toBeCalledWith("." + expected, "random");
-    expect(add).toBeCalledWith(expected, "parsed", undefined);
+    expect(add).toBeCalledWith("parsed", undefined);
 
     expect(className).toEqual(expected);
   });

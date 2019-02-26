@@ -15,10 +15,10 @@ describe("sheet", () => {
 
     it("should add css", () => {
       // Add a 'css' rule
-      add("1", "one", global.document.head);
+      add("one", global.document.head);
 
       // Same hash, should not be twice
-      add("1", "one", global.document.head);
+      add("one", global.document.head);
 
       const sheet = global.document.head.firstChild;
 
@@ -34,7 +34,7 @@ describe("sheet", () => {
       delete global.document;
 
       // Should not throw
-      expect(() => add("2", "ssr")).not.toThrow();
+      expect(() => add("ssr")).not.toThrow();
 
       global.document = bkp;
     });
@@ -43,12 +43,12 @@ describe("sheet", () => {
   describe("flush", () => {
     it("flush the css", () => {
       // Add a 'css' rule
-      add("3", "flush");
+      add("flush");
 
-      expect(flush()).toEqual(["flush"]);
+      expect(flush()).toEqual("flush");
 
       // Second call should be empty array since it has been flushed
-      expect(flush()).toEqual([]);
+      expect(flush()).toEqual("");
     });
   });
 });
