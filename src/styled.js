@@ -14,20 +14,21 @@ export const setPragma = val => (h = val);
  * @return {Function}
  */
 export const styled = function(tag) {
-  const styledContext = this;
+  const target = (this || {}).target;
+
   return function() {
-    const target = (styledContext || this || {}).target;
-    tag = tag == "global" ? 0 : tag;
     const args = [].slice.call(arguments);
+
     const processStyles = props => {
       let className = getClassNameForCss(
         args[0].map ? getCss(args[0], args.slice(1), props) : args[0],
-        tag != 0,
+        tag != "global",
         target
       );
 
-      // To be used for 'vanilla' or isGlobal
+      // To be used for 'vanilla'
       if (!h || !tag) return className;
+
       return h(
         tag,
         Object.assign(props, {
