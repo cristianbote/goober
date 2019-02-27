@@ -1,6 +1,5 @@
 import { getClassNameForCss } from "./core/style/get-class-name";
 import { getCss } from "./core/parser/get-css";
-import { add } from "./core/style/sheet";
 
 let h;
 
