@@ -14,7 +14,7 @@ describe("styled", () => {
   it("should return the className for vanilla", () => {
     const vanilla = styled()`css`;
 
-    expect(getCss).toHaveBeenCalledWith(["css"], [], {});
+    expect(getCss).toHaveBeenCalledWith(["css"], [], undefined);
     expect(getClassNameForCss).toHaveBeenCalledWith(
       "getCss",
       true,
@@ -51,11 +51,11 @@ describe("styled", () => {
 
   it("object style notation", () => {
     styled("tag")({ foo: 1 })();
-    expect(getClassNameForCss).toBeCalledWith({ foo: 1 }, true, undefined);
+    expect(getClassNameForCss).toBeCalledWith("getCss", true, undefined);
   });
 
   it("global", () => {
     const res = styled("global")`foo: 1;`;
-    expect(res).toEqual("getClassNameForCss");
+    expect(res).toEqual(undefined);
   });
 });

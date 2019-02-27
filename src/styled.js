@@ -14,30 +14,33 @@ export const setPragma = val => (h = val);
  * @return {Function}
  */
 export const styled = function(tag) {
-  const target = (this || {}).target;
-  const notGlob = tag != "global";
+  const ctx = this;
+  const notGlob = tag != "global"
+  /**
+   * This is the tagged function that's being returned
+   */
+  return function tagged(str) {
 
-  return function() {
-    const args = arguments;
-    const str = arguments[0];
-
+    /**
+     * VNODE props or attributes
+     * @param {object|undefined} props 
+     */
     const processStyles = props => {
-      let p = props || {};
 
       let className = getClassNameForCss(
-        str.map ? getCss(str, [].slice.call(args, 1), p) : str,
+        getCss(str, [].slice.call(arguments, 1), props),
         notGlob,
-        target
+        (this || ctx || {}).target
       );
 
       // To be used for 'vanilla'
-      if (!h || !(tag && notGlob)) return className;
-
-      p.className = p.className ? p.className + " " + className : className;
+      if (!h || (!tag && notGlob)) return className;
 
       return h(
         tag,
-        p
+        Object.assign({}, props, {
+          className: props && props.className ? props.className + " " + className : className
+        })
       );
     };
 

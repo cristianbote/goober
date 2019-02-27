@@ -1,12 +1,11 @@
 import { css } from "../css";
 
 jest.mock("../styled", () => ({
-  styled: jest.fn()
+  styled: jest.fn().mockReturnValue("styled(return)")
 }));
 
 describe("css", () => {
   it("should be a fn", () => {
-    expect(typeof css).toEqual("function");
-    expect(css()).toEqual(undefined);
+    expect(css).toEqual("styled(return)");
   });
 });

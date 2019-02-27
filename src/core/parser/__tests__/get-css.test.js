@@ -34,4 +34,12 @@ describe("get-css", () => {
             template`prop: 1; ${() => 1} ${2}`({})
         ).toEqual("prop: 1; 1 2");
     });
+
+    it("non iterable", () => {
+        const v = Math.random();
+
+        expect(
+            template(v)()
+        ).toEqual(v);
+    });
 });

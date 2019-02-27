@@ -6,7 +6,7 @@
  * @return {String}
  */
 export const getCss = (str, defs, props) =>
-  str.reduce((out, next, i) => {
+  str.reduce ? str.reduce((out, next, i) => {
     let tail = defs[i];
 
     if (typeof defs[i] == "function") {
@@ -17,4 +17,4 @@ export const getCss = (str, defs, props) =>
       tail = (end ? "." + end : (attr ? "" : res));
     }
     return out + next + (tail || "");
-  }, "");
+  }, "") : str;
