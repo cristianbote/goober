@@ -17,7 +17,8 @@
     "test-unit": "jest --coverage --ci --setupFiles ./tests/setup.js",
     "clean": "rm -rf dist",
     "size-check": "bundlesize",
-    "build": "npm run clean && microbundle --entry src/index.js --output dist --name goober --sourcemap false && npm run size-check",
+    "build": "npm run clean && microbundle --entry src/index.js --output dist --name goober --no-sourcemap && npm run size-check",
+    "debug": "microbundle --entry src/index.js --output debug --name goober --no-sourcemap --no-compress",
     "dev": "npm run clean && microbundle watch --entry src/index.js --output dist --name goober",
     "deploy": "npm run build && npm publish"
   },
