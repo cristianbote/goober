@@ -14,7 +14,7 @@ describe("styled", () => {
   it("should return the className for vanilla", () => {
     const vanilla = styled()`css`;
 
-    expect(getCss).toHaveBeenCalledWith(["css"], [], undefined);
+    expect(getCss).toHaveBeenCalledWith(["css"], [], {});
     expect(getClassNameForCss).toHaveBeenCalledWith(
       "getCss",
       true,
@@ -27,7 +27,7 @@ describe("styled", () => {
   it("should use the target that is bound to styled", () => {
     const s = styled.bind({ target: document.body });
     s("tag")`css`({});
-    expect(getCss).toHaveBeenCalledWith(["css"], [], undefined);
+    expect(getCss).toHaveBeenCalledWith(["css"], [], {});
     expect(getClassNameForCss).toHaveBeenCalledWith(
       "getCss",
       true,
@@ -45,12 +45,17 @@ describe("styled", () => {
     const fn = jest.fn();
     setPragma(fn);
 
-    const Comp = styled("tag")`css`({});
+    styled("tag")`css`({});
     expect(fn).toBeCalled();
   });
 
   it("object style notation", () => {
-    const Comp = styled("tag")({ foo: 1 })({});
+    styled("tag")({ foo: 1 })();
     expect(getClassNameForCss).toBeCalledWith({ foo: 1 }, true, undefined);
+  });
+
+  it("global", () => {
+    const res = styled("global")`foo: 1;`;
+    expect(res).toEqual("getClassNameForCss");
   });
 });
