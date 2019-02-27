@@ -30,9 +30,9 @@ export const styled = function(tag) {
       if (!h || !tag) return className;
       return h(
         tag,
-        Object.assign({}, props, {
+        Object.assign(props, {
           className:
-            (props && props.className ? props.className + " " : "") + className
+            props && props.className ? props.className + " " + className : className
         })
       );
     };
