@@ -11,13 +11,16 @@ function css(str) {
     const ctx = this || {};
 
     return hash(
-        str.map ? compile(str, defs, ctx.props) : str,
+        str.map ? compile(str, defs, ctx.p) : str,
         getTarget(ctx.target),
         ctx.g
     );
 }
 
-const glob = css.bind({ g: !0 });
+/**
+ * CSS Global function to declare global styes
+ */
+const glob = css.bind({ g: 1 });
 
 export {
     css,

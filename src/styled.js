@@ -10,12 +10,10 @@ const setPragma = pragma => (h = pragma);
 function styled(tag) {
   return function () {
       const args = [].slice.call(arguments, 0);
-      const ctx = this || {};
 
       return props => {
           const className = css.apply({
-              target: ctx.target,
-              props: props
+              p: props
           }, args);
 
           return h(

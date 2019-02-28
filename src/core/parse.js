@@ -4,7 +4,7 @@
  * @param {String} paren 
  * @param {String} wrapper 
  */
-export const parse = (obj, paren, wrapper, glob) => {
+export const parse = (obj, paren, wrapper) => {
     let current = "";
     let blocks = "";
     
@@ -30,7 +30,7 @@ export const parse = (obj, paren, wrapper, glob) => {
         if (key[0] == '@') next = paren;
   
         // Call the parse for this block
-        blocks += parse(val, next, next == paren ? key : wrapper || '', glob);
+        blocks += parse(val, next, next == paren ? key : wrapper || '');
       } else {
   
         // Push the line for this property

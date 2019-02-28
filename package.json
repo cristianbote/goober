@@ -13,8 +13,8 @@
     "package.json"
   ],
   "scripts": {
-    "test": "npm run test-unit && npm run build",
-    "test-unit": "jest --coverage --ci --setupFiles ./tests/setup.js",
+    "test": "npm run test-unit -- --ci --coverage && npm run build",
+    "test-unit": "jest --setupFiles ./tests/setup.js",
     "clean": "rm -rf dist",
     "size-check": "bundlesize",
     "build": "npm run clean && microbundle --entry src/index.js --output dist --name goober --no-sourcemap && npm run size-check",
