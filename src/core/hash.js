@@ -13,7 +13,7 @@ export const hash = (compiled, target, glob) => {
 
     // add or update
     update(
-        generate(className, compiled),
+        generate(className, compiled, glob),
         target
     );
 

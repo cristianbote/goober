@@ -10,6 +10,6 @@ import { astish } from "./astish";
 export const generate = (className, compiled) => {
     return parse(
         compiled.big ? astish(compiled) : compiled,
-        "." + className
+        className ? "." + className : ""
     );
 };

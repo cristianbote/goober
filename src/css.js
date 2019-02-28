@@ -17,7 +17,7 @@ function css(str) {
     );
 }
 
-const glob = css.bind({ g: !1 });
+const glob = css.bind({ g: !0 });
 
 export {
     css,
