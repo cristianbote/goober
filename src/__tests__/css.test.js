@@ -15,7 +15,7 @@ jest.mock("../core/get-target", () => ({
   getTarget: jest.fn().mockReturnValue("getTarget()")
 }));
 
-describe.only("css", () => {
+describe("css", () => {
 
   beforeEach(() => {
     hash.mockClear();
