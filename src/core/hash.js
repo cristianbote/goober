@@ -13,10 +13,10 @@ export const hash = (compiled, target, glob) => {
 
     // add or update
     update(
-        generate(className, compiled, glob),
+        generate(className, compiled),
         target
     );
 
     // return hash
-    return className;
+    return className.substr(1);
 }

@@ -39,7 +39,7 @@ export const parse = (obj, paren, wrapper, glob) => {
     }
     
     // If we have properties
-    if (current.length) {
+    if (current.charAt(0)) {
       // Standard rule composition
       const rule = paren + "{" + current + "}";
       
