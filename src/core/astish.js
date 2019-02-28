@@ -16,13 +16,11 @@ export const astish = val => {
       
         // Remove the current entry
         if (block[4]) tree.shift();
-
-        const entry = tree[0];
         
         if (key) {
-            tree.unshift((entry[key] = {}));
+            tree.unshift((tree[0][key] = {}));
         } else if (!block[4]) {
-            entry[block[1]] = block[2];
+            tree[0][block[1]] = block[2];
         }
     }
     
