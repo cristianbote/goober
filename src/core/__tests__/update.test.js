@@ -7,7 +7,8 @@ describe("update", () => {
         update("css", t);
 
         expect(t.data).toEqual("css");
-        expect(extractCss()).toEqual(t.data);
+        // Using a target should not update the SSR cache
+        expect(extractCss()).toEqual("");
     });
 
     it("regression: duplicate", () => {
@@ -18,7 +19,6 @@ describe("update", () => {
         update("css", t);
 
         expect(t.data).toEqual("cssfoo");
-        expect(extractCss()).toEqual(t.data);
     });
 
     it("regression: no target", () => {
@@ -26,7 +26,7 @@ describe("update", () => {
         expect(extractCss()).toEqual("no target");
     });
 
-    it("regression: second extract call should be empty", () => {
+    it("regression: extract and flush", () => {
         update("filled");
         expect(extractCss()).toEqual("filled");
         expect(extractCss()).toEqual("");
