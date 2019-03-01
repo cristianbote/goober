@@ -1,10 +1,10 @@
-import { getCss } from "../get-css";
+import { compile } from "../compile";
 
 const template = (str, ...defs) => {
-    return props => getCss(str, defs, props);
-}
+    return props => compile(str, defs, props);
+};
 
-describe("get-css", () => {
+describe("compile", () => {
     it("simple", () => {
         expect(
             template`prop: 1;`({})
@@ -33,13 +33,5 @@ describe("get-css", () => {
         expect(
             template`prop: 1; ${() => 1} ${2}`({})
         ).toEqual("prop: 1; 1 2");
-    });
-
-    it("non iterable", () => {
-        const v = Math.random();
-
-        expect(
-            template(v)()
-        ).toEqual(v);
     });
 });

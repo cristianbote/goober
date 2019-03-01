@@ -1,42 +1,37 @@
 import { astish } from "../astish";
 
 describe("astish", () => {
-
     it("regular", () => {
-        expect(
-            astish(`
-                prop: value;
-            `)
-        ).toEqual({
+        expect(astish(`
+            prop: value;
+        `)).toEqual({
             "prop": "value"
         });
     });
 
     it("nested", () => {
-        expect(
-            astish(`
-                prop: value;
-                @keyframes foo {
-                    0% {
-                        attr: value;
-                    }
-                    50% {
-                        opacity: 1;
-                    }
-                    100% {
-                        foo: baz;
-                    }
+        expect(astish(`
+            prop: value;
+            @keyframes foo {
+                0% {
+                    attr: value;
                 }
-                named {
-                    background-image: url('/path-to-jpg.png');
+                50% {
+                    opacity: 1;
                 }
-                opacity: 0;
-                .class,
-                &:hover {
-                    -webkit-touch: none;
+                100% {
+                    foo: baz;
                 }
-            `)
-        ).toEqual({
+            }
+            named {
+                background-image: url('/path-to-jpg.png');
+            }
+            opacity: 0;
+            .class,
+            &:hover {
+                -webkit-touch: none;
+            }
+        `)).toEqual({
             "prop": "value",
             "opacity": "0",
             ".class,&:hover": {
@@ -61,27 +56,25 @@ describe("astish", () => {
     });
 
     it("regression", () => {
-        expect(
-            astish(`
-                &.g0ssss {
-                    aa: foo;
-                    box-shadow: 0 1px rgba(0, 2, 33, 4) inset;
-                }
-                named {
-                    transform: scale(1.2), rotate(1, 1);
-                }
-                @media screen and (some-rule: 100px) {
-                    foo: baz;
-                    opacity: 1;
+        expect(astish(`
+            &.g0ssss {
+                aa: foo;
+                box-shadow: 0 1px rgba(0, 2, 33, 4) inset;
+            }
+            named {
+                transform: scale(1.2), rotate(1, 1);
+            }
+            @media screen and (some-rule: 100px) {
+                foo: baz;
+                opacity: 1;
+                level {
+                    one: 1;
                     level {
-                        one: 1;
-                        level {
-                            two: 2;
-                        }
+                        two: 2;
                     }
                 }
-            `)
-        ).toEqual({
+            }
+        `)).toEqual({
             "&.g0ssss": {
                 "aa": "foo",
                 "box-shadow": "0 1px rgba(0, 2, 33, 4) inset",
@@ -102,5 +95,4 @@ describe("astish", () => {
             }
         });
     });
-
 });

@@ -1,49 +1,32 @@
-import { getClassNameForCss } from "./core/style/get-class-name";
-import { getCss } from "./core/parser/get-css";
+import { css } from "./css";
 
 let h;
-/**
- * Sets custom pragma to be used in contexts
- * @param {function} val
- */
-export const setPragma = val => (h = val);
+const setPragma = pragma => (h = pragma);
 
 /**
- * Styled function. Returns a vDOM component with a className that defines it's style.
- * @param {String} tag DOM tagName
- * @return {Function}
+ * Styled function
+ * @param {String} tag 
  */
-export const styled = function(tag) {
-  const ctx = this;
-  const notGlob = tag != "global"
-  /**
-   * This is the tagged function that's being returned
-   */
-  return function tagged(str) {
+function styled(tag) {
+  return function () {
+      const args = [].slice.call(arguments, 0);
 
-    /**
-     * VNODE props or attributes
-     * @param {object|undefined} props 
-     */
-    const processStyles = props => {
+      return props => {
+          const className = css.apply({
+              p: props
+          }, args);
 
-      let className = getClassNameForCss(
-        getCss(str, [].slice.call(arguments, 1), props),
-        notGlob,
-        (this || ctx || {}).target
-      );
+          return h(
+              tag,
+              Object.assign({}, props, {
+                  className: props && props.className ? (props.className + " " + className) : className
+              })
+          )
+      };
+  }
+}
 
-      // To be used for 'vanilla'
-      if (!h || (!tag && notGlob)) return className;
-
-      return h(
-        tag,
-        Object.assign({}, props, {
-          className: props && props.className ? props.className + " " + className : className
-        })
-      );
-    };
-
-    return tag && notGlob ? processStyles : processStyles();
-  };
-};
+export {
+  styled,
+  setPragma
+}

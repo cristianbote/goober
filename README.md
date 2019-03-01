@@ -112,13 +112,13 @@ const { extractCss } = require("goober");
 const styleTag  = extractCss();
 ```
 
-### global style
-To create a global style, you need to call `styled` with the `global` string and your tagged template.
+###  `glob`
+To create a global style, you need to call `glob` with your global tagged template. Usually here's a good idea to place document wide styles.
 
 ```js
-import { styled } from "goober";
+import { glob } from "goober";
 
-styled("global")`
+glob`
   html,
   body {
     background: light;
@@ -138,7 +138,7 @@ styled("global")`
 - [x] Keyframes (@keyframes)
 - [x] Smart(lazy) client-side hydration
 - [x] Vanilla(via `css` function)
-- [x] `globalStyle` so one would be able to create global styles
+- [x] `globalStyle`(via `glob`) so one would be able to create global styles
 - [ ] Vendor prefixing
 
 # Contributing
