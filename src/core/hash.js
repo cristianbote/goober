@@ -1,6 +1,12 @@
 import { toHash } from "./to-hash";
-import { generate } from "./generate";
 import { update } from "./update";
+import { astish } from "./astish";
+import { parse } from "./parse";
+
+/**
+ * In-memory cache.
+ */
+let cache = {};
 
 /**
  * Generates the needed className
@@ -9,14 +15,17 @@ import { update } from "./update";
  */
 export const hash = (compiled, target, glob) => {
     // generate hash
-    const className = glob ? "" : toHash(compiled);
+    const className = cache[compiled] || (cache[compiled] = glob ? "" : toHash(compiled));
+
+    // Parse the compiled
+    const parsed = cache[className] || (cache[className] = parse(
+        compiled[0] ? astish(compiled) : compiled,
+        className
+    ));
 
     // add or update
-    update(
-        generate(className, compiled),
-        target
-    );
+    update(parsed, target);
 
     // return hash
     return className.substr(1);
-}
+};

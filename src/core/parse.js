@@ -16,38 +16,38 @@ export const parse = (obj, paren, wrapper) => {
     }
     
     for (let key in obj) {
-      const val = obj[key];
-      
-      // If this is a 'block'
-      if (typeof val === "object") {
-        // Regular selector
-        let next = paren + " " + key;
+        const val = obj[key];
         
-        // Nested
-        if (/&/g.test(key)) next = key.replace(/&/g, paren);
-  
-        // Media queries or other
-        if (key[0] == '@') next = paren;
-  
-        // Call the parse for this block
-        blocks += parse(val, next, next == paren ? key : wrapper || '');
-      } else {
-  
-        // Push the line for this property
-        current += key + ":" + val + ";";
-      }
+        // If this is a 'block'
+        if (typeof val === "object") {
+            // Regular selector
+            let next = paren + " " + key;
+            
+            // Nested
+            if (/&/g.test(key)) next = key.replace(/&/g, paren);
+    
+            // Media queries or other
+            if (key[0] == '@') next = paren;
+    
+            // Call the parse for this block
+            blocks += parse(val, next, next == paren ? key : wrapper || '');
+        } else {
+    
+            // Push the line for this property
+            current += key + ":" + val + ";";
+        }
     }
     
     // If we have properties
     if (current.charAt(0)) {
-      // Standard rule composition
-      const rule = paren + "{" + current + "}";
-      
-      // With wrapper
-      if (wrapper) return blocks + wrapper + "{" + rule + "}";
-  
-      // Else just push the rule
-      return rule + blocks;
+        // Standard rule composition
+        const rule = paren + "{" + current + "}";
+        
+        // With wrapper
+        if (wrapper) return blocks + wrapper + "{" + rule + "}";
+    
+        // Else just push the rule
+        return rule + blocks;
     }
   
     return blocks;
