@@ -6,7 +6,9 @@ import { parse } from "./parse";
 /**
  * In-memory cache.
  */
-let cache = {};
+let cache = {
+    c: 0
+};
 
 /**
  * Generates the needed className
@@ -22,6 +24,8 @@ export const hash = (compiled, target, glob) => {
         compiled[0] ? astish(compiled) : compiled,
         className
     ));
+
+    if (++cache.c > 1e4) cache = { c: 0 };
 
     // add or update
     update(parsed, target);
