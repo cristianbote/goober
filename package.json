@@ -10,7 +10,8 @@
     "src",
     "README.md",
     "dist",
-    "package.json"
+    "package.json",
+    "typings.json"
   ],
   "scripts": {
     "test": "npm run test-unit && npm run build",
@@ -43,6 +44,7 @@
     "jest": "^24.1.0",
     "microbundle": "^0.9.0"
   },
+  "typings": "./src/goober.d.ts",
   "bundlesize": [
     {
       "path": "./dist/*.*",
