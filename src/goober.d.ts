@@ -3,11 +3,15 @@ export = goober;
 export as namespace goober;
 
 declare namespace goober {
-    type styled = (tag: string) => tagged;
+    function styled (tag: string): tagged;
+    function setPragma (val: TaggedNode): void;
+    function extractCSS (): string;
+    function css (tag: string): TaggedNode;
+    function css (tag: CSSAttribute): ClassName;
+    type TaggedNode = (props: any, ...args: any[]) => any;
     type tagged = (tag: string) => TaggedNode;
-    type setPragma = (val: TaggedNode) => void;
-    type extractCSS = () => string;
-    type css = tagged;
+    interface CSSAttribute {
+        [key: string]: CSSAttribute | string | number;
+    }
+    type ClassName = string;
 }
-
-type TaggedNode = (props: any, ...args: any[]) => any;
