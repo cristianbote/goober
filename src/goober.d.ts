@@ -6,12 +6,12 @@ export as namespace goober;
 
 declare namespace goober {
     function styled (tag: string): tagged;
-    function setPragma (val: TaggedNode): void;
+    function setPragma (val: StyledVNode): void;
     function extractCSS (): string;
     function css (tag: CSSAttribute): ClassName;
-    function css (tag: string): TaggedNode;
-    type TaggedNode = (props: any, ...args: any[]) => any;
-    type tagged = (tag: string) => TaggedNode;
+    function css (tag: string): StyledVNode;
+    type StyledVNode = (props: any, ...args: any[]) => any;
+    type tagged = (tag: string | CSSAttribute) => StyledVNode;
     interface CSSAttribute extends CSSPropertiesHyphen {
         [key: string]: CSSPropertiesHyphen | string | number;
     }
