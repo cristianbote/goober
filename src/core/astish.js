@@ -7,22 +7,17 @@ const ruleClean = /\/\*.*?\*\/|\s{2,}|\n/gm;
  * @returns {object}
  */
 export const astish = val => {
-    let target = val = val.replace(ruleClean, "");
     let tree = [{}];
-
     let block;
-    while ((block = newRule.exec(target))) {
-        const key = block[3];
-      
+    
+    while ((block = newRule.exec(val.replace(ruleClean, "")))) {
         // Remove the current entry
         if (block[4]) tree.shift();
-
-        const entry = tree[0];
         
-        if (key) {
-            tree.unshift((entry[key] = {}));
+        if (block[3]) {
+            tree.unshift((tree[0][block[3]] = {}));
         } else if (!block[4]) {
-            entry[block[1]] = block[2];
+            tree[0][block[1]] = block[2];
         }
     }
     

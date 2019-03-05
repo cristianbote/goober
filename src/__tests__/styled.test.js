@@ -1,61 +1,49 @@
 import { styled, setPragma } from "../styled";
-import { getCss } from "../core/parser/get-css";
-import { getClassNameForCss } from "../core/style/get-class-name";
+import { css } from "../css";
 
-jest.mock("../core/style/get-class-name", () => ({
-  getClassNameForCss: jest.fn().mockReturnValue("getClassNameForCss")
-}));
-
-jest.mock("../core/parser/get-css", () => ({
-  getCss: jest.fn().mockReturnValue("getCss")
+jest.mock("../css", () => ({
+  css: jest.fn().mockReturnValue("css()")
 }));
 
 describe("styled", () => {
-  it("should return the className for vanilla", () => {
-    const vanilla = styled()`css`;
-
-    expect(getCss).toHaveBeenCalledWith(["css"], [], undefined);
-    expect(getClassNameForCss).toHaveBeenCalledWith(
-      "getCss",
-      true,
-      undefined
-    );
-
-    expect(vanilla).toEqual("getClassNameForCss");
+  it("type", () => {
+    expect(typeof styled).toEqual("function");
   });
 
-  it("should use the target that is bound to styled", () => {
-    const s = styled.bind({ target: document.body });
-    s("tag")`css`({});
-    expect(getCss).toHaveBeenCalledWith(["css"], [], {});
-    expect(getClassNameForCss).toHaveBeenCalledWith(
-      "getCss",
-      true,
-      document.body
-    );
+  it("return type", () => {
+    expect(typeof styled()).toEqual("function");
   });
 
-  it("should not call the pragma if not set", () => {
-    const Comp = styled("tag")`css`({});
+  it("setPragma", () => {
+    const pragma = jest.fn();
 
-    expect(Comp).toEqual("getClassNameForCss");
+    expect(() => styled()()()).toThrow();
+
+    setPragma(pragma);
+    styled()()();
+
+    expect(pragma).toBeCalled();
+
+    setPragma(undefined);
   });
 
-  it("should not call the pragma if not set", () => {
-    const fn = jest.fn();
-    setPragma(fn);
+  it("args", () => {
+    const h = jest.fn().mockReturnValue("h()");
+    const p = { bar: 1};
+    setPragma(h);
 
-    styled("tag")`css`({});
-    expect(fn).toBeCalled();
+    expect(styled("tag")`foo: 1`(p)).toEqual("h()");
+    expect(css).toBeCalledWith(["foo: 1"]);
+    expect(h).toBeCalledWith("tag", Object.assign({}, p, { className: "css()" }));
   });
 
-  it("object style notation", () => {
-    styled("tag")({ foo: 1 })();
-    expect(getClassNameForCss).toBeCalledWith("getCss", true, undefined);
-  });
+  it("args: concat className", () => {
+    const h = jest.fn().mockReturnValue("h()");
+    const p = { bar: 1, className: "existing" };
+    setPragma(h);
 
-  it("global", () => {
-    const res = styled("global")`foo: 1;`;
-    expect(res).toEqual(undefined);
+    expect(styled("tag")`foo: 1`(p)).toEqual("h()");
+    expect(css).toBeCalledWith(["foo: 1"]);
+    expect(h).toBeCalledWith("tag", Object.assign({}, p, { className: "existing css()" }));
   });
 });
