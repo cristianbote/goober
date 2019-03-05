@@ -8,8 +8,7 @@ declare namespace goober {
     function styled (tag: string): tagged;
     function setPragma (val: StyledVNode): void;
     function extractCSS (): string;
-    function css (tag: CSSAttribute): ClassName;
-    function css (tag: string): StyledVNode;
+    function css (tag: CSSAttribute | string): ClassName;
     type StyledVNode = (props: any, ...args: any[]) => any;
     type tagged = (tag: string | CSSAttribute) => StyledVNode;
     interface CSSAttribute extends CSSPropertiesHyphen {
