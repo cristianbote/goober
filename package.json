@@ -11,7 +11,8 @@
     "README.md",
     "dist",
     "package.json",
-    "typings.json"
+    "typings.json",
+    "goober.d.ts"
   ],
   "scripts": {
     "test": "npm run test-unit -- --ci --coverage && npm run build",
@@ -46,17 +47,11 @@
   "peerDependencies": {
     "csstype": "^2.6.2"
   },
-  "typings": "./src/goober.d.ts",
+  "typings": "./goober.d.ts",
   "bundlesize": [
     {
       "path": "./dist/*.*",
       "maxSize": "1KB"
     }
-  ],
-  "jest": {
-    "coveragePathIgnorePatterns": [
-      "*.d.ts",
-      "<rootDir>/node_modules/"
-    ]
-  }
+  ]
 }
