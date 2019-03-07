@@ -40,14 +40,23 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
     "babel-jest": "^24.1.0",
-    "csstype": "^2.6.2",
     "jest": "^24.1.0",
     "microbundle": "^0.9.0"
   },
+  "peerDependencies": {
+    "csstype": "^2.6.2"
+  },
+  "typings": "./src/goober.d.ts",
   "bundlesize": [
     {
       "path": "./dist/*.*",
       "maxSize": "1KB"
     }
-  ]
+  ],
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "*.d.ts",
+      "<rootDir>/node_modules/"
+    ]
+  }
 }
