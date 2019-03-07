@@ -44,16 +44,10 @@
     "jest": "^24.1.0",
     "microbundle": "^0.9.0"
   },
-  "typings": "./src/goober.d.ts",
   "bundlesize": [
     {
       "path": "./dist/*.*",
       "maxSize": "1KB"
     }
-  ],
-  "jest": {
-    "coveragePathIgnorePatterns": [
-      "!*.d.ts"
-    ]
-  }
+  ]
 }
