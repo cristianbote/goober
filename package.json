@@ -50,5 +50,10 @@
       "path": "./dist/*.*",
       "maxSize": "1KB"
     }
-  ]
+  ],
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "!*.d.ts"
+    ]
+  }
 }
