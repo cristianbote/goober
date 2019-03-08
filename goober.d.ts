@@ -12,7 +12,7 @@ declare namespace goober {
     type StyledVNode = (props: any, ...args: any[]) => any;
     type tagged = (tag: CSSAttribute | TemplateStringsArray) => StyledVNode;
     interface CSSAttribute extends CSSPropertiesHyphen {
-        [key: string]: CSSPropertiesHyphen | string | number;
+        [key: string]: CSSAttribute | string | number;
     }
     type ClassName = string;
 }
