@@ -17,6 +17,7 @@ let cache = {
  */
 export const hash = (compiled, target, glob) => {
     // generate hash
+    compiled = JSON.stringify(compiled);
     const className = cache[compiled] || (cache[compiled] = glob ? "" : toHash(compiled));
 
     // Parse the compiled
