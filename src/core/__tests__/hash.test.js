@@ -82,5 +82,18 @@ describe("hash", () => {
         expect(update).toBeCalledWith("parse()", "target");
 
         expect(res).toEqual(className.substr(1));
+
+        const className2 = Math.random() + "unique";
+        toHash.mockReturnValue(className2);
+
+        const res2 = hash({ foo: 2 }, "target");
+
+        expect(toHash).toBeCalledWith({ foo: 2 });
+        expect(astish).not.toBeCalled();
+        expect(parse).toBeCalledWith({ foo: 2 }, className2);
+        expect(update).toBeCalledWith("parse()", "target");
+
+        expect(res2).toEqual(className2.substr(1));
+        expect(res).not.toEqual(res2);
     })
 });
