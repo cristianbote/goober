@@ -56,6 +56,16 @@ describe("parse", () => {
         ].join(""));
     });
 
+    xit("@import", () => {
+        const out = parse({
+            "@import url('https://domain.com/path?1=s')": {}
+          }, "hush");
+
+        expect(out).toEqual([
+            "@media any all (no-really-anything){hush{position:super-absolute;}}"
+        ].join(""));
+    });
+
     it("cra", () => {
         expect(parse({
             "text-align": "center",

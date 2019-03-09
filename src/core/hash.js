@@ -18,7 +18,7 @@ let cache = {
 export const hash = (compiled, target, glob) => {
     // generate hash
     const compString = JSON.stringify(compiled);
-    const className = cache[compString] || (cache[compString] = glob ? "" : toHash(compiled));
+    const className = cache[compString] || (cache[compString] = glob ? "" : toHash(compString));
 
     // Parse the compiled
     const parsed = cache[className] || (cache[className] = parse(
@@ -26,6 +26,7 @@ export const hash = (compiled, target, glob) => {
         className
     ));
 
+    // Naive cleanup when it hits 10k total ops
     if (++cache.c > 1e4) cache = { c: 0 };
 
     // add or update

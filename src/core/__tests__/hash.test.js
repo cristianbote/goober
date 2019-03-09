@@ -40,7 +40,7 @@ describe("hash", () => {
     it("regression", () => {
         const res = hash("compiled", "target");
 
-        expect(toHash).toBeCalledWith("compiled");
+        expect(toHash).toBeCalledWith(JSON.stringify("compiled"));
         expect(update).toBeCalledWith("parse()", "target");
         expect(astish).toBeCalledWith("compiled");
         expect(parse).toBeCalledWith("astish()", ".toHash()");
@@ -76,24 +76,30 @@ describe("hash", () => {
 
         const res = hash({ baz: 1 }, "target");
 
-        expect(toHash).toBeCalledWith({ baz: 1 });
+        expect(toHash).toBeCalledWith(JSON.stringify({ baz: 1 }));
         expect(astish).not.toBeCalled();
         expect(parse).toBeCalledWith({ baz: 1 }, className);
         expect(update).toBeCalledWith("parse()", "target");
 
         expect(res).toEqual(className.substr(1));
+    });
 
-        const className2 = Math.random() + "unique";
-        toHash.mockReturnValue(className2);
+    it("regression: cache-object", () => {
+        const className = Math.random() + "unique";
+        toHash.mockReturnValue(className);
 
-        const res2 = hash({ foo: 2 }, "target");
+        // Since it's not yet cached
+         hash({ cacheObject: 1 }, "target");
+        expect(toHash).toBeCalledWith(JSON.stringify({ cacheObject: 1 }));
+        toHash.mockClear();
 
-        expect(toHash).toBeCalledWith({ foo: 2 });
-        expect(astish).not.toBeCalled();
-        expect(parse).toBeCalledWith({ foo: 2 }, className2);
-        expect(update).toBeCalledWith("parse()", "target");
+        // Different object
+        hash({ foo: 2 }, "target");
+        expect(toHash).toBeCalledWith(JSON.stringify({ foo: 2 }));
+        toHash.mockClear();
 
-        expect(res2).toEqual(className2.substr(1));
-        expect(res).not.toEqual(res2);
-    })
+        // First object should not call .toHash
+        hash({ cacheObject: 1 }, "target");
+        expect(toHash).not.toBeCalled();
+    });
 });
