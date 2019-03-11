@@ -5,28 +5,24 @@ const setPragma = pragma => (h = pragma);
 
 /**
  * Styled function
- * @param {String} tag 
+ * @param {String} tag
  */
 function styled(tag) {
-  return function () {
-      const args = [].slice.call(arguments, 0);
-
-      return props => {
-          const className = css.apply({
-              p: props
-          }, args);
-
-          return h(
-              tag,
-              Object.assign({}, props, {
-                  className: props && props.className ? (props.className + " " + className) : className
-              })
-          )
-      };
-  }
+  const ctx = this || {};
+  return function() {
+    const args = arguments;
+    return props => {
+      ctx.p = props;
+      return h(
+        tag,
+        Object.assign({}, props, {
+          className:
+            (props && props.className ? props.className + " " : "") +
+            css.apply(ctx, args)
+        })
+      );
+    };
+  };
 }
 
-export {
-  styled,
-  setPragma
-}
+export { styled, setPragma };
