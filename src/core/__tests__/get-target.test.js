@@ -1,33 +1,33 @@
-import { getTarget } from "../get-target";
+import { getSheet } from "../get-sheet";
 
-describe("getTarget", () => {
+describe("getSheet", () => {
     it("regression", () => {
-        const target = getTarget();
+        const target = getSheet();
         expect(target.nodeType).toEqual(3);
     });
 
     it("custom target", () => {
         const custom = document.createElement("div");
-        const target = getTarget(custom);
+        const sheet = getSheet(custom);
 
-        expect(target.nodeType).toEqual(3);
-        expect(target.parentElement.nodeType).toEqual(1);
-        expect(target.parentElement.hasAttribute("data-goober")).toBeTruthy();
+        expect(sheet.nodeType).toEqual(3);
+        expect(sheet.parentElement.nodeType).toEqual(1);
+        expect(sheet.parentElement.hasAttribute("data-goober")).toBeTruthy();
     });
 
     it("reuse sheet", () => {
         const custom = document.createElement("div");
-        const target = getTarget(custom);
-        const second = getTarget(custom);
+        const sheet = getSheet(custom);
+        const second = getSheet(custom);
 
-        expect(target === second).toBeTruthy();
+        expect(sheet === second).toBeTruthy();
     });
 
     it("server side", () => {
         const bkp = global.document;
         delete global.document;
 
-        expect(() => getTarget()).not.toThrow();
+        expect(() => getSheet()).not.toThrow();
 
         global.document = bkp;
     });

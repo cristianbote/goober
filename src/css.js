@@ -1,10 +1,10 @@
 import { hash } from "./core/hash";
 import { compile } from "./core/compile";
-import { getTarget } from "./core/get-target";
+import { getSheet } from "./core/get-sheet";
 
 /**
  * css entry
- * @param {String} str 
+ * @param {String} str
  */
 function css(str) {
     const defs = [].slice.call(arguments, 1);
@@ -12,7 +12,7 @@ function css(str) {
 
     return hash(
         str.map ? compile(str, defs, ctx.p) : str,
-        getTarget(ctx.target),
+        getSheet(ctx.target),
         ctx.g
     );
 }
@@ -22,7 +22,4 @@ function css(str) {
  */
 const glob = css.bind({ g: 1 });
 
-export {
-    css,
-    glob
-}
+export { css, glob };
