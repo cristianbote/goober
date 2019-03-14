@@ -13,24 +13,28 @@ let cache = {
 /**
  * Generates the needed className
  * @param {String|Object} compiled
- * @param {Object} target
+ * @param {Object} sheet
  */
-export const hash = (compiled, target, glob) => {
+export const hash = (compiled, sheet, glob) => {
     // generate hash
     const compString = JSON.stringify(compiled);
-    const className = cache[compString] || (cache[compString] = glob ? "" : toHash(compString));
+    const className =
+        cache[compString] ||
+        (cache[compString] = glob ? "" : toHash(compString));
 
     // Parse the compiled
-    const parsed = cache[className] || (cache[className] = parse(
-        compiled[0] ? astish(compiled) : compiled,
-        className
-    ));
+    const parsed =
+        cache[className] ||
+        (cache[className] = parse(
+            compiled[0] ? astish(compiled) : compiled,
+            className
+        ));
 
     // Naive cleanup when it hits 10k total ops
     if (++cache.c > 1e4) cache = { c: 0 };
 
     // add or update
-    update(parsed, target);
+    update(parsed, sheet);
 
     // return hash
     return className.substr(1);
