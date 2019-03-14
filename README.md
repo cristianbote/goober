@@ -100,7 +100,7 @@ const btn = document.querySelector("#btn");
 btn.classList.add(BtnClassName);
 ```
 
-### targets
+### `targets`
 
 By default, goober will append a style tag to the `<head>` of a document. You might want to target a different node, for instance, when you want to use goober with web components (so you'd want it to append style tags to individual shadowRoots). For this purpose, you can `.bind` a new target to the `styled` and `css` methods:
 
