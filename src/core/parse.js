@@ -7,6 +7,7 @@
 export const parse = (obj, paren, wrapper) => {
     let current = "";
     let blocks = "";
+    let outer = "";
     
     // If we're dealing with keyframes just flatten them
     if (/^@k/.test(wrapper)) {
@@ -17,9 +18,13 @@ export const parse = (obj, paren, wrapper) => {
     
     for (let key in obj) {
         const val = obj[key];
+        const isImport = /^@i/.test(key);
         
         // If this is a 'block'
-        if (typeof val === "object") {
+        if (isImport) {
+            outer += key + " " + val + ";";
+        } else if (typeof val === "object") {
+
             // Regular selector
             let next = paren + " " + key;
             
@@ -32,7 +37,6 @@ export const parse = (obj, paren, wrapper) => {
             // Call the parse for this block
             blocks += parse(val, next, next == paren ? key : wrapper || '');
         } else {
-    
             // Push the line for this property
             current += key + ":" + val + ";";
         }
@@ -47,8 +51,8 @@ export const parse = (obj, paren, wrapper) => {
         if (wrapper) return blocks + wrapper + "{" + rule + "}";
     
         // Else just push the rule
-        return rule + blocks;
+        return outer + rule + blocks;
     }
   
-    return blocks;
+    return outer + blocks;
 };

@@ -56,18 +56,19 @@ describe("parse", () => {
         ].join(""));
     });
 
-    xit("@import", () => {
+    it("@import", () => {
         const out = parse({
-            "@import url('https://domain.com/path?1=s')": {}
+            "@import": "url('https://domain.com/path?1=s')"
           }, "hush");
 
         expect(out).toEqual([
-            "@media any all (no-really-anything){hush{position:super-absolute;}}"
+            "@import url('https://domain.com/path?1=s');"
         ].join(""));
     });
 
     it("cra", () => {
         expect(parse({
+            "@import": "url('path/to')",
             "text-align": "center",
             ".logo": {
               "animation": "App-logo-spin infinite 20s linear",
@@ -97,6 +98,7 @@ describe("parse", () => {
             }
           }, "App")
           ).toEqual([
+            "@import url('path/to');",
             "App{text-align:center;}",
             "App .logo{animation:App-logo-spin infinite 20s linear;height:40vmin;pointer-events:none;}",
             "App .header{background-color:#282c34;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:calc(10px + 2vmin);color:white;}",
