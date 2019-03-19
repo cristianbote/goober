@@ -38,7 +38,7 @@ export const parse = (obj, paren, wrapper) => {
             blocks += parse(val, next, next == paren ? key : wrapper || '');
         } else {
             // Push the line for this property
-            current += key + ":" + val + ";";
+            current += key.replace(/[A-Z]/g, "-$&").toLowerCase() + ":" + val + ";";
         }
     }
     

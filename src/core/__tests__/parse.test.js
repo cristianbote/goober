@@ -20,6 +20,25 @@ describe("parse", () => {
         ].join(""));
     });
 
+    it("camelCase", () => {
+      const out = parse({
+        fooBarProperty: "value",
+        "button": {
+          webkitPressSomeButton: "0"
+        },
+        "&.nested": {
+          "foo": "1px",
+          backgroundEffect: "scale(1), translate(1)"
+        }
+      }, "hush");
+
+    expect(out).toEqual([
+        "hush{foo-bar-property:value;}",
+        "hush button{webkit-press-some-button:0;}",
+        "hush.nested{foo:1px;background-effect:scale(1), translate(1);}"
+    ].join(""));
+    });
+
     it("keyframes", () => {
         const out = parse({
             "@keyframes superAnimation": {
