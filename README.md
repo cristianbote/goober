@@ -155,5 +155,16 @@ glob`
 - [x] target/extract from elements other than `<head>`
 - [ ] Vendor prefixing
 
+# Browser support
+`goober` uses microbundle to bundle and transpile it's src into code that browsers can leverage. As you might figure it out, until now, Internet Explorer was the buggiest of them all. `goober` works on IE9, as we've successfully test it.
+
+```
+IE 9
+iOS 9.3
+Chrome 42
+FF 34
+Safari 9
+```
+
 # Contributing
 Feel free to try it out and checkout the examples. If you wanna fix something feel free to open a issue or a PR.
