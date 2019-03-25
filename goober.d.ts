@@ -1,4 +1,4 @@
-import { PropertiesHyphen as CSSPropertiesHyphen } from 'csstype';
+import { Properties as CSSProperties } from 'csstype';
 
 export = goober;
 
@@ -11,7 +11,7 @@ declare namespace goober {
     function css (tag: CSSAttribute | TemplateStringsArray): ClassName;
     type StyledVNode = (props: any, ...args: any[]) => any;
     type tagged = (tag: CSSAttribute | TemplateStringsArray) => StyledVNode;
-    interface CSSAttribute extends CSSPropertiesHyphen {
+    interface CSSAttribute extends CSSProperties {
         [key: string]: CSSAttribute | string | number;
     }
     type ClassName = string;
