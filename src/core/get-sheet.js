@@ -4,7 +4,7 @@
  */
 const GOOBER = "goober";
 const dummy = {
-    data: " "
+    data: ""
 };
 export const getSheet = target => {
     try {

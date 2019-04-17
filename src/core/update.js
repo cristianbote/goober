@@ -5,7 +5,7 @@ import { getSheet } from "./get-sheet";
  */
 const extractCss = target => {
     const sheet = getSheet(target);
-    const out = sheet.data.substr(1);
+    const out = sheet.data;
     sheet.data = "";
     return out;
 };
@@ -16,7 +16,7 @@ const extractCss = target => {
  * @param {Object} target
  */
 const update = (css, sheet) => {
-    ~sheet.data.indexOf(css) ? sheet.data : (sheet.data += css);
+    sheet.data.indexOf(css) < 0 && (sheet.data += css);
 };
 
 export { extractCss, update };

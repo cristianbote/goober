@@ -18,14 +18,10 @@ let cache = {
 export const hash = (compiled, sheet, glob) => {
     // generate hash
     const compString = JSON.stringify(compiled);
-    const className =
-        cache[compString] ||
-        (cache[compString] = glob ? "" : toHash(compString));
+    const className = cache[compString] || (cache[compString] = glob ? "" : toHash(compString));
 
     // Parse the compiled
-    const parsed =
-        cache[className] ||
-        (cache[className] = parse(
+    const parsed = cache[className] || (cache[className] = parse(
             compiled[0] ? astish(compiled) : compiled,
             className
         ));

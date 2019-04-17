@@ -22,7 +22,7 @@ describe("update", () => {
 
     it("regression: extract and flush", () => {
         update("filled", getSheet());
-        expect(extractCss()).toEqual("filled");
+        expect(extractCss()).toEqual(" filled");
         expect(extractCss()).toEqual("");
     });
 
@@ -38,7 +38,7 @@ describe("update", () => {
     it("regression: extract and flush from custom target", () => {
         update("filled", getSheet());
         update("filledbody", getSheet(global.document.body));
-        expect(extractCss(global.document.body)).toEqual("filledbody");
+        expect(extractCss(global.document.body)).toEqual(" filledbody");
         expect(extractCss(global.document.body)).toEqual("");
     });
 });
