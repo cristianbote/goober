@@ -8,7 +8,7 @@ export const parse = (obj, paren, wrapper) => {
     let current = "";
     let blocks = "";
     let outer = "";
-    
+    paren = [].concat(paren);
     // If we're dealing with keyframes just flatten them
     if (/^@k/.test(wrapper)) {
       // Return the wrapper, which should be the @keyframes selector
@@ -24,18 +24,20 @@ export const parse = (obj, paren, wrapper) => {
         if (isImport) {
             outer += key + " " + val + ";";
         } else if (typeof val === "object") {
-
-            // Regular selector
-            let next = paren + " " + key;
-            
-            // Nested
-            if (/&/g.test(key)) next = key.replace(/&/g, paren);
-    
-            // Media queries or other
-            if (key[0] == '@') next = paren;
+            let next = "";
+            // Al rule
+            if (key[0] == '@') {
+                next = paren;
+            }else{
+                // Nested
+                next = paren.reduce((list,paren)=>list.concat(
+                    key.split(/ *, */)
+                        .map((child)=>/&/g.test(child) ? child.replace(/&/g, paren) : paren+" "+child)
+                ),[])
+            }
     
             // Call the parse for this block
-            blocks += parse(val, next, next == paren ? key : wrapper || '');
+            blocks += parse(val, next, next+"" == paren+"" ? key : wrapper||"");
         } else {
             // Push the line for this property
             current += key.replace(/[A-Z]/g, "-$&").toLowerCase() + ":" + val + ";";
