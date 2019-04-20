@@ -20,6 +20,23 @@ describe("parse", () => {
         ].join(""));
     });
 
+    it("nested with multiple selector",()=>{
+      const out  = parse({
+        "display":"value",
+        "&:hover,&:focus":{
+          "border": "0",
+          "span": {
+            "index": "unset"
+          }
+        }
+      },"hush")
+      expect(out).toEqual([
+        "hush{display:value;}",
+        "hush:hover,hush:focus{border:0;}",
+        "hush:hover span,hush:focus span{index:unset;}"
+      ].join(""));
+    })
+
     it("camelCase", () => {
       const out = parse({
         fooBarProperty: "value",
