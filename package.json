@@ -52,8 +52,8 @@
   "typings": "./goober.d.ts",
   "bundlesize": [
     {
-      "path": "./dist/*.*",
-      "maxSize": "1.05KB"
+      "path": "./dist/goober.+(mjs|js)",
+      "maxSize": "1024B"
     }
   ]
 }
