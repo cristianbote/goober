@@ -13,18 +13,22 @@ let cache = {
 /**
  * Generates the needed className
  * @param {String|Object} compiled
- * @param {Object} sheet
+ * @param {Object} sheet StyleSheet target
+ * @param {Object} g Global flag
+ * @returns {String} 
  */
-export const hash = (compiled, sheet, glob) => {
+export const hash = (compiled, sheet, g) => {
     // generate hash
     const compString = JSON.stringify(compiled);
-    const className = cache[compString] || (cache[compString] = glob ? "" : toHash(compString));
+    const className = cache[compString] || (cache[compString] = g ? "" : toHash(compString));
 
     // Parse the compiled
-    const parsed = cache[className] || (cache[className] = parse(
+    const parsed = cache[className] || (
+        cache[className] = parse(
             compiled[0] ? astish(compiled) : compiled,
             className
-        ));
+        )
+    );
 
     // Naive cleanup when it hits 10k total ops
     if (++cache.c > 1e4) cache = { c: 0 };
@@ -33,5 +37,5 @@ export const hash = (compiled, sheet, glob) => {
     update(parsed, sheet);
 
     // return hash
-    return className.substr(1);
+    return className.slice(1);
 };

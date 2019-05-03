@@ -18,12 +18,9 @@ export const parse = (obj, paren, wrapper) => {
     
     for (let key in obj) {
         const val = obj[key];
-        const isImport = /^@i/.test(key);
         
         // If this is a 'block'
-        if (isImport) {
-            outer += key + " " + val + ";";
-        } else if (typeof val === "object") {
+        if (typeof val === "object") {
 
             // Regular selector
             let next = paren + " " + key;
@@ -37,8 +34,9 @@ export const parse = (obj, paren, wrapper) => {
             // Call the parse for this block
             blocks += parse(val, next, next == paren ? key : wrapper || '');
         } else {
+            if (/^@i/.test(key)) outer = key + " " + val + ";";
             // Push the line for this property
-            current += key.replace(/[A-Z]/g, "-$&").toLowerCase() + ":" + val + ";";
+            else current += key.replace(/[A-Z]/g, "-$&").toLowerCase() + ":" + val + ";";
         }
     }
     
