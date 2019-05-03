@@ -44,7 +44,7 @@
     "bundlesize": "^0.17.1",
     "csstype": "^2.6.3",
     "jest": "^24.1.0",
-    "microbundle": "^0.9.0"
+    "microbundle": "^0.11.0"
   },
   "peerDependencies": {
     "csstype": "^2.6.2"
