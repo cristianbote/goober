@@ -8,20 +8,18 @@ const setPragma = pragma => (h = pragma);
  * @param {String} tag
  */
 function styled(tag) {
-  const ctx = this || {};
+  const _ctx = this || {};
 
   return function() {
-    const args = arguments;
+    const _args = arguments;
 
     return function Styled(props) {
-      ctx.p = props;
+      _ctx.p = props || {};
+      _ctx.p.className = css.apply(_ctx, _args) + (_ctx.p.className ? " " + _ctx.p.className : "");
 
       return h(
         tag,
-        Object.assign({}, props, {
-          className:
-            (props && props.className ? props.className + " " : "") + css.apply(ctx, args)
-        })
+        _ctx.p
       );
     };
   };
