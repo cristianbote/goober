@@ -13,7 +13,8 @@ function css(str) {
     return hash(
         str.map ? compile(str, defs, ctx.p) : str,
         getSheet(ctx.target),
-        ctx.g
+        ctx.g,
+        ctx.o
     );
 }
 

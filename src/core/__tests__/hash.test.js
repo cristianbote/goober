@@ -41,7 +41,7 @@ describe("hash", () => {
         const res = hash("compiled", "target");
 
         expect(toHash).toBeCalledWith(JSON.stringify("compiled"));
-        expect(update).toBeCalledWith("parse()", "target");
+        expect(update).toBeCalledWith("parse()", "target", undefined);
         expect(astish).toBeCalledWith("compiled");
         expect(parse).toBeCalledWith("astish()", ".toHash()");
 
@@ -54,7 +54,7 @@ describe("hash", () => {
         expect(toHash).not.toBeCalled();
         expect(astish).not.toBeCalled();
         expect(parse).not.toBeCalled();
-        expect(update).toBeCalledWith("parse()", "target");
+        expect(update).toBeCalledWith("parse()", "target", undefined);
 
         expect(res).toEqual("toHash()");
     });
@@ -65,7 +65,7 @@ describe("hash", () => {
         expect(toHash).not.toBeCalled();
         expect(astish).toBeCalledWith("global");
         expect(parse).toBeCalledWith("astish()", "");
-        expect(update).toBeCalledWith("parse()", "target");
+        expect(update).toBeCalledWith("parse()", "target", undefined);
 
         expect(res).toEqual("");
     });
@@ -79,7 +79,7 @@ describe("hash", () => {
         expect(toHash).toBeCalledWith(JSON.stringify({ baz: 1 }));
         expect(astish).not.toBeCalled();
         expect(parse).toBeCalledWith({ baz: 1 }, className);
-        expect(update).toBeCalledWith("parse()", "target");
+        expect(update).toBeCalledWith("parse()", "target", undefined);
 
         expect(res).toEqual(className.substr(1));
     });

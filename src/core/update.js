@@ -14,9 +14,12 @@ const extractCss = target => {
  * Updates the target and keeps a local cache
  * @param {String} css
  * @param {Object} target
+ * @param {Boolean} append
  */
-const update = (css, sheet) => {
-    sheet.data.indexOf(css) < 0 && (sheet.data += css);
+const update = (css, sheet, append) => {
+    sheet.data.indexOf(css) < 0 && (
+        sheet.data = append ? css + sheet.data : sheet.data + css
+    );
 };
 
 export { extractCss, update };

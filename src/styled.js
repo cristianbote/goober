@@ -15,6 +15,7 @@ function styled(tag) {
 
     return function Styled(props) {
       _ctx.p = props || {};
+      _ctx.o = /\s*go[0-9]+/g.test(_ctx.p.className);
       _ctx.p.className = css.apply(_ctx, _args) + (_ctx.p.className ? " " + _ctx.p.className : "");
 
       return h(
