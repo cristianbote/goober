@@ -4,7 +4,7 @@ describe("to-hash", () => {
     it("regression", () => {
         const res = toHash("goober");
 
-        expect(res).toEqual(".g01240249687");
-        expect(toHash("goober")).toEqual(".g01240249687");
+        expect(res).toEqual(".go646");
+        expect(toHash("goober")).toEqual(".go646");
     });
 });

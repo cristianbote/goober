@@ -3,7 +3,7 @@
  * @param {String} str 
  */
 export const toHash = (str) => (
-    ".g0" + ~str
+    ".go" + str
         .split("")
-        .reduce((out, i) => ((out << 5) - out + i.charCodeAt(0)), 0)
+        .reduce((out, i) => out + (i.charCodeAt(0) | 4), 0)
 );

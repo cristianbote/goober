@@ -9,9 +9,8 @@ export const compile = (str, defs, data) => {
     
         if (typeof defs[i] == "function") {
           const res = defs[i](data);
-          // TODO: Once preactx is final, remove the `.attributes` lookup
           const attr = res.attributes || res.props;
-          const end = (attr && attr.className) || (/^g0/.test(res) && res);
+          const end = (attr && attr.className) || (/^go/.test(res) && res);
     
           tail = (end ? "." + end : (attr ? "" : res));
         }

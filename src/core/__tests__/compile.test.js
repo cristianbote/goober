@@ -25,8 +25,8 @@ describe("compile", () => {
 
     it("vanilla classname", () => {
         expect(
-            template`prop: 1; ${() => "g00ber"}`({})
-        ).toEqual("prop: 1; .g00ber");
+            template`prop: 1; ${() => "go0ber"}`({})
+        ).toEqual("prop: 1; .go0ber");
     });
 
     it("value interpolations", () => {

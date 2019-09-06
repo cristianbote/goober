@@ -55,5 +55,6 @@
       "path": "./dist/goober.+(mjs|js)",
       "maxSize": "1024B"
     }
-  ]
+  ],
+  "dependencies": {}
 }
