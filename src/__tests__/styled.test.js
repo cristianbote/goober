@@ -44,6 +44,6 @@ describe("styled", () => {
 
     expect(styled("tag")`foo: 1`(p)).toEqual("h()");
     expect(css).toBeCalledWith(["foo: 1"]);
-    expect(h).toBeCalledWith("tag", Object.assign({}, p, { className: "existing css()" }));
+    expect(h).toBeCalledWith("tag", Object.assign({}, p, { className: "css() existing" }));
   });
 });
