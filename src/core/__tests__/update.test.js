@@ -41,4 +41,11 @@ describe("update", () => {
         expect(extractCss(global.document.body)).toEqual(" filledbody");
         expect(extractCss(global.document.body)).toEqual("");
     });
+
+    it("regression: append or prepend", () => {
+        extractCss();
+        update("start", getSheet(), true);
+        update("end", getSheet());
+        expect(extractCss()).toEqual("startend");
+    });
 });
