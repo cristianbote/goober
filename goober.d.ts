@@ -7,7 +7,7 @@ export as namespace goober;
 declare namespace goober {
     function styled (tag: string): tagged;
     function setPragma (val: StyledVNode): void;
-    function extractCSS (): string;
+    function extractCss (): string;
     function css (tag: CSSAttribute | TemplateStringsArray): ClassName;
     type StyledVNode = (props: any, ...args: any[]) => any;
     type tagged = (tag: CSSAttribute | TemplateStringsArray) => StyledVNode;
