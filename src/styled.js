@@ -10,11 +10,11 @@ const setPragma = pragma => (h = pragma);
 function styled(tag) {
   const _ctx = this || {};
 
-  return function() {
+  return function () {
     const _args = arguments;
 
     return function Styled(props) {
-      _ctx.p = props || {};
+      _ctx.p = Object.assign({}, props);
       _ctx.o = /\s*go[0-9]+/g.test(_ctx.p.className);
       _ctx.p.className = css.apply(_ctx, _args) + (_ctx.p.className ? " " + _ctx.p.className : "");
 
