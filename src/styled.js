@@ -14,13 +14,15 @@ function styled(tag) {
     const _args = arguments;
 
     return function Styled(props) {
-      _ctx.p = Object.assign({}, props);
-      _ctx.o = /\s*go[0-9]+/g.test(_ctx.p.className);
-      _ctx.p.className = css.apply(_ctx, _args) + (_ctx.p.className ? " " + _ctx.p.className : "");
+      const _props = _ctx.p = Object.assign({}, props);
+      const _previousClassName = _props.className;
+
+      _ctx.o = /\s*go[0-9]+/g.test(_previousClassName);
+      _props.className = css.apply(_ctx, _args) + (_previousClassName ? " " + _previousClassName : "");
 
       return h(
         tag,
-        _ctx.p
+        _props
       );
     };
   };

@@ -7,11 +7,10 @@ import { getSheet } from "./core/get-sheet";
  * @param {String} str
  */
 function css(str) {
-    const defs = [].slice.call(arguments, 1);
     const ctx = this || {};
 
     return hash(
-        str.map ? compile(str, defs, ctx.p) : str,
+        str.map ? compile(str, [].slice.call(arguments, 1), ctx.p) : str,
         getSheet(ctx.target),
         ctx.g,
         ctx.o
