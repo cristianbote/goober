@@ -5,12 +5,12 @@ export = goober;
 export as namespace goober;
 
 declare namespace goober {
-    function styled (tag: string): tagged;
+    function styled <T = any>(tag: string): tagged<T>;
     function setPragma (val: StyledVNode): void;
     function extractCss (): string;
     function css (tag: CSSAttribute | TemplateStringsArray): ClassName;
-    type StyledVNode = (props: any, ...args: any[]) => any;
-    type tagged = (tag: CSSAttribute | TemplateStringsArray) => StyledVNode;
+    type StyledVNode = <T>(props: T, ...args: any[]) => any;
+    type tagged = <T>(tag: CSSAttribute | TemplateStringsArray) => StyledVNode<T>;
     interface CSSAttribute extends CSSProperties {
         [key: string]: CSSAttribute | string | number;
     }
