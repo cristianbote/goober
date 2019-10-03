@@ -63,6 +63,18 @@ describe("parse", () => {
         ].join(""));
     });
 
+    it("font-face", () => {
+        const out = parse({
+            "@font-face": {
+              "font-weight": 100
+            }
+          }, "");
+
+        expect(out).toEqual([
+            "@font-face{font-weight:100}"
+        ].join(""));
+    });
+
     it("@media", () => {
         const out = parse({
             "@media any all (no-really-anything)": {

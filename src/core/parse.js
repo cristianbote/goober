@@ -10,7 +10,7 @@ export const parse = (obj, paren, wrapper) => {
     let outer = "";
     
     // If we're dealing with keyframes just flatten them
-    if (/^@k/.test(wrapper)) {
+    if (/^@[k|f]/.test(wrapper)) {
       // Return the wrapper, which should be the @keyframes selector
       // and stringify the obj which should be just flatten 
       return wrapper + JSON.stringify(obj).replace(/","/g, ";").replace(/"|,"/g, "").replace(/:{/g, "{");
