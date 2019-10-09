@@ -17,7 +17,7 @@
   "scripts": {
     "test": "npm run test-ts && npm run test-unit -- --ci --coverage && npm run build",
     "test-unit": "jest --setupFiles ./tests/setup.js",
-    "test-ts": "cd tests/ts && tsc",
+    "test-ts": "cd ts-tests && tsc",
     "clean": "rm -rf dist",
     "size-check": "npx bundlesize",
     "build": "npm run clean && microbundle --entry src/index.js --output dist --name goober --no-sourcemap && npm run size-check",

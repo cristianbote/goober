@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import { styled, setPragma } from '../..';
+import { styled, setPragma } from '../';
 
 setPragma(h);
 
