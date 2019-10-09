@@ -9,6 +9,6 @@
         "jsxFactory": "h"
     },
     "include": [
-        "./test.tsx"
+        "StyledComp.tsx"
     ]
 }
