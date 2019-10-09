@@ -5,5 +5,5 @@
 export const toHash = (str) => (
     ".go" + str
         .split("")
-        .reduce((out, i) => out + (i.charCodeAt(0) | 4), 0)
+        .reduce((out, i) => out + (i.charCodeAt(0) | 8), 0)
 );

@@ -53,7 +53,7 @@
   "bundlesize": [
     {
       "path": "./dist/goober.+(mjs|js)",
-      "maxSize": "1024B"
+      "maxSize": "1026B"
     }
   ],
   "dependencies": {}
