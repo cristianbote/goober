@@ -12,7 +12,7 @@ declare namespace goober {
     type StyledVNode<T = {}> = (props: T, ...args: any[]) => any;
     type tagged<T = {}> = (tag: CSSAttribute | TemplateStringsArray) => StyledVNode<T>;
     interface CSSAttribute extends CSSProperties {
-        [key: string]: CSSAttribute | string | number;
+        [key: string]: CSSAttribute | string | number | undefined;
     }
     type ClassName = string;
 }
