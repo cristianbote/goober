@@ -5,16 +5,19 @@ setPragma(h);
 
 interface IButtonProps {
     clicked: boolean;
+    color?: string;
 }
 
 const Button = styled<IButtonProps>('button')`
-    background: blue,
+    background: ${props => (props.color ? props.color : 'black')};
 `;
 
 class TestComp extends Component {
     public render () {
         return (
-            <Button clicked={false}></Button>
+            <div>
+                <Button clicked={false}></Button>
+            </div>
         )
     };
 }
