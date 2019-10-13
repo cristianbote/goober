@@ -15,8 +15,9 @@
     "goober.d.ts"
   ],
   "scripts": {
-    "test": "npm run test-unit -- --ci --coverage && npm run build",
+    "test": "npm run test-ts && npm run test-unit -- --ci --coverage && npm run build",
     "test-unit": "jest --setupFiles ./tests/setup.js",
+    "test-ts": "cd ts-tests && tsc",
     "clean": "rm -rf dist",
     "size-check": "npx bundlesize",
     "build": "npm run clean && microbundle --entry src/index.js --output dist --name goober --no-sourcemap && npm run size-check",
@@ -44,7 +45,9 @@
     "bundlesize": "^0.17.1",
     "csstype": "^2.6.3",
     "jest": "^24.1.0",
-    "microbundle": "^0.11.0"
+    "microbundle": "^0.11.0",
+    "preact": "^10.0.0",
+    "typescript": "^3.6.3"
   },
   "peerDependencies": {
     "csstype": "^2.6.2"

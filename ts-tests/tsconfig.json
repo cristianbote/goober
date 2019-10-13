@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "noEmit": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "strict": true,
+        "alwaysStrict": true,
+        "jsx": "react",
+        "jsxFactory": "h"
+    },
+    "include": [
+        "StyledComp.tsx"
+    ]
+}
