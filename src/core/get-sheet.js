@@ -11,9 +11,8 @@ export const getSheet = target => {
         let sheet = target ? target.querySelector('#' + GOOBER_ID) : self[GOOBER_ID];
         if (!sheet) {
             let _target = target || document.head;
-            sheet = _target.appendChild(document.createElement("style"));
-            sheet.innerHTML = " ";
-            sheet.id = GOOBER_ID;
+            _target.innerHTML += '<style id="' + GOOBER_ID + '"> </style>';
+            sheet = _target.lastChild;
         }
         return sheet.firstChild;
     } catch (e) {}

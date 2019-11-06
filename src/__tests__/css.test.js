@@ -44,6 +44,16 @@ describe("css", () => {
         expect(out).toEqual("hash()");
     });
 
+    it("args: function", () => {
+        const incoming = { foo: 'foo' };
+        const out = css.call({ p: incoming }, props => ({ foo: props.foo }));
+
+        expect(hash).toBeCalledWith(incoming, "getSheet()", undefined, undefined);
+        expect(compile).not.toBeCalled();
+        expect(getSheet).toBeCalled();
+        expect(out).toEqual("hash()");
+    });
+
     it("bind", () => {
         const target = "";
         const p = {};

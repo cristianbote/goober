@@ -1,3 +1,4 @@
+import { h, render } from 'preact';
 import { styled, setPragma } from "../styled";
 import { css } from "../css";
 
@@ -28,22 +29,33 @@ describe("styled", () => {
   });
 
   it("args", () => {
-    const h = jest.fn().mockReturnValue("h()");
+    const _h = jest.fn().mockReturnValue("h()");
     const p = { bar: 1};
-    setPragma(h);
+    setPragma(_h);
 
     expect(styled("tag")`foo: 1`(p)).toEqual("h()");
     expect(css).toBeCalledWith(["foo: 1"]);
-    expect(h).toBeCalledWith("tag", Object.assign({}, p, { className: "css()" }));
+    expect(_h).toBeCalledWith("tag", Object.assign({}, p, { className: "css()" }));
   });
 
   it("args: concat className", () => {
-    const h = jest.fn().mockReturnValue("h()");
+    const _h = jest.fn().mockReturnValue("h()");
     const p = { bar: 1, className: "existing" };
-    setPragma(h);
+    setPragma(_h);
 
     expect(styled("tag")`foo: 1`(p)).toEqual("h()");
     expect(css).toBeCalledWith(["foo: 1"]);
-    expect(h).toBeCalledWith("tag", Object.assign({}, p, { className: "css() existing" }));
+    expect(_h).toBeCalledWith("tag", Object.assign({}, p, { className: "css() existing" }));
+  });
+
+  it("args: function", () => {
+    const _h = jest.fn().mockReturnValue("h()");
+    const incoming = { color: 'red' };
+    setPragma(_h);
+
+    const styleFn = props => ({ color: props.color });
+    expect(styled("tag")(styleFn)(incoming)).toEqual("h()");
+    expect(css).toBeCalledWith(styleFn);
+    expect(_h).toBeCalledWith("tag", Object.assign({}, incoming, { className: "css()" }));
   });
 });
