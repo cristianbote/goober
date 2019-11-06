@@ -3,9 +3,11 @@
   "version": "1.4.4",
   "description": "A less than 1KB css-in-js solution",
   "main": "dist/goober.js",
-  "module": "dist/goober.mjs",
+  "module": "dist/goober.module.js",
   "umd:main": "dist/goober.umd.js",
   "source": "src/index.js",
+	"unpkg": "dist/goober.umd.js",
+	"types": "src/goober.d.ts",
   "files": [
     "src",
     "README.md",
@@ -55,7 +57,7 @@
   "typings": "./goober.d.ts",
   "bundlesize": [
     {
-      "path": "./dist/goober.+(mjs|js)",
+      "path": "./dist/goober.+(module|js)",
       "maxSize": "1026B"
     }
   ],

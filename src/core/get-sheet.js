@@ -2,16 +2,16 @@
  * Returns the _commit_ target
  * @param {Object} target
  */
-const GOOBER_ID = "goober";
+const GOOBER_ID = "_goober";
 const dummy = {
     data: ""
 };
 export const getSheet = target => {
     try {
-        target = target || document.head;
-        let sheet = target.querySelector("#" + GOOBER_ID);
+        let sheet = target ? target.querySelector('#' + GOOBER_ID) : self[GOOBER_ID];
         if (!sheet) {
-            sheet = target.appendChild(document.createElement("style"));
+            let _target = target || document.head;
+            sheet = _target.appendChild(document.createElement("style"));
             sheet.innerHTML = " ";
             sheet.id = GOOBER_ID;
         }

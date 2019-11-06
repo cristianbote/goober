@@ -6,7 +6,6 @@ describe("update", () => {
         const t = { data: "" };
 
         update("css", t);
-
         expect(t.data).toEqual("css");
     });
 
@@ -27,25 +26,26 @@ describe("update", () => {
     });
 
     it("regression: extract and flush without DOM", () => {
-        const bkp = global.document;
-        delete global.document;
+        const bkp = global.self;
+        delete global.self;
         update("filled", getSheet());
         expect(extractCss()).toEqual("filled");
         expect(extractCss()).toEqual("");
-        global.document = bkp;
+        global.self = bkp;
     });
 
     it("regression: extract and flush from custom target", () => {
+        const target = document.createElement('div');
         update("filled", getSheet());
-        update("filledbody", getSheet(global.document.body));
-        expect(extractCss(global.document.body)).toEqual(" filledbody");
-        expect(extractCss(global.document.body)).toEqual("");
+        update("filledbody", getSheet(target));
+        expect(extractCss(target)).toEqual(" filledbody");
+        expect(extractCss(target)).toEqual("");
     });
 
     it("regression: append or prepend", () => {
         extractCss();
-        update("start", getSheet(), true);
         update("end", getSheet());
+        update("start", getSheet(), true);
         expect(extractCss()).toEqual("startend");
     });
 });

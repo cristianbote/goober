@@ -9,7 +9,7 @@ export const compile = (str, defs, data) => {
     
         if (typeof defs[i] == "function") {
           const res = defs[i](data);
-          const attr = res.attributes || res.props;
+          const attr = res && (res.attributes || res.props);
           const end = (attr && attr.className) || (/^go/.test(res) && res);
     
           tail = (end ? "." + end : (attr ? "" : res));

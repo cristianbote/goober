@@ -31,9 +31,6 @@ export const hash = (compiled, sheet, g, append) => {
         )
     );
 
-    // Naive cleanup when it hits 10k total ops
-    if (++cache.c > 1e4) cache = { c: 0 };
-
     // add or update
     update(parsed, sheet, append);
 
