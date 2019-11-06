@@ -73,6 +73,40 @@ const Btn = styled("button")`
 `;
 ```
 
+#### Different ways of customizing the styles
+##### Tagged templates functions
+```js
+import { styled } from "goober";
+
+const Btn = styled("button")`
+  border-radius: ${props => props.size}px;
+`;
+
+<Btn size={20} />
+```
+
+##### Function that returns a string
+```js
+import { styled } from "goober";
+
+const Btn = styled("button")(props => `
+  border-radius: ${props.size}px;
+`);
+
+<Btn size={20} />
+```
+
+##### JSON/Object
+```js
+import { styled } from "goober";
+
+const Btn = styled("button")(props => ({
+  borderRadius: props.size + 'px'
+}));
+
+<Btn size={20} />
+```
+
 ### `setPragma(pragma: Function)`
 Given the fact that `react` uses `createElement` for the transformed elements and `preact` uses `h`, `setPragma` should be called with the proper _pragma_ function. This was added to reduce the bundled size and being able to bundle esmodule version. At the moment I think it's the best tradeoff we can have.
 
@@ -93,8 +127,7 @@ import { css } from "goober";
 
 const BtnClassName = css`
   border-radius: 4px;
-`();
-// (!) Note the empty param at the end. If you wanna use `props` throughout the syntax this is the place to put them
+`;
 
 const btn = document.querySelector("#btn");
 btn.classList.add(BtnClassName);
@@ -122,7 +155,9 @@ Returns the `<style>` tag that is rendered in a target and clears the style shee
 const { extractCss } = require("goober");
 
 // After your app has rendered, just call it:
-const styleTag  = extractCss();
+const styleTag  = `<style id="_goober">${extractCss()}</style>`;
+
+// Note: To be able to `hydrate` the styles you should use the proper `id` so `goober` can pick it up and use it as the target from now on
 ```
 
 ###  `glob`
