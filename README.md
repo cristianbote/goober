@@ -59,7 +59,13 @@ const Button = styled("button")`
 You can get the critical CSS for SSR, via `extractCss`. Take a look at this example: [CodeSandbox: SSR with Preact and goober](https://codesandbox.io/s/7m9zzl6746) and read the full explanation for `extractCSS` and `targets` below.
 
 # Benchmarks
-You can checkout the build output from travis and see for yourself. The benchmark is testing the folowing scenario:
+You results are included inside the build output as well.
+
+## Browser
+These are not yet measured. Need some time.
+
+## SSR
+The benchmark is testing the folowing scenario:
 ```jsx
 import styled from 'package';
 
