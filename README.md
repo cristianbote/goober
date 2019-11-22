@@ -58,6 +58,39 @@ const Button = styled("button")`
 # SSR
 You can get the critical CSS for SSR, via `extractCss`. Take a look at this example: [CodeSandbox: SSR with Preact and goober](https://codesandbox.io/s/7m9zzl6746) and read the full explanation for `extractCSS` and `targets` below.
 
+# Benchmarks
+You can checkout the build output from travis and see for yourself. The benchmark is testing the folowing scenario:
+```jsx
+import styled from 'package';
+
+// Create the dynamic styled component
+const Foo = styled('div')(props => ({
+  opacity: props.counter > 0.5 ? 1 : 0,
+  '@media (min-width: 1px)': {
+      rule: 'all'
+  },
+  '&:hover': {
+      another: 1,
+      display: 'space'
+  }
+}));
+
+// Serialize the component
+renderToString(
+  <Foo counter={Math.random()} />
+);
+
+```
+
+The results are:
+```
+goober x 25,132 ops/sec ±3.14% (79 runs sampled)
+styled-components x 8,182 ops/sec ±5.91% (77 runs sampled)
+emotion x 13,921 ops/sec ±10.41% (81 runs sampled)
+
+Fastest is: goober
+```
+
 # API
 As you can see it supports most of the syntaxes of CSS. If you find any issues, please submit a ticket or even a PR with a fix.
 
