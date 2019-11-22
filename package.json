@@ -17,7 +17,8 @@
     "goober.d.ts"
   ],
   "scripts": {
-    "test": "npm run test-ts && npm run test-unit -- --ci --coverage && npm run build",
+    "test": "npm run test-ts && npm run test-unit -- --ci --coverage && npm run build && npm run test-perf",
+    "test-perf": "node benchmarks/perf.js",
     "test-unit": "jest --setupFiles ./tests/setup.js",
     "test-ts": "cd ts-tests && tsc",
     "clean": "rm -rf dist",
@@ -44,12 +45,18 @@
     "@babel/core": "^7.2.2",
     "@babel/plugin-transform-react-jsx": "^7.7.0",
     "@babel/preset-env": "^7.3.1",
+    "@emotion/core": "^10.0.22",
+    "@emotion/styled": "^10.0.23",
     "babel-jest": "^24.1.0",
+    "benchmark": "^2.1.4",
     "bundlesize": "^0.17.1",
     "csstype": "^2.6.3",
     "jest": "^24.1.0",
     "microbundle": "^0.11.0",
     "preact": "^10.0.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1",
     "typescript": "^3.6.3"
   },
   "peerDependencies": {
