@@ -9,7 +9,7 @@ goober.setPragma(react.createElement);
 const styled = require('styled-components').default;
 const emotion = require('@emotion/styled').default;
 
-const def = () => props => ({
+const inner = props => ({
     opacity: props.counter > 0.5 ? 1 : 0,
     '@media (min-width: 1px)': {
         rule: 'all'
@@ -19,9 +19,12 @@ const def = () => props => ({
         display: 'space'
     }
 });
+const def = () => inner;
 
 function renderComponent(Foo) {
-    render(react.createElement(Foo, { counter: Math.random() }));
+    render(
+        react.createElement(Foo, { counter: Math.random() })
+    );
 }
 
 const suite = new Benchmark.Suite('styled');
@@ -30,10 +33,10 @@ suite
         renderComponent(goober.styled('div')(def()));
     })
     .add('styled-components', () => {
-        renderComponent(styled.div(def));
+        renderComponent(styled.div(def()));
     })
     .add('emotion', () => {
-        renderComponent(emotion.div(def));
+        renderComponent(emotion.div(def()));
     })
     .on('error', e => console.log(e))
     .on('cycle', function(event) {
@@ -43,10 +46,5 @@ suite
         const fastest = this.filter('fastest').map('name')[0];
 
         console.log('\nFastest is: ' + fastest);
-
-        // Fail the test if goober is not the fastest
-        if (fastest !== 'goober') {
-            process.exit(1);
-        }
     })
     .run()

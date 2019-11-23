@@ -90,11 +90,11 @@ renderToString(
 
 The results are:
 ```
-goober x 25,132 ops/sec ±3.14% (79 runs sampled)
-styled-components x 8,182 ops/sec ±5.91% (77 runs sampled)
-emotion x 13,921 ops/sec ±10.41% (81 runs sampled)
+goober x 39,348 ops/sec ±1.67% (87 runs sampled)
+styled-components x 21,469 ops/sec ±3.60% (85 runs sampled)
+emotion x 46,504 ops/sec ±4.67% (85 runs sampled)
 
-Fastest is: goober
+Fastest is: emotion
 ```
 
 # API
