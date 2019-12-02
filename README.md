@@ -67,7 +67,7 @@ These are not yet measured. Need some time.
 ## SSR
 The benchmark is testing the folowing scenario:
 ```jsx
-import styled from 'package';
+import { styled } from 'goober';
 
 // Create the dynamic styled component
 const Foo = styled('div')(props => ({
