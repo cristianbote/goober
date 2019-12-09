@@ -31,7 +31,7 @@ describe("integrations", () => {
             target
         );
 
-        expect(extractCss()).toEqual(' .go2343{color:red;}');
+        expect(extractCss()).toEqual(' .go2155{color:red;}');
     });
 
 });
