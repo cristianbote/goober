@@ -23,7 +23,7 @@ import { styled, setPragma } from "goober";
 // Should be called here, and just once
 setPragma(h);
 
-const Icon = styled("i")`
+const Icon = styled("span")`
   display: flex;
   flex: 1;
   color: red;
