@@ -56,7 +56,7 @@
     "preact": "^10.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "styled-components": "^4.4.1",
+    "styled-components": "^5.0.0-rc.2",
     "typescript": "^3.6.3"
   },
   "peerDependencies": {
@@ -65,7 +65,7 @@
   "typings": "./goober.d.ts",
   "bundlesize": [
     {
-      "path": "./dist/goober.+(module|js)",
+      "path": "./dist/goober.+(module.js|js)",
       "maxSize": "1026B"
     }
   ],

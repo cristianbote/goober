@@ -7,7 +7,9 @@ const goober = require('../dist/goober');
 goober.setPragma(react.createElement);
 
 const styled = require('styled-components').default;
+const styledVersion = require('styled-components/package.json').version;
 const emotion = require('@emotion/styled').default;
+const emotionVersion = require('@emotion/styled/package.json').version;
 
 const inner = props => ({
     opacity: props.counter > 0.5 ? 1 : 0,
@@ -32,10 +34,10 @@ suite
     .add('goober', () => {
         renderComponent(goober.styled('div')(def()));
     })
-    .add('styled-components', () => {
+    .add(`styled-components@${styledVersion}`, () => {
         renderComponent(styled.div(def()));
     })
-    .add('emotion', () => {
+    .add(`emotion@${emotionVersion}`, () => {
         renderComponent(emotion.div(def()));
     })
     .on('error', e => console.log(e))
@@ -44,7 +46,6 @@ suite
     })
     .on('complete', function () {
         const fastest = this.filter('fastest').map('name')[0];
-
         console.log('\nFastest is: ' + fastest);
     })
     .run()

@@ -3,7 +3,7 @@
  * @param {Object} target
  */
 const GOOBER_ID = "_goober";
-const dummy = {
+const ssr = {
     data: ""
 };
 export const getSheet = target => {
@@ -16,5 +16,5 @@ export const getSheet = target => {
         }
         return sheet.firstChild;
     } catch (e) {}
-    return dummy;
+    return ssr;
 };
