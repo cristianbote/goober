@@ -18,10 +18,10 @@ describe("styled", () => {
   it("setPragma", () => {
     const pragma = jest.fn();
 
-    expect(() => styled()()()).toThrow();
+    expect(() => styled("div")()()).toThrow();
 
     setPragma(pragma);
-    styled()()();
+    styled("div")()();
 
     expect(pragma).toBeCalled();
 
@@ -30,7 +30,7 @@ describe("styled", () => {
 
   it("args", () => {
     const _h = jest.fn().mockReturnValue("h()");
-    const p = { bar: 1};
+    const p = { bar: 1 };
     setPragma(_h);
 
     expect(styled("tag")`foo: 1`(p)).toEqual("h()");
