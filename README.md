@@ -159,7 +159,7 @@ setPragma(React.createElement);
 ### `css(taggedTemplate)`
 * `@returns {Function}` Returns the tag template function.
 
-Same as `styled` but without the tagName and vNode generation. In the end the output will be a className.
+Same as `styled` but without the tagName and vNode generation. Calling the function  created by `css` will result in a className.
 
 ```js
 import { css } from "goober";
@@ -168,8 +168,47 @@ const BtnClassName = css`
   border-radius: 4px;
 `;
 
+// vanilla JS
 const btn = document.querySelector("#btn");
-btn.classList.add(BtnClassName);
+// BtnClassName() -> 'g016232'
+btn.classList.add(BtnClassName());
+
+// JSX
+// BtnClassName() -> 'g016232'
+const App => <button className={BtnClassName()}>click</button>
+```
+
+#### Different ways of customizing `css`
+##### Tagged templates functions
+```js
+import { css } from "goober";
+
+const BtnClassName = css`
+  border-radius: ${props=>props.size}px;
+`;
+
+// vanilla JS
+// BtnClassName({size:20}) -> g016360
+const btn = document.querySelector("#btn");
+btn.classList.add(BtnClassName({size:20}));
+
+// JSX
+// BtnClassName({size:20}) -> g016360
+const App = () => <button className={BtnClassName({size:20})}>click</button>
+```
+
+**💡NOTE**
+
+> If you provide props as an object within `css`, make sure to provide empty object as a default parameter, otherwise your app will throw error if you won't provide an object argument.
+
+ ```js
+const BtnClassName = css`
+  border-radius: ${(props={})=>props.size}px;
+`;
+
+// All Good
+BtnClassName()
+BtnClassName({size:4})
 ```
 
 ### `targets`
