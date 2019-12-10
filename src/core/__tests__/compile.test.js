@@ -13,13 +13,13 @@ describe("compile", () => {
 
     it("vnode", () => {
         expect(
-            template`prop: 1; ${() => ({ attributes: { className: "class" }})}`({})
+            template`prop: 1; ${() => ({ props: { className: "class" }})}`({})
         ).toEqual("prop: 1; .class");
 
 
         // Empty or falsy
         expect(
-            template`prop: 1; ${() => ({ attributes: { }})}`({})
+            template`prop: 1; ${() => ({ props: { }})}`({})
         ).toEqual("prop: 1; ");
     });
 

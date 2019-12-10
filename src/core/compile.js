@@ -7,12 +7,19 @@ export const compile = (str, defs, data) => {
     return str.reduce((out, next, i) => {
         let tail = defs[i];
     
-        if (typeof defs[i] == "function") {
-          const res = defs[i](data);
-          const attr = res && (res.attributes || res.props);
-          const end = (attr && attr.className) || (/^go/.test(res) && res);
+        // If this is a function we need to:
+        if (tail && tail.call) {
+          // 1. Call it with `data`
+          const res = tail(data);
+
+          // 2. Grab the className
+          const className = res && res.props && res.props.className;
+
+          // 3. If there's none, see if this is basically a
+          // previously styled className by checking the prefix
+          const end = className || (/^go/.test(res) && res);
     
-          tail = (end ? "." + end : (attr ? "" : res));
+          tail = (end ? "." + end : (res.props ? "" : res));
         }
         return out + next + (tail || "");
       }, "");
