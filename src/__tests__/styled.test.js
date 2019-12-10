@@ -1,5 +1,5 @@
 import { h, render } from 'preact';
-import { styled, setPragma } from "../styled";
+import { styled, setPragma, setForwardRef } from "../styled";
 import { css } from "../css";
 
 jest.mock("../css", () => ({
@@ -26,6 +26,20 @@ describe("styled", () => {
     expect(pragma).toBeCalled();
 
     setPragma(undefined);
+  });
+
+  it("setForwardRef", () => {
+    const forwardRef = jest.fn(x => x);
+    const pragma = jest.fn();
+
+    setPragma(pragma);
+    setForwardRef(forwardRef);
+    styled("div")()();
+
+    expect(forwardRef).toBeCalled();
+
+    setPragma(undefined);
+    setForwardRef(undefined);
   });
 
   it("args", () => {
