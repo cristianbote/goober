@@ -10,12 +10,12 @@ describe('compile', () => {
     });
 
     it('vnode', () => {
-        expect(template`prop: 1; ${() => ({ attributes: { className: 'class' } })}`({})).toEqual(
+        expect(template`prop: 1; ${() => ({ props: { className: 'class' } })}`({})).toEqual(
             'prop: 1; .class'
         );
 
         // Empty or falsy
-        expect(template`prop: 1; ${() => ({ attributes: {} })}`({})).toEqual('prop: 1; ');
+        expect(template`prop: 1; ${() => ({ props: {} })}`({})).toEqual('prop: 1; ');
     });
 
     it('vanilla classname', () => {
