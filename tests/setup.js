@@ -1,5 +1,3 @@
-jest.mock(
-    "react",
-    () => ({ createElement: jest.fn().mockReturnValue("vnode") }),
-    { virtual: true }
-);
+jest.mock('react', () => ({ createElement: jest.fn().mockReturnValue('vnode') }), {
+    virtual: true
+});

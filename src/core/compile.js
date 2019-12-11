@@ -6,14 +6,14 @@
 export const compile = (str, defs, data) => {
     return str.reduce((out, next, i) => {
         let tail = defs[i];
-    
-        if (typeof defs[i] == "function") {
-          const res = defs[i](data);
-          const attr = res && (res.attributes || res.props);
-          const end = (attr && attr.className) || (/^go/.test(res) && res);
-    
-          tail = (end ? "." + end : (attr ? "" : res));
+
+        if (typeof defs[i] == 'function') {
+            const res = defs[i](data);
+            const attr = res && (res.attributes || res.props);
+            const end = (attr && attr.className) || (/^go/.test(res) && res);
+
+            tail = end ? '.' + end : attr ? '' : res;
         }
-        return out + next + (tail || "");
-      }, "");
-}
+        return out + next + (tail || '');
+    }, '');
+};

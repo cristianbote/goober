@@ -1,4 +1,4 @@
-import { getSheet } from "./get-sheet";
+import { getSheet } from './get-sheet';
 /**
  * Extracts and wipes the cache
  * @returns {String}
@@ -6,7 +6,7 @@ import { getSheet } from "./get-sheet";
 const extractCss = target => {
     const sheet = getSheet(target);
     const out = sheet.data;
-    sheet.data = "";
+    sheet.data = '';
     return out;
 };
 
@@ -17,9 +17,7 @@ const extractCss = target => {
  * @param {Boolean} append
  */
 const update = (css, sheet, append) => {
-    sheet.data.indexOf(css) < 0 && (
-        sheet.data = append ? css + sheet.data : sheet.data + css
-    );
+    sheet.data.indexOf(css) < 0 && (sheet.data = append ? css + sheet.data : sheet.data + css);
 };
 
 export { extractCss, update };

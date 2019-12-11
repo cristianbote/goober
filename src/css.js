@@ -1,6 +1,6 @@
-import { hash } from "./core/hash";
-import { compile } from "./core/compile";
-import { getSheet } from "./core/get-sheet";
+import { hash } from './core/hash';
+import { compile } from './core/compile';
+import { getSheet } from './core/get-sheet';
 
 /**
  * css entry

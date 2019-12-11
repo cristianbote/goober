@@ -1,13 +1,13 @@
-import * as goober from "../index";
+import * as goober from '../index';
 
-describe("goober", () => {
-  it("exports", () => {
-    expect(Object.keys(goober).sort()).toEqual([
-      "css",
-      "extractCss",
-      "glob",
-      "setPragma",
-      "styled"
-    ]);
-  });
+describe('goober', () => {
+    it('exports', () => {
+        expect(Object.keys(goober).sort()).toEqual([
+            'css',
+            'extractCss',
+            'glob',
+            'setPragma',
+            'styled'
+        ]);
+    });
 });
