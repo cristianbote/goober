@@ -38,7 +38,7 @@ describe('styled', () => {
                 foo: 1;
             `(p)
         ).toEqual('h()');
-        expect(css).toBeCalledWith(['foo: 1']);
+        expect(css).toBeCalledWith([expect.stringContaining('foo: 1')]);
         expect(_h).toBeCalledWith('tag', Object.assign({}, p, { className: 'css()' }));
     });
 
@@ -52,7 +52,7 @@ describe('styled', () => {
                 foo: 1;
             `(p)
         ).toEqual('h()');
-        expect(css).toBeCalledWith(['foo: 1']);
+        expect(css).toBeCalledWith([expect.stringContaining('foo: 1')]);
         expect(_h).toBeCalledWith('tag', Object.assign({}, p, { className: 'css() existing' }));
     });
 
