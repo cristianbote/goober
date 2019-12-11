@@ -2,9 +2,9 @@
  * Returns the _commit_ target
  * @param {Object} target
  */
-const GOOBER_ID = "_goober";
+const GOOBER_ID = '_goober';
 const ssr = {
-    data: ""
+    data: ''
 };
 export const getSheet = target => {
     try {

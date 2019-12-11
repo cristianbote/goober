@@ -24,9 +24,7 @@ const inner = props => ({
 const def = () => inner;
 
 function renderComponent(Foo) {
-    render(
-        react.createElement(Foo, { counter: Math.random() })
-    );
+    render(react.createElement(Foo, { counter: Math.random() }));
 }
 
 const suite = new Benchmark.Suite('styled');
@@ -44,8 +42,8 @@ suite
     .on('cycle', function(event) {
         console.log(String(event.target));
     })
-    .on('complete', function () {
+    .on('complete', function() {
         const fastest = this.filter('fastest').map('name')[0];
         console.log('\nFastest is: ' + fastest);
     })
-    .run()
+    .run();
