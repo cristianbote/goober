@@ -1,29 +1,29 @@
-import { getSheet } from "../get-sheet";
+import { getSheet } from '../get-sheet';
 
-describe("getSheet", () => {
-    it("regression", () => {
+describe('getSheet', () => {
+    it('regression', () => {
         const target = getSheet();
         expect(target.nodeType).toEqual(3);
     });
 
-    it("custom target", () => {
-        const custom = document.createElement("div");
+    it('custom target', () => {
+        const custom = document.createElement('div');
         const sheet = getSheet(custom);
 
         expect(sheet.nodeType).toEqual(3);
         expect(sheet.parentElement.nodeType).toEqual(1);
-        expect(sheet.parentElement.getAttribute("id")).toEqual("_goober");
+        expect(sheet.parentElement.getAttribute('id')).toEqual('_goober');
     });
 
-    it("reuse sheet", () => {
-        const custom = document.createElement("div");
+    it('reuse sheet', () => {
+        const custom = document.createElement('div');
         const sheet = getSheet(custom);
         const second = getSheet(custom);
 
         expect(sheet === second).toBeTruthy();
     });
 
-    it("server side", () => {
+    it('server side', () => {
         const bkp = global.document;
         delete global.document;
 

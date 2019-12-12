@@ -1,6 +1,6 @@
 {
   "name": "goober",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "A less than 1KB css-in-js solution",
   "main": "dist/goober.js",
   "module": "dist/goober.module.js",
@@ -26,7 +26,8 @@
     "build": "npm run clean && microbundle --entry src/index.js --output dist --name goober --no-sourcemap && npm run size-check",
     "debug": "microbundle --entry src/index.js --output debug --name goober --no-sourcemap --no-compress",
     "dev": "npm run clean && microbundle watch --entry src/index.js --output dist --name goober",
-    "deploy": "npm run build && npm publish"
+    "deploy": "npm run build && npm publish",
+    "format": "prettier \"**/*.{js,ts,tsx,md}\" --write"
   },
   "keywords": [
     "css-in-js",
@@ -51,9 +52,12 @@
     "benchmark": "^2.1.4",
     "bundlesize": "^0.18.0",
     "csstype": "^2.6.3",
+    "husky": "3.1.0",
     "jest": "^24.1.0",
+    "lint-staged": "9.5.0",
     "microbundle": "^0.11.0",
     "preact": "^10.0.0",
+    "prettier": "1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "styled-components": "^5.0.0-rc.2",
@@ -62,6 +66,7 @@
   "peerDependencies": {
     "csstype": "^2.6.2"
   },
+  "dependencies": {},
   "typings": "./goober.d.ts",
   "bundlesize": [
     {
@@ -69,5 +74,15 @@
       "maxSize": "1026B"
     }
   ],
-  "dependencies": {}
+  "lint-staged": {
+    "*.{js,ts,tsx,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }
