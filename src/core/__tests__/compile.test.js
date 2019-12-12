@@ -23,6 +23,7 @@ describe('compile', () => {
     });
 
     it('value interpolations', () => {
-        expect(template`prop: 1; ${() => 1} ${2}`({})).toEqual('prop: 1; 1 2');
+        // This interpolations are testing the ability to interpolate thruty and falsy values
+        expect(template`prop: 1; ${() => 1},${() => undefined},${2}`({})).toEqual('prop: 1; 1,,2');
     });
 });
