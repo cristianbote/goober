@@ -22,9 +22,9 @@ export const compile = (str, defs, data) => {
             tail = end
                 ? // If the `end` is defined means it's a className
                   '.' + end
-                : // If `res` it's not a vnode, we could just dump it
+                : // If `res` it's not falsy and not a vnode, we could just dump it
                 // since the value it's an dynamic value
-                res.props
+                res && res.props
                 ? ''
                 : res;
         }
