@@ -26,7 +26,7 @@ export const parse = (obj, paren, wrapper) => {
         const val = obj[key];
 
         // If this is a 'block'
-        if (typeof val === 'object') {
+        if (typeof val == 'object') {
             // Regular selector
             let next = paren + ' ' + key;
 
