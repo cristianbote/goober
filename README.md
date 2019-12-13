@@ -4,11 +4,13 @@
 
 🥜 goober, a less than 1KB css-in-js solution.
 
-[![npm version](https://badge.fury.io/js/goober.svg?bust)](https://badge.fury.io/js/goober)
-[![Build Status](https://travis-ci.org/cristianbote/goober.svg?branch=master)](https://travis-ci.org/cristianbote/goober)
-[![gzip size](http://img.badgesize.io/https://unpkg.com/goober/dist/goober.js?compression=gzip)](https://unpkg.com/goober)
+[![version](https://img.shields.io/npm/v/goober)](https://www.npmjs.com/package/goober)
+[![status](https://travis-ci.org/cristianbote/goober.svg?branch=master)](https://travis-ci.org/cristianbote/goober)
+[![gzip size](https://img.badgesize.io/https://unpkg.com/goober@latest/dist/goober.module.js?compression=gzip)](https://unpkg.com/goober)
+[![downloads](https://img.shields.io/npm/dw/goober)](https://www.npmjs.com/package/goober)
 [![coverage](https://img.shields.io/codecov/c/github/cristianbote/goober.svg?maxAge=2592000)](https://codecov.io/github/cristianbote/goober?branch=master)
-[![Gitter](https://img.shields.io/gitter/room/cristianbote/goober.svg?style=popout)](https://gitter.im/goober-project/community) [![Greenkeeper badge](https://badges.greenkeeper.io/cristianbote/goober.svg)](https://greenkeeper.io/)
+[![Gitter](https://img.shields.io/gitter/room/cristianbote/goober.svg?style=popout)](https://gitter.im/goober-project/community)
+[![Greenkeeper badge](https://badges.greenkeeper.io/cristianbote/goober.svg)](https://greenkeeper.io/)
 
 # Motivation
 
@@ -71,7 +73,9 @@ You results are included inside the build output as well.
 These are not yet measured. Need some time.
 
 ## SSR
+
 The benchmark is testing the following scenario:
+
 ```jsx
 import styled from 'package';
 
@@ -275,20 +279,21 @@ glob`
 ```
 
 # Features
-- [x] Basic CSS parsing
-- [x] Nested rules with pseudo selectors
-- [x] Nested styled components
-- [x] Extending Styles
-  - via ```const TomatoButton = styled(StyledBtn)`color: tomato;` ```
-- [x] Media queries (@media)
-- [x] Keyframes (@keyframes)
-- [x] Smart(lazy) client-side hydration
-- [x] Styling any component
-  - via ```const Btn = ({className}) => {...}; const TomatoBtn = styled(Btn)`color: tomato;` ```
-- [x] Vanilla(via `css` function)
-- [x] `globalStyle`(via `glob`) so one would be able to create global styles
-- [x] target/extract from elements other than `<head>`
-- [ ] Vendor prefixing
+
+-   [x] Basic CSS parsing
+-   [x] Nested rules with pseudo selectors
+-   [x] Nested styled components
+-   [x] Extending Styles
+    -   via `` const TomatoButton = styled(StyledBtn)`color: tomato;` ``
+-   [x] Media queries (@media)
+-   [x] Keyframes (@keyframes)
+-   [x] Smart(lazy) client-side hydration
+-   [x] Styling any component
+    -   via `` const Btn = ({className}) => {...}; const TomatoBtn = styled(Btn)`color: tomato;` ``
+-   [x] Vanilla(via `css` function)
+-   [x] `globalStyle`(via `glob`) so one would be able to create global styles
+-   [x] target/extract from elements other than `<head>`
+-   [ ] Vendor prefixing
 
 # Browser support
 
