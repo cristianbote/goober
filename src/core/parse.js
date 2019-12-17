@@ -9,19 +9,6 @@ export const parse = (obj, paren, wrapper) => {
     let blocks = '';
     let outer = '';
 
-    // If we're dealing with keyframes just flatten them
-    if (/^@[k|f]/.test(wrapper)) {
-        // Return the wrapper, which should be the @keyframes selector
-        // and stringify the obj which should be just flatten
-        return (
-            wrapper +
-            JSON.stringify(obj)
-                .replace(/","/g, ';')
-                .replace(/"|,"/g, '')
-                .replace(/:{/g, '{')
-        );
-    }
-
     for (let key in obj) {
         const val = obj[key];
 
@@ -34,10 +21,22 @@ export const parse = (obj, paren, wrapper) => {
             if (/&/g.test(key)) next = key.replace(/&/g, paren);
 
             // Media queries or other
-            if (key[0] == '@') next = paren;
+            if (key[0] == '@') {
+                next = paren;
+                // If this is the case for `@font-face`
+                if (key[1] == 'f') {
+                    next = key;
+                }
+            }
 
-            // Call the parse for this block
-            blocks += parse(val, next, next == paren ? key : wrapper || '');
+            // If this is the `@keyframes`
+            if (/@k/.test(key)) {
+                // Take the key and inline it
+                blocks += key + '{' + parse(val, '', '') + '}';
+            } else {
+                // Call the parse for this block
+                blocks += parse(val, next, next == paren ? key : wrapper || '');
+            }
         } else {
             if (/^@i/.test(key)) outer = key + ' ' + val + ';';
             // Push the line for this property
