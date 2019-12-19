@@ -1,7 +1,7 @@
 import { css } from './css';
 
 let h, forwardRef, useTheme;
-const setup = (_h, _forwardRef, _useTheme = () => {}) => {
+const setup = (_h, _forwardRef, _useTheme) => {
     h = _h;
     forwardRef = _forwardRef;
     useTheme = _useTheme;
@@ -16,16 +16,13 @@ function styled(tag) {
     return function() {
         const _args = arguments;
         function Styled(props, ref) {
-            const theme = useTheme();
-            const _props = (_ctx.p = Object.assign(theme ? { theme } : {}, props));
+            const _props = (_ctx.p = Object.assign(useTheme ? { theme: useTheme() } : {}, props));
             const _previousClassName = _props.className;
 
             _ctx.o = /\s*go[0-9]+/g.test(_previousClassName);
             _props.className =
                 css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '');
-            if (ref) {
-                _props.ref = ref;
-            }
+            _props.ref = ref;
 
             return h(tag, _props);
         }
