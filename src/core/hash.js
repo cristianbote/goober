@@ -6,9 +6,7 @@ import { parse } from './parse';
 /**
  * In-memory cache.
  */
-let cache = {
-    c: 0
-};
+let cache = {};
 
 /**
  * Generates the needed className
