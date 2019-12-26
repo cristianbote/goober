@@ -16,13 +16,19 @@ function styled(tag) {
     return function() {
         const _args = arguments;
         function Styled(props, ref) {
-            const _props = (_ctx.p = Object.assign(useTheme ? { theme: useTheme() } : {}, props));
-            const _previousClassName = _props.className;
+            _ctx.p = {
+                ...(useTheme && { theme: useTheme() }),
+                ...props
+            };
 
+            const _previousClassName = _ctx.p.className;
             _ctx.o = /\s*go[0-9]+/g.test(_previousClassName);
-            _props.className =
-                css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '');
-            _props.ref = ref;
+            const _props = {
+                ...props,
+                ref,
+                className:
+                    css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '')
+            };
 
             return h(tag, _props);
         }

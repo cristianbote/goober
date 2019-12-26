@@ -6,7 +6,7 @@ describe('goober', () => {
             'css',
             'extractCss',
             'glob',
-            'setPragma',
+            'setup',
             'styled'
         ]);
     });
