@@ -7,7 +7,9 @@
     "keywords": [
         "goober",
         "gatsby",
-        "gatsby-plugin"
+        "gatsby-plugin",
+        "styled",
+        "components"
     ],
     "author": "Cristian Bote",
     "license": "ISC",
