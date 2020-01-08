@@ -31,6 +31,8 @@ I always wondered, if you can get a working solution for css-in-js with a smalle
     -   [targets](#targets)
     -   [extractCss](#extractcsstarget)
     -   [glob](#glob)
+-   [Integrations](#integrations)
+    -   [Gatsby](#gatsby)
 -   [Features](#features)
 -   [Browser Support](#browser-support)
 -   [Contributing](#contributing)
@@ -295,6 +297,18 @@ glob`
     box-sizing: border-box;
   }
 `;
+```
+
+# Integrations
+
+## [Gatsby](https://github.com/gatsbyjs/gatsby)
+
+Want to use `goober` with Gatsby? We've got you covered! We have our own plugin to deal with styling your Gatsby projects.
+
+```sh
+npm i --save gatsby-plugin-goober
+# or
+yarn add gatsby-plugin-goober
 ```
 
 # Features
