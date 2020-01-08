@@ -16,6 +16,25 @@
 
 I always wondered, if you can get a working solution for css-in-js with a smaller footprint. I started a project and wanted a to use styled-components. Looking at their sizes, it seems that I would rather not include ~16kB([styled-components](https://github.com/styled-components/styled-components)) or ~11kB([emotion](https://github.com/emotion-js/emotion)) just so I can use the `styled` paradigm. So, I embarked in a mission to create a smaller alternative for these well established apis.
 
+# Table of contents
+
+-   [Usage](#usage)
+-   [Examples](#examples)
+-   [SSR](#ssr)
+-   [Benchmarks](#benchmarks)
+    -   [Browser](#browser)
+    -   [SSR](#ssr-1)
+-   [API](#api)
+    -   [styled](#styledtagname)
+    -   [setPragma](#setpragmapragma-function)
+    -   [css](#csstaggedtemplate)
+    -   [targets](#targets)
+    -   [extractCss](#extractcsstarget)
+    -   [glob](#glob)
+-   [Features](#features)
+-   [Browser Support](#browser-support)
+-   [Contributing](#contributing)
+
 # Usage
 
 The API is inspired by emotion, `styled` function. Meaning, you call it with your `tagName` and returns a vDOM component for that tag. Note, `setPragma` is needed to be run before the `styled` function is used.
