@@ -11,6 +11,13 @@
         "styled",
         "components"
     ],
+    "files": [
+        "gatsby-browser.js",
+        "gatsby-ssr.js",
+        "index.js",
+        "package.json",
+        "README.md"
+    ],
     "author": "Cristian Bote",
     "license": "ISC",
     "dependencies": {},
