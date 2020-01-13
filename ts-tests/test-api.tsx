@@ -26,6 +26,14 @@ const testStyledCss = () => {
         background: black;
     `;
 
+    const EmptyPropsText = styled('p')`
+        color: blue;
+    `;
+
+    const NestedText = styled(EmptyPropsText)`
+        color: red;
+    `;
+
     const TestComp = () => {
         return (
             <div>
@@ -35,6 +43,8 @@ const testStyledCss = () => {
                 <ButtonRaw clicked={false}>click me</ButtonRaw>
                 <button class={buttonStyles({ color: 'red' })}>click me</button>
                 <button class={buttonStylesRaw()}>click me</button>
+                <EmptyPropsText>base text</EmptyPropsText>
+                <NestedText>text</NestedText>
             </div>
         );
     };
