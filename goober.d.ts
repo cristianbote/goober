@@ -5,7 +5,7 @@ export = goober;
 export as namespace goober;
 
 declare namespace goober {
-    function styled<T = {}>(tag: string): Tagged<T>;
+    function styled<T = { [prop: string]: any }>(tag: string | Tagged<any>): Tagged<T>;
     function setPragma<T>(val: T): void;
     function extractCss(): string;
     function glob(tag: CSSAttribute | TemplateStringsArray | string): void;
