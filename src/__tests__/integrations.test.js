@@ -31,6 +31,6 @@ describe('integrations', () => {
             target
         );
 
-        expect(extractCss()).toEqual(' .go2155{color:red;}');
+        expect(extractCss()).toEqual(' .go3917434385{color:red;}');
     });
 });

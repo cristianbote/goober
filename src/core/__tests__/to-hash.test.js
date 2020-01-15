@@ -4,8 +4,8 @@ describe('to-hash', () => {
     it('regression', () => {
         const res = toHash('goober');
 
-        expect(res).toEqual('.go650');
-        expect(toHash('goober')).toEqual('.go650');
+        expect(res).toEqual('.go3054717608');
+        expect(toHash('goober')).toEqual('.go3054717608');
     });
 
     it('collision', () => {
