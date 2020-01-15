@@ -10,12 +10,11 @@ module.exports = function({ types: t }, options = {}) {
                     if (!t.isIdentifier(node.object) || node.object.name !== name) {
                         return;
                     }
-                    if (!t.isIdentifier(node.property)) {
-                        return;
+                    let property = node.property;
+                    if (t.isIdentifier(property)) {
+                        property = t.stringLiteral(property.name);
                     }
-                    path.replaceWith(
-                        t.callExpression(node.object, [t.stringLiteral(node.property.name)])
-                    );
+                    path.replaceWith(t.callExpression(node.object, [property]));
                 }
             }
         }

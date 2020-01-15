@@ -28,7 +28,7 @@ describe('babel-plugin-transform-goober', () => {
     it('requires the root to be an identifier', () => {
         expect(transform('"styled".div;')).toEqual('"styled".div;');
     });
-    it('does requires the tag name to be an identifier', () => {
-        expect(transform('styled["div"];')).toEqual('styled["div"];');
+    it('does not require the tag name to be an identifier', () => {
+        expect(transform('styled["div"];')).toEqual('styled("div");');
     });
 });
