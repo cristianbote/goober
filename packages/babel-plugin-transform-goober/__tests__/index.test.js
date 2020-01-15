@@ -25,4 +25,10 @@ describe('babel-plugin-transform-goober', () => {
     it('does not rewrite styled.* if "name" is set to something else', () => {
         expect(transform('styled.div;', { name: 'named' })).toEqual('styled.div;');
     });
+    it('requires the root to be an identifier', () => {
+        expect(transform('"styled".div;')).toEqual('"styled".div;');
+    });
+    it('does requires the tag name to be an identifier', () => {
+        expect(transform('styled["div"];')).toEqual('styled["div"];');
+    });
 });
