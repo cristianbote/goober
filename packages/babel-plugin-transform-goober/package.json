@@ -16,8 +16,5 @@
     "scripts": {},
     "peerDependencies": {
         "@babel/core": "^7.0.0-0"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.5.5"
     }
 }
