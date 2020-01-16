@@ -32,6 +32,7 @@ I always wondered, if you can get a working solution for css-in-js with a smalle
     -   [extractCss](#extractcsstarget)
     -   [glob](#glob)
 -   [Integrations](#integrations)
+    -   [Babel Plugin](#babelplugin)
     -   [Gatsby](#gatsby)
 -   [Features](#features)
 -   [Browser Support](#browser-support)
@@ -300,6 +301,18 @@ glob`
 ```
 
 # Integrations
+
+## Babel plugin
+
+You're in love with the `styled.div` syntax? Fear no more! We got you covered with a babel plugin that will take your lovely syntax from `styled.tag` and translate it to goober's `styled("tag")` call.
+
+```sh
+npm i --save-dev babel-plugin-transform-goober
+# or
+yarn add --dev babel-plugin-transform-goober
+```
+
+Visit the package in here for more info (https://github.com/cristianbote/goober/tree/master/packages/babel-plugin-transform-goober)
 
 ## [Gatsby](https://github.com/gatsbyjs/gatsby)
 
