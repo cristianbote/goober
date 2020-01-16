@@ -16,6 +16,9 @@ describe('babel-plugin-transform-goober', () => {
     it('works for tagged templates', () => {
         expect(transform('styled.div``;')).toEqual('styled("div")``;');
     });
+    it('works for custom elements', () => {
+        expect(transform('styled.customElement``;')).toEqual('styled("custom-element")``;');
+    });
     it('works for calls', () => {
         expect(transform('styled.div("hello");')).toEqual('styled("div")("hello");');
     });
