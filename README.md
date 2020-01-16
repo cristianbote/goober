@@ -32,7 +32,7 @@ I always wondered, if you can get a working solution for css-in-js with a smalle
     -   [extractCss](#extractcsstarget)
     -   [glob](#glob)
 -   [Integrations](#integrations)
-    -   [Babel Plugin](#babelplugin)
+    -   [Babel Plugin](#babel-plugin)
     -   [Gatsby](#gatsby)
 -   [Features](#features)
 -   [Browser Support](#browser-support)
