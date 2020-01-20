@@ -34,6 +34,11 @@ const testStyledCss = () => {
         color: red;
     `;
 
+    const MultipleFunctions = styled<{ isActive: boolean }>('b')`
+        color: ${props => (props.isActive ? 'tomato' : 'dodgerblue')};
+        background-color: ${props => (props.isActive ? 'tomato' : 'dodgerblue')};
+    `;
+
     const TestComp = () => {
         return (
             <div>
