@@ -16,7 +16,7 @@ declare namespace goober {
     type StyledVNode<T> = (props: T, ...args: any[]) => any;
     type Tagged<T> = (
         tag: CSSAttribute | TemplateStringsArray,
-        props?: (props: T) => CSSAttribute | string | number | undefined
+        ...props: Array<(props: T) => CSSAttribute | string | number | undefined>
     ) => StyledVNode<T>;
     interface CSSAttribute extends CSSProperties {
         [key: string]: CSSAttribute | string | number | undefined;
