@@ -9,6 +9,11 @@
     "directory": "packages/babel-macro-goober"
   },
   "author": "Hadeeb Farhan <hadeebfarhan1@gmail.com>",
+  "keywords": [
+    "babel-plugin-macros",
+    "goober",
+    "styled"
+  ],
   "license": "ISC",
   "peerDependencies": {
     "@babel/helper-module-imports": "^7.8.3",
