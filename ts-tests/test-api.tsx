@@ -10,8 +10,8 @@ const testStyledCss = () => {
         color?: string;
     }
 
-    const buttonStyles = css<Pick<ButtonProps, 'color'>>`
-        background: ${props => props.color || 'black'};
+    const buttonStyles = ({ color }: Pick<ButtonProps, 'color'>) => css`
+        background: ${color || 'black'};
     `;
 
     const buttonStylesRaw = css`
@@ -47,7 +47,7 @@ const testStyledCss = () => {
                 </Button>
                 <ButtonRaw clicked={false}>click me</ButtonRaw>
                 <button class={buttonStyles({ color: 'red' })}>click me</button>
-                <button class={buttonStylesRaw()}>click me</button>
+                <button class={buttonStylesRaw}>click me</button>
                 <EmptyPropsText>base text</EmptyPropsText>
                 <NestedText>text</NestedText>
             </div>
