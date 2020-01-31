@@ -23,8 +23,10 @@
     "test-ts": "tsc -p ts-tests",
     "clean": "rm -rf dist",
     "size-check": "filesize",
-    "build": "npm run clean && microbundle --entry src/index.js --output dist --name goober --no-sourcemap && npm run size-check",
-    "debug": "microbundle --entry src/index.js --output debug --name goober --no-sourcemap --no-compress",
+    "build": "npm run clean && npm run build:dist && npm run size-check",
+    "build:lib": "microbundle --entry src/index.js --name goober --no-sourcemap",
+    "build:dist": "npm run build:lib -- --output dist",
+    "build:debug": "npm run build:lib -- --output debug --no-compress",
     "dev": "npm run clean && microbundle watch --entry src/index.js --output dist --name goober",
     "deploy": "npm run build && npm publish",
     "format": "prettier \"**/*.{js,ts,tsx,md}\" --write"
