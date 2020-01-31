@@ -22,7 +22,7 @@
     "test-unit": "jest --setupFiles ./tests/setup.js",
     "test-ts": "tsc -p ts-tests",
     "clean": "rm -rf dist",
-    "size-check": "npx bundlesize",
+    "size-check": "filesize",
     "build": "npm run clean && microbundle --entry src/index.js --output dist --name goober --no-sourcemap && npm run size-check",
     "debug": "microbundle --entry src/index.js --output debug --name goober --no-sourcemap --no-compress",
     "dev": "npm run clean && microbundle watch --entry src/index.js --output dist --name goober",
@@ -43,6 +43,7 @@
   "repository": "https://github.com/cristianbote/goober",
   "license": "ISC",
   "devDependencies": {
+    "@ampproject/filesize": "^1.1.0",
     "@babel/core": "^7.2.2",
     "@babel/plugin-transform-react-jsx": "^7.7.0",
     "@babel/preset-env": "^7.3.1",
@@ -50,7 +51,6 @@
     "@emotion/styled": "^10.0.23",
     "babel-jest": "^24.1.0",
     "benchmark": "^2.1.4",
-    "bundlesize": "^0.18.0",
     "csstype": "^2.6.3",
     "husky": "4.2.1",
     "jest": "^24.1.0",
@@ -68,10 +68,16 @@
   },
   "dependencies": {},
   "typings": "./goober.d.ts",
-  "bundlesize": [
+  "filesize": [
     {
-      "path": "./dist/goober.+(module.js|js)",
-      "maxSize": "1026B"
+      "path": "./dist/goober.module.js",
+      "compression": "gzip",
+      "maxSize": "1024B"
+    },
+    {
+      "path": "./dist/goober.js",
+      "compression": "gzip",
+      "maxSize": "1024B"
     }
   ],
   "lint-staged": {
