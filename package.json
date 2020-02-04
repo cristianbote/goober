@@ -70,18 +70,14 @@
   },
   "dependencies": {},
   "typings": "./goober.d.ts",
-  "filesize": [
-    {
-      "path": "./dist/goober.module.js",
-      "compression": "gzip",
-      "maxSize": "1024B"
+  "filesize": {
+    "./dist/goober.module.js": {
+      "gzip": "1024B"
     },
-    {
-      "path": "./dist/goober.js",
-      "compression": "gzip",
-      "maxSize": "1024B"
+    "./dist/goober.js": {
+      "gzip": "1024B"
     }
-  ],
+  },
   "lint-staged": {
     "*.{js,ts,tsx,md}": [
       "prettier --write"
