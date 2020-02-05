@@ -72,8 +72,8 @@ describe('parse', () => {
 
         expect(out).toEqual(
             [
-                '@keyframes superAnimation{11.1%{opacity:0.9999}111%{opacity:1}}',
-                '@keyframes foo{to{baz:1px;foo:1px}}'
+                '@keyframes superAnimation{ 11.1%{opacity:0.9999;} 111%{opacity:1;}}',
+                '@keyframes foo{ to{baz:1px;foo:1px;}}'
             ].join('')
         );
     });
@@ -85,10 +85,10 @@ describe('parse', () => {
                     'font-weight': 100
                 }
             },
-            ''
+            'FONTFACE'
         );
 
-        expect(out).toEqual(['@font-face{font-weight:100}'].join(''));
+        expect(out).toEqual(['@font-face{font-weight:100;}'].join(''));
     });
 
     it('@media', () => {
@@ -122,6 +122,9 @@ describe('parse', () => {
             parse(
                 {
                     '@import': "url('path/to')",
+                    '@font-face': {
+                        'font-weight': 100
+                    },
                     'text-align': 'center',
                     '.logo': {
                         animation: 'App-logo-spin infinite 20s linear',
@@ -156,10 +159,11 @@ describe('parse', () => {
             [
                 "@import url('path/to');",
                 'App{text-align:center;}',
+                '@font-face{font-weight:100;}',
                 'App .logo{animation:App-logo-spin infinite 20s linear;height:40vmin;pointer-events:none;}',
                 'App .header{background-color:#282c34;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:calc(10px + 2vmin);color:white;}',
                 'App .link{color:#61dafb;}',
-                '@keyframes App-logo-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}'
+                '@keyframes App-logo-spin{ from{transform:rotate(0deg);} to{transform:rotate(360deg);}}'
             ].join('')
         );
     });

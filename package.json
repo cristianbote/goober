@@ -1,6 +1,6 @@
 {
   "name": "goober",
-  "version": "1.6.1",
+  "version": "1.6.5",
   "description": "A less than 1KB css-in-js solution",
   "main": "dist/goober.js",
   "module": "dist/goober.module.js",
@@ -22,9 +22,11 @@
     "test-unit": "jest --setupFiles ./tests/setup.js",
     "test-ts": "tsc -p ts-tests",
     "clean": "rm -rf dist",
-    "size-check": "npx bundlesize",
-    "build": "npm run clean && microbundle --entry src/index.js --output dist --name goober --no-sourcemap && npm run size-check",
-    "debug": "microbundle --entry src/index.js --output debug --name goober --no-sourcemap --no-compress",
+    "size-check": "filesize",
+    "build": "npm run clean && npm run build:dist && npm run size-check",
+    "build:lib": "microbundle --entry src/index.js --name goober --no-sourcemap",
+    "build:dist": "npm run build:lib -- --output dist",
+    "build:debug": "npm run build:lib -- --output debug --no-compress",
     "dev": "npm run clean && microbundle watch --entry src/index.js --output dist --name goober",
     "deploy": "npm run build && npm publish",
     "format": "prettier \"**/*.{js,ts,tsx,md}\" --write"
@@ -43,6 +45,7 @@
   "repository": "https://github.com/cristianbote/goober",
   "license": "ISC",
   "devDependencies": {
+    "@ampproject/filesize": "^2.0.0",
     "@babel/core": "^7.2.2",
     "@babel/plugin-transform-react-jsx": "^7.7.0",
     "@babel/preset-env": "^7.3.1",
@@ -50,17 +53,16 @@
     "@emotion/styled": "^10.0.23",
     "babel-jest": "^24.1.0",
     "benchmark": "^2.1.4",
-    "bundlesize": "^0.18.0",
     "csstype": "^2.6.3",
-    "husky": "3.1.0",
+    "husky": "4.2.1",
     "jest": "^24.1.0",
-    "lint-staged": "9.5.0",
+    "lint-staged": "10.0.4",
     "microbundle": "^0.11.0",
     "preact": "^10.0.0",
     "prettier": "1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "styled-components": "^5.0.0-rc.2",
+    "styled-components": "^5.0.0",
     "typescript": "^3.6.3"
   },
   "peerDependencies": {
@@ -68,16 +70,17 @@
   },
   "dependencies": {},
   "typings": "./goober.d.ts",
-  "bundlesize": [
-    {
-      "path": "./dist/goober.+(module.js|js)",
-      "maxSize": "1026B"
+  "filesize": {
+    "./dist/goober.module.js": {
+      "gzip": "1024B"
+    },
+    "./dist/goober.js": {
+      "gzip": "1024B"
     }
-  ],
+  },
   "lint-staged": {
     "*.{js,ts,tsx,md}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "husky": {

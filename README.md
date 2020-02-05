@@ -16,6 +16,28 @@
 
 I always wondered, if you can get a working solution for css-in-js with a smaller footprint. I started a project and wanted a to use styled-components. Looking at their sizes, it seems that I would rather not include ~16kB([styled-components](https://github.com/styled-components/styled-components)) or ~11kB([emotion](https://github.com/emotion-js/emotion)) just so I can use the `styled` paradigm. So, I embarked in a mission to create a smaller alternative for these well established apis.
 
+# Table of contents
+
+-   [Usage](#usage)
+-   [Examples](#examples)
+-   [SSR](#ssr)
+-   [Benchmarks](#benchmarks)
+    -   [Browser](#browser)
+    -   [SSR](#ssr-1)
+-   [API](#api)
+    -   [styled](#styledtagname)
+    -   [setPragma](#setpragmapragma-function)
+    -   [css](#csstaggedtemplate)
+    -   [targets](#targets)
+    -   [extractCss](#extractcsstarget)
+    -   [glob](#glob)
+-   [Integrations](#integrations)
+    -   [Babel Plugin](#babel-plugin)
+    -   [Gatsby](#gatsby)
+-   [Features](#features)
+-   [Browser Support](#browser-support)
+-   [Contributing](#contributing)
+
 # Usage
 
 The API is inspired by emotion, `styled` function. Meaning, you call it with your `tagName` and returns a vDOM component for that tag. Note, `setPragma` is needed to be run before the `styled` function is used.
@@ -175,9 +197,9 @@ setPragma(React.createElement);
 
 ### `css(taggedTemplate)`
 
--   `@returns {Function}` Returns the tag template function.
+-   `@returns {String}` Returns the className.
 
-Same as `styled` but without the tagName and vNode generation. Calling the function created by `css` will result in a className.
+To create a className, you need to call `css` with your style rules in a tagged template.
 
 ```js
 import { css } from "goober";
@@ -188,23 +210,40 @@ const BtnClassName = css`
 
 // vanilla JS
 const btn = document.querySelector("#btn");
-// BtnClassName() -> 'g016232'
-btn.classList.add(BtnClassName());
+// BtnClassName === 'g016232'
+btn.classList.add(BtnClassName);
 
 // JSX
-// BtnClassName() -> 'g016232'
-const App => <button className={BtnClassName()}>click</button>
+// BtnClassName === 'g016232'
+const App => <button className={BtnClassName}>click</button>
 ```
 
 #### Different ways of customizing `css`
 
-##### Tagged templates functions
+##### Passing props to `css` tagged templates
 
 ```js
 import { css } from 'goober';
 
-const BtnClassName = css`
-    border-radius: ${props => props.size}px;
+// JSX
+const CustomButton = props => (
+    <button
+        className={css`
+            border-radius: ${props.size}px;
+        `}
+    >
+        click
+    </button>
+);
+```
+
+We also can declare the styles at the top of the file by wrapping `css` into a function that we call to get the className.
+
+```js
+import { css } from 'goober';
+
+const BtnClassName = props => css`
+    border-radius: ${props.size}px;
 `;
 
 // vanilla JS
@@ -215,20 +254,6 @@ btn.classList.add(BtnClassName({ size: 20 }));
 // JSX
 // BtnClassName({size:20}) -> g016360
 const App = () => <button className={BtnClassName({ size: 20 })}>click</button>;
-```
-
-**💡NOTE**
-
-> If you provide props as an object within `css`, make sure to provide empty object as a default parameter, otherwise your app will throw error if you won't provide an object argument.
-
-```js
-const BtnClassName = css`
-    border-radius: ${(props = {}) => props.size}px;
-`;
-
-// All Good
-BtnClassName();
-BtnClassName({ size: 4 });
 ```
 
 ### `targets`
@@ -276,6 +301,30 @@ glob`
     box-sizing: border-box;
   }
 `;
+```
+
+# Integrations
+
+## Babel plugin
+
+You're in love with the `styled.div` syntax? Fear no more! We got you covered with a babel plugin that will take your lovely syntax from `styled.tag` and translate it to goober's `styled("tag")` call.
+
+```sh
+npm i --save-dev babel-plugin-transform-goober
+# or
+yarn add --dev babel-plugin-transform-goober
+```
+
+Visit the package in here for more info (https://github.com/cristianbote/goober/tree/master/packages/babel-plugin-transform-goober)
+
+## [Gatsby](https://github.com/gatsbyjs/gatsby)
+
+Want to use `goober` with Gatsby? We've got you covered! We have our own plugin to deal with styling your Gatsby projects.
+
+```sh
+npm i --save gatsby-plugin-goober
+# or
+yarn add gatsby-plugin-goober
 ```
 
 # Features
