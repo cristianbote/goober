@@ -28,6 +28,6 @@ export const compile = (str, defs, data) => {
                 ? ''
                 : res;
         }
-        return out + next + (tail || '');
+        return out + next + (tail == null ? '' : tail);
     }, '');
 };
