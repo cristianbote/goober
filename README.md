@@ -9,7 +9,7 @@
 [![gzip size](https://img.badgesize.io/https://unpkg.com/goober@latest/dist/goober.module.js?compression=gzip)](https://unpkg.com/goober)
 [![downloads](https://img.shields.io/npm/dw/goober)](https://www.npmjs.com/package/goober)
 [![coverage](https://img.shields.io/codecov/c/github/cristianbote/goober.svg?maxAge=2592000)](https://codecov.io/github/cristianbote/goober?branch=master)
-[![Gitter](https://img.shields.io/gitter/room/cristianbote/goober.svg?style=popout)](https://gitter.im/goober-project/community)
+[![Slack](https://img.shields.io/badge/slack-join-orange)](https://join.slack.com/t/gooberdev/shared_invite/enQtOTM5NjUyOTcwNzI1LWUwNzg0NTQwODY1NDJmMzQ2NzdlODI4YTM3NWUwYjlkY2ZkNGVmMTFlNGMwZGUyOWQyZmI4OTYwYmRiMzE0NGQ)
 [![Greenkeeper badge](https://badges.greenkeeper.io/cristianbote/goober.svg)](https://greenkeeper.io/)
 
 # Motivation
