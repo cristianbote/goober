@@ -61,12 +61,12 @@ describe('hash', () => {
     it('regression: global', () => {
         const res = hash('global', 'target', true);
 
-        expect(toHash).not.toBeCalled();
-        expect(astish).toBeCalledWith('global');
-        expect(parse).toBeCalledWith('astish()', '');
+        expect(toHash).toBeCalledWith('"global"');
+        expect(astish).not.toBeCalled();
+        expect(parse).not.toBeCalled();
         expect(update).toBeCalledWith('parse()', 'target', undefined);
 
-        expect(res).toEqual('');
+        expect(res).toEqual('toHash()');
     });
 
     it('regression: object', () => {
