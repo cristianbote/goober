@@ -1,3 +1,5 @@
+import { opts } from '../options';
+
 /**
  * Parses the object into css, scoped, blocks
  * @param {Object} obj
@@ -5,9 +7,9 @@
  * @param {String} wrapper
  */
 export const parse = (obj, paren, wrapper) => {
-    let current = '';
-    let blocks = '';
     let outer = '';
+    let blocks = '';
+    let current = '';
 
     for (let key in obj) {
         const val = obj[key];
@@ -40,7 +42,14 @@ export const parse = (obj, paren, wrapper) => {
         } else {
             if (/^@i/.test(key)) outer = key + ' ' + val + ';';
             // Push the line for this property
-            else current += key.replace(/[A-Z]/g, '-$&').toLowerCase() + ':' + val + ';';
+            else {
+                key = key.replace(/[A-Z]/g, '-$&').toLowerCase();
+                if (opts.p) {
+                    current += opts.p(key.toLowerCase(), val);
+                } else {
+                    current += key.toLowerCase() + ':' + val + ';';
+                }
+            }
         }
     }
 

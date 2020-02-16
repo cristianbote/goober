@@ -1,12 +1,13 @@
-import { prefixproperty, prefixValue } from 'tiny-css-prefixer';
-import { opts } from 'goober';
+import { prefixProperty, prefixValue } from 'tiny-css-prefixer';
+import { opts } from '../../../src';
 
 opts.p = (prop, value) => {
+    const base = `${prop}: ${value};\n`;
     value = prefixValue(prop, value);
     let css = `${prop}: ${value};\n`;
-    const flag = prefixproperty(prop);
-    if (flag & 0b001) css += `-ms-${css}`;
-    if (flag & 0b010) css += `-moz-${css}`;
-    if (flag & 0b100) css += `-webkit-${css}`;
+    const flag = prefixProperty(prop);
+    if (flag & 0b001) css += `-ms-${base}`;
+    if (flag & 0b010) css += `-moz-${base}`;
+    if (flag & 0b100) css += `-webkit-${base}`;
     return css;
 };

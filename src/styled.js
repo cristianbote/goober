@@ -1,7 +1,9 @@
 import { css } from './css';
 
 let h;
-const setPragma = pragma => (h = pragma);
+const setPragma = pragma => {
+    h = pragma;
+};
 
 /**
  * Styled function
