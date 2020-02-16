@@ -44,11 +44,7 @@ export const parse = (obj, paren, wrapper) => {
             // Push the line for this property
             else {
                 key = key.replace(/[A-Z]/g, '-$&').toLowerCase();
-                if (opts.p) {
-                    current += opts.p(key.toLowerCase(), val);
-                } else {
-                    current += key.toLowerCase() + ':' + val + ';';
-                }
+                current += opts.p ? opts.p(key, val) : key + ':' + val + ';'
             }
         }
     }
