@@ -7,9 +7,9 @@ import { prefixer } from '../styled';
  * @param {String} wrapper
  */
 export const parse = (obj, paren, wrapper) => {
-    let outer,
-        blocks,
-        current = (outer = blocks = '');
+    let outer = '';
+    let blocks = '';
+    let current = '';
 
     for (let key in obj) {
         const val = obj[key];

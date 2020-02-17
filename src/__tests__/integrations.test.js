@@ -2,8 +2,6 @@ import { h, render } from 'preact';
 import { setup, styled } from '../index';
 import { extractCss } from '../core/update';
 
-/** @jsx h */
-
 describe('integrations', () => {
     it('preact', () => {
         setup(h);

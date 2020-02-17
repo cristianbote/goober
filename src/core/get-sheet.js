@@ -1,4 +1,4 @@
-const GOOBER_ID = '__goober';
+const GOOBER_ID = '_goober';
 const ssr = {
     data: ''
 };
