@@ -6,5 +6,5 @@
   "umd:main": "./dist/goober-autoprefixer.umd.js",
   "source": "./src/index.js",
   "unpkg": "./dist/goober-autoprefixer.umd.js",
-  "types": "./goober.d.ts"
+  "types": "./autoprefixer.d.ts"
 }
