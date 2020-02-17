@@ -19,11 +19,10 @@ function styled(tag) {
 
         return function Styled(props) {
             const _props = (_ctx.p = Object.assign({}, props));
-            const _previousClassName = _props.className;
 
-            _ctx.o = /\s*go[0-9]+/g.test(_previousClassName);
+            _ctx.o = /\s*go[0-9]+/g.test(_props.className);
             _props.className =
-                css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '');
+                css.apply(_ctx, _args) + (_props.className ? ' ' + _props.className : '');
 
             return h(tag, _props);
         };
