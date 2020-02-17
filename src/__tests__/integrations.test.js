@@ -2,6 +2,8 @@ import { h, render } from 'preact';
 import { setPragma, styled } from '../index';
 import { extractCss } from '../core/update';
 
+/** @jsx h */
+
 describe('integrations', () => {
     it('preact', () => {
         setPragma(h);

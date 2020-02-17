@@ -1,5 +1,5 @@
 import '../src';
-import { parse } from '../../../src/core/parse';
+import { parse } from '../../../';
 
 const sanitize = str => str.replace(/\s/g, '');
 

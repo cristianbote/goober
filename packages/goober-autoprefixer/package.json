@@ -9,29 +9,17 @@
   "types": "./goober.d.ts",
   "scripts": {
     "build": "rimraf dist && microbundle --external goober --name gooberAutoprefixer --output dist",
-    "test": "jest",
     "prepublishOnly": "yarn build && yarn test"
   },
   "peerDependencies": {
     "goober": "> 1.8.0"
   },
   "devDependencies": {
-    "@babel/core": "7.8.4",
-    "@babel/preset-env": "7.8.4",
-    "babel-jest": "25.1.0",
-    "jest": "^25.1.0",
+    "goober": "file:../..",
     "microbundle": "^0.11.0",
     "rimraf": "^3.0.2"
   },
   "dependencies": {
     "tiny-css-prefixer": "^1.1.4"
-  },
-  "jest": {
-    "coverageDirectory": "./coverage/",
-    "collectCoverage": true,
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ]
   }
 }

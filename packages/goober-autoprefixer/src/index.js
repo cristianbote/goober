@@ -1,5 +1,5 @@
 import { prefixProperty, prefixValue } from 'tiny-css-prefixer';
-import { opts } from '../../../src';
+import { opts } from 'goober';
 
 opts.p = (prop, value) => {
     const base = `${prop}: ${value};\n`;
