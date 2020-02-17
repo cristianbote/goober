@@ -34,4 +34,4 @@ const Button = styled('button')`
 
 ## What does `auto pragma config` means?
 
-`goober` needs to be instructed which pragma, eg JSX function, should be used to create the styled component. This is done via `setPragma` function and usually it's something that needs to be done inside the entry point or main file. For `Gatsby` that means `gatsby-browser.js` and `gatsby-ssr.js` which this plugin takes care of. So no need to worry about it, you simply use `goober` and everything is taken care of.
+`goober` needs to be instructed which pragma, eg JSX function, should be used to create the styled component. This is done via `setup` function and usually it's something that needs to be done inside the entry point or main file. For `Gatsby` that means `gatsby-browser.js` and `gatsby-ssr.js` which this plugin takes care of. So no need to worry about it, you simply use `goober` and everything is taken care of.

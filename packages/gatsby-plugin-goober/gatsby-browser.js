@@ -1,3 +1,3 @@
 import React from 'react';
-import { setPragma } from 'goober';
-setPragma(React.createElement);
+import { setup } from 'goober';
+setup(React.createElement);
