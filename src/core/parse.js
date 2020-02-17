@@ -43,7 +43,9 @@ export const parse = (obj, paren, wrapper) => {
             if (/^@i/.test(key)) outer = key + ' ' + val + ';';
             // Push the line for this property
             else {
-                current += prefixer(key.replace(/[A-Z]/g, '-$&').toLowerCase(), val);
+                current +=
+                    (prefixer && prefixer(key.replace(/[A-Z]/g, '-$&').toLowerCase(), val)) ||
+                    key.replace(/[A-Z]/g, '-$&').toLowerCase() + ':' + val + ';';
             }
         }
     }

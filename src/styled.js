@@ -1,10 +1,10 @@
 import { css } from './css';
 
 let h;
-export let prefixer = (key, val) => key + ':' + val + ';';
+export let prefixer;
 const setup = (pragma, prefixer) => {
     h = pragma;
-    if (prefixer) prefixer = prefixer;
+    prefixer = prefixer;
 };
 
 /**
