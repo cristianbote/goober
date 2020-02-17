@@ -1,8 +1,10 @@
 import { css } from './css';
 
 let h;
-const setPragma = pragma => {
+export let prefixer = (key, val) => key + ':' + val + ';';
+const setup = (pragma, prefixer) => {
     h = pragma;
+    if (prefixer) prefixer = prefixer;
 };
 
 /**
@@ -19,6 +21,7 @@ function styled(tag) {
             const _props = (_ctx.p = Object.assign({}, props));
             const _previousClassName = _props.className;
 
+            _ctx.p = prefixer;
             _ctx.o = /\s*go[0-9]+/g.test(_previousClassName);
             _props.className =
                 css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '');
@@ -28,4 +31,4 @@ function styled(tag) {
     };
 }
 
-export { styled, setPragma };
+export { styled, setup };

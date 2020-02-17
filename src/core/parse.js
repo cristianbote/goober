@@ -1,4 +1,4 @@
-import { opts } from '../options';
+import { prefixer } from '../styled';
 
 /**
  * Parses the object into css, scoped, blocks
@@ -43,8 +43,7 @@ export const parse = (obj, paren, wrapper) => {
             if (/^@i/.test(key)) outer = key + ' ' + val + ';';
             // Push the line for this property
             else {
-                key = key.replace(/[A-Z]/g, '-$&').toLowerCase();
-                current += opts.p ? opts.p(key, val) : key + ':' + val + ';'
+                current += prefixer(key.replace(/[A-Z]/g, '-$&').toLowerCase(), val);
             }
         }
     }
