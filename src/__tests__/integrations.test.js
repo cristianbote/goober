@@ -1,5 +1,6 @@
 import { h, createContext, render } from 'preact';
 import { useContext, forwardRef } from 'preact/compat';
+import { h, render } from 'preact';
 import { setup, styled } from '../index';
 import { extractCss } from '../core/update';
 
@@ -8,7 +9,7 @@ describe('integrations', () => {
         const ThemeContext = createContext();
         const useTheme = () => useContext(ThemeContext);
 
-        setup(h, forwardRef, useTheme);
+        setup(h, null, forwardRef, useTheme);
 
         const target = document.createElement('div');
 

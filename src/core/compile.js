@@ -13,11 +13,9 @@ export const compile = (str, defs, data) => {
             const res = tail(data);
 
             // 2. Grab the className
-            const className = res && res.props && res.props.className;
-
             // 3. If there's none, see if this is basically a
             // previously styled className by checking the prefix
-            const end = className || (/^go/.test(res) && res);
+            const end = (res && res.props && res.props.className) || (/^go/.test(res) && res);
 
             tail = end
                 ? // If the `end` is defined means it's a className
@@ -28,6 +26,6 @@ export const compile = (str, defs, data) => {
                 ? ''
                 : res;
         }
-        return out + next + (tail || '');
+        return out + next + (tail == null ? '' : tail);
     }, '');
 };

@@ -1,6 +1,6 @@
 {
   "name": "goober",
-  "version": "1.6.5",
+  "version": "1.7.0",
   "description": "A less than 1KB css-in-js solution",
   "main": "dist/goober.js",
   "module": "dist/goober.module.js",
@@ -21,9 +21,11 @@
     "test-perf": "NODE_ENV=production node benchmarks/perf.js",
     "test-unit": "jest --setupFiles ./tests/setup.js",
     "test-ts": "tsc -p ts-tests",
-    "clean": "rm -rf dist",
+    "clean": "rimraf dist",
     "size-check": "filesize",
-    "build": "npm run clean && npm run build:dist && npm run size-check",
+    "build": "npm run build:core && npm run build:prefixer",
+    "build:prefixer": "microbundle --cwd packages/goober-autoprefixer",
+    "build:core": "npm run clean && npm run build:dist && npm run size-check",
     "build:lib": "microbundle --entry src/index.js --name goober --no-sourcemap",
     "build:dist": "npm run build:lib -- --output dist",
     "build:debug": "npm run build:lib -- --output debug --no-compress",
@@ -45,7 +47,7 @@
   "repository": "https://github.com/cristianbote/goober",
   "license": "ISC",
   "devDependencies": {
-    "@ampproject/filesize": "^2.0.0",
+    "@ampproject/filesize": "^3.0.0",
     "@babel/core": "^7.2.2",
     "@babel/plugin-transform-react-jsx": "^7.7.0",
     "@babel/preset-env": "^7.3.1",
@@ -54,7 +56,7 @@
     "babel-jest": "^24.1.0",
     "benchmark": "^2.1.4",
     "csstype": "^2.6.3",
-    "husky": "4.2.1",
+    "husky": "4.2.2",
     "jest": "^24.1.0",
     "lint-staged": "10.0.4",
     "microbundle": "^0.11.0",
@@ -62,13 +64,16 @@
     "prettier": "1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "rimraf": "3.0.2",
     "styled-components": "^5.0.0",
     "typescript": "^3.6.3"
   },
   "peerDependencies": {
     "csstype": "^2.6.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "tiny-css-prefixer": "^1.1.4"
+  },
   "typings": "./goober.d.ts",
   "filesize": {
     "./dist/goober.module.js": {
@@ -87,5 +92,9 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/goober"
   }
 }

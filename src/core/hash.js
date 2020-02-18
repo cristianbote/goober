@@ -19,12 +19,12 @@ let cache = {};
 export const hash = (compiled, sheet, g, append) => {
     // generate hash
     const compString = JSON.stringify(compiled);
-    const className = cache[compString] || (cache[compString] = g ? '' : toHash(compString));
+    const className = cache[compString] || (cache[compString] = toHash(compString));
 
     // Parse the compiled
     const parsed =
         cache[className] ||
-        (cache[className] = parse(compiled[0] ? astish(compiled) : compiled, className));
+        (cache[className] = parse(compiled[0] ? astish(compiled) : compiled, g ? '' : className));
 
     // add or update
     update(parsed, sheet, append);

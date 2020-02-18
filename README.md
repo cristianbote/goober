@@ -4,12 +4,15 @@
 
 🥜 goober, a less than 1KB css-in-js solution.
 
+[![Backers on Open Collective](https://opencollective.com/goober/backers/badge.svg)](#backers)
+[![Sponsors on Open Collective](https://opencollective.com/goober/sponsors/badge.svg)](#sponsors)
+
 [![version](https://img.shields.io/npm/v/goober)](https://www.npmjs.com/package/goober)
 [![status](https://travis-ci.org/cristianbote/goober.svg?branch=master)](https://travis-ci.org/cristianbote/goober)
 [![gzip size](https://img.badgesize.io/https://unpkg.com/goober@latest/dist/goober.module.js?compression=gzip)](https://unpkg.com/goober)
 [![downloads](https://img.shields.io/npm/dw/goober)](https://www.npmjs.com/package/goober)
 [![coverage](https://img.shields.io/codecov/c/github/cristianbote/goober.svg?maxAge=2592000)](https://codecov.io/github/cristianbote/goober?branch=master)
-[![Gitter](https://img.shields.io/gitter/room/cristianbote/goober.svg?style=popout)](https://gitter.im/goober-project/community)
+[![Slack](https://img.shields.io/badge/slack-join-orange)](https://join.slack.com/t/gooberdev/shared_invite/enQtOTM5NjUyOTcwNzI1LWUwNzg0NTQwODY1NDJmMzQ2NzdlODI4YTM3NWUwYjlkY2ZkNGVmMTFlNGMwZGUyOWQyZmI4OTYwYmRiMzE0NGQ)
 [![Greenkeeper badge](https://badges.greenkeeper.io/cristianbote/goober.svg)](https://greenkeeper.io/)
 
 # Motivation
@@ -26,7 +29,7 @@ I always wondered, if you can get a working solution for css-in-js with a smalle
     -   [SSR](#ssr-1)
 -   [API](#api)
     -   [styled](#styledtagname)
-    -   [setPragma](#setpragmapragma-function)
+    -   [setup](#setpragmapragma-function)
     -   [css](#csstaggedtemplate)
     -   [targets](#targets)
     -   [extractCss](#extractcsstarget)
@@ -40,14 +43,14 @@ I always wondered, if you can get a working solution for css-in-js with a smalle
 
 # Usage
 
-The API is inspired by emotion, `styled` function. Meaning, you call it with your `tagName` and returns a vDOM component for that tag. Note, `setPragma` is needed to be run before the `styled` function is used.
+The API is inspired by emotion, `styled` function. Meaning, you call it with your `tagName` and returns a vDOM component for that tag. Note, `setup` is needed to be run before the `styled` function is used.
 
 ```jsx
 import { h } from 'preact';
-import { styled, setPragma } from 'goober';
+import { styled, setup } from 'goober';
 
 // Should be called here, and just once
-setPragma(h);
+setup(h);
 
 const Icon = styled('span')`
     display: flex;
@@ -184,15 +187,15 @@ const Btn = styled('button')(props => ({
 <Btn size={20} />;
 ```
 
-### `setPragma(pragma: Function)`
+### `setup(pragma: Function)`
 
-Given the fact that `react` uses `createElement` for the transformed elements and `preact` uses `h`, `setPragma` should be called with the proper _pragma_ function. This was added to reduce the bundled size and being able to bundle esmodule version. At the moment I think it's the best tradeoff we can have.
+Given the fact that `react` uses `createElement` for the transformed elements and `preact` uses `h`, `setup` should be called with the proper _pragma_ function. This was added to reduce the bundled size and being able to bundle esmodule version. At the moment I think it's the best tradeoff we can have.
 
 ```js
 import React from 'react';
-import { setPragma } from 'goober';
+import { setup } from 'goober';
 
-setPragma(React.createElement);
+setup(React.createElement);
 ```
 
 ### `css(taggedTemplate)`
@@ -359,3 +362,13 @@ Safari 9
 # Contributing
 
 Feel free to try it out and checkout the examples. If you wanna fix something feel free to open a issue or a PR.
+
+## Backers
+
+Thank you to all our backers! 🙏
+<a href="https://opencollective.com/goober#backers" target="_blank"><img src="https://opencollective.com/goober/backers.svg?width=890"></a>
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website.
+<a href="https://opencollective.com/goober#sponsors" target="_blank"><img src="https://opencollective.com/goober/sponsors.svg?width=890"></a>

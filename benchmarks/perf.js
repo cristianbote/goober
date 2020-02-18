@@ -4,7 +4,7 @@ const react = require('react');
 const { renderToString: render } = require('react-dom/server');
 
 const goober = require('../dist/goober');
-goober.setPragma(react.createElement);
+goober.setup(react.createElement);
 
 const styled = require('styled-components').default;
 const styledVersion = require('styled-components/package.json').version;

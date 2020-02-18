@@ -1,7 +1,7 @@
 import { h, ComponentChildren } from 'preact';
-import { styled, setPragma, css, glob } from '../goober';
+import { styled, setup, css, glob } from '../goober';
 
-setPragma(h);
+setup(h);
 
 const testStyledCss = () => {
     interface ButtonProps {
