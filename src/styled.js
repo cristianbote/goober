@@ -30,7 +30,7 @@ function styled(tag) {
                     css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '')
             };
 
-            return h(tag, _props);
+            return h(tag, Object.assign({ ref, className: css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '')  }, props));
         }
 
         return forwardRef ? forwardRef(Styled) : Styled;
