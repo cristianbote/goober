@@ -16,7 +16,7 @@ function styled(tag) {
     return function() {
         const _args = arguments;
         function Styled(props, ref) {
-            _ctx.p = {
+            _ctx.p = Object.assign({ theme: useTheme ? useTheme() : undefined }, props)
                 ...(useTheme && { theme: useTheme() }),
                 ...props
             };
