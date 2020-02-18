@@ -2,7 +2,7 @@ const React = require('react');
 const goober = require('goober');
 
 // Set the pragma for `goober` to know which to use
-goober.setPragma(React.createElement);
+goober.setup(React.createElement);
 
 // Define a cache entry
 const cache = new Map();

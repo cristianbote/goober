@@ -1,5 +1,5 @@
 import { h, render } from 'preact';
-import { styled, setPragma } from '../styled';
+import { styled, setup } from '../styled';
 import { css } from '../css';
 
 jest.mock('../css', () => ({
@@ -15,23 +15,23 @@ describe('styled', () => {
         expect(typeof styled()).toEqual('function');
     });
 
-    it('setPragma', () => {
+    it('setup', () => {
         const pragma = jest.fn();
 
         expect(() => styled()()()).toThrow();
 
-        setPragma(pragma);
+        setup(pragma);
         styled()()();
 
         expect(pragma).toBeCalled();
 
-        setPragma(undefined);
+        setup(undefined);
     });
 
     it('args', () => {
         const _h = jest.fn().mockReturnValue('h()');
         const p = { bar: 1 };
-        setPragma(_h);
+        setup(_h);
 
         expect(
             styled('tag')`
@@ -45,7 +45,7 @@ describe('styled', () => {
     it('args: concat className', () => {
         const _h = jest.fn().mockReturnValue('h()');
         const p = { bar: 1, className: 'existing' };
-        setPragma(_h);
+        setup(_h);
 
         expect(
             styled('tag')`
@@ -59,7 +59,7 @@ describe('styled', () => {
     it('args: function', () => {
         const _h = jest.fn().mockReturnValue('h()');
         const incoming = { color: 'red' };
-        setPragma(_h);
+        setup(_h);
 
         const styleFn = props => ({ color: props.color });
         expect(styled('tag')(styleFn)(incoming)).toEqual('h()');

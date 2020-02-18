@@ -1,10 +1,10 @@
 import { h, render } from 'preact';
-import { setPragma, styled } from '../index';
+import { setup, styled } from '../index';
 import { extractCss } from '../core/update';
 
 describe('integrations', () => {
     it('preact', () => {
-        setPragma(h);
+        setup(h);
 
         const target = document.createElement('div');
 

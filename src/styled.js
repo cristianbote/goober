@@ -1,7 +1,11 @@
 import { css } from './css';
 
 let h;
-const setPragma = pragma => (h = pragma);
+export let prefixer;
+const setup = (pragma, prefixer) => {
+    h = pragma;
+    prefixer = prefixer;
+};
 
 /**
  * Styled function
@@ -15,15 +19,14 @@ function styled(tag) {
 
         return function Styled(props) {
             const _props = (_ctx.p = Object.assign({}, props));
-            const _previousClassName = _props.className;
 
-            _ctx.o = /\s*go[0-9]+/g.test(_previousClassName);
+            _ctx.o = /\s*go[0-9]+/g.test(_props.className);
             _props.className =
-                css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '');
+                css.apply(_ctx, _args) + (_props.className ? ' ' + _props.className : '');
 
             return h(tag, _props);
         };
     };
 }
 
-export { styled, setPragma };
+export { styled, setup };

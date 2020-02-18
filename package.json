@@ -21,9 +21,11 @@
     "test-perf": "NODE_ENV=production node benchmarks/perf.js",
     "test-unit": "jest --setupFiles ./tests/setup.js",
     "test-ts": "tsc -p ts-tests",
-    "clean": "rm -rf dist",
+    "clean": "rimraf dist",
     "size-check": "filesize",
-    "build": "npm run clean && npm run build:dist && npm run size-check",
+    "build": "npm run build:core && npm run build:prefixer",
+    "build:prefixer": "microbundle --cwd packages/goober-autoprefixer",
+    "build:core": "npm run clean && npm run build:dist && npm run size-check",
     "build:lib": "microbundle --entry src/index.js --name goober --no-sourcemap",
     "build:dist": "npm run build:lib -- --output dist",
     "build:debug": "npm run build:lib -- --output debug --no-compress",
@@ -62,13 +64,16 @@
     "prettier": "1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "rimraf": "3.0.2",
     "styled-components": "^5.0.0",
     "typescript": "^3.6.3"
   },
   "peerDependencies": {
     "csstype": "^2.6.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "tiny-css-prefixer": "^1.1.4"
+  },
   "typings": "./goober.d.ts",
   "filesize": {
     "./dist/goober.module.js": {

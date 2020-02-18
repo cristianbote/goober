@@ -29,7 +29,7 @@ I always wondered, if you can get a working solution for css-in-js with a smalle
     -   [SSR](#ssr-1)
 -   [API](#api)
     -   [styled](#styledtagname)
-    -   [setPragma](#setpragmapragma-function)
+    -   [setup](#setpragmapragma-function)
     -   [css](#csstaggedtemplate)
     -   [targets](#targets)
     -   [extractCss](#extractcsstarget)
@@ -43,14 +43,14 @@ I always wondered, if you can get a working solution for css-in-js with a smalle
 
 # Usage
 
-The API is inspired by emotion, `styled` function. Meaning, you call it with your `tagName` and returns a vDOM component for that tag. Note, `setPragma` is needed to be run before the `styled` function is used.
+The API is inspired by emotion, `styled` function. Meaning, you call it with your `tagName` and returns a vDOM component for that tag. Note, `setup` is needed to be run before the `styled` function is used.
 
 ```jsx
 import { h } from 'preact';
-import { styled, setPragma } from 'goober';
+import { styled, setup } from 'goober';
 
 // Should be called here, and just once
-setPragma(h);
+setup(h);
 
 const Icon = styled('span')`
     display: flex;
@@ -187,15 +187,15 @@ const Btn = styled('button')(props => ({
 <Btn size={20} />;
 ```
 
-### `setPragma(pragma: Function)`
+### `setup(pragma: Function)`
 
-Given the fact that `react` uses `createElement` for the transformed elements and `preact` uses `h`, `setPragma` should be called with the proper _pragma_ function. This was added to reduce the bundled size and being able to bundle esmodule version. At the moment I think it's the best tradeoff we can have.
+Given the fact that `react` uses `createElement` for the transformed elements and `preact` uses `h`, `setup` should be called with the proper _pragma_ function. This was added to reduce the bundled size and being able to bundle esmodule version. At the moment I think it's the best tradeoff we can have.
 
 ```js
 import React from 'react';
-import { setPragma } from 'goober';
+import { setup } from 'goober';
 
-setPragma(React.createElement);
+setup(React.createElement);
 ```
 
 ### `css(taggedTemplate)`

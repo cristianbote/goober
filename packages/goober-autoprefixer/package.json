@@ -1,0 +1,10 @@
+{
+  "name": "goober-autoprefixer",
+  "version": "1.0.0",
+  "main": "./dist/goober-autoprefixer.js",
+  "module": "./dist/goober-autoprefixer.module.js",
+  "umd:main": "./dist/goober-autoprefixer.umd.js",
+  "source": "./src/index.js",
+  "unpkg": "./dist/goober-autoprefixer.umd.js",
+  "types": "./autoprefixer.d.ts"
+}
