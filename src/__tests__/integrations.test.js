@@ -1,6 +1,5 @@
 import { h, createContext, render } from 'preact';
 import { useContext, forwardRef } from 'preact/compat';
-import { h, render } from 'preact';
 import { setup, styled } from '../index';
 import { extractCss } from '../core/update';
 
@@ -55,7 +54,7 @@ describe('integrations', () => {
         );
 
         expect(extractCss()).toMatchInlineSnapshot(
-            `" .go2155{color:red;}.go2296{color:blue;}.go2393{color:green;}.go2476{color:orange;}"`
+            `" .go3707426746{color:red;}.go1167793535{color:blue;}.go1969535680{color:green;}.go4157736827{color:orange;}"`
         );
         expect(refSpy).toHaveBeenCalledWith(
             expect.objectContaining({
