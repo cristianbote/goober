@@ -17,7 +17,6 @@ const setup = (pragma, fwd, theme, prefix) => {
  */
 function styled(tag) {
     const _ctx = this || {};
-
     return function() {
         const _args = arguments;
 
@@ -44,4 +43,4 @@ function styled(tag) {
     };
 }
 
-export { styled, setup };
+export { styled, setup, prefixer };
