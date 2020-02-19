@@ -34,7 +34,7 @@ function styled(tag) {
             // Define the new className
             return h(
                 tag,
-                Object.assign(_ctx.p, {
+                Object.assign({}, props, {
                     ref,
                     className: css.apply(_ctx, _args) + ' ' + (_ctx.p.className || '')
                 })
