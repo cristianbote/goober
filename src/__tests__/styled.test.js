@@ -39,7 +39,10 @@ describe('styled', () => {
             `(p)
         ).toEqual('h()');
         expect(css).toBeCalledWith([expect.stringContaining('foo: 1')]);
-        expect(_h).toBeCalledWith('tag', Object.assign({}, p, { className: 'css()' }));
+        expect(_h).toBeCalledWith(
+            'tag',
+            Object.assign({}, p, { className: 'css()', ref: 'undefined', theme: 'undefined' })
+        );
     });
 
     it('args: concat className', () => {
@@ -64,6 +67,9 @@ describe('styled', () => {
         const styleFn = props => ({ color: props.color });
         expect(styled('tag')(styleFn)(incoming)).toEqual('h()');
         expect(css).toBeCalledWith(styleFn);
-        expect(_h).toBeCalledWith('tag', Object.assign({}, incoming, { className: 'css()' }));
+        expect(_h).toBeCalledWith(
+            'tag',
+            Object.assign({}, incoming, { className: 'css()', ref: undefined, theme: undefined })
+        );
     });
 });

@@ -4,18 +4,21 @@
  * @param {Object} [props]
  */
 export const compile = (str, defs, data) => {
+    let tail, res, className, end;
     return str.reduce((out, next, i) => {
-        let tail = defs[i];
+        tail = defs[i];
 
         // If this is a function we need to:
         if (tail && tail.call) {
             // 1. Call it with `data`
-            const res = tail(data);
+            res = tail(data);
 
             // 2. Grab the className
+            className = res && res.props && res.props.className;
+
             // 3. If there's none, see if this is basically a
             // previously styled className by checking the prefix
-            const end = (res && res.props && res.props.className) || (/^go/.test(res) && res);
+            end = className || (/^go/.test(res) && res);
 
             tail = end
                 ? // If the `end` is defined means it's a className

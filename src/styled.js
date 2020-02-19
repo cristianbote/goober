@@ -1,10 +1,14 @@
 import { css } from './css';
+import { parse } from './core/parse';
 
-let h;
-export let prefixer;
-const setup = (pragma, prefixer) => {
+let h, forwardRef, useTheme;
+const setup = (pragma, fwd, theme, prefix) => {
+    // This one needs to stay in here, so we won't have cyclic dependencies
+    parse.p = prefix;
+
     h = pragma;
-    prefixer = prefixer;
+    forwardRef = fwd;
+    useTheme = theme;
 };
 
 /**
@@ -17,15 +21,26 @@ function styled(tag) {
     return function() {
         const _args = arguments;
 
-        return function Styled(props) {
-            const _props = (_ctx.p = Object.assign({}, props));
+        function Styled(props, ref) {
+            // Grab a shallow copy of the props
+            // _ctx.p: is the props sent to the context
+            _ctx.p = Object.assign({ theme: useTheme && useTheme() }, props);
 
-            _ctx.o = /\s*go[0-9]+/g.test(_props.className);
-            _props.className =
-                css.apply(_ctx, _args) + (_props.className ? ' ' + _props.className : '');
+            // Set a flag if the current components had a previous className
+            // similar to goober. This is the append/prepend flag
+            _ctx.o = /\s*go[0-9]+/g.test(_ctx.p.className);
 
-            return h(tag, _props);
-        };
+            // Define the new className
+            return h(
+                tag,
+                Object.assign(_ctx.p, {
+                    ref,
+                    className: css.apply(_ctx, _args) + ' ' + (_ctx.p.className || '')
+                })
+            );
+        }
+
+        return forwardRef ? forwardRef(Styled) : Styled;
     };
 }
 

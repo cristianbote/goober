@@ -1,5 +1,3 @@
-import { prefixer } from '../styled';
-
 /**
  * Parses the object into css, scoped, blocks
  * @param {Object} obj
@@ -44,7 +42,7 @@ export const parse = (obj, paren, wrapper) => {
             // Push the line for this property
             else {
                 current +=
-                    (prefixer && prefixer(key.replace(/[A-Z]/g, '-$&').toLowerCase(), val)) ||
+                    (parse.p && parse.p(key.replace(/[A-Z]/g, '-$&').toLowerCase(), val)) ||
                     key.replace(/[A-Z]/g, '-$&').toLowerCase() + ':' + val + ';';
             }
         }
