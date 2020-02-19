@@ -2,10 +2,11 @@ import { css } from './css';
 import { parse } from './core/parse';
 
 let h, forwardRef, useTheme;
-const setup = (pragma, fwd, theme, prefix) => {
+const setup = (pragma, prefix, fwd, theme) => {
     // This one needs to stay in here, so we won't have cyclic dependencies
     parse.p = prefix;
 
+    // These are scope to this context
     h = pragma;
     forwardRef = fwd;
     useTheme = theme;
@@ -17,7 +18,8 @@ const setup = (pragma, fwd, theme, prefix) => {
  */
 function styled(tag) {
     const _ctx = this || {};
-    return function() {
+
+    return function wrapper() {
         const _args = arguments;
 
         function Styled(props, ref) {
@@ -43,4 +45,4 @@ function styled(tag) {
     };
 }
 
-export { styled, setup, prefixer };
+export { styled, setup };
