@@ -1,10 +1,11 @@
 import { css } from './css';
 
-let h;
-export let prefixer;
-const setup = (pragma, prefixer) => {
+let h, forwardRef, useTheme, prefixer;
+const setup = (pragma, prefix, forward, theme) => {
     h = pragma;
-    prefixer = prefixer;
+    prefixer = prefix;
+    forwardRef = forward;
+    useTheme = theme;
 };
 
 /**
@@ -13,20 +14,23 @@ const setup = (pragma, prefixer) => {
  */
 function styled(tag) {
     const _ctx = this || {};
-
     return function() {
         const _args = arguments;
 
-        return function Styled(props) {
-            const _props = (_ctx.p = Object.assign({}, props));
+        function Styled(props, ref) {
+            _ctx.p = Object.assign({ theme: useTheme && useTheme() }, props);
+            _ctx.o = /\s*go[0-9]+/g.test(_ctx.p.className);
+            return h(
+                tag,
+                Object.assign({}, props, {
+                    ref,
+                    className: css.apply(_ctx, _args) + ' ' + (_ctx.p.className || '')
+                })
+            );
+        }
 
-            _ctx.o = /\s*go[0-9]+/g.test(_props.className);
-            _props.className =
-                css.apply(_ctx, _args) + (_props.className ? ' ' + _props.className : '');
-
-            return h(tag, _props);
-        };
+        return forwardRef ? forwardRef(Styled) : Styled;
     };
 }
 
-export { styled, setup };
+export { styled, setup, prefixer };
