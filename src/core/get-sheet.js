@@ -10,6 +10,8 @@ const ssr = {
  */
 export const getSheet = target => {
     try {
+        // Querying the existing target for a previously defined <style> tag
+        // We're doing a querySelector because the <head> element doesn't implemented the getElementById api
         let sheet = target ? target.querySelector('#' + GOOBER_ID) : self[GOOBER_ID];
         if (!sheet) {
             // Note to self: head.innerHTML +=, triggers a layout/reflow. Avoid it.
