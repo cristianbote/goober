@@ -5,7 +5,7 @@ export = goober;
 export as namespace goober;
 
 declare namespace goober {
-    function styled<T = {}>(tag: string | StyledVNode<any>): Tagged<T & { children: any }>;
+    function styled<T = {}>(tag: string | StyledVNode<any>): Tagged<T & { children?: any }>;
     function setup<T>(val: T, prefixer?: (key: string, val: any) => string): void;
     function extractCss(): string;
     function glob(
