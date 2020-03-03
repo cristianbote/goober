@@ -1,5 +1,3 @@
-import { prefixer } from '../styled';
-
 /**
  * Parses the object into css, scoped, blocks
  * @param {Object} obj
@@ -40,18 +38,21 @@ export const parse = (obj, paren, wrapper) => {
                 blocks += parse(val, next, next == paren ? key : wrapper || '');
             }
         } else {
-            if (/^@i/.test(key)) outer = key + ' ' + val + ';';
-            // Push the line for this property
-            else {
-                current +=
-                    (prefixer && prefixer(key.replace(/[A-Z]/g, '-$&').toLowerCase(), val)) ||
-                    key.replace(/[A-Z]/g, '-$&').toLowerCase() + ':' + val + ';';
+            if (/^@i/.test(key)) {
+                outer = key + ' ' + val + ';';
+            } else {
+                // Push the line for this property
+                current += parse.p
+                    ? // We have a prefixer and we need to run this through that
+                      parse.p(key.replace(/[A-Z]/g, '-$&').toLowerCase(), val)
+                    : // Nope no prefixer just append it
+                      key.replace(/[A-Z]/g, '-$&').toLowerCase() + ':' + val + ';';
             }
         }
     }
 
     // If we have properties
-    if (current.charCodeAt(0)) {
+    if (current[0]) {
         // Standard rule composition
         const rule = paren + '{' + current + '}';
 

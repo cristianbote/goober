@@ -12,11 +12,11 @@ let cache = {};
  * Generates the needed className
  * @param {String|Object} compiled
  * @param {Object} sheet StyleSheet target
- * @param {Object} g Global flag
+ * @param {Object} global Global flag
  * @param {Object} append Append or not
  * @returns {String}
  */
-export const hash = (compiled, sheet, g, append) => {
+export const hash = (compiled, sheet, global, append) => {
     // generate hash
     const compString = JSON.stringify(compiled);
     const className = cache[compString] || (cache[compString] = toHash(compString));
@@ -24,7 +24,10 @@ export const hash = (compiled, sheet, g, append) => {
     // Parse the compiled
     const parsed =
         cache[className] ||
-        (cache[className] = parse(compiled[0] ? astish(compiled) : compiled, g ? '' : className));
+        (cache[className] = parse(
+            compiled[0] ? astish(compiled) : compiled,
+            global ? '' : className
+        ));
 
     // add or update
     update(parsed, sheet, append);
