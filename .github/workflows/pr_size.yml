@@ -13,5 +13,4 @@ jobs:
             - uses: preactjs/compressed-size-action@v1
               with:
                   build-script: 'build:dist'
-                  omit-unchanged: true
                   repo-token: '${{ secrets.GITHUB_TOKEN }}'

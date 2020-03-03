@@ -77,10 +77,10 @@
   "typings": "./goober.d.ts",
   "filesize": {
     "./dist/goober.module.js": {
-      "gzip": "1024B"
+      "gzip": "1060B"
     },
     "./dist/goober.js": {
-      "gzip": "1024B"
+      "gzip": "1060B"
     }
   },
   "lint-staged": {
