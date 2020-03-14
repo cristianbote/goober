@@ -13,7 +13,7 @@ export const parse = (obj, paren, wrapper) => {
         const val = obj[key];
 
         // If this is a 'block'
-        if (typeof val == 'object') {
+        if (!val.toLowerCase) {
             // Regular selector
             let next = paren + ' ' + key;
 
@@ -30,7 +30,7 @@ export const parse = (obj, paren, wrapper) => {
             }
 
             // If this is the `@keyframes`
-            if (/@k/.test(key)) {
+            if (key[0] == '@' && key[1] == 'k') {
                 // Take the key and inline it
                 blocks = blocks.concat(key + '{' + parse(val, '', '').join('') + '}');
             } else {
@@ -38,7 +38,7 @@ export const parse = (obj, paren, wrapper) => {
                 blocks = blocks.concat(parse(val, next, next == paren ? key : wrapper || ''));
             }
         } else {
-            if (/^@i/.test(key)) {
+            if (key[0] == '@' && key[1] == 'i') {
                 outer.push(key + ' ' + val + ';');
             } else {
                 // Push the line for this property
