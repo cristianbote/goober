@@ -16,7 +16,7 @@ let cache = {};
  * @param {Object} append Append or not
  * @returns {String}
  */
-export const hash = (compiled, sheet, global, append) => {
+export const hash = (compiled, sheet, options) => {
     // generate hash
     const compString = JSON.stringify(compiled);
     const className = cache[compString] || (cache[compString] = toHash(compString));
@@ -26,11 +26,13 @@ export const hash = (compiled, sheet, global, append) => {
         cache[className] ||
         (cache[className] = parse(
             compiled[0] ? astish(compiled) : compiled,
-            global ? '' : className
+            options.g ? '' : className
         ));
 
     // add or update
-    update(parsed, sheet, append);
+    parsed.some(rule => {
+        update(rule, sheet, options.a);
+    });
 
     // return hash
     return className.slice(1);
