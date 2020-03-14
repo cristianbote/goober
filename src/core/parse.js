@@ -13,7 +13,7 @@ export const parse = (obj, paren, wrapper) => {
         const val = obj[key];
 
         // If this is a 'block'
-        if (typeof val === 'object') {
+        if (typeof val == 'object') {
             // Regular selector
             let next = paren + ' ' + key;
 
@@ -21,10 +21,10 @@ export const parse = (obj, paren, wrapper) => {
             if (/&/g.test(key)) next = key.replace(/&/g, paren);
 
             // Media queries or other
-            if (key[0] === '@') {
+            if (key[0] == '@') {
                 next = paren;
                 // If this is the case for `@font-face`
-                if (key[1] === 'f') {
+                if (key[1] == 'f') {
                     next = key;
                 }
             }
@@ -35,7 +35,7 @@ export const parse = (obj, paren, wrapper) => {
                 blocks = blocks.concat(key + '{' + parse(val, '', '').join('') + '}');
             } else {
                 // Call the parse for this block
-                blocks = blocks.concat(parse(val, next, next === paren ? key : wrapper || ''));
+                blocks = blocks.concat(parse(val, next, next == paren ? key : wrapper || ''));
             }
         } else {
             if (/^@i/.test(key)) {
