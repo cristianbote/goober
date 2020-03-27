@@ -3,16 +3,21 @@ import { getSheet } from '../get-sheet';
 describe('getSheet', () => {
     it('regression', () => {
         const target = getSheet();
-        expect(target.nodeType).toEqual(3);
+        expect(target instanceof CSSStyleSheet).toBeTruthy();
     });
 
     it('custom target', () => {
         const custom = document.createElement('div');
+        // We have to append this to the DOM in order for the style sheet api
+        // to be instantiated
+        document.body.append(custom);
+
+        // Get the shee
         const sheet = getSheet(custom);
 
-        expect(sheet.nodeType).toEqual(3);
-        expect(sheet.parentElement.nodeType).toEqual(1);
-        expect(sheet.parentElement.getAttribute('id')).toEqual('_goober');
+        expect(sheet instanceof CSSStyleSheet).toBeTruthy();
+        expect(custom.firstElementChild.getAttribute('id')).toEqual('_goober');
+        expect(custom.firstElementChild.sheet === sheet).toBeTruthy();
     });
 
     it('reuse sheet', () => {
