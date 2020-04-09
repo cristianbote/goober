@@ -84,6 +84,7 @@ const Button = styled('button')`
 -   [React](https://codesandbox.io/s/k0mnp40n7v)
 -   [Preact](https://codesandbox.io/s/r15wj2qm7o)
 -   [SSR with Preact](https://codesandbox.io/s/7m9zzl6746)
+-   [Fre](https://codesandbox.io/s/fre-goober-ffqjv)
 
 # SSR
 
