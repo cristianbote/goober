@@ -39,11 +39,11 @@ declare namespace goober {
             | CSSAttribute
             | TemplateStringsArray
             | string
-            | ((props: P & P) => CSSAttribute | string),
+            | ((props: P & PP) => CSSAttribute | string),
         ...props: Array<
-            string | number | ((props: PP & P) => CSSAttribute | string | number | undefined)
+            string | number | ((props: P & PP) => CSSAttribute | string | number | undefined)
         >
-    ) => StyledVNode<PP & P>;
+    ) => StyledVNode<P & PP>;
     interface CSSAttribute extends CSSProperties {
         [key: string]: CSSAttribute | string | number | undefined;
     }
