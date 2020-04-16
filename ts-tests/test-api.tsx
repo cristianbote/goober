@@ -18,11 +18,11 @@ const testStyledCss = () => {
         background: black;
     `;
 
-    const Button = styled<ButtonProps>('button')`
-        background: ${props => (props.color ? props.color : 'black')};
+    const Button = styled('button')<ButtonProps>`
+        background: ${(props) => (props.color ? props.color : 'black')};
     `;
 
-    const ButtonRaw = styled<ButtonProps>('button')`
+    const ButtonRaw = styled('button')<ButtonProps>`
         background: black;
     `;
 
@@ -34,9 +34,23 @@ const testStyledCss = () => {
         color: red;
     `;
 
-    const MultipleFunctions = styled<{ isActive: boolean }>('b')`
-        color: ${props => (props.isActive ? 'tomato' : 'dodgerblue')};
-        background-color: ${props => (props.isActive ? 'tomato' : 'dodgerblue')};
+    const CustomTagged = styled('a-web-component')`
+        color: lightyellow;
+    `;
+
+    const Childless = styled('div')`
+        color: purple;
+    `;
+
+    const HelloComponent = (props: { name: string }) => <h1>Hello, {props.name}</h1>;
+
+    const StyledHello = styled(HelloComponent)`
+        color: blue;
+    `;
+
+    const MultipleFunctions = styled('b')<{ isActive: boolean }>`
+        color: ${(props) => (props.isActive ? 'tomato' : 'dodgerblue')};
+        background-color: ${(props) => (props.isActive ? 'tomato' : 'dodgerblue')};
     `;
 
     const TestComp = () => {
@@ -50,6 +64,10 @@ const testStyledCss = () => {
                 <button class={buttonStylesRaw}>click me</button>
                 <EmptyPropsText>base text</EmptyPropsText>
                 <NestedText>text</NestedText>
+                <MultipleFunctions isActive={false} />
+                <CustomTagged>test</CustomTagged>
+                <Childless />
+                <StyledHello name="you" />
             </div>
         );
     };
