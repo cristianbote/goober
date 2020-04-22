@@ -56,7 +56,7 @@
     "babel-jest": "^24.1.0",
     "benchmark": "^2.1.4",
     "csstype": "^2.6.3",
-    "husky": "4.2.2",
+    "husky": "4.2.4",
     "jest": "^24.1.0",
     "lint-staged": "10.0.9",
     "microbundle": "^0.11.0",
