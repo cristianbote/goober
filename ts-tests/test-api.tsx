@@ -53,6 +53,10 @@ const testStyledCss = () => {
         background-color: ${(props) => (props.isActive ? 'tomato' : 'dodgerblue')};
     `;
 
+    const StyledObject = styled('button')((props) => ({
+        background: props.disabled ? 'gray' : 'tomato'
+    }));
+
     const TestComp = () => {
         return (
             <div>
@@ -68,6 +72,7 @@ const testStyledCss = () => {
                 <CustomTagged>test</CustomTagged>
                 <Childless />
                 <StyledHello name="you" />
+                <StyledObject disabled />
             </div>
         );
     };
