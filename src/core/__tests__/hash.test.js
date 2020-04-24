@@ -39,7 +39,7 @@ describe('hash', () => {
     it('regression', () => {
         const res = hash('compiled', 'target');
 
-        expect(toHash).toBeCalledWith(JSON.stringify('compiled'));
+        expect(toHash).toBeCalledWith('compiled');
         expect(update).toBeCalledWith('parse()', 'target', undefined);
         expect(astish).toBeCalledWith('compiled');
         expect(parse).toBeCalledWith('astish()', '.toHash()');
@@ -61,7 +61,7 @@ describe('hash', () => {
     it('regression: global', () => {
         const res = hash('global', 'target', true);
 
-        expect(toHash).toBeCalledWith('"global"');
+        expect(toHash).toBeCalledWith('global');
         expect(astish).not.toBeCalled();
         expect(parse).not.toBeCalled();
         expect(update).toBeCalledWith('parse()', 'target', undefined);
@@ -75,7 +75,7 @@ describe('hash', () => {
 
         const res = hash({ baz: 1 }, 'target');
 
-        expect(toHash).toBeCalledWith(JSON.stringify({ baz: 1 }));
+        expect(toHash).toBeCalledWith('baz1');
         expect(astish).not.toBeCalled();
         expect(parse).toBeCalledWith({ baz: 1 }, className);
         expect(update).toBeCalledWith('parse()', 'target', undefined);
@@ -89,12 +89,12 @@ describe('hash', () => {
 
         // Since it's not yet cached
         hash({ cacheObject: 1 }, 'target');
-        expect(toHash).toBeCalledWith(JSON.stringify({ cacheObject: 1 }));
+        expect(toHash).toBeCalledWith('cacheObject1');
         toHash.mockClear();
 
         // Different object
         hash({ foo: 2 }, 'target');
-        expect(toHash).toBeCalledWith(JSON.stringify({ foo: 2 }));
+        expect(toHash).toBeCalledWith('foo2');
         toHash.mockClear();
 
         // First object should not call .toHash

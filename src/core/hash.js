@@ -9,6 +9,25 @@ import { parse } from './parse';
 let cache = {};
 
 /**
+ * Stringifies a object strucure
+ * @param {Object} data
+ * @returns {String}
+ */
+function stringify(data) {
+    let out = '';
+
+    for (let p in data) {
+        if (typeof val == 'object') {
+            out += p + stringify(data[p]);
+        } else {
+            out += p + data[p];
+        }
+    }
+
+    return out;
+}
+
+/**
  * Generates the needed className
  * @param {String|Object} compiled
  * @param {Object} sheet StyleSheet target
@@ -18,8 +37,9 @@ let cache = {};
  */
 export const hash = (compiled, sheet, global, append) => {
     // generate hash
-    const compString = JSON.stringify(compiled);
-    const className = cache[compString] || (cache[compString] = toHash(compString));
+    const stringifiedCompiled = compiled.toLowerCase ? compiled : stringify(compiled);
+    const className =
+        cache[stringifiedCompiled] || (cache[stringifiedCompiled] = toHash(stringifiedCompiled));
 
     // Parse the compiled
     const parsed =

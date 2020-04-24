@@ -3,7 +3,7 @@ import { getSheet } from './get-sheet';
  * Extracts and wipes the cache
  * @returns {String}
  */
-const extractCss = target => {
+const extractCss = (target) => {
     const sheet = getSheet(target);
     const out = sheet.data;
     sheet.data = '';
