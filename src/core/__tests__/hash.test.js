@@ -25,7 +25,7 @@ jest.mock('../astish', () => ({
 }));
 
 jest.mock('../parse', () => ({
-    parse: jest.fn().mockReturnValue(['parse()'])
+    parse: jest.fn().mockReturnValue('parse()')
 }));
 
 describe('hash', () => {
@@ -37,7 +37,7 @@ describe('hash', () => {
     });
 
     it('regression', () => {
-        const res = hash('compiled', 'target', {});
+        const res = hash('compiled', 'target');
 
         expect(toHash).toBeCalledWith('compiled');
         expect(update).toBeCalledWith('parse()', 'target', undefined);
@@ -48,7 +48,7 @@ describe('hash', () => {
     });
 
     it('regression: cache', () => {
-        const res = hash('compiled', 'target', {});
+        const res = hash('compiled', 'target');
 
         expect(toHash).not.toBeCalled();
         expect(astish).not.toBeCalled();
@@ -59,7 +59,7 @@ describe('hash', () => {
     });
 
     it('regression: global', () => {
-        const res = hash('global', 'target', { g: true });
+        const res = hash('global', 'target', true);
 
         expect(toHash).toBeCalledWith('global');
         expect(astish).not.toBeCalled();
@@ -73,7 +73,7 @@ describe('hash', () => {
         const className = Math.random() + 'unique';
         toHash.mockReturnValue(className);
 
-        const res = hash({ baz: 1 }, 'target', {});
+        const res = hash({ baz: 1 }, 'target');
 
         expect(toHash).toBeCalledWith('baz1');
         expect(astish).not.toBeCalled();
@@ -88,17 +88,17 @@ describe('hash', () => {
         toHash.mockReturnValue(className);
 
         // Since it's not yet cached
-        hash({ cacheObject: 1 }, 'target', {});
+        hash({ cacheObject: 1 }, 'target');
         expect(toHash).toBeCalledWith('cacheObject1');
         toHash.mockClear();
 
         // Different object
-        hash({ foo: 2 }, 'target', {});
+        hash({ foo: 2 }, 'target');
         expect(toHash).toBeCalledWith('foo2');
         toHash.mockClear();
 
         // First object should not call .toHash
-        hash({ cacheObject: 1 }, 'target', {});
+        hash({ cacheObject: 1 }, 'target');
         expect(toHash).not.toBeCalled();
     });
 });

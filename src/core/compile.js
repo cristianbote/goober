@@ -8,7 +8,7 @@ export const compile = (str, defs, data) => {
         let tail = defs[i];
 
         // If this is a function we need to:
-        try {
+        if (tail && tail.call) {
             // 1. Call it with `data`
             const res = tail(data);
 
@@ -27,7 +27,7 @@ export const compile = (str, defs, data) => {
                 res && res.props
                 ? ''
                 : res;
-        } catch (e) {}
+        }
         return out + next + (tail == null ? '' : tail);
     }, '');
 };

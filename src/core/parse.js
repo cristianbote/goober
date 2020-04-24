@@ -5,8 +5,8 @@
  * @param {String} wrapper
  */
 export const parse = (obj, paren, wrapper) => {
-    let outer = [];
-    let blocks = [];
+    let outer = '';
+    let blocks = '';
     let current = '';
 
     for (let key in obj) {
@@ -30,16 +30,16 @@ export const parse = (obj, paren, wrapper) => {
             }
 
             // If this is the `@keyframes`
-            if (key[0] == '@' && key[1] == 'k') {
+            if (/@k/.test(key)) {
                 // Take the key and inline it
-                blocks = blocks.concat(key + '{' + parse(val, '', '').join('') + '}');
+                blocks += key + '{' + parse(val, '', '') + '}';
             } else {
                 // Call the parse for this block
-                blocks = blocks.concat(parse(val, next, next == paren ? key : wrapper || ''));
+                blocks += parse(val, next, next == paren ? key : wrapper || '');
             }
         } else {
-            if (key[0] == '@' && key[1] == 'i') {
-                outer.push(key + ' ' + val + ';');
+            if (/^@i/.test(key)) {
+                outer = key + ' ' + val + ';';
             } else {
                 // Push the line for this property
                 current += parse.p
@@ -57,13 +57,11 @@ export const parse = (obj, paren, wrapper) => {
         const rule = paren + '{' + current + '}';
 
         // With wrapper
-        if (wrapper) {
-            return blocks.concat(wrapper + '{' + rule + '}');
-        }
+        if (wrapper) return blocks + wrapper + '{' + rule + '}';
 
         // Else just push the rule
-        return outer.concat(rule).concat(blocks);
+        return outer + rule + blocks;
     }
 
-    return outer.concat(blocks);
+    return outer + blocks;
 };

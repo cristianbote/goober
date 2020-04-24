@@ -13,8 +13,14 @@ function css(val) {
     return hash(
         _val.map ? compile(_val, [].slice.call(arguments, 1), ctx.p) : _val,
         getSheet(ctx.target),
-        ctx
+        ctx.g,
+        ctx.o
     );
 }
 
-export { css };
+/**
+ * CSS Global function to declare global styes
+ */
+const glob = css.bind({ g: 1 });
+
+export { css, glob };

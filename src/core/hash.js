@@ -35,7 +35,7 @@ function stringify(data) {
  * @param {Object} append Append or not
  * @returns {String}
  */
-export const hash = (compiled, sheet, options) => {
+export const hash = (compiled, sheet, global, append) => {
     // generate hash
     const stringifiedCompiled = compiled.toLowerCase ? compiled : stringify(compiled);
     const className =
@@ -46,13 +46,11 @@ export const hash = (compiled, sheet, options) => {
         cache[className] ||
         (cache[className] = parse(
             compiled[0] ? astish(compiled) : compiled,
-            options.g ? '' : className
+            global ? '' : className
         ));
 
     // add or update
-    parsed.some(rule => {
-        update(rule, sheet, options.a);
-    });
+    update(parsed, sheet, append);
 
     // return hash
     return className.slice(1);
