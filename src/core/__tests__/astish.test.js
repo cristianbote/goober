@@ -59,6 +59,25 @@ describe('astish', () => {
         });
     });
 
+    it('merging', () => {
+        expect(
+            astish(`
+            .c {
+                font-size:24px;
+            }
+        
+            .c {
+                color:red;
+            }
+        `)
+        ).toEqual({
+            '.c': {
+                'font-size': '24px',
+                color: 'red'
+            }
+        });
+    });
+
     it('regression', () => {
         expect(
             astish(`
@@ -79,11 +98,23 @@ describe('astish', () => {
                     }
                 }
             }
+            .a{
+                color: red;
+            }
+            .b  {
+                color: blue;
+            }
         `)
         ).toEqual({
             '&.g0ssss': {
                 aa: 'foo',
                 'box-shadow': '0 1px rgba(0, 2, 33, 4) inset'
+            },
+            '.a': {
+                color: 'red'
+            },
+            '.b': {
+                color: 'blue'
             },
             named: {
                 transform: 'scale(1.2), rotate(1, 1)'
