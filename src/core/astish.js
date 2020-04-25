@@ -1,4 +1,4 @@
-const newRule = /(?:([a-z0-9-%@]+) *:? *([^{;]+?);|([^;}{]*?) +{)|(})/gi;
+const newRule = /(?:([a-z0-9-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(})/gi;
 const ruleClean = /\/\*.*?\*\/|\s{2,}|\n/gm;
 
 /**
@@ -6,7 +6,7 @@ const ruleClean = /\/\*.*?\*\/|\s{2,}|\n/gm;
  * @param {string} val
  * @returns {object}
  */
-export const astish = val => {
+export const astish = (val) => {
     let tree = [{}];
     let block;
 
@@ -15,7 +15,7 @@ export const astish = val => {
         if (block[4]) tree.shift();
 
         if (block[3]) {
-            tree.unshift((tree[0][block[3]] = {}));
+            tree.unshift((tree[0][block[3]] = tree[0][block[3]] || {}));
         } else if (!block[4]) {
             tree[0][block[1]] = block[2];
         }
