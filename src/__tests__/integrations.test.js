@@ -8,13 +8,13 @@ describe('integrations', () => {
         const ThemeContext = createContext();
         const useTheme = () => useContext(ThemeContext);
 
-        setup(h, null, forwardRef, useTheme);
+        setup(h, null, useTheme);
 
         const target = document.createElement('div');
 
-        const Span = styled('span')`
+        const Span = forwardRef(styled('span')`
             color: red;
-        `;
+        `);
 
         const BoxWithColor = styled('div')`
             color: ${(props) => props.color};
@@ -42,7 +42,9 @@ describe('integrations', () => {
             <ThemeContext.Provider value={{ color: 'blue' }}>
                 <div>
                     <Span ref={refSpy} />
+                    <Span as="div" /> */}
                     <BoxWithColor color={'red'} />
+                    <Span as={BoxWithColor} color={'red'} />
                     <BoxWithColorFn color={'red'} />
                     <BoxWithThemeColor />
                     <BoxWithThemeColorFn />
@@ -56,6 +58,7 @@ describe('integrations', () => {
         expect(extractCss()).toMatchInlineSnapshot(
             `" .go3865451590{color:red;}.go1925576363{color:blue;}.go3206651468{color:green;}.go4276997079{color:orange;}"`
         );
+
         expect(refSpy).toHaveBeenCalledWith(
             expect.objectContaining({
                 tagName: 'SPAN'

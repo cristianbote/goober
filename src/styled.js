@@ -1,16 +1,15 @@
 import { css } from './css';
 import { parse } from './core/parse';
 
-let h, forwardRef, useTheme;
-const setup = (pragma, prefix, fwd, theme) => {
+let h, useTheme;
+function setup(pragma, prefix, theme) {
     // This one needs to stay in here, so we won't have cyclic dependencies
     parse.p = prefix;
 
     // These are scope to this context
     h = pragma;
-    forwardRef = fwd;
     useTheme = theme;
-};
+}
 
 /**
  * Styled function
@@ -22,10 +21,10 @@ function styled(tag) {
     return function wrapper() {
         const _args = arguments;
 
-        function Styled(props, ref) {
+        return function Styled(props, ref) {
             // Grab a shallow copy of the props
             // _ctx.p: is the props sent to the context
-            const _props = (_ctx.p = Object.assign({ theme: useTheme && useTheme() }, props));
+            const _props = (_ctx.p = Object.assign({ theme: useTheme && useTheme(), ref }, props));
             const _previousClassName = _props.className;
 
             // Set a flag if the current components had a previous className
@@ -36,13 +35,8 @@ function styled(tag) {
             _props.className =
                 css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '');
 
-            // Add the passed ref function to props
-            _props.ref = ref;
-
             return h(tag, _props);
-        }
-
-        return forwardRef ? forwardRef(Styled) : Styled;
+        };
     };
 }
 
