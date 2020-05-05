@@ -3,3 +3,5 @@ dist
 debug
 sandbox
 coverage
+goober.tgz
+tests/fixtures/esm/package-lock.json

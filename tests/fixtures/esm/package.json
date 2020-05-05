@@ -1,0 +1,9 @@
+{
+  "name": "goober_dist_test",
+  "type": "module",
+  "private": true,
+  "description": "A package to test importing goober as ES modules in Node",
+  "dependencies": {
+    "goober": "file:goober.tgz"
+  }
+}
