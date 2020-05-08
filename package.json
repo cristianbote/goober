@@ -60,7 +60,7 @@
     "husky": "4.2.4",
     "jest": "^24.1.0",
     "lint-staged": "10.2.0",
-    "microbundle": "^0.11.0",
+    "microbundle": "^0.12.0",
     "preact": "^10.0.0",
     "prettier": "2.0.5",
     "react": "^16.12.0",
