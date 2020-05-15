@@ -57,10 +57,7 @@ export const parse = (obj, paren, wrapper) => {
         const rule = paren + '{' + current + '}';
 
         // With wrapper
-        if (wrapper) {
-            // if (wrapper[0] == '@' && !paren) rule = paren + current;
-            return blocks + wrapper + '{' + rule + '}';
-        }
+        if (wrapper) return blocks + wrapper + '{' + rule + '}';
 
         // Else just push the rule
         return outer + rule + blocks;

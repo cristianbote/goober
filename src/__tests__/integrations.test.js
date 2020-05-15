@@ -42,9 +42,7 @@ describe('integrations', () => {
             <ThemeContext.Provider value={{ color: 'blue' }}>
                 <div>
                     <Span ref={refSpy} />
-                    <Span as="div" />
                     <BoxWithColor color={'red'} />
-                    <Span as={BoxWithColor} color={'red'} />
                     <BoxWithColorFn color={'red'} />
                     <BoxWithThemeColor />
                     <BoxWithThemeColorFn />
