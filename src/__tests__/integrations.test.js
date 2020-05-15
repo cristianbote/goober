@@ -8,11 +8,11 @@ describe('integrations', () => {
         const ThemeContext = createContext();
         const useTheme = () => useContext(ThemeContext);
 
-        setup(h, null, forwardRef, useTheme);
+        setup(h, null, useTheme);
 
         const target = document.createElement('div');
 
-        const Span = styled('span')`
+        const Span = styled('span', forwardRef)`
             color: red;
         `;
 
@@ -56,6 +56,7 @@ describe('integrations', () => {
         expect(extractCss()).toMatchInlineSnapshot(
             `" .go3865451590{color:red;}.go1925576363{color:blue;}.go3206651468{color:green;}.go4276997079{color:orange;}"`
         );
+
         expect(refSpy).toHaveBeenCalledWith(
             expect.objectContaining({
                 tagName: 'SPAN'
