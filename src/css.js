@@ -7,8 +7,8 @@ import { getSheet } from './core/get-sheet';
  * @param {String|Object|Function} val
  */
 function css(val) {
-    const ctx = this || {};
-    const _val = val.call ? val(ctx.p) : val;
+    let ctx = this || {};
+    let _val = val.call ? val(ctx.p) : val;
 
     return hash(
         _val.map ? compile(_val, [].slice.call(arguments, 1), ctx.p) : _val,
@@ -21,6 +21,6 @@ function css(val) {
 /**
  * CSS Global function to declare global styes
  */
-const glob = css.bind({ g: 1 });
+let glob = css.bind({ g: 1 });
 
 export { css, glob };
