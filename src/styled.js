@@ -1,22 +1,22 @@
 import { css } from './css';
 import { parse } from './core/parse';
 
-let h, forwardRef, useTheme;
-const setup = (pragma, prefix, fwd, theme) => {
+let h, useTheme;
+function setup(pragma, prefix, theme) {
     // This one needs to stay in here, so we won't have cyclic dependencies
     parse.p = prefix;
 
     // These are scope to this context
     h = pragma;
-    forwardRef = fwd;
     useTheme = theme;
-};
+}
 
 /**
- * Styled function
- * @param {String} tag
+ * styled function
+ * @param {string} tag
+ * @param {function} forwardRef
  */
-function styled(tag) {
+function styled(tag, forwardRef) {
     const _ctx = this || {};
 
     return function wrapper() {
@@ -36,8 +36,10 @@ function styled(tag) {
             _props.className =
                 css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '');
 
-            // Add the passed ref function to props
-            _props.ref = ref;
+            // If the forwardRef fun is defined we have the ref
+            if (forwardRef) {
+                _props.ref = ref;
+            }
 
             return h(tag, _props);
         }

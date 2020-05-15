@@ -169,7 +169,7 @@ describe('parse', () => {
     });
 
     // Not... supported
-    xit('@supports', () => {
+    it.skip('@supports', () => {
         expect(
             parse(
                 {
@@ -182,5 +182,27 @@ describe('parse', () => {
                 'hash'
             )
         ).toEqual(['@supports (some: 1px){@media (s: 1){hush{display:flex;}}}']);
+    });
+
+    it.skip('nested with multiple selector', () => {
+        const out = parse(
+            {
+                display: 'value',
+                '&:hover,&:focus': {
+                    border: '0',
+                    span: {
+                        index: 'unset'
+                    }
+                }
+            },
+            'hush'
+        );
+        expect(out).toEqual(
+            [
+                'hush{display:value;}',
+                'hush:hover,hush:focus{border:0;}',
+                'hush:hover span,hush:focus span{index:unset;}'
+            ].join('')
+        );
     });
 });
