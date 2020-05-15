@@ -41,7 +41,7 @@ function styled(tag, forwardRef) {
                 _props.ref = ref;
             }
 
-            return h(tag, _props);
+            return h(_props.as || tag, _props);
         }
 
         return forwardRef ? forwardRef(Styled) : Styled;

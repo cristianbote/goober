@@ -39,10 +39,7 @@ describe('styled', () => {
             `(p)
         ).toEqual('h()');
         expect(css).toBeCalledWith([expect.stringContaining('foo: 1')]);
-        expect(_h).toBeCalledWith(
-            'tag',
-            Object.assign({}, p, { className: 'css()', ref: undefined, theme: undefined })
-        );
+        expect(_h).toBeCalledWith('tag', Object.assign({}, p, { className: 'css()' }));
     });
 
     it('args: concat className', () => {
@@ -67,10 +64,30 @@ describe('styled', () => {
         const styleFn = (props) => ({ color: props.color });
         expect(styled('tag')(styleFn)(incoming)).toEqual('h()');
         expect(css).toBeCalledWith(styleFn);
-        expect(_h).toBeCalledWith(
-            'tag',
-            Object.assign({}, incoming, { className: 'css()', ref: undefined, theme: undefined })
-        );
+        expect(_h).toBeCalledWith('tag', Object.assign({}, incoming, { className: 'css()' }));
+    });
+
+    it('args: as', () => {
+        const _h = jest.fn().mockReturnValue('h()');
+
+        setup(_h);
+
+        const Tag = styled('tag')`
+            foo: 1;
+        `;
+
+        // Simulate a render
+        Tag();
+        expect(_h).toBeCalledWith('tag', Object.assign({}, { className: 'css()' }));
+
+        // Simulate a render with
+        Tag({ as: 'foo' });
+        // Expect it to be changed to foo
+        expect(_h).toBeCalledWith('foo', Object.assign({}, { className: 'css()', as: 'foo' }));
+
+        // Simulate a render
+        Tag();
+        expect(_h).toBeCalledWith('tag', Object.assign({}, { className: 'css()' }));
     });
 
     it('setup forwardRef', () => {
@@ -87,10 +104,7 @@ describe('styled', () => {
             `(p)
         ).toEqual('h()');
 
-        expect(_h).toBeCalledWith(
-            'tag',
-            Object.assign({}, p, { className: 'css()', ref: 'ref', theme: undefined })
-        );
+        expect(_h).toBeCalledWith('tag', Object.assign({}, p, { className: 'css()', ref: 'ref' }));
     });
 
     it('setup useTheme', () => {
@@ -111,13 +125,12 @@ describe('styled', () => {
         expect(styleFn).toHaveBeenCalledWith(
             Object.assign({}, p, {
                 className: 'css()',
-                ref: undefined,
                 theme: 'theme'
             })
         );
         expect(_h).toBeCalledWith(
             'tag',
-            Object.assign({}, p, { className: 'css()', ref: undefined, theme: 'theme' })
+            Object.assign({}, p, { className: 'css()', theme: 'theme' })
         );
         expect(useTheme).toHaveBeenCalled();
     });
@@ -137,12 +150,7 @@ describe('styled', () => {
 
         const styleFn = jest.fn().mockReturnValue({ color: 'red' });
         expect(styled('tag')(styleFn)(p)).toEqual('h()');
-        expect(styleFn).toHaveBeenCalledWith(
-            Object.assign({ className: 'css()', ref: undefined }, p)
-        );
-        expect(_h).toBeCalledWith(
-            'tag',
-            Object.assign({}, p, { className: 'css()', ref: undefined })
-        );
+        expect(styleFn).toHaveBeenCalledWith(Object.assign({ className: 'css()' }, p));
+        expect(_h).toBeCalledWith('tag', Object.assign({}, p, { className: 'css()' }));
     });
 });
