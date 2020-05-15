@@ -4,13 +4,13 @@
  * @param {String} paren
  * @param {String} wrapper
  */
-export const parse = (obj, paren, wrapper) => {
+export let parse = (obj, paren, wrapper) => {
     let outer = '';
     let blocks = '';
     let current = '';
 
     for (let key in obj) {
-        const val = obj[key];
+        let val = obj[key];
 
         // If this is a 'block'
         if (typeof val == 'object') {
@@ -54,7 +54,7 @@ export const parse = (obj, paren, wrapper) => {
     // If we have properties
     if (current[0]) {
         // Standard rule composition
-        const rule = paren + '{' + current + '}';
+        let rule = paren + '{' + current + '}';
 
         // With wrapper
         if (wrapper) return blocks + wrapper + '{' + rule + '}';

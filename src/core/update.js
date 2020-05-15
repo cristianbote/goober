@@ -3,9 +3,9 @@ import { getSheet } from './get-sheet';
  * Extracts and wipes the cache
  * @returns {String}
  */
-const extractCss = (target) => {
-    const sheet = getSheet(target);
-    const out = sheet.data;
+let extractCss = (target) => {
+    let sheet = getSheet(target);
+    let out = sheet.data;
     sheet.data = '';
     return out;
 };
@@ -16,7 +16,7 @@ const extractCss = (target) => {
  * @param {Object} target
  * @param {Boolean} append
  */
-const update = (css, sheet, append) => {
+let update = (css, sheet, append) => {
     sheet.data.indexOf(css) < 0 && (sheet.data = append ? css + sheet.data : sheet.data + css);
 };
 

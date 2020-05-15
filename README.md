@@ -17,7 +17,7 @@
 
 # Motivation
 
-I always wondered, if you can get a working solution for css-in-js with a smaller footprint. I started a project and wanted a to use styled-components. Looking at their sizes, it seems that I would rather not include ~16kB([styled-components](https://github.com/styled-components/styled-components)) or ~11kB([emotion](https://github.com/emotion-js/emotion)) just so I can use the `styled` paradigm. So, I embarked in a mission to create a smaller alternative for these well established apis.
+I always wondered, if you can get a working solution for css-in-js with a smaller footprint. I started a project and wanted a to use styled-components. Looking at their sizes, it seems that I would rather not include ~12kB([styled-components](https://github.com/styled-components/styled-components)) or ~11kB([emotion](https://github.com/emotion-js/emotion)) just so I can use the `styled` paradigm. So, I embarked in a mission to create a smaller alternative for these well established apis.
 
 # Table of contents
 
@@ -38,6 +38,8 @@ I always wondered, if you can get a working solution for css-in-js with a smalle
     -   [Babel Plugin](#babel-plugin)
     -   [Gatsby](#gatsby)
 -   [Features](#features)
+    -   [Sharing Style](#sharing-style)
+    -   [Autoprefixer](#autoprefixer)
 -   [Browser Support](#browser-support)
 -   [Contributing](#contributing)
 
@@ -106,7 +108,7 @@ The benchmark is testing the following scenario:
 import styled from 'package';
 
 // Create the dynamic styled component
-const Foo = styled('div')(props => ({
+const Foo = styled('div')((props) => ({
     opacity: props.counter > 0.5 ? 1 : 0,
     '@media (min-width: 1px)': {
         rule: 'all'
@@ -135,9 +137,10 @@ Fastest is: emotion
 
 As you can see it supports most of the syntaxes of CSS. If you find any issues, please submit a ticket or even a PR with a fix.
 
-### `styled(tagName)`
+### `styled(tagName: String | Function, forwardRef?: Function)`
 
--   `@param {String} tagName` The name of the dom element you'd like the styled to be applied to
+-   `@param {String|Function} tagName` The name of the dom element you'd like the styled to be applied to
+-   `@param {Function} forwardRef` Forward ref function. Usually `React.forwardRef`
 -   `@returns {Function}` Returns the tag template function.
 
 ```js
@@ -156,7 +159,7 @@ const Btn = styled('button')`
 import { styled } from 'goober';
 
 const Btn = styled('button')`
-    border-radius: ${props => props.size}px;
+    border-radius: ${(props) => props.size}px;
 `;
 
 <Btn size={20} />;
@@ -168,7 +171,7 @@ const Btn = styled('button')`
 import { styled } from 'goober';
 
 const Btn = styled('button')(
-    props => `
+    (props) => `
   border-radius: ${props.size}px;
 `
 );
@@ -181,14 +184,14 @@ const Btn = styled('button')(
 ```js
 import { styled } from 'goober';
 
-const Btn = styled('button')(props => ({
+const Btn = styled('button')((props) => ({
     borderRadius: props.size + 'px'
 }));
 
 <Btn size={20} />;
 ```
 
-### `setup(pragma: Function)`
+### `setup(pragma: Function, prefixer?: Function, theme?: Function)`
 
 Given the fact that `react` uses `createElement` for the transformed elements and `preact` uses `h`, `setup` should be called with the proper _pragma_ function. This was added to reduce the bundled size and being able to bundle esmodule version. At the moment I think it's the best tradeoff we can have.
 
@@ -230,7 +233,7 @@ const App => <button className={BtnClassName}>click</button>
 import { css } from 'goober';
 
 // JSX
-const CustomButton = props => (
+const CustomButton = (props) => (
     <button
         className={css`
             border-radius: ${props.size}px;
@@ -246,7 +249,7 @@ We also can declare the styles at the top of the file by wrapping `css` into a f
 ```js
 import { css } from 'goober';
 
-const BtnClassName = props => css`
+const BtnClassName = (props) => css`
     border-radius: ${props.size}px;
 `;
 
@@ -336,8 +339,7 @@ yarn add gatsby-plugin-goober
 -   [x] Basic CSS parsing
 -   [x] Nested rules with pseudo selectors
 -   [x] Nested styled components
--   [x] Extending Styles
-    -   via `` const TomatoButton = styled(StyledBtn)`color: tomato;` ``
+-   [x] [Extending Styles](#sharing-style)
 -   [x] Media queries (@media)
 -   [x] Keyframes (@keyframes)
 -   [x] Smart(lazy) client-side hydration
@@ -346,7 +348,76 @@ yarn add gatsby-plugin-goober
 -   [x] Vanilla(via `css` function)
 -   [x] `globalStyle`(via `glob`) so one would be able to create global styles
 -   [x] target/extract from elements other than `<head>`
--   [ ] Vendor prefixing
+-   [x][vendor prefixing] (#autoprefixer)
+
+# Sharing style
+
+There are a couple of ways to effectly share/extend styles across components.
+
+## Extending
+
+One can simply extend the desired component that needs to be enrich or overwriten with another set of css rules.
+
+```js
+import { styled } from 'goober';
+
+// Let's declare a primitive for our styled component
+const Primitive = styled('span')`
+    margin: 0;
+    padding: 0;
+`;
+
+// Later on we could get the primitive shared styles and also add our owns
+const Container = styled(Primitive)`
+    padding: 1em;
+`;
+```
+
+## Using `as` prop
+
+Another helpful way to extend a certain component is with the `as` property. Given our example above we could modify it like:
+
+```jsx
+import { styled } from 'goober';
+
+// Our primitive element
+const Primitive = styled('span')`
+    margin: 0;
+    padding: 0;
+`;
+
+const Container = styled('div')`
+    padding: 1em;
+`;
+
+// At composition/render time
+<Primitive as={'div'} /> // <div class="go01234" />
+
+// Or using the `Container`
+<Primitive as={Container} /> // <div class="go01234 go56789" />
+```
+
+# Autoprefixer
+
+Autoprefixing is a helpful way to make sure the generated css will work seamlessly on the whole spectrum of browsers. With that in mind, the core `goober` package can't hold that logic to determine the autoprefixing needs, so we added a new package that you can choose to address them.
+
+```sh
+npm install goober-autoprefixer
+# or
+yarn add goober-autoprefixer
+```
+
+After the above package is installed it's time to bootstrap goober with it:
+
+```js
+import { setup } from 'goober';
+import { prefix } from 'goober-autoprefixer';
+
+// Bootstrap goober
+setup(React.createElement, prefix);
+```
+
+And voila! It is done!
 
 # Browser support
 

@@ -1,12 +1,12 @@
-const newRule = /(?:([a-z0-9-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(})/gi;
-const ruleClean = /\/\*.*?\*\/|\s{2,}|\n/gm;
+let newRule = /(?:([a-z0-9-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(})/gi;
+let ruleClean = /\/\*.*?\*\/|\s{2,}|\n/gm;
 
 /**
  * Convert a css style string into a object
  * @param {string} val
  * @returns {object}
  */
-export const astish = (val) => {
+export let astish = (val) => {
     let tree = [{}];
     let block;
 

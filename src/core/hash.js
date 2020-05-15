@@ -35,14 +35,14 @@ function stringify(data) {
  * @param {Object} append Append or not
  * @returns {String}
  */
-export const hash = (compiled, sheet, global, append) => {
+export let hash = (compiled, sheet, global, append) => {
     // generate hash
-    const stringifiedCompiled = compiled.toLowerCase ? compiled : stringify(compiled);
-    const className =
+    let stringifiedCompiled = compiled.toLowerCase ? compiled : stringify(compiled);
+    let className =
         cache[stringifiedCompiled] || (cache[stringifiedCompiled] = toHash(stringifiedCompiled));
 
     // Parse the compiled
-    const parsed =
+    let parsed =
         cache[className] ||
         (cache[className] = parse(
             compiled[0] ? astish(compiled) : compiled,

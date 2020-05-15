@@ -6,5 +6,5 @@
  * unsigned integers.
  * @param {String} str
  */
-export const toHash = str =>
+export let toHash = (str) =>
     '.go' + str.split('').reduce((out, i) => (101 * out + i.charCodeAt(0)) >>> 0, 11);

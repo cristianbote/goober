@@ -17,16 +17,16 @@ function setup(pragma, prefix, theme) {
  * @param {function} forwardRef
  */
 function styled(tag, forwardRef) {
-    const _ctx = this || {};
+    let _ctx = this || {};
 
     return function wrapper() {
-        const _args = arguments;
+        let _args = arguments;
 
         function Styled(props, ref) {
             // Grab a shallow copy of the props
             // _ctx.p: is the props sent to the context
-            const _props = (_ctx.p = Object.assign({ theme: useTheme && useTheme() }, props));
-            const _previousClassName = _props.className;
+            let _props = (_ctx.p = Object.assign({ theme: useTheme && useTheme() }, props));
+            let _previousClassName = _props.className;
 
             // Set a flag if the current components had a previous className
             // similar to goober. This is the append/prepend flag
@@ -41,7 +41,7 @@ function styled(tag, forwardRef) {
                 _props.ref = ref;
             }
 
-            return h(tag, _props);
+            return h(_props.as || tag, _props);
         }
 
         return forwardRef ? forwardRef(Styled) : Styled;
