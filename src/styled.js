@@ -12,19 +12,20 @@ function setup(pragma, prefix, theme) {
 }
 
 /**
- * Styled function
- * @param {String} tag
+ * styled function
+ * @param {string} tag
+ * @param {function} forwardRef
  */
-function styled(tag) {
+function styled(tag, forwardRef) {
     const _ctx = this || {};
 
     return function wrapper() {
         const _args = arguments;
 
-        return function Styled(props, ref) {
+        function Styled(props, ref) {
             // Grab a shallow copy of the props
             // _ctx.p: is the props sent to the context
-            const _props = (_ctx.p = Object.assign({ theme: useTheme && useTheme(), ref }, props));
+            const _props = (_ctx.p = Object.assign({ theme: useTheme && useTheme() }, props));
             const _previousClassName = _props.className;
 
             // Set a flag if the current components had a previous className
@@ -35,8 +36,15 @@ function styled(tag) {
             _props.className =
                 css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '');
 
+            // If the forwardRef fun is defined we have the ref
+            if (forwardRef) {
+                _props.ref = ref;
+            }
+
             return h(tag, _props);
-        };
+        }
+
+        return forwardRef ? forwardRef(Styled) : Styled;
     };
 }
 

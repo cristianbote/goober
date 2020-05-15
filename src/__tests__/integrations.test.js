@@ -12,9 +12,9 @@ describe('integrations', () => {
 
         const target = document.createElement('div');
 
-        const Span = forwardRef(styled('span')`
+        const Span = styled('span', forwardRef)`
             color: red;
-        `);
+        `;
 
         const BoxWithColor = styled('div')`
             color: ${(props) => props.color};
@@ -42,7 +42,7 @@ describe('integrations', () => {
             <ThemeContext.Provider value={{ color: 'blue' }}>
                 <div>
                     <Span ref={refSpy} />
-                    <Span as="div" /> */}
+                    <Span as="div" />
                     <BoxWithColor color={'red'} />
                     <Span as={BoxWithColor} color={'red'} />
                     <BoxWithColorFn color={'red'} />

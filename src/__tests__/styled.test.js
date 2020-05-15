@@ -82,11 +82,9 @@ describe('styled', () => {
         setup(_h, null);
 
         expect(
-            forwardRef(
-                styled('tag')`
-                    foo: 1;
-                `
-            )(p)
+            styled('tag', forwardRef)`
+                foo: 1;
+            `(p)
         ).toEqual('h()');
 
         expect(_h).toBeCalledWith(
