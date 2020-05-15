@@ -79,18 +79,18 @@ describe('styled', () => {
             .fn()
             .mockImplementation((Styled) => (props) => Styled(props, 'ref'));
         const p = { bar: 1 };
-        setup(_h, null, forwardRef);
+        setup(_h, null);
 
         expect(
-            styled('tag')`
+            styled('tag', forwardRef)`
                 foo: 1;
             `(p)
         ).toEqual('h()');
+
         expect(_h).toBeCalledWith(
             'tag',
             Object.assign({}, p, { className: 'css()', ref: 'ref', theme: undefined })
         );
-        expect(forwardRef).toHaveBeenCalled();
     });
 
     it('setup useTheme', () => {
@@ -104,7 +104,7 @@ describe('styled', () => {
         const _h = jest.fn().mockReturnValue('h()');
         const useTheme = jest.fn().mockReturnValue('theme');
         const p = { bar: 1 };
-        setup(_h, null, null, useTheme);
+        setup(_h, null, useTheme);
 
         const styleFn = jest.fn().mockReturnValue({ color: 'red' });
         expect(styled('tag')(styleFn)(p)).toEqual('h()');
@@ -133,7 +133,7 @@ describe('styled', () => {
         const _h = jest.fn().mockReturnValue('h()');
         const useTheme = jest.fn().mockReturnValue('theme');
         const p = { theme: 'override' };
-        setup(_h, null, null, useTheme);
+        setup(_h, null, useTheme);
 
         const styleFn = jest.fn().mockReturnValue({ color: 'red' });
         expect(styled('tag')(styleFn)(p)).toEqual('h()');
