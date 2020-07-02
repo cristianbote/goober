@@ -348,7 +348,7 @@ yarn add gatsby-plugin-goober
 -   [x] Vanilla(via `css` function)
 -   [x] `globalStyle`(via `glob`) so one would be able to create global styles
 -   [x] target/extract from elements other than `<head>`
--   [x][vendor prefixing] (#autoprefixer)
+-   [x] [vendor prefixing](#autoprefixer)
 
 # Sharing style
 
