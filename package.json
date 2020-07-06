@@ -1,6 +1,6 @@
 {
   "name": "goober",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A less than 1KB css-in-js solution",
   "main": "dist/goober.js",
   "module": "dist/goober.module.js",
