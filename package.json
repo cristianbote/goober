@@ -24,7 +24,7 @@
     "clean": "rimraf dist",
     "size-check": "filesize",
     "build": "npm run build:core && npm run build:prefixer",
-    "build:prefixer": "microbundle --cwd packages/goober-autoprefixer",
+    "build:prefixer": "cd ./packages/goober-autoprefixer && npm run build",
     "build:core": "npm run clean && npm run build:dist && npm run size-check",
     "build:lib": "microbundle --entry src/index.js --name goober --no-sourcemap",
     "build:dist": "npm run build:lib -- --output dist",
@@ -71,9 +71,6 @@
   },
   "peerDependencies": {
     "csstype": "^2.6.2"
-  },
-  "dependencies": {
-    "tiny-css-prefixer": "^1.1.4"
   },
   "typings": "./goober.d.ts",
   "filesize": {
