@@ -11,6 +11,10 @@ jobs:
               with:
                   fetch-depth: 1
             - name: Installing packages
-              run: npm install
+              run: |
+                  npm install
+                  cd packages/goober-prefixer
+                  npm install
+                  cd ../..
             - name: Run tests
               run: npm run test
