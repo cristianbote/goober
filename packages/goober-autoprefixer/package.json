@@ -6,5 +6,9 @@
   "umd:main": "./dist/goober-autoprefixer.umd.js",
   "source": "./src/index.js",
   "unpkg": "./dist/goober-autoprefixer.umd.js",
-  "types": "./autoprefixer.d.ts"
+  "types": "./autoprefixer.d.ts",
+  "author": {
+    "name": "Jovi De Croock",
+    "url": "https://www.jovidecroock.com/"
+  }
 }

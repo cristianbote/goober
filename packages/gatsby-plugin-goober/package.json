@@ -23,7 +23,7 @@
     "dependencies": {},
     "devDependencies": {},
     "peerDependencies": {
-        "goober": "^1.6.1",
+        "goober": "^2.0.0",
         "gatsby": "^2.10.0"
     },
     "repository": {
