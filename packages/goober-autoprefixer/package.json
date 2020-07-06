@@ -10,5 +10,14 @@
   "author": {
     "name": "Jovi De Croock",
     "url": "https://www.jovidecroock.com/"
+  },
+  "scripts": {
+    "build": "microbundle"
+  },
+  "devDependencies": {
+    "microbundle": "^0.12.2"
+  },
+  "dependencies": {
+    "tiny-css-prefixer": "^1.1.4"
   }
 }
