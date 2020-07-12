@@ -9,7 +9,7 @@ import { parse } from './parse';
 let cache = {};
 
 /**
- * Stringifies a object strucure
+ * Stringifies a object structure
  * @param {Object} data
  * @returns {String}
  */
@@ -17,6 +17,7 @@ function stringify(data) {
     let out = '';
 
     for (let p in data) {
+        const val = data[p];
         if (typeof val == 'object') {
             out += p + stringify(data[p]);
         } else {
@@ -32,7 +33,7 @@ function stringify(data) {
  * @param {String|Object} compiled
  * @param {Object} sheet StyleSheet target
  * @param {Object} global Global flag
- * @param {Object} append Append or not
+ * @param {Boolean} append Append or not
  * @returns {String}
  */
 export let hash = (compiled, sheet, global, append) => {

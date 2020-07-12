@@ -13,7 +13,7 @@ let extractCss = (target) => {
 /**
  * Updates the target and keeps a local cache
  * @param {String} css
- * @param {Object} target
+ * @param {Object} sheet
  * @param {Boolean} append
  */
 let update = (css, sheet, append) => {
