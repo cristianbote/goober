@@ -3,8 +3,8 @@ let ruleClean = /\/\*.*?\*\/|\s{2,}|\n/gm;
 
 /**
  * Convert a css style string into a object
- * @param {string} val
- * @returns {object}
+ * @param {String} val
+ * @returns {Object}
  */
 export let astish = (val) => {
     let tree = [{}];
