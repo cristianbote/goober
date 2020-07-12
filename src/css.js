@@ -19,7 +19,7 @@ function css(val) {
 }
 
 /**
- * CSS Global function to declare global styes
+ * CSS Global function to declare global styles
  */
 let glob = css.bind({ g: 1 });
 
