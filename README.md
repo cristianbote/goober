@@ -244,6 +244,18 @@ const CustomButton = (props) => (
 );
 ```
 
+##### Using `css` with JSON/Object
+
+```js
+import { css } from 'goober';
+const BtnClassName = props => css({
+    background: props.color,
+    borderRadius: props.radius + 'px'
+});
+```
+
+**Notice:** using `css` with object can reduce your bundle size.
+
 We also can declare the styles at the top of the file by wrapping `css` into a function that we call to get the className.
 
 ```js
