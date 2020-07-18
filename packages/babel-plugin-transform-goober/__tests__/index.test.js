@@ -1,9 +1,19 @@
+const path = require('path');
 const plugin = require('../index.js');
-const { transform: _transform } = require('@babel/core');
+const { transform: _transform, transformFileSync: _transformFileSync } = require('@babel/core');
 const { isGetAccessor } = require('typescript');
 
 function transform(input, options = {}) {
     return _transform(input, {
+        babelrc: false,
+        configFile: false,
+        plugins: [[plugin, options]]
+    }).code;
+}
+
+function transformFile(fixture, options = {}) {
+    const file = path.join(__dirname, '__fixtures__', fixture + '.txt');
+    return _transformFileSync(file, {
         babelrc: false,
         configFile: false,
         plugins: [[plugin, options]]
@@ -40,12 +50,16 @@ describe('babel-plugin-transform-goober', () => {
 describe('displayName', () => {
     it('works for const declarations', () => {
         expect(transform('const Foo = styled("div")``', { displayName: true })).toEqual(
-            'const Foo = styled("div")``;\nFoo.displayName = "styled(Foo)";'
+            'const Foo = styled("div")``;\n' +
+                'Foo.displayName = "styled(Foo)";\n' +
+                'Foo.className = "Unknown__Foo-go-1";'
         );
     });
     it('works for let declarations', () => {
         expect(transform('let Foo = styled("div")``', { displayName: true })).toEqual(
-            'let Foo = styled("div")``;\nFoo.displayName = "styled(Foo)";'
+            'let Foo = styled("div")``;\n' +
+                'Foo.displayName = "styled(Foo)";\n' +
+                'Foo.className = "Unknown__Foo-go-1";'
         );
     });
     it('only works for styled expressions', () => {
@@ -55,6 +69,31 @@ describe('displayName', () => {
     });
     it('skip transform if not in dev mode', () => {
         expect(transform('const Foo = foo("div")``')).toEqual('const Foo = foo("div")``;');
+    });
+    it('converts filename into valid css class', () => {
+        expect(transformFile('space name', { displayName: true })).toEqual(
+            'const Foo = styled("div")``;\n' +
+                'Foo.displayName = "styled(Foo)";\n' +
+                'Foo.className = "space-name__Foo-go-1";'
+        );
+        expect(transformFile('123', { displayName: true })).toEqual(
+            'const Foo = styled("div")``;\n' +
+                'Foo.displayName = "styled(Foo)";\n' +
+                'Foo.className = "-123__Foo-go-1";'
+        );
+    });
+    it('appends component index to debug css class', () => {
+        expect(transformFile('multiple', { displayName: true })).toEqual(
+            'const Foo = styled("div")``;\n' +
+                'Foo.displayName = "styled(Foo)";\n' +
+                'Foo.className = "multiple__Foo-go-1";\n' +
+                'const Bar = styled("div")``;\n' +
+                'Bar.displayName = "styled(Bar)";\n' +
+                'Bar.className = "multiple__Bar-go-2";\n' +
+                'const Baz = styled("div")``;\n' +
+                'Baz.displayName = "styled(Baz)";\n' +
+                'Baz.className = "multiple__Baz-go-3";'
+        );
     });
 });
 

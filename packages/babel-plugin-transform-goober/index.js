@@ -1,3 +1,5 @@
+const nodePath = require('path');
+
 /**
  * Prepend #__PURE__ comment to help minifiers with
  * dead code elminiation (=DCE)
@@ -10,13 +12,17 @@ function prependPureComment(node) {
     });
 }
 
+function createAssignment(t, left, right) {
+    return t.expressionStatement(t.assignmentExpression('=', left, right));
+}
+
 module.exports = function ({ types: t }, options = {}) {
     const name = options.name || 'styled';
 
     return {
         name: 'transform-goober',
         visitor: {
-            TaggedTemplateExpression(path) {
+            TaggedTemplateExpression(path, state) {
                 if (t.isIdentifier(path.node.tag) && path.node.tag.name === 'css') {
                     if (options.pure) {
                         prependPureComment(path.node);
@@ -30,21 +36,41 @@ module.exports = function ({ types: t }, options = {}) {
                     }
 
                     if (options.displayName) {
-                        // Add displayName to goober components for easier debugging
                         const variable = path.findParent((path) => path.isVariableDeclaration());
                         if (variable && variable.node.declarations.length === 1) {
                             const decl = variable.node.declarations[0];
 
                             if (t.isIdentifier(decl.id)) {
-                                variable.insertAfter(
-                                    t.expressionStatement(
-                                        t.assignmentExpression(
-                                            '=',
-                                            t.MemberExpression(
-                                                decl.id,
-                                                t.identifier('displayName')
-                                            ),
-                                            t.stringLiteral(`${name}(${decl.id.name})`)
+                                // Add displayName to goober components for easier debugging
+                                const displayName = variable.insertAfter(
+                                    createAssignment(
+                                        t,
+                                        t.MemberExpression(decl.id, t.identifier('displayName')),
+                                        t.stringLiteral(`${name}(${decl.id.name})`)
+                                    )
+                                );
+
+                                // Add human readable CSS class names. The format is:
+                                // [FILENAME]__[COMPONENT]-[#]
+                                const fileName = state.file.opts.filename || 'Unknown';
+                                let baseName = nodePath
+                                    .basename(fileName, nodePath.extname(fileName))
+                                    .replace(/\s+/g, '-');
+
+                                // CSS class names MUST begin with a letter,
+                                // underscore or minus character
+                                if (!/^[-_A-Za-z]/.test(baseName)) {
+                                    baseName = '-' + baseName;
+                                }
+
+                                state.gooberComponentCount = (state.gooberComponentCount || 0) + 1;
+
+                                displayName[0].insertAfter(
+                                    createAssignment(
+                                        t,
+                                        t.MemberExpression(decl.id, t.identifier('className')),
+                                        t.stringLiteral(
+                                            `${baseName}__${decl.id.name}-go-${state.gooberComponentCount}`
                                         )
                                     )
                                 );
