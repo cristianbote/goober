@@ -7,7 +7,7 @@ function transform(input, options = {}) {
     return _transform(input, {
         babelrc: false,
         configFile: false,
-        plugins: [[plugin, options]]
+        plugins: [[plugin, { pure: false, ...options }]]
     }).code;
 }
 
@@ -16,7 +16,7 @@ function transformFile(fixture, options = {}) {
     return _transformFileSync(file, {
         babelrc: false,
         configFile: false,
-        plugins: [[plugin, options]]
+        plugins: [[plugin, { pure: false, ...options }]]
     }).code;
 }
 

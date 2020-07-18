@@ -18,20 +18,22 @@ function createAssignment(t, left, right) {
 
 module.exports = function ({ types: t }, options = {}) {
     const name = options.name || 'styled';
+    // Enable pure by default if it is not set by the user
+    const pure = !('pure' in options) ? true : options.pure;
 
     return {
         name: 'transform-goober',
         visitor: {
             TaggedTemplateExpression(path, state) {
                 if (t.isIdentifier(path.node.tag) && path.node.tag.name === 'css') {
-                    if (options.pure) {
+                    if (pure) {
                         prependPureComment(path.node);
                     }
                 } else if (
                     t.isIdentifier(path.node.tag.callee) &&
                     path.node.tag.callee.name === name
                 ) {
-                    if (options.pure) {
+                    if (pure) {
                         prependPureComment(path.node);
                     }
 
@@ -96,7 +98,7 @@ module.exports = function ({ types: t }, options = {}) {
 
                     path.replaceWith(t.callExpression(node.object, [property]));
 
-                    if (options.pure) {
+                    if (pure) {
                         prependPureComment(path.node);
                     }
                 }
