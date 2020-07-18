@@ -1,5 +1,6 @@
 const plugin = require('../index.js');
 const { transform: _transform } = require('@babel/core');
+const { isGetAccessor } = require('typescript');
 
 function transform(input, options = {}) {
     return _transform(input, {
@@ -54,5 +55,28 @@ describe('displayName', () => {
     });
     it('skip transform if not in dev mode', () => {
         expect(transform('const Foo = foo("div")``')).toEqual('const Foo = foo("div")``;');
+    });
+});
+
+describe('annotate #__PURE__ calls', () => {
+    it('prepend comment for calls', () => {
+        expect(transform('const Foo = styled("div")``', { pure: true })).toEqual(
+            'const Foo = /*#__PURE__*/styled("div")``;'
+        );
+    });
+    it('prepend comment for expressions', () => {
+        expect(transform('const Foo = styled.div``', { pure: true })).toEqual(
+            'const Foo = /*#__PURE__*/styled("div")``;'
+        );
+    });
+    it('prepend comment for dynamic properties', () => {
+        expect(transform('const Foo = styled["div"]``', { pure: true })).toEqual(
+            'const Foo = /*#__PURE__*/styled("div")``;'
+        );
+    });
+    it('prepend comment for css calls', () => {
+        expect(transform('const Foo = css``', { pure: true })).toEqual(
+            'const Foo = /*#__PURE__*/css``;'
+        );
     });
 });

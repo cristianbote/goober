@@ -1,3 +1,15 @@
+/**
+ * Prepend #__PURE__ comment to help minifiers with
+ * dead code elminiation (=DCE)
+ */
+function prependPureComment(node) {
+    const comments = node.leadingComments || (node.leadingComments = []);
+    comments.push({
+        type: 'CommentBlock',
+        value: '#__PURE__'
+    });
+}
+
 module.exports = function ({ types: t }, options = {}) {
     const name = options.name || 'styled';
     const dev = options.dev || false;
@@ -6,9 +18,19 @@ module.exports = function ({ types: t }, options = {}) {
         name: 'transform-goober',
         visitor: {
             TaggedTemplateExpression(path) {
-                if (!dev) return;
+                if (t.isIdentifier(path.node.tag) && path.node.tag.name === 'css') {
+                    if (options.pure) {
+                        prependPureComment(path.node);
+                    }
+                } else if (
+                    t.isIdentifier(path.node.tag.callee) &&
+                    path.node.tag.callee.name === name
+                ) {
+                    if (options.pure) {
+                        prependPureComment(path.node);
+                    }
 
-                if (t.isIdentifier(path.node.tag.callee) && path.node.tag.callee.name === name) {
+                    if (!dev) return;
                     // Add displayName to goober components for easier debugging
                     const variable = path.findParent((path) => path.isVariableDeclaration());
                     if (variable && variable.node.declarations.length === 1) {
@@ -44,6 +66,10 @@ module.exports = function ({ types: t }, options = {}) {
                     }
 
                     path.replaceWith(t.callExpression(node.object, [property]));
+
+                    if (options.pure) {
+                        prependPureComment(path.node);
+                    }
                 }
             }
         }
