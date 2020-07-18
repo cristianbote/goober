@@ -51,14 +51,14 @@ describe('displayName', () => {
     it('works for const declarations', () => {
         expect(transform('const Foo = styled("div")``', { displayName: true })).toEqual(
             'const Foo = styled("div")``;\n' +
-                'Foo.displayName = "styled(Foo)";\n' +
+                'Foo.displayName = "Foo";\n' +
                 'Foo.className = "Unknown__Foo-go-1";'
         );
     });
     it('works for let declarations', () => {
         expect(transform('let Foo = styled("div")``', { displayName: true })).toEqual(
             'let Foo = styled("div")``;\n' +
-                'Foo.displayName = "styled(Foo)";\n' +
+                'Foo.displayName = "Foo";\n' +
                 'Foo.className = "Unknown__Foo-go-1";'
         );
     });
@@ -73,25 +73,25 @@ describe('displayName', () => {
     it('converts filename into valid css class', () => {
         expect(transformFile('space name', { displayName: true })).toEqual(
             'const Foo = styled("div")``;\n' +
-                'Foo.displayName = "styled(Foo)";\n' +
+                'Foo.displayName = "Foo";\n' +
                 'Foo.className = "space-name__Foo-go-1";'
         );
         expect(transformFile('123', { displayName: true })).toEqual(
             'const Foo = styled("div")``;\n' +
-                'Foo.displayName = "styled(Foo)";\n' +
+                'Foo.displayName = "Foo";\n' +
                 'Foo.className = "-123__Foo-go-1";'
         );
     });
     it('appends component index to debug css class', () => {
         expect(transformFile('multiple', { displayName: true })).toEqual(
             'const Foo = styled("div")``;\n' +
-                'Foo.displayName = "styled(Foo)";\n' +
+                'Foo.displayName = "Foo";\n' +
                 'Foo.className = "multiple__Foo-go-1";\n' +
                 'const Bar = styled("div")``;\n' +
-                'Bar.displayName = "styled(Bar)";\n' +
+                'Bar.displayName = "Bar";\n' +
                 'Bar.className = "multiple__Bar-go-2";\n' +
                 'const Baz = styled("div")``;\n' +
-                'Baz.displayName = "styled(Baz)";\n' +
+                'Baz.displayName = "Baz";\n' +
                 'Baz.className = "multiple__Baz-go-3";'
         );
     });

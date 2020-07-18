@@ -48,7 +48,7 @@ module.exports = function ({ types: t }, options = {}) {
                                     createAssignment(
                                         t,
                                         t.MemberExpression(decl.id, t.identifier('displayName')),
-                                        t.stringLiteral(`${name}(${decl.id.name})`)
+                                        t.stringLiteral(decl.id.name)
                                     )
                                 );
 
