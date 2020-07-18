@@ -12,7 +12,6 @@ function prependPureComment(node) {
 
 module.exports = function ({ types: t }, options = {}) {
     const name = options.name || 'styled';
-    const dev = options.dev || false;
 
     return {
         name: 'transform-goober',
@@ -30,22 +29,26 @@ module.exports = function ({ types: t }, options = {}) {
                         prependPureComment(path.node);
                     }
 
-                    if (!dev) return;
-                    // Add displayName to goober components for easier debugging
-                    const variable = path.findParent((path) => path.isVariableDeclaration());
-                    if (variable && variable.node.declarations.length === 1) {
-                        const decl = variable.node.declarations[0];
+                    if (options.displayName) {
+                        // Add displayName to goober components for easier debugging
+                        const variable = path.findParent((path) => path.isVariableDeclaration());
+                        if (variable && variable.node.declarations.length === 1) {
+                            const decl = variable.node.declarations[0];
 
-                        if (t.isIdentifier(decl.id)) {
-                            variable.insertAfter(
-                                t.expressionStatement(
-                                    t.assignmentExpression(
-                                        '=',
-                                        t.MemberExpression(decl.id, t.identifier('displayName')),
-                                        t.stringLiteral(`${name}(${decl.id.name})`)
+                            if (t.isIdentifier(decl.id)) {
+                                variable.insertAfter(
+                                    t.expressionStatement(
+                                        t.assignmentExpression(
+                                            '=',
+                                            t.MemberExpression(
+                                                decl.id,
+                                                t.identifier('displayName')
+                                            ),
+                                            t.stringLiteral(`${name}(${decl.id.name})`)
+                                        )
                                     )
-                                )
-                            );
+                                );
+                            }
                         }
                     }
                 }

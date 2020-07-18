@@ -39,17 +39,17 @@ describe('babel-plugin-transform-goober', () => {
 
 describe('displayName', () => {
     it('works for const declarations', () => {
-        expect(transform('const Foo = styled("div")``', { dev: true })).toEqual(
+        expect(transform('const Foo = styled("div")``', { displayName: true })).toEqual(
             'const Foo = styled("div")``;\nFoo.displayName = "styled(Foo)";'
         );
     });
     it('works for let declarations', () => {
-        expect(transform('let Foo = styled("div")``', { dev: true })).toEqual(
+        expect(transform('let Foo = styled("div")``', { displayName: true })).toEqual(
             'let Foo = styled("div")``;\nFoo.displayName = "styled(Foo)";'
         );
     });
     it('only works for styled expressions', () => {
-        expect(transform('const Foo = foo("div")``', { dev: true })).toEqual(
+        expect(transform('const Foo = foo("div")``', { displayName: true })).toEqual(
             'const Foo = foo("div")``;'
         );
     });
