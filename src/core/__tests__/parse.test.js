@@ -184,7 +184,7 @@ describe('parse', () => {
         ).toEqual(['@supports (some: 1px){@media (s: 1){hush{display:flex;}}}']);
     });
 
-    it.skip('nested with multiple selector', () => {
+    it('nested with multiple selector', () => {
         const out = parse(
             {
                 display: 'value',
@@ -200,8 +200,10 @@ describe('parse', () => {
         expect(out).toEqual(
             [
                 'hush{display:value;}',
-                'hush:hover,hush:focus{border:0;}',
-                'hush:hover span,hush:focus span{index:unset;}'
+                'hush:hover{border:0;}',
+                'hush:hover span{index:unset;}',
+                'hush:focus{border:0;}',
+                'hush:focus span{index:unset;}'
             ].join('')
         );
     });

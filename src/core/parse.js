@@ -35,7 +35,9 @@ export let parse = (obj, paren, wrapper) => {
                 blocks += key + '{' + parse(val, '', '') + '}';
             } else {
                 // Call the parse for this block
-                blocks += parse(val, next, next == paren ? key : wrapper || '');
+                next.split(/,/g).some((sib) => {
+                    blocks += parse(val, sib, sib == paren ? key : wrapper || '');
+                });
             }
         } else {
             if (/^@i/.test(key)) {

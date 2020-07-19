@@ -132,4 +132,31 @@ describe('astish', () => {
             }
         });
     });
+
+    it('parse multiline selectors', () => {
+        expect(
+            astish(`
+                .foo {
+                    :hover,
+                    :active,
+                    :focus {
+                        color: red;
+
+                        span {
+                            color: blue;
+                        }
+                    }
+                }
+            `)
+        ).toEqual({
+            '.foo': {
+                ':hover,:active,:focus': {
+                    color: 'red',
+                    span: {
+                        color: 'blue'
+                    }
+                }
+            }
+        });
+    });
 });
