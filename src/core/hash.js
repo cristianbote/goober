@@ -18,11 +18,7 @@ function stringify(data) {
 
     for (let p in data) {
         const val = data[p];
-        if (typeof val == 'object') {
-            out += p + stringify(data[p]);
-        } else {
-            out += p + data[p];
-        }
+        out += p + (typeof val == 'object' ? stringify(data[p]) : data[p]);
     }
 
     return out;
