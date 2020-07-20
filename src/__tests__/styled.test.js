@@ -153,4 +153,14 @@ describe('styled', () => {
         expect(styleFn).toHaveBeenCalledWith(Object.assign({ className: 'css()' }, p));
         expect(_h).toBeCalledWith('tag', Object.assign({}, p, { className: 'css()' }));
     });
+
+    it('uses babel compiled classNames', () => {
+        const _h = jest.fn().mockReturnValue('h()');
+        setup(_h);
+
+        const Comp = styled('tag')``;
+        Comp.className = 'foobar';
+        Comp({});
+        expect(_h).toBeCalledWith('tag', { className: 'css() foobar' });
+    });
 });
