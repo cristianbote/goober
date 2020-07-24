@@ -125,7 +125,7 @@ describe('styled', () => {
         const styleFn = jest.fn(() => ({}));
         const vnode = styled('tag')(styleFn)({ theme: 'override' });
 
-        expect(styleFn).toBeCalledWith({ className: 'go11', theme: 'override' });
+        expect(styleFn).toBeCalledWith({ theme: 'override' });
         expect(vnode).toMatchVNode('tag', { className: 'go', theme: 'override' });
     });
 
