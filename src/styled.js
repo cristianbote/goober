@@ -27,7 +27,7 @@ function styled(tag, forwardRef) {
             let _props = Object.assign({}, props);
 
             // _ctx.p: is the props sent to the context
-            _ctx.p = Object.assign({ theme: useTheme ? useTheme() : undefined }, props);
+            _ctx.p = Object.assign({ theme: useTheme && useTheme() }, props);
             let _previousClassName = _props.className || Styled.className;
 
             // Set a flag if the current components had a previous className
