@@ -24,16 +24,20 @@ function styled(tag, forwardRef) {
 
         function Styled(props, ref) {
             // Grab a shallow copy of the props
-            // _ctx.p: is the props sent to the context
-            let _props = (_ctx.p = Object.assign({ theme: useTheme && useTheme() }, props));
+            let _props = Object.assign({}, props);
+
+            // Keep a local reference to the previous className
             let _previousClassName = _props.className || Styled.className;
+
+            // _ctx.p: is the props sent to the context
+            _ctx.p = Object.assign({ theme: useTheme && useTheme() }, _props);
 
             // Set a flag if the current components had a previous className
             // similar to goober. This is the append/prepend flag
             _ctx.o = /\s*go[0-9]+/g.test(_previousClassName);
 
-            // Define the new className
             _props.className =
+                // Define the new className
                 css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '');
 
             // If the forwardRef fun is defined we have the ref

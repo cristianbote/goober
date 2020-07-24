@@ -32,8 +32,7 @@ describe('styled', () => {
 
         expect(pragma).toBeCalledTimes(1);
         expect(vnode).toMatchVNode('div', {
-            className: 'go',
-            theme: undefined
+            className: 'go'
         });
     });
 
@@ -44,8 +43,7 @@ describe('styled', () => {
 
         expect(vnode).toMatchVNode('tag', {
             bar: 1,
-            className: 'go',
-            theme: undefined
+            className: 'go'
         });
         expect(extractCss()).toEqual('.go3183460609{color:peachpuff;}');
     });
@@ -57,8 +55,7 @@ describe('styled', () => {
 
         expect(vnode).toMatchVNode('tag', {
             bar: 1,
-            className: 'go existing',
-            theme: undefined
+            className: 'go existing'
         });
     });
 
@@ -67,8 +64,7 @@ describe('styled', () => {
 
         expect(vnode).toMatchVNode('tag', {
             className: 'go',
-            color: 'red',
-            theme: undefined
+            color: 'red'
         });
         expect(extractCss()).toEqual('.go3433634237{color:red;}');
     });
@@ -101,8 +97,7 @@ describe('styled', () => {
         expect(vnode).toMatchVNode('tag', {
             bar: 1,
             className: 'go',
-            ref: 'ref',
-            theme: undefined
+            ref: 'ref'
         });
     });
 
@@ -112,11 +107,10 @@ describe('styled', () => {
         const styleFn = jest.fn(() => ({}));
         const vnode = styled('tag')(styleFn)({ bar: 1 });
 
-        expect(styleFn).toBeCalledWith({ bar: 1, className: 'go11', theme: 'theme' });
+        expect(styleFn).toBeCalledWith({ bar: 1, theme: 'theme' });
         expect(vnode).toMatchVNode('tag', {
             bar: 1,
-            className: 'go',
-            theme: 'theme'
+            className: 'go'
         });
     });
 
@@ -126,7 +120,7 @@ describe('styled', () => {
         const styleFn = jest.fn(() => ({}));
         const vnode = styled('tag')(styleFn)({ theme: 'override' });
 
-        expect(styleFn).toBeCalledWith({ className: 'go11', theme: 'override' });
+        expect(styleFn).toBeCalledWith({ theme: 'override' });
         expect(vnode).toMatchVNode('tag', { className: 'go', theme: 'override' });
     });
 
@@ -134,6 +128,6 @@ describe('styled', () => {
         const Comp = styled('tag')``;
         Comp.className = 'foobar';
         const vnode = Comp({});
-        expect(vnode).toMatchVNode('tag', { className: 'go foobar', theme: undefined });
+        expect(vnode).toMatchVNode('tag', { className: 'go foobar' });
     });
 });
