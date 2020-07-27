@@ -8,6 +8,7 @@ export let parse = (obj, paren, wrapper) => {
     let outer = '';
     let blocks = '';
     let current = '';
+    let next;
 
     for (let key in obj) {
         let val = obj[key];
@@ -15,30 +16,27 @@ export let parse = (obj, paren, wrapper) => {
         // If this is a 'block'
         if (typeof val == 'object') {
             // Regular selector
-            let next = paren + ' ' + key;
+            next = paren.replace(/([^,])+/g, '$& ' + key) || key;
 
             // Nested
             if (/&/g.test(key)) next = key.replace(/&/g, paren);
 
-            // Media queries or other
+            // If these are the `@` rule
             if (key[0] == '@') {
-                next = paren;
-                // If this is the case for `@font-face`
+                // Handling the `@font-face` where the
+                // block doesn't need the brackets wrapped
                 if (key[1] == 'f') {
-                    next = key;
+                    blocks += parse(val, key);
+                } else {
+                    // Regular rule block
+                    blocks += key + '{' + parse(val, key[1] == 'k' ? '' : paren) + '}';
                 }
-            }
-
-            // If this is the `@keyframes`
-            if (/@k/.test(key)) {
-                // Take the key and inline it
-                blocks += key + '{' + parse(val, '', '') + '}';
             } else {
                 // Call the parse for this block
-                blocks += parse(val, next, next == paren ? key : wrapper || '');
+                blocks += parse(val, next, wrapper);
             }
         } else {
-            if (/^@i/.test(key)) {
+            if (key[0] == '@' && key[1] == 'i') {
                 outer = key + ' ' + val + ';';
             } else {
                 // Push the line for this property
@@ -54,13 +52,15 @@ export let parse = (obj, paren, wrapper) => {
     // If we have properties
     if (current[0]) {
         // Standard rule composition
-        let rule = paren + '{' + current + '}';
+        next = paren + '{' + current + '}';
 
         // With wrapper
-        if (wrapper) return blocks + wrapper + '{' + rule + '}';
+        if (wrapper) {
+            return blocks + wrapper + '{' + (wrapper[0] == '@' ? next : paren + current) + '}';
+        }
 
         // Else just push the rule
-        return outer + rule + blocks;
+        return outer + next + blocks;
     }
 
     return outer + blocks;
