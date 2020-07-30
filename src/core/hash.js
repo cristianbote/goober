@@ -13,7 +13,7 @@ let cache = {};
  * @param {Object} data
  * @returns {String}
  */
-function stringify(data) {
+let stringify = (data) => {
     let out = '';
 
     for (let p in data) {
@@ -22,7 +22,7 @@ function stringify(data) {
     }
 
     return out;
-}
+};
 
 /**
  * Generates the needed className
@@ -43,12 +43,12 @@ export let hash = (compiled, sheet, global, append) => {
         cache[className] ||
         (cache[className] = parse(
             compiled[0] ? astish(compiled) : compiled,
-            global ? '' : className
+            global ? '' : '.' + className
         ));
 
     // add or update
     update(parsed, sheet, append);
 
     // return hash
-    return className.slice(1);
+    return className;
 };

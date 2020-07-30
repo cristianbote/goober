@@ -72,8 +72,8 @@ describe('parse', () => {
 
         expect(out).toEqual(
             [
-                '@keyframes superAnimation{ 11.1%{opacity:0.9999;} 111%{opacity:1;}}',
-                '@keyframes foo{ to{baz:1px;foo:1px;}}'
+                '@keyframes superAnimation{11.1%{opacity:0.9999;}111%{opacity:1;}}',
+                '@keyframes foo{to{baz:1px;foo:1px;}}'
             ].join('')
         );
     });
@@ -163,13 +163,13 @@ describe('parse', () => {
                 'App .logo{animation:App-logo-spin infinite 20s linear;height:40vmin;pointer-events:none;}',
                 'App .header{background-color:#282c34;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:calc(10px + 2vmin);color:white;}',
                 'App .link{color:#61dafb;}',
-                '@keyframes App-logo-spin{ from{transform:rotate(0deg);} to{transform:rotate(360deg);}}'
+                '@keyframes App-logo-spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}'
             ].join('')
         );
     });
 
     // Not... supported
-    it.skip('@supports', () => {
+    it('@supports', () => {
         expect(
             parse(
                 {
@@ -179,12 +179,12 @@ describe('parse', () => {
                         }
                     }
                 },
-                'hash'
+                'hush'
             )
-        ).toEqual(['@supports (some: 1px){@media (s: 1){hush{display:flex;}}}']);
+        ).toEqual(['@supports (some: 1px){@media (s: 1){hush{display:flex;}}}'].join(''));
     });
 
-    it.skip('nested with multiple selector', () => {
+    it('nested with multiple selector', () => {
         const out = parse(
             {
                 display: 'value',

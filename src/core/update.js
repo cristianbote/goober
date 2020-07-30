@@ -3,7 +3,7 @@ import { getSheet } from './get-sheet';
  * Extracts and wipes the cache
  * @returns {String}
  */
-let extractCss = (target) => {
+export let extractCss = (target) => {
     let sheet = getSheet(target);
     let out = sheet.data;
     sheet.data = '';
@@ -16,8 +16,6 @@ let extractCss = (target) => {
  * @param {Object} sheet
  * @param {Boolean} append
  */
-let update = (css, sheet, append) => {
+export let update = (css, sheet, append) => {
     sheet.data.indexOf(css) < 0 && (sheet.data = append ? css + sheet.data : sheet.data + css);
 };
-
-export { extractCss, update };
