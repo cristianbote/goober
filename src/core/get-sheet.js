@@ -21,5 +21,5 @@ export let getSheet = (target) => {
         }
         return sheet.firstChild;
     } catch (e) {}
-    return ssr;
+    return target || ssr;
 };
