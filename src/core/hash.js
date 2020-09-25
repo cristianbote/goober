@@ -30,21 +30,22 @@ let stringify = (data) => {
  * @param {Object} sheet StyleSheet target
  * @param {Object} global Global flag
  * @param {Boolean} append Append or not
+ * @param {Boolean} keyframes Keyframes mode. The input is the keyframes body that needs to be wrapped.
  * @returns {String}
  */
-export let hash = (compiled, sheet, global, append) => {
-    // generate hash
-    let stringifiedCompiled = compiled.toLowerCase ? compiled : stringify(compiled);
+export let hash = (compiled, sheet, global, append, keyframes) => {
+    let ast = compiled[0] ? astish(compiled) : compiled;
+    let stringifiedCompiled = stringify(ast);
     let className =
         cache[stringifiedCompiled] || (cache[stringifiedCompiled] = toHash(stringifiedCompiled));
 
+    // If we are in _keyframes_ mode, define the wrapper for it
+    if (keyframes) {
+        ast = { ['@keyframes ' + className]: ast };
+    }
+
     // Parse the compiled
-    let parsed =
-        cache[className] ||
-        (cache[className] = parse(
-            compiled[0] ? astish(compiled) : compiled,
-            global ? '' : '.' + className
-        ));
+    let parsed = cache[className] || (cache[className] = parse(ast, global ? '' : '.' + className));
 
     // add or update
     update(parsed, sheet, append);
