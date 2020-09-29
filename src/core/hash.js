@@ -34,21 +34,24 @@ let stringify = (data) => {
  * @returns {String}
  */
 export let hash = (compiled, sheet, global, append, keyframes) => {
-    let ast = compiled[0] ? astish(compiled) : compiled;
-    let stringifiedCompiled = stringify(ast);
+    let stringifiedCompiled = typeof compiled == 'object' ? stringify(compiled) : compiled;
     let className =
         cache[stringifiedCompiled] || (cache[stringifiedCompiled] = toHash(stringifiedCompiled));
 
-    // If we are in _keyframes_ mode, define the wrapper for it
-    if (keyframes) {
-        ast = { ['@keyframes ' + className]: ast };
+    // If not
+    if (!cache[className]) {
+        // Build the _ast_-ish structure if needed
+        let ast = typeof compiled === 'object' ? compiled : astish(compiled);
+
+        // Parse it
+        cache[className] = parse(
+            keyframes ? { ['@keyframes ' + className]: ast } : ast,
+            global ? '' : '.' + className
+        );
     }
 
-    // Parse the compiled
-    let parsed = cache[className] || (cache[className] = parse(ast, global ? '' : '.' + className));
-
     // add or update
-    update(parsed, sheet, append);
+    update(cache[className], sheet, append);
 
     // return hash
     return className;
