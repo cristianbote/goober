@@ -34,6 +34,7 @@ I always wondered, if you can get a working solution for css-in-js with a smalle
     -   [targets](#targets)
     -   [extractCss](#extractcsstarget)
     -   [glob](#glob)
+    -   [keyframes](#keyframes)
 -   [Integrations](#integrations)
     -   [Babel Plugin](#babel-plugin)
     -   [Gatsby](#gatsby)
@@ -248,10 +249,11 @@ const CustomButton = (props) => (
 
 ```js
 import { css } from 'goober';
-const BtnClassName = props => css({
-    background: props.color,
-    borderRadius: props.radius + 'px'
-});
+const BtnClassName = (props) =>
+    css({
+        background: props.color,
+        borderRadius: props.radius + 'px'
+    });
 ```
 
 **Notice:** using `css` with object can reduce your bundle size.
@@ -319,6 +321,30 @@ glob`
   * {
     box-sizing: border-box;
   }
+`;
+```
+
+### `keyframes`
+
+`keyframes` is a helpful method to define reusable animations that can be decoupled from the main style declaration and shared across components.
+
+```js
+import { keyframes } from 'goober';
+
+const rotate = keyframes`
+    from, to {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+`;
+
+const Wicked = styled('div')`
+    background: tomato;
+    color: white;
+    animation: ${rotate} 1s ease-in-out;
 `;
 ```
 
