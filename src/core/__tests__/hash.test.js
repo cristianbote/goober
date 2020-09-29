@@ -69,6 +69,17 @@ describe('hash', () => {
         expect(res).toEqual('toHash()');
     });
 
+    it('regression: keyframes', () => {
+        const res = hash('keyframes', 'target', undefined, undefined, 1);
+
+        expect(toHash).toBeCalledWith('keyframes');
+        expect(astish).not.toBeCalled();
+        expect(parse).not.toBeCalled();
+        expect(update).toBeCalledWith('parse()', 'target', undefined);
+
+        expect(res).toEqual('toHash()');
+    });
+
     it('regression: object', () => {
         const className = Math.random() + 'unique';
         toHash.mockReturnValue(className);

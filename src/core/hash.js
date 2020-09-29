@@ -17,7 +17,7 @@ let stringify = (data) => {
     let out = '';
 
     for (let p in data) {
-        const val = data[p];
+        let val = data[p];
         out += p + (typeof val == 'object' ? stringify(data[p]) : data[p]);
     }
 
@@ -30,24 +30,32 @@ let stringify = (data) => {
  * @param {Object} sheet StyleSheet target
  * @param {Object} global Global flag
  * @param {Boolean} append Append or not
+ * @param {Boolean} keyframes Keyframes mode. The input is the keyframes body that needs to be wrapped.
  * @returns {String}
  */
-export let hash = (compiled, sheet, global, append) => {
-    // generate hash
-    let stringifiedCompiled = compiled.toLowerCase ? compiled : stringify(compiled);
+export let hash = (compiled, sheet, global, append, keyframes) => {
+    // Get a string representation of the object or the value that is called 'compiled'
+    let stringifiedCompiled = typeof compiled == 'object' ? stringify(compiled) : compiled;
+
+    // Retrieve the className from cache or hash it in place
     let className =
         cache[stringifiedCompiled] || (cache[stringifiedCompiled] = toHash(stringifiedCompiled));
 
-    // Parse the compiled
-    let parsed =
-        cache[className] ||
-        (cache[className] = parse(
-            compiled[0] ? astish(compiled) : compiled,
+    // If there's no entry for the current className
+    if (!cache[className]) {
+        // Build the _ast_-ish structure if needed
+        let ast = typeof compiled == 'object' ? compiled : astish(compiled);
+
+        // Parse it
+        cache[className] = parse(
+            // For keyframes
+            keyframes ? { ['@keyframes ' + className]: ast } : ast,
             global ? '' : '.' + className
-        ));
+        );
+    }
 
     // add or update
-    update(parsed, sheet, append);
+    update(cache[className], sheet, append);
 
     // return hash
     return className;

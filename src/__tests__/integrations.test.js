@@ -1,6 +1,6 @@
 import { h, createContext, render } from 'preact';
 import { useContext, forwardRef } from 'preact/compat';
-import { setup, styled } from '../index';
+import { setup, styled, keyframes } from '../index';
 import { extractCss } from '../core/update';
 
 describe('integrations', () => {
@@ -36,6 +36,21 @@ describe('integrations', () => {
         `
         );
 
+        const fadeAnimation = keyframes`
+            0% {
+                opacity: 0;
+            }
+            99% {
+                opacity: 1;
+                color: dodgerblue;
+            }
+        `;
+
+        const BoxWithAnimation = styled('span')`
+            opacity: 0;
+            animation: ${fadeAnimation} 500ms ease-in-out;
+        `;
+
         const refSpy = jest.fn();
 
         render(
@@ -49,13 +64,24 @@ describe('integrations', () => {
                     <BoxWithThemeColorFn />
                     <BoxWithThemeColor theme={{ color: 'green' }} />
                     <BoxWithThemeColorFn theme={{ color: 'orange' }} />
+                    <BoxWithAnimation />
                 </div>
             </ThemeContext.Provider>,
             target
         );
 
         expect(extractCss()).toMatchInlineSnapshot(
-            `" .go3865451590{color:red;}.go1925576363{color:blue;}.go3206651468{color:green;}.go4276997079{color:orange;}"`
+            [
+                '"',
+                ' ', // Empty white space that holds the textNode that the styles are appended
+                '@keyframes go384228713{0%{opacity:0;}99%{opacity:1;color:dodgerblue;}}',
+                '.go3865451590{color:red;}',
+                '.go1925576363{color:blue;}',
+                '.go3206651468{color:green;}',
+                '.go4276997079{color:orange;}',
+                '.go2069586824{opacity:0;animation:go384228713 500ms ease-in-out;}',
+                '"'
+            ].join('')
         );
 
         expect(refSpy).toHaveBeenCalledWith(
