@@ -14,7 +14,8 @@ function css(val) {
         _val.map ? compile(_val, [].slice.call(arguments, 1), ctx.p) : _val,
         getSheet(ctx.target),
         ctx.g,
-        ctx.o
+        ctx.o,
+        ctx.k
     );
 }
 
@@ -23,4 +24,6 @@ function css(val) {
  */
 let glob = css.bind({ g: 1 });
 
-export { css, glob };
+let keyframes = css.bind({ k: 1 });
+
+export { css, glob, keyframes };

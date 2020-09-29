@@ -5,6 +5,7 @@
  * The intermediate and final results are truncated into 32-bit
  * unsigned integers.
  * @param {String} str
+ * @returns {String}
  */
 export let toHash = (str) =>
     'go' + str.split('').reduce((out, i) => (101 * out + i.charCodeAt(0)) >>> 0, 11);
