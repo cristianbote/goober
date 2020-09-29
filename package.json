@@ -1,6 +1,6 @@
 {
   "name": "goober",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "A less than 1KB css-in-js solution",
   "sideEffects": false,
   "main": "dist/goober.js",
@@ -76,10 +76,10 @@
   "typings": "./goober.d.ts",
   "filesize": {
     "./dist/goober.module.js": {
-      "gzip": "1096B"
+      "gzip": "1150B"
     },
     "./dist/goober.js": {
-      "gzip": "1094B"
+      "gzip": "1150B"
     }
   },
   "lint-staged": {
