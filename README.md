@@ -34,6 +34,7 @@ I always wondered, if you can get a working solution for css-in-js with a smalle
     -   [targets](#targets)
     -   [extractCss](#extractcsstarget)
     -   [glob](#glob)
+    -   [keyframes](#keyframes)
 -   [Integrations](#integrations)
     -   [Babel Plugin](#babel-plugin)
     -   [Gatsby](#gatsby)
@@ -244,6 +245,19 @@ const CustomButton = (props) => (
 );
 ```
 
+##### Using `css` with JSON/Object
+
+```js
+import { css } from 'goober';
+const BtnClassName = (props) =>
+    css({
+        background: props.color,
+        borderRadius: props.radius + 'px'
+    });
+```
+
+**Notice:** using `css` with object can reduce your bundle size.
+
 We also can declare the styles at the top of the file by wrapping `css` into a function that we call to get the className.
 
 ```js
@@ -310,6 +324,30 @@ glob`
 `;
 ```
 
+### `keyframes`
+
+`keyframes` is a helpful method to define reusable animations that can be decoupled from the main style declaration and shared across components.
+
+```js
+import { keyframes } from 'goober';
+
+const rotate = keyframes`
+    from, to {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+`;
+
+const Wicked = styled('div')`
+    background: tomato;
+    color: white;
+    animation: ${rotate} 1s ease-in-out;
+`;
+```
+
 # Integrations
 
 ## Babel plugin
@@ -348,7 +386,7 @@ yarn add gatsby-plugin-goober
 -   [x] Vanilla(via `css` function)
 -   [x] `globalStyle`(via `glob`) so one would be able to create global styles
 -   [x] target/extract from elements other than `<head>`
--   [x][vendor prefixing] (#autoprefixer)
+-   [x] [vendor prefixing](#autoprefixer)
 
 # Sharing style
 

@@ -1,7 +1,8 @@
 {
   "name": "goober",
-  "version": "1.8.0",
+  "version": "2.0.5",
   "description": "A less than 1KB css-in-js solution",
+  "sideEffects": false,
   "main": "dist/goober.js",
   "module": "dist/goober.module.js",
   "umd:main": "dist/goober.umd.js",
@@ -34,7 +35,7 @@
     "clean": "rimraf dist",
     "size-check": "filesize",
     "build": "npm run build:core && npm run build:prefixer",
-    "build:prefixer": "microbundle --cwd packages/goober-autoprefixer",
+    "build:prefixer": "cd ./packages/goober-autoprefixer && npm run build",
     "build:core": "npm run clean && npm run build:dist && npm run size-check",
     "build:lib": "microbundle --entry src/index.js --name goober --no-sourcemap",
     "build:dist": "npm run build:lib -- --output dist",
@@ -83,16 +84,13 @@
   "peerDependencies": {
     "csstype": "^2.6.2"
   },
-  "dependencies": {
-    "tiny-css-prefixer": "^1.1.4"
-  },
   "typings": "./goober.d.ts",
   "filesize": {
     "./dist/goober.module.js": {
-      "gzip": "1090B"
+      "gzip": "1096B"
     },
     "./dist/goober.js": {
-      "gzip": "1090B"
+      "gzip": "1094B"
     }
   },
   "lint-staged": {

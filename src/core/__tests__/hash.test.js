@@ -13,7 +13,7 @@ jest.mock('../parse', () => ({
 }));
 
 jest.mock('../to-hash', () => ({
-    toHash: jest.fn().mockReturnValue('.toHash()')
+    toHash: jest.fn().mockReturnValue('toHash()')
 }));
 
 jest.mock('../update', () => ({
@@ -69,6 +69,17 @@ describe('hash', () => {
         expect(res).toEqual('toHash()');
     });
 
+    it('regression: keyframes', () => {
+        const res = hash('keyframes', 'target', undefined, undefined, 1);
+
+        expect(toHash).toBeCalledWith('keyframes');
+        expect(astish).not.toBeCalled();
+        expect(parse).not.toBeCalled();
+        expect(update).toBeCalledWith('parse()', 'target', undefined);
+
+        expect(res).toEqual('toHash()');
+    });
+
     it('regression: object', () => {
         const className = Math.random() + 'unique';
         toHash.mockReturnValue(className);
@@ -77,10 +88,10 @@ describe('hash', () => {
 
         expect(toHash).toBeCalledWith('baz1');
         expect(astish).not.toBeCalled();
-        expect(parse).toBeCalledWith({ baz: 1 }, className);
+        expect(parse).toBeCalledWith({ baz: 1 }, '.' + className);
         expect(update).toBeCalledWith('parse()', 'target', undefined);
 
-        expect(res).toEqual(className.substr(1));
+        expect(res).toEqual(className);
     });
 
     it('regression: cache-object', () => {

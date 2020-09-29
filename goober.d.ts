@@ -23,7 +23,7 @@ declare namespace goober {
     }
 
     const styled: StyledFunction;
-    function setup<T>(val: T, prefixer?: (key: string, val: any) => string): void;
+    function setup<T>(val: T, prefixer?: (key: string, val: any) => string, theme?: Function): void;
     function extractCss(): string;
     function glob(
         tag: CSSAttribute | TemplateStringsArray | string,

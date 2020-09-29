@@ -15,7 +15,9 @@ jobs:
               with:
                   fetch-depth: 1
             - name: Installing packages
-              run: npm install
+              run: |
+                  npm install
+                  npm --prefix ./packages/goober-autoprefixer install ./packages/goober-autoprefixer
             - name: Run tests
               run: npm run test
             - if: matrix.node-version == '14.x'

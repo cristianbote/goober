@@ -1,6 +1,6 @@
 {
     "name": "babel-plugin-transform-goober",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "A Babel plugin for goober, rewriting styled.div syntax to styled('div') calls",
     "main": "index.js",
     "license": "ISC",
@@ -10,6 +10,13 @@
         "directory": "packages/babel-plugin-transform-goober"
     },
     "author": "Joachim Viide <jviide@iki.fi>",
+    "contributors": [
+        {
+            "name": "Marvin ",
+            "email": "hello@marvinh.dev",
+            "url": "https://marvinh.dev"
+        }
+    ],
     "keywords": [
         "babel-plugin"
     ],

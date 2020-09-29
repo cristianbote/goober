@@ -1,3 +1,5 @@
 import React from 'react';
 import { setup } from 'goober';
-setup(React.createElement);
+import { prefix } from 'goober-autoprefixer';
+
+setup(React.createElement, prefix);

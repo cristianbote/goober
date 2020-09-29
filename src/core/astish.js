@@ -1,10 +1,10 @@
 let newRule = /(?:([a-z0-9-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(})/gi;
-let ruleClean = /\/\*.*?\*\/|\s{2,}|\n/gm;
+let ruleClean = /\/\*[\s\S]*?\*\/|\s{2,}|\n/gm;
 
 /**
  * Convert a css style string into a object
- * @param {string} val
- * @returns {object}
+ * @param {String} val
+ * @returns {Object}
  */
 export let astish = (val) => {
     let tree = [{}];

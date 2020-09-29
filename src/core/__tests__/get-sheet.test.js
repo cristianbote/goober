@@ -31,4 +31,15 @@ describe('getSheet', () => {
 
         global.document = bkp;
     });
+
+    it('server side with custom collection', () => {
+        const bkp = global.document;
+        delete global.document;
+
+        const collector = { data: '' };
+
+        expect(collector === getSheet(collector)).toBeTruthy();
+
+        global.document = bkp;
+    });
 });

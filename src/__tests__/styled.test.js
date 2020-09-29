@@ -1,156 +1,133 @@
-import { h, render } from 'preact';
 import { styled, setup } from '../styled';
-import { css } from '../css';
+import { extractCss } from '../core/update';
 
-jest.mock('../css', () => ({
-    css: jest.fn().mockReturnValue('css()')
-}));
+const pragma = jest.fn((tag, props) => {
+    return { tag, props: { ...props, className: props.className.replace(/go\d+/g, 'go') } };
+});
+
+expect.extend({
+    toMatchVNode(received, tag, props) {
+        expect(received.tag).toEqual(tag);
+        expect(received.props).toEqual(props);
+        return {
+            message: 'Expected vnode to match vnode',
+            pass: true
+        };
+    }
+});
 
 describe('styled', () => {
-    it('type', () => {
-        expect(typeof styled).toEqual('function');
+    beforeEach(() => {
+        pragma.mockClear();
+        setup(pragma);
+        extractCss();
     });
 
-    it('return type', () => {
-        expect(typeof styled()).toEqual('function');
-    });
-
-    it('setup', () => {
-        const pragma = jest.fn();
-
+    it('calls pragma', () => {
+        setup(undefined);
         expect(() => styled()()()).toThrow();
 
         setup(pragma);
-        styled()()();
+        const vnode = styled('div')``();
 
-        expect(pragma).toBeCalled();
-
-        setup(undefined);
+        expect(pragma).toBeCalledTimes(1);
+        expect(vnode).toMatchVNode('div', {
+            className: 'go'
+        });
     });
 
-    it('args', () => {
-        const _h = jest.fn().mockReturnValue('h()');
-        const p = { bar: 1 };
-        setup(_h);
+    it('extend props', () => {
+        const vnode = styled('tag')`
+            color: peachpuff;
+        `({ bar: 1 });
 
-        expect(
-            styled('tag')`
-                foo: 1;
-            `(p)
-        ).toEqual('h()');
-        expect(css).toBeCalledWith([expect.stringContaining('foo: 1')]);
-        expect(_h).toBeCalledWith('tag', Object.assign({}, p, { className: 'css()' }));
+        expect(vnode).toMatchVNode('tag', {
+            bar: 1,
+            className: 'go'
+        });
+        expect(extractCss()).toEqual('.go3183460609{color:peachpuff;}');
     });
 
-    it('args: concat className', () => {
-        const _h = jest.fn().mockReturnValue('h()');
-        const p = { bar: 1, className: 'existing' };
-        setup(_h);
+    it('concat className if present in props', () => {
+        const vnode = styled('tag')`
+            color: peachpuff;
+        `({ bar: 1, className: 'existing' });
 
-        expect(
-            styled('tag')`
-                foo: 1;
-            `(p)
-        ).toEqual('h()');
-        expect(css).toBeCalledWith([expect.stringContaining('foo: 1')]);
-        expect(_h).toBeCalledWith('tag', Object.assign({}, p, { className: 'css() existing' }));
+        expect(vnode).toMatchVNode('tag', {
+            bar: 1,
+            className: 'go existing'
+        });
     });
 
-    it('args: function', () => {
-        const _h = jest.fn().mockReturnValue('h()');
-        const incoming = { color: 'red' };
-        setup(_h);
+    it('pass template function', () => {
+        const vnode = styled('tag')((props) => ({ color: props.color }))({ color: 'red' });
 
-        const styleFn = (props) => ({ color: props.color });
-        expect(styled('tag')(styleFn)(incoming)).toEqual('h()');
-        expect(css).toBeCalledWith(styleFn);
-        expect(_h).toBeCalledWith('tag', Object.assign({}, incoming, { className: 'css()' }));
+        expect(vnode).toMatchVNode('tag', {
+            className: 'go',
+            color: 'red'
+        });
+        expect(extractCss()).toEqual('.go3433634237{color:red;}');
     });
 
-    it('args: as', () => {
-        const _h = jest.fn().mockReturnValue('h()');
-
-        setup(_h);
-
+    it('change tag via "as" prop', () => {
         const Tag = styled('tag')`
-            foo: 1;
+            color: red;
         `;
 
         // Simulate a render
-        Tag();
-        expect(_h).toBeCalledWith('tag', Object.assign({}, { className: 'css()' }));
+        let vnode = Tag();
+        expect(vnode).toMatchVNode('tag', { className: 'go' });
 
         // Simulate a render with
-        Tag({ as: 'foo' });
+        vnode = Tag({ as: 'foo' });
         // Expect it to be changed to foo
-        expect(_h).toBeCalledWith('foo', Object.assign({}, { className: 'css()', as: 'foo' }));
+        expect(vnode).toMatchVNode('foo', { className: 'go', as: 'foo' });
 
         // Simulate a render
-        Tag();
-        expect(_h).toBeCalledWith('tag', Object.assign({}, { className: 'css()' }));
+        vnode = Tag();
+        expect(vnode).toMatchVNode('tag', { className: 'go' });
     });
 
-    it('setup forwardRef', () => {
-        const _h = jest.fn().mockReturnValue('h()');
-        const forwardRef = jest
-            .fn()
-            .mockImplementation((Styled) => (props) => Styled(props, 'ref'));
-        const p = { bar: 1 };
-        setup(_h, null);
+    it('support forwardRef', () => {
+        const forwardRef = jest.fn((fn) => (props) => fn(props, 'ref'));
+        const vnode = styled('tag', forwardRef)`
+            color: red;
+        `({ bar: 1 });
 
-        expect(
-            styled('tag', forwardRef)`
-                foo: 1;
-            `(p)
-        ).toEqual('h()');
-
-        expect(_h).toBeCalledWith('tag', Object.assign({}, p, { className: 'css()', ref: 'ref' }));
+        expect(vnode).toMatchVNode('tag', {
+            bar: 1,
+            className: 'go',
+            ref: 'ref'
+        });
     });
 
     it('setup useTheme', () => {
-        jest.resetModules();
-        jest.unmock('../css');
-        jest.doMock('../core/hash', () => ({
-            hash: jest.fn().mockReturnValue('css()')
-        }));
+        setup(pragma, null, () => 'theme');
 
-        const { styled, setup } = require('../styled');
-        const _h = jest.fn().mockReturnValue('h()');
-        const useTheme = jest.fn().mockReturnValue('theme');
-        const p = { bar: 1 };
-        setup(_h, null, useTheme);
+        const styleFn = jest.fn(() => ({}));
+        const vnode = styled('tag')(styleFn)({ bar: 1 });
 
-        const styleFn = jest.fn().mockReturnValue({ color: 'red' });
-        expect(styled('tag')(styleFn)(p)).toEqual('h()');
-        expect(styleFn).toHaveBeenCalledWith(
-            Object.assign({}, p, {
-                className: 'css()',
-                theme: 'theme'
-            })
-        );
-        expect(_h).toBeCalledWith(
-            'tag',
-            Object.assign({}, p, { className: 'css()', theme: 'theme' })
-        );
-        expect(useTheme).toHaveBeenCalled();
+        expect(styleFn).toBeCalledWith({ bar: 1, theme: 'theme' });
+        expect(vnode).toMatchVNode('tag', {
+            bar: 1,
+            className: 'go'
+        });
     });
 
     it('setup useTheme with theme prop override', () => {
-        jest.resetModules();
-        jest.unmock('../css');
-        jest.doMock('../core/hash', () => ({
-            hash: jest.fn().mockReturnValue('css()')
-        }));
+        setup(pragma, null, () => 'theme');
 
-        const { styled, setup } = require('../styled');
-        const _h = jest.fn().mockReturnValue('h()');
-        const useTheme = jest.fn().mockReturnValue('theme');
-        const p = { theme: 'override' };
-        setup(_h, null, useTheme);
+        const styleFn = jest.fn(() => ({}));
+        const vnode = styled('tag')(styleFn)({ theme: 'override' });
 
-        const styleFn = jest.fn().mockReturnValue({ color: 'red' });
-        expect(styled('tag')(styleFn)(p)).toEqual('h()');
-        expect(styleFn).toHaveBeenCalledWith(Object.assign({ className: 'css()' }, p));
-        expect(_h).toBeCalledWith('tag', Object.assign({}, p, { className: 'css()' }));
+        expect(styleFn).toBeCalledWith({ theme: 'override' });
+        expect(vnode).toMatchVNode('tag', { className: 'go', theme: 'override' });
+    });
+
+    it('uses babel compiled classNames', () => {
+        const Comp = styled('tag')``;
+        Comp.className = 'foobar';
+        const vnode = Comp({});
+        expect(vnode).toMatchVNode('tag', { className: 'go foobar' });
     });
 });
