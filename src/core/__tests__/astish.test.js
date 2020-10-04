@@ -147,14 +147,17 @@ describe('astish', () => {
                 background: peachpuff;
                 font-size: xx-large; /* inline comment */
                 /* foo: bar */
-                font-weight: bold;
+                font-weight: bold;//comment
+                //font-style:italic;
+                font-style: normal;
             `)
         ).toEqual({
             color: 'red',
             transform: 'translate3d(0, 0, 0)',
             background: 'peachpuff',
             'font-size': 'xx-large',
-            'font-weight': 'bold'
+            'font-weight': 'bold',
+            'font-style': 'normal'
         });
     });
 
