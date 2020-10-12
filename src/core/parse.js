@@ -15,20 +15,6 @@ export let parse = (obj, selector, wrapper) => {
 
         // If this is a 'block'
         if (typeof val == 'object') {
-            next = selector
-                ? // Go over the selector and replace the matching multiple selectors if any
-                  selector.replace(/([^,])+/g, (sel) => {
-                      // Return the current selector with the key matching multiple selectors if any
-                      return key.replace(/([^,])+/g, (k) => {
-                          // If the current `k`(key) has a nested selector replace it
-                          if (/&/g.test(k)) return k.replace(/&/g, sel);
-
-                          // If there's a current selector concat it
-                          return sel ? sel + ' ' + k : k;
-                      });
-                  })
-                : key;
-
             // If these are the `@` rule
             if (key[0] == '@') {
                 // Handling the `@font-face` where the
@@ -40,6 +26,20 @@ export let parse = (obj, selector, wrapper) => {
                     blocks += key + '{' + parse(val, key[1] == 'k' ? '' : selector) + '}';
                 }
             } else {
+                next = selector
+                    ? // Go over the selector and replace the matching multiple selectors if any
+                      selector.replace(/([^,])+/g, (sel) => {
+                          // Return the current selector with the key matching multiple selectors if any
+                          return key.replace(/([^,])+/g, (k) => {
+                              // If the current `k`(key) has a nested selector replace it
+                              if (/&/g.test(k)) return k.replace(/&/g, sel);
+
+                              // If there's a current selector concat it
+                              return sel ? sel + ' ' + k : k;
+                          });
+                      })
+                    : key;
+
                 // Call the parse for this block
                 blocks += parse(val, next, wrapper);
             }
