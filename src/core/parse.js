@@ -1,10 +1,10 @@
 /**
  * Parses the object into css, scoped, blocks
  * @param {Object} obj
- * @param {String} paren
+ * @param {String} selector
  * @param {String} wrapper
  */
-export let parse = (obj, paren, wrapper) => {
+export let parse = (obj, selector, wrapper) => {
     let outer = '';
     let blocks = '';
     let current = '';
@@ -15,11 +15,19 @@ export let parse = (obj, paren, wrapper) => {
 
         // If this is a 'block'
         if (typeof val == 'object') {
-            // Regular selector
-            next = paren.replace(/([^,])+/g, '$& ' + key) || key;
+            next = selector
+                ? // Go over the selector and replace the matching multiple selectors if any
+                  selector.replace(/([^,])+/g, (sel) => {
+                      // Return the current selector with the key matching multiple selectors if any
+                      return key.replace(/([^,])+/g, (k) => {
+                          // If the current `k`(key) has a nested selector replace it
+                          if (/&/g.test(k)) return k.replace(/&/g, sel);
 
-            // Nested
-            if (/&/g.test(key)) next = key.replace(/&/g, paren);
+                          // If there's a current selector concat it
+                          return sel ? sel + ' ' + k : k;
+                      });
+                  })
+                : key;
 
             // If these are the `@` rule
             if (key[0] == '@') {
@@ -29,7 +37,7 @@ export let parse = (obj, paren, wrapper) => {
                     blocks += parse(val, key);
                 } else {
                     // Regular rule block
-                    blocks += key + '{' + parse(val, key[1] == 'k' ? '' : paren) + '}';
+                    blocks += key + '{' + parse(val, key[1] == 'k' ? '' : selector) + '}';
                 }
             } else {
                 // Call the parse for this block
@@ -52,11 +60,11 @@ export let parse = (obj, paren, wrapper) => {
     // If we have properties
     if (current[0]) {
         // Standard rule composition
-        next = paren + '{' + current + '}';
+        next = selector + '{' + current + '}';
 
         // With wrapper
         if (wrapper) {
-            return blocks + wrapper + '{' + (wrapper[0] == '@' ? next : paren + current) + '}';
+            return blocks + wrapper + '{' + (wrapper[0] == '@' ? next : selector + current) + '}';
         }
 
         // Else just push the rule
