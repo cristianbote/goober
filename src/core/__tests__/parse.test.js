@@ -183,7 +183,6 @@ describe('parse', () => {
         );
     });
 
-    // Not... supported
     it('@supports', () => {
         expect(
             parse(
@@ -208,6 +207,15 @@ describe('parse', () => {
                     span: {
                         index: 'unset'
                     }
+                },
+                'p,b,i': {
+                    display: 'block',
+                    '&:focus,input': {
+                        opacity: 1,
+                        'div,span': {
+                            opacity: 0
+                        }
+                    }
                 }
             },
             'hush'
@@ -216,7 +224,10 @@ describe('parse', () => {
             [
                 'hush{display:value;}',
                 'hush:hover,hush:focus{border:0;}',
-                'hush:hover span,hush:focus span{index:unset;}'
+                'hush:hover span,hush:focus span{index:unset;}',
+                'hush p,hush b,hush i{display:block;}',
+                'hush p:focus,hush p input,hush b:focus,hush b input,hush i:focus,hush i input{opacity:1;}',
+                'hush p:focus div,hush p:focus span,hush p input div,hush p input span,hush b:focus div,hush b:focus span,hush b input div,hush b input span,hush i:focus div,hush i:focus span,hush i input div,hush i input span{opacity:0;}'
             ].join('')
         );
     });
