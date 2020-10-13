@@ -4,7 +4,7 @@
  * @param {String} selector
  * @param {String} wrapper
  */
-export let parse = (obj, selector, wrapper) => {
+export let parse = (obj, selector) => {
     let outer = '';
     let blocks = '';
     let current = '';
@@ -41,7 +41,7 @@ export let parse = (obj, selector, wrapper) => {
                 }
             } else {
                 // Call the parse for this block
-                blocks += parse(val, next, wrapper);
+                blocks += parse(val, next);
             }
         } else {
             if (key[0] == '@' && key[1] == 'i') {
@@ -60,12 +60,7 @@ export let parse = (obj, selector, wrapper) => {
     // If we have properties
     if (current[0]) {
         // Standard rule composition
-        next = selector + '{' + current + '}';
-
-        // With wrapper
-        if (wrapper) {
-            return blocks + wrapper + '{' + (wrapper[0] == '@' ? next : selector + current) + '}';
-        }
+        next = selector ? selector + '{' + current + '}' : current;
 
         // Else just push the rule
         return outer + next + blocks;
