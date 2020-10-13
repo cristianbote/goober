@@ -191,11 +191,39 @@ describe('parse', () => {
                         '@media (s: 1)': {
                             display: 'flex'
                         }
+                    },
+                    '@supports': {
+                        opacity: 1
                     }
                 },
                 'hush'
             )
-        ).toEqual(['@supports (some: 1px){@media (s: 1){hush{display:flex;}}}'].join(''));
+        ).toEqual(
+            [
+                '@supports (some: 1px){@media (s: 1){hush{display:flex;}}}',
+                '@supports{hush{opacity:1;}}'
+            ].join('')
+        );
+    });
+
+    it('unwrapp', () => {
+        expect(
+            parse(
+                {
+                    '--foo': 1,
+                    opacity: 1,
+                    '@supports': {
+                        '--bar': 'none'
+                    },
+                    html: {
+                        background: 'goober'
+                    }
+                },
+                ''
+            )
+        ).toEqual(
+            ['--foo:1;opacity:1;', '@supports{--bar:none;}', 'html{background:goober;}'].join('')
+        );
     });
 
     it('nested with multiple selector', () => {
