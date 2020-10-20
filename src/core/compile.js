@@ -1,3 +1,5 @@
+import { parse } from './parse';
+
 /**
  * Can parse a compiled string, from a tagged template
  * @param {String} value
@@ -24,8 +26,8 @@ export let compile = (str, defs, data) => {
                   '.' + end
                 : // If `res` it's not falsy and not a vnode, we could just dump it
                 // since the value it's an dynamic value
-                res && res.props
-                ? ''
+                res && typeof res == 'object'
+                ? parse(res, '')
                 : res;
         }
         return out + next + (tail == null ? '' : tail);
