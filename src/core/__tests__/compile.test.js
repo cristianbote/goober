@@ -15,7 +15,7 @@ describe('compile', () => {
         );
 
         // Empty or falsy
-        expect(template`prop: 1; ${() => ({ props: {} })}`({})).toEqual('prop: 1; ');
+        expect(template`prop: 1; ${() => ({ props: { foo: 1 } })}`({})).toEqual('prop: 1; ');
     });
 
     it('vanilla classname', () => {
@@ -24,7 +24,9 @@ describe('compile', () => {
 
     it('value interpolations', () => {
         // This interpolations are testing the ability to interpolate thruty and falsy values
-        expect(template`prop: 1; ${() => 0},${() => undefined},${2}`({})).toEqual('prop: 1; 0,,2');
+        expect(template`prop: 1; ${() => 0},${() => undefined},${() => null},${2}`({})).toEqual(
+            'prop: 1; 0,,,2'
+        );
     });
 
     describe('objects', () => {
