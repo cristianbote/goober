@@ -16,6 +16,14 @@ describe('integrations', () => {
             color: red;
         `;
 
+        const SpanWrapper = styled('div')`
+            color: cyan;
+
+            ${Span} {
+                border: 1px solid red;
+            }
+        `;
+
         const BoxWithColor = styled('div')`
             color: ${(props) => props.color};
         `;
@@ -58,6 +66,9 @@ describe('integrations', () => {
                 <div>
                     <Span ref={refSpy} />
                     <Span as={'div'} />
+                    <SpanWrapper>
+                        <Span />
+                    </SpanWrapper>
                     <BoxWithColor color={'red'} />
                     <BoxWithColorFn color={'red'} />
                     <BoxWithThemeColor />
@@ -76,6 +87,8 @@ describe('integrations', () => {
                 ' ', // Empty white space that holds the textNode that the styles are appended
                 '@keyframes go384228713{0%{opacity:0;}99%{opacity:1;color:dodgerblue;}}',
                 '.go3865451590{color:red;}',
+                '.go3991234422{color:cyan;}',
+                '.go3991234422 .go3865451590{border:1px solid red;}',
                 '.go1925576363{color:blue;}',
                 '.go3206651468{color:green;}',
                 '.go4276997079{color:orange;}',

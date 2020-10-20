@@ -1,3 +1,5 @@
+import { parse } from './parse';
+
 /**
  * Can parse a compiled string, from a tagged template
  * @param {String} value
@@ -19,14 +21,17 @@ export let compile = (str, defs, data) => {
             // previously styled className by checking the prefix
             let end = className || (/^go/.test(res) && res);
 
-            tail = end
-                ? // If the `end` is defined means it's a className
-                  '.' + end
-                : // If `res` it's not falsy and not a vnode, we could just dump it
-                // since the value it's an dynamic value
-                res && res.props
-                ? ''
-                : res;
+            if (end) {
+                // If the `end` is defined means it's a className
+                tail = '.' + end;
+            } else if (res && typeof res == 'object') {
+                // If `res` it's an object, we're either dealing with a vnode
+                // or an object returned from a function interpolation
+                tail = res.props ? '' : parse(res, '');
+            } else {
+                // Regular value returned. Can be falsy as well
+                tail = res;
+            }
         }
         return out + next + (tail == null ? '' : tail);
     }, '');
