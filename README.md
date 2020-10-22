@@ -203,6 +203,22 @@ import { setup } from 'goober';
 setup(React.createElement);
 ```
 
+With theme:
+```js
+import React from 'react';
+import { setup, styled } from 'goober';
+
+const theme = { primary: 'blue' };
+const ThemeContext = createContext(theme);
+const useTheme = () => useContext(ThemeContext);
+
+setup(React.createElement, undefined, useTheme);
+
+const ContainerWithTheme = styled('div')`
+  color: ${(props) => props.theme.primary};
+`;
+```
+
 ### `css(taggedTemplate)`
 
 -   `@returns {String}` Returns the className.
