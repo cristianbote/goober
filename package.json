@@ -17,6 +17,11 @@
     "typings.json",
     "goober.d.ts"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/goober.module.js"
+    }
+  },
   "scripts": {
     "test": "npm run test-ts && npm run test-unit -- --ci --coverage && npm run build && npm run test-perf",
     "test-perf": "NODE_ENV=production node benchmarks/perf.js",
@@ -45,7 +50,10 @@
     "preact"
   ],
   "author": "Cristian <botecristian@yahoo.com>",
-  "repository": "https://github.com/cristianbote/goober",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cristianbote/goober"
+  },
   "license": "ISC",
   "devDependencies": {
     "@ampproject/filesize": "^4.0.0",
