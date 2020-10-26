@@ -1,4 +1,6 @@
 import { h, ComponentChildren } from 'preact';
+import { forwardRef as preactForwardRef } from 'preact/compat';
+import { forwardRef as reactForwardRef } from 'react';
 import { styled, setup, css, glob } from '../goober';
 
 setup(h);
@@ -76,6 +78,10 @@ const testStyledCss = () => {
             </div>
         );
     };
+
+    const ReactForwardRefTest = styled('div', reactForwardRef);
+
+    const PreactForwardRefTest = styled('div', preactForwardRef);
 };
 
 const testGlob = () => {
