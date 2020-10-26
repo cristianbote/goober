@@ -5,10 +5,14 @@ export = goober;
 export as namespace goober;
 
 declare namespace goober {
+    interface DefaultTheme {}
+
+    type Theme<T extends object> = keyof T extends never ? T : { theme: T };
+
     interface StyledFunction {
         // used when creating a styled component from a native HTML element
         <T extends keyof JSX.IntrinsicElements, P extends Object = {}>(tag: T): Tagged<
-            JSX.LibraryManagedAttributes<T, JSX.IntrinsicElements[T]> & P
+            JSX.LibraryManagedAttributes<T, JSX.IntrinsicElements[T]> & P & Theme<DefaultTheme>
         >;
 
         // used to extend other styled components. Inherits props from the extended component
@@ -43,7 +47,7 @@ declare namespace goober {
         ...props: Array<
             string | number | ((props: P & PP) => CSSAttribute | string | number | undefined)
         >
-    ) => StyledVNode<P & PP>;
+    ) => StyledVNode<Omit<P & PP, keyof Theme<DefaultTheme>>>;
     interface CSSAttribute extends CSSProperties {
         [key: string]: CSSAttribute | string | number | undefined;
     }
