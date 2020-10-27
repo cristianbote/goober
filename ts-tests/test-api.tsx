@@ -3,6 +3,15 @@ import { forwardRef as preactForwardRef } from 'preact/compat';
 import { forwardRef as reactForwardRef } from 'react';
 import { styled, setup, css, glob } from '../goober';
 
+// This would be an ambient module declaration in the client's project
+declare module '../goober' {
+    export interface DefaultTheme {
+        colors: {
+            primary: string;
+        };
+    }
+}
+
 setup(h);
 
 const testStyledCss = () => {
@@ -59,6 +68,11 @@ const testStyledCss = () => {
         background: props.disabled ? 'gray' : 'tomato'
     }));
 
+    const ThemeContainer = styled('div')<{ isActive: boolean }>`
+        color: ${(props) => (props.isActive ? 'tomato' : 'dodgerblue')};
+        background-color: ${(props) => props.theme.colors.primary};
+    `;
+
     const TestComp = () => {
         return (
             <div>
@@ -75,6 +89,7 @@ const testStyledCss = () => {
                 <Childless />
                 <StyledHello name="you" />
                 <StyledObject disabled />
+                <ThemeContainer isActive={true} />
             </div>
         );
     };

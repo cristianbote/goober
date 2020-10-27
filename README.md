@@ -30,6 +30,8 @@ I always wondered, if you can get a working solution for css-in-js with a smalle
 -   [API](#api)
     -   [styled](#styledtagname)
     -   [setup](#setpragmapragma-function)
+        -   [With prefixer](#with-prefixer)
+        -   [With theme](#with-theme)
     -   [css](#csstaggedtemplate)
     -   [targets](#targets)
     -   [extractCss](#extractcsstarget)
@@ -203,7 +205,19 @@ import { setup } from 'goober';
 setup(React.createElement);
 ```
 
-With theme:
+#### With prefixer
+
+```js
+import React from 'react';
+import { setup } from 'goober';
+
+const customPrefixer = (key, value) => `${key}: ${value};\n`;
+
+setup(React.createElement, customPrefixer);
+```
+
+#### With theme
+
 ```js
 import React from 'react';
 import { setup, styled } from 'goober';
@@ -215,7 +229,7 @@ const useTheme = () => useContext(ThemeContext);
 setup(React.createElement, undefined, useTheme);
 
 const ContainerWithTheme = styled('div')`
-  color: ${(props) => props.theme.primary};
+    color: ${(props) => props.theme.primary};
 `;
 ```
 
