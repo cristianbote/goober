@@ -19,7 +19,10 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/goober.module.js"
+      "browser": "./dist/goober.module.js",
+      "import": "./dist/goober.module.js",
+      "require": "./dist/goober.js",
+      "umd": "./dist/goober.umd.js"
     }
   },
   "scripts": {
