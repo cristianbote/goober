@@ -1,4 +1,6 @@
 import { h, ComponentChildren } from 'preact';
+import { forwardRef as preactForwardRef } from 'preact/compat';
+import { forwardRef as reactForwardRef } from 'react';
 import { styled, setup, css, glob } from '../goober';
 
 // This would be an ambient module declaration in the client's project
@@ -91,6 +93,10 @@ const testStyledCss = () => {
             </div>
         );
     };
+
+    const ReactForwardRefTest = styled('div', reactForwardRef);
+
+    const PreactForwardRefTest = styled('div', preactForwardRef);
 };
 
 const testGlob = () => {

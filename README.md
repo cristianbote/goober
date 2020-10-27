@@ -204,6 +204,7 @@ import { setup } from 'goober';
 
 setup(React.createElement);
 ```
+
 #### With prefixer
 
 ```js
@@ -228,7 +229,7 @@ const useTheme = () => useContext(ThemeContext);
 setup(React.createElement, undefined, useTheme);
 
 const ContainerWithTheme = styled('div')`
-  color: ${(props) => props.theme.primary};
+    color: ${(props) => props.theme.primary};
 `;
 ```
 
