@@ -59,6 +59,12 @@ describe('integrations', () => {
             animation: ${fadeAnimation} 500ms ease-in-out;
         `;
 
+        const BoxWithConditionals = styled('div')([
+            { foo: 1 },
+            (props) => ({ color: props.isActive ? 'red' : 'tomato' }),
+            { baz: 0 }
+        ]);
+
         const refSpy = jest.fn();
 
         render(
@@ -76,6 +82,7 @@ describe('integrations', () => {
                     <BoxWithThemeColor theme={{ color: 'green' }} />
                     <BoxWithThemeColorFn theme={{ color: 'orange' }} />
                     <BoxWithAnimation />
+                    <BoxWithConditionals isActive />
                 </div>
             </ThemeContext.Provider>,
             target
@@ -93,6 +100,7 @@ describe('integrations', () => {
                 '.go3206651468{color:green;}',
                 '.go4276997079{color:orange;}',
                 '.go2069586824{opacity:0;animation:go384228713 500ms ease-in-out;}',
+                '.go631307347{foo:1;color:red;baz:0;}',
                 '"'
             ].join('')
         );
