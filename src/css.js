@@ -9,7 +9,6 @@ import { getSheet } from './core/get-sheet';
 function css(val) {
     let ctx = this || {};
     let _val = val.call ? val(ctx.p) : val;
-    let sheet = getSheet(ctx.target);
 
     return hash(
         _val.map
@@ -17,7 +16,7 @@ function css(val) {
                 ? compile(_val, [].slice.call(arguments, 1), ctx.p)
                 : _val.reduce((o, i) => Object.assign(o, i.call ? i(ctx.p) : i))
             : _val,
-        sheet,
+        getSheet(ctx.target),
         ctx.g,
         ctx.o,
         ctx.k
