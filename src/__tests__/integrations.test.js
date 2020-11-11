@@ -62,6 +62,9 @@ describe('integrations', () => {
         const BoxWithConditionals = styled('div')([
             { foo: 1 },
             (props) => ({ color: props.isActive ? 'red' : 'tomato' }),
+            null,
+            { baz: 0 },
+            false,
             { baz: 0 }
         ]);
 
