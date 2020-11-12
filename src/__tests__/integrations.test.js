@@ -1,6 +1,6 @@
 import { h, createContext, render } from 'preact';
 import { useContext, forwardRef } from 'preact/compat';
-import { setup, styled, keyframes } from '../index';
+import { setup, css, styled, keyframes } from '../index';
 import { extractCss } from '../core/update';
 
 describe('integrations', () => {
@@ -68,6 +68,10 @@ describe('integrations', () => {
             { baz: 0 }
         ]);
 
+        const shared = { opacity: 0 };
+        const BoxWithShared = styled('div')(shared);
+        const BoxWithSharedAndConditional = styled('div')([shared, { baz: 0 }]);
+
         const refSpy = jest.fn();
 
         render(
@@ -86,6 +90,9 @@ describe('integrations', () => {
                     <BoxWithThemeColorFn theme={{ color: 'orange' }} />
                     <BoxWithAnimation />
                     <BoxWithConditionals isActive />
+                    <BoxWithShared />
+                    <BoxWithSharedAndConditional />
+                    <div className={css([shared, { background: 'cyan' }])} />
                 </div>
             </ThemeContext.Provider>,
             target
@@ -96,6 +103,7 @@ describe('integrations', () => {
                 '"',
                 ' ', // Empty white space that holds the textNode that the styles are appended
                 '@keyframes go384228713{0%{opacity:0;}99%{opacity:1;color:dodgerblue;}}',
+                '.go1127809067{opacity:0;background:cyan;}',
                 '.go3865451590{color:red;}',
                 '.go3991234422{color:cyan;}',
                 '.go3991234422 .go3865451590{border:1px solid red;}',
@@ -104,6 +112,8 @@ describe('integrations', () => {
                 '.go4276997079{color:orange;}',
                 '.go2069586824{opacity:0;animation:go384228713 500ms ease-in-out;}',
                 '.go631307347{foo:1;color:red;baz:0;}',
+                '.go3865943372{opacity:0;}',
+                '.go1162430001{opacity:0;baz:0;}',
                 '"'
             ].join('')
         );
