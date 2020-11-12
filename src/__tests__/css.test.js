@@ -44,6 +44,22 @@ describe('css', () => {
         expect(out).toEqual('hash()');
     });
 
+    it('args: array', () => {
+        const payload = [{ foo: 1 }, { baz: 2 }, { opacity: 0, color: 'red' }];
+        const out = css(payload);
+
+        expect(hash).toBeCalledWith(
+            { foo: 1, baz: 2, opacity: 0, color: 'red' },
+            'getSheet()',
+            undefined,
+            undefined,
+            undefined
+        );
+        expect(compile).not.toBeCalled();
+        expect(getSheet).toBeCalled();
+        expect(out).toEqual('hash()');
+    });
+
     it('args: function', () => {
         const incoming = { foo: 'foo' };
         const out = css.call({ p: incoming }, (props) => ({ foo: props.foo }));

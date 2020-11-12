@@ -11,7 +11,13 @@ function css(val) {
     let _val = val.call ? val(ctx.p) : val;
 
     return hash(
-        _val.map ? compile(_val, [].slice.call(arguments, 1), ctx.p) : _val,
+        _val.map
+            ? _val.raw
+                ? // Tagged templates
+                  compile(_val, [].slice.call(arguments, 1), ctx.p)
+                : // Regular arrays
+                  _val.reduce((o, i) => (i ? Object.assign(o, i.call ? i(ctx.p) : i) : o))
+            : _val,
         getSheet(ctx.target),
         ctx.g,
         ctx.o,
@@ -21,9 +27,14 @@ function css(val) {
 
 /**
  * CSS Global function to declare global styles
+ * @type {Function}
  */
 let glob = css.bind({ g: 1 });
 
+/**
+ * `keyframes` function for defining animations
+ * @type {Function}
+ */
 let keyframes = css.bind({ k: 1 });
 
 export { css, glob, keyframes };
