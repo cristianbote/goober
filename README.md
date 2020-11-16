@@ -321,6 +321,10 @@ btn.classList.add(BtnClassName({ size: 20 }));
 const App = () => <button className={BtnClassName({ size: 20 })}>click</button>;
 ```
 
+The difference between calling `css` directly and wrapping into a function is the timing of its execution. The former is when the component(file) is imported, the latter is when it is actually rendered.
+
+If you use `extractCSS` for SSR, you may prefer to use the latter or `styled` api to avoid inconsistent results.
+
 ### `targets`
 
 By default, goober will append a style tag to the `<head>` of a document. You might want to target a different node, for instance, when you want to use goober with web components (so you'd want it to append style tags to individual shadowRoots). For this purpose, you can `.bind` a new target to the `styled` and `css` methods:
