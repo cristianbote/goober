@@ -22,7 +22,7 @@ declare namespace goober {
         <PP extends Object = {}, P extends Object = {}>(
             tag: StyledVNode<PP>,
             forwardRef?: ForwardRefFunction
-        ): Tagged<PP & P>;
+        ): Tagged<PP & P & Theme<DefaultTheme>>;
 
         // used when creating a component from a string (html native) but using a non HTML standard
         // component, such as when you want to style web components
