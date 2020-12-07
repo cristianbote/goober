@@ -1,7 +1,7 @@
 import { h, ComponentChildren } from 'preact';
 import { forwardRef as preactForwardRef } from 'preact/compat';
 import { forwardRef as reactForwardRef } from 'react';
-import { styled, setup, css, glob } from '../goober';
+import { styled, setup, css, glob, keyframes } from '../goober';
 
 // This would be an ambient module declaration in the client's project
 declare module '../goober' {
@@ -53,6 +53,19 @@ const testStyledCss = () => {
         color: purple;
     `;
 
+    const animation = keyframes`
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    `;
+
+    const Animated = styled('div')`
+        animation: ${animation} 1s ease-in-out;
+    `;
+
     const HelloComponent = (props: { name: string }) => <h1>Hello, {props.name}</h1>;
 
     const StyledHello = styled(HelloComponent)`
@@ -89,6 +102,7 @@ const testStyledCss = () => {
                 <Childless />
                 <StyledHello name="you" />
                 <StyledObject disabled />
+                <Animated>test</Animated>
                 <ThemeContainer isActive={true} />
             </div>
         );
