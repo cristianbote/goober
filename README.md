@@ -39,6 +39,7 @@ I always wondered, if you can get a working solution for css-in-js with a smalle
     -   [keyframes](#keyframes)
 -   [Integrations](#integrations)
     -   [Babel Plugin](#babel-plugin)
+    -   [Babel Macro Plugin](#babel-macro-plugin)
     -   [Gatsby](#gatsby)
 -   [Features](#features)
     -   [Sharing Style](#sharing-style)
@@ -409,6 +410,27 @@ yarn add --dev babel-plugin-transform-goober
 ```
 
 Visit the package in here for more info (https://github.com/cristianbote/goober/tree/master/packages/babel-plugin-transform-goober)
+
+## Babel macro plugin
+
+A [babel-plugin-macros][babel-plugin-macros] macro for [🥜goober][goober], rewriting `styled.div` syntax to `styled('div')` calls.
+
+### Usage
+
+Once you've configured [babel-plugin-macros][babel-plugin-macros], change your imports from `goober` to `goober/macro`.
+
+Now you can create your components using `styled.*` syntax:.
+
+```js
+import { styled } from 'goober/macro';
+
+const Button = styled.button`
+    margin: 0;
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: tomato;
+`;
+```
 
 ## [Gatsby](https://github.com/gatsbyjs/gatsby)
 
