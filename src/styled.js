@@ -45,7 +45,15 @@ function styled(tag, forwardRef) {
                 _props.ref = ref;
             }
 
-            return h(_props.as || tag, _props);
+            let _propsToPass = {};
+
+            for (const key in _props) {
+                if (key[0] !== '$') {
+                    _propsToPass[key] = _props[key];
+                }
+            }
+
+            return h(_props.as || tag, _propsToPass);
         }
 
         return forwardRef ? forwardRef(Styled) : Styled;
