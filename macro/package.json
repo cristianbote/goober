@@ -1,12 +1,12 @@
 {
-  "name": "babel-macro-goober",
+  "name": "goober.macro",
   "version": "1.0.0",
   "description": "A babel macro for goober, rewriting styled.div to styled('div') calls",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/cristianbote/goober.git",
-    "directory": "packages/babel-macro-goober"
+    "directory": "macro"
   },
   "author": "Hadeeb Farhan <hadeebfarhan1@gmail.com>",
   "keywords": [

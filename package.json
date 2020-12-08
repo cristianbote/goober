@@ -1,6 +1,6 @@
 {
   "name": "goober",
-  "version": "2.0.16",
+  "version": "2.0.17",
   "description": "A less than 1KB css-in-js solution",
   "sideEffects": false,
   "main": "dist/goober.js",
@@ -11,6 +11,7 @@
   "types": "goober.d.ts",
   "files": [
     "src",
+    "macro",
     "README.md",
     "dist",
     "package.json",
@@ -23,6 +24,11 @@
       "import": "./dist/goober.module.js",
       "require": "./dist/goober.js",
       "umd": "./dist/goober.umd.js"
+    },
+    "./macro": {
+      "browser": "./macro/index.js",
+      "import": "./macro/index.js",
+      "require": "./macro/index.js"
     }
   },
   "scripts": {

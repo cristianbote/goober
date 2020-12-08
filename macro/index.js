@@ -11,9 +11,9 @@ function gooberMacro({ references, babel, state }) {
     }
 
     // Inject import {...} from 'goober'
-    Object.keys(references).forEach(refName => {
+    Object.keys(references).forEach((refName) => {
         const id = addNamed(program, refName, 'goober');
-        references[refName].forEach(referencePath => {
+        references[refName].forEach((referencePath) => {
             referencePath.node.name = id.name;
         });
     });
@@ -22,7 +22,7 @@ function gooberMacro({ references, babel, state }) {
 
     const styledReferences = references.styled || [];
 
-    styledReferences.forEach(referencePath => {
+    styledReferences.forEach((referencePath) => {
         const type = referencePath.parentPath.type;
 
         if (type === 'MemberExpression') {
