@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/hHXmkvE.png" width="500" alt="goober" />
+  <img src="./goober_cover.png" width="500" alt="goober" />
 </p>
 
 🥜 goober, a less than 1KB css-in-js solution.
