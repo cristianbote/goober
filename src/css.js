@@ -11,7 +11,7 @@ function css(val) {
     let _val = val.call ? val(ctx.p) : val;
 
     return hash(
-        _val.map
+        _val.unshift
             ? _val.raw
                 ? // Tagged templates
                   compile(_val, [].slice.call(arguments, 1), ctx.p)
