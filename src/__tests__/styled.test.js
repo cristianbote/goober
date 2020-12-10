@@ -131,7 +131,7 @@ describe('styled', () => {
         expect(vnode).toMatchVNode('tag', { className: 'go foobar' });
     });
 
-    it('skips transient props', () => {
+    it('omits transient props', () => {
         const vnode = styled('tag')`
             color: peachpuff;
         `({ bar: 1, $templateColumns: '1fr 1fr' });
