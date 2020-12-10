@@ -58,7 +58,7 @@ export let parse = (obj, selector) => {
     }
 
     // If we have properties
-    if (current[0x0]) {
+    if (current[0]) {
         // Standard rule composition
         next = selector ? selector + '{' + current + '}' : current;
 
