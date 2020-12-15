@@ -43,7 +43,8 @@
   "scripts": {
     "test": "npm run test-ts && npm run test-unit -- --ci --coverage && npm run build && npm run test-perf",
     "test-perf": "NODE_ENV=production node benchmarks/perf.js",
-    "test-unit": "jest --setupFiles ./tests/setup.js",
+    "test-unit": "jest --setupFiles ./tests/setup.js --roots ./src packages && npm run test-addon-global",
+    "test-addon-global": "cd global && npm run test",
     "test-ts": "tsc -p ts-tests",
     "clean": "rimraf dist",
     "size-check": "filesize",
