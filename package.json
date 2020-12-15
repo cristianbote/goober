@@ -12,7 +12,9 @@
   "files": [
     "src",
     "macro",
-    "global",
+    "global/dist",
+    "global/src",
+    "global/package.json",
     "README.md",
     "dist",
     "package.json",
