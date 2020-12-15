@@ -1,0 +1,39 @@
+{
+  "name": "goober-global",
+  "amdName": "gooberGlobal",
+  "version": "0.0.1",
+  "description": "The createGlobalStyles addon function for goober",
+  "sideEffects": false,
+  "main": "dist/goober-global.js",
+  "module": "dist/goober-global.module.js",
+  "umd:main": "dist/goober-global.umd.js",
+  "source": "src/index.js",
+  "unpkg": "dist/goober-global.umd.js",
+  "scripts": {
+    "build:lib": "microbundle --entry src/index.js --name gooberGlobal --no-sourcemap",
+    "test": "jest --setupFiles ./jest.setup.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cristianbote/goober.git",
+    "directory": "global"
+  },
+  "author": "Cristian <botecristian@yahoo.com>",
+  "keywords": [
+    "goober",
+    "styled",
+    "global"
+  ],
+  "license": "ISC",
+  "peerDependencies": {
+    "goober": "^2.0.18"
+  },
+  "devDependencies": {
+    "microbundle": "^0.12.4",
+    "jest": "^24.1.0",
+    "preact": "^10.5.6",
+    "@babel/plugin-transform-react-jsx": "^7.7.0",
+    "@babel/preset-env": "^7.3.1",
+    "babel-jest": "^24.1.0"
+  }
+}

@@ -12,6 +12,7 @@
   "files": [
     "src",
     "macro",
+    "global",
     "README.md",
     "dist",
     "package.json",
@@ -29,6 +30,12 @@
       "browser": "./macro/index.js",
       "import": "./macro/index.js",
       "require": "./macro/index.js"
+    },
+    "./global": {
+      "browser": "./global/dist/goober-global.module.js",
+      "import": "./global/dist/goober-global.module.js",
+      "require": "./global/dist/goober-global.js",
+      "umd": "./global/dist/goober-global.umd.js"
     }
   },
   "scripts": {
