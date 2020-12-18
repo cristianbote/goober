@@ -28,14 +28,14 @@ I always wondered, if you can get a working solution for css-in-js with a smalle
     -   [Browser](#browser)
     -   [SSR](#ssr-1)
 -   [API](#api)
-    -   [styled](#styledtagname)
-    -   [setup](#setpragmapragma-function)
+    -   [styled](#styledtagname-string--function-forwardref-function)
+    -   [setup](#setuppragma-function-prefixer-function-theme-function)
         -   [With prefixer](#with-prefixer)
         -   [With theme](#with-theme)
     -   [css](#csstaggedtemplate)
     -   [targets](#targets)
     -   [extractCss](#extractcsstarget)
-    -   [glob](#glob)
+    -   [createGlobalStyles](#createglobalstyles)
     -   [keyframes](#keyframes)
 -   [Integrations](#integrations)
     -   [Babel Plugin](#babel-plugin)
@@ -354,9 +354,38 @@ const styleTag = `<style id="_goober">${extractCss()}</style>`;
 // Note: To be able to `hydrate` the styles you should use the proper `id` so `goober` can pick it up and use it as the target from now on
 ```
 
-### `glob`
+### `createGlobalStyles`
 
-To create a global style, you need to call `glob` with your global tagged template. Usually here's a good idea to place document wide styles.
+To define your global styles you need to create a `GlobalStyles` component and use it as part of your tree. The `createGlobalStyles` is available at `goober/global` addon.
+
+```js
+import { createGlobalStyles } from 'goober/global';
+
+const GlobalStyles = createGlobalStyles`
+  html,
+  body {
+    background: light;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+`;
+
+export default function App() {
+    return (
+        <div id="root">
+            <GlobalStyles />
+            <Navigation>
+            <RestOfYourApp>
+        </div>
+    )
+}
+```
+
+#### How about using `glob` function directly?
+
+Before the global addon, `goober/global`, there was a method named `glob` that was part of the main package that would do the same thing, more or less. Having only that method to define global styles usually led to missing global styles from the extracted css, since the pattern did not enforced the evaluation of the styles at render time. The `glob` method it is still exported from `goober/global` if you have a hard dependency on it. It still has the same API:
 
 ```js
 import { glob } from 'goober';
