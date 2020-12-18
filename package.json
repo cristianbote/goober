@@ -1,6 +1,6 @@
 {
   "name": "goober",
-  "version": "2.0.17",
+  "version": "2.0.19-next.1",
   "description": "A less than 1KB css-in-js solution",
   "sideEffects": false,
   "main": "dist/goober.js",
@@ -12,6 +12,9 @@
   "files": [
     "src",
     "macro",
+    "global/dist",
+    "global/src",
+    "global/package.json",
     "README.md",
     "dist",
     "package.json",
@@ -29,12 +32,19 @@
       "browser": "./macro/index.js",
       "import": "./macro/index.js",
       "require": "./macro/index.js"
+    },
+    "./global": {
+      "browser": "./global/dist/goober-global.module.js",
+      "import": "./global/dist/goober-global.module.js",
+      "require": "./global/dist/goober-global.js",
+      "umd": "./global/dist/goober-global.umd.js"
     }
   },
   "scripts": {
     "test": "npm run test-ts && npm run test-unit -- --ci --coverage && npm run build && npm run test-perf",
     "test-perf": "NODE_ENV=production node benchmarks/perf.js",
-    "test-unit": "jest --setupFiles ./tests/setup.js",
+    "test-unit": "jest --setupFiles ./tests/setup.js --roots ./src packages && npm run test-addon-global",
+    "test-addon-global": "cd global && npm run test",
     "test-ts": "tsc -p ts-tests",
     "clean": "rimraf dist",
     "size-check": "filesize",
