@@ -18,7 +18,7 @@ let stringify = (data) => {
 
     for (let p in data) {
         let val = data[p];
-        out += p + (typeof val == 'object' ? stringify(data[p]) : data[p]);
+        out += p + (typeof val == 'object' ? stringify(val) : val);
     }
 
     return out;
