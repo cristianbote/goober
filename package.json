@@ -1,6 +1,6 @@
 {
   "name": "goober",
-  "version": "2.0.19-next.1",
+  "version": "2.0.19-next.2",
   "description": "A less than 1KB css-in-js solution",
   "sideEffects": false,
   "main": "dist/goober.js",
@@ -28,7 +28,7 @@
   ],
   "exports": {
     ".": {
-      "browser": "./dist/goober.module.js",
+      "browser": "./dist/goober.modern.js",
       "import": "./dist/goober.mjs",
       "require": "./dist/goober.js",
       "umd": "./dist/goober.umd.js"
@@ -39,13 +39,13 @@
       "require": "./macro/index.js"
     },
     "./global": {
-      "browser": "./global/dist/goober-global.module.js",
+      "browser": "./global/dist/goober-global.modern.js",
       "import": "./global/dist/goober-global.mjs",
       "require": "./global/dist/goober-global.js",
       "umd": "./global/dist/goober-global.umd.js"
     },
     "./prefixer": {
-      "browser": "./prefixer/dist/goober-autoprefixer.module.js",
+      "browser": "./prefixer/dist/goober-autoprefixer.modern.js",
       "import": "./prefixer/dist/goober-autoprefixer.mjs",
       "require": "./prefixer/dist/goober-autoprefixer.js",
       "umd": "./prefixer/dist/goober-autoprefixer.umd.js"
