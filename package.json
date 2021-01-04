@@ -1,10 +1,10 @@
 {
   "name": "goober",
-  "version": "2.0.19-next.1",
+  "version": "2.0.19-next.3",
   "description": "A less than 1KB css-in-js solution",
   "sideEffects": false,
   "main": "dist/goober.js",
-  "module": "dist/goober.module.js",
+  "module": "dist/goober.mjs",
   "umd:main": "dist/goober.umd.js",
   "source": "src/index.js",
   "unpkg": "dist/goober.umd.js",
@@ -15,6 +15,11 @@
     "global/dist",
     "global/src",
     "global/package.json",
+    "prefixer/dist",
+    "prefixer/src",
+    "prefixer/package.json",
+    "prefixer/autoprefixer.d.ts",
+    "prefixer/README.md",
     "README.md",
     "dist",
     "package.json",
@@ -23,8 +28,8 @@
   ],
   "exports": {
     ".": {
-      "browser": "./dist/goober.module.js",
-      "import": "./dist/goober.module.js",
+      "browser": "./dist/goober.modern.js",
+      "import": "./dist/goober.mjs",
       "require": "./dist/goober.js",
       "umd": "./dist/goober.umd.js"
     },
@@ -34,10 +39,16 @@
       "require": "./macro/index.js"
     },
     "./global": {
-      "browser": "./global/dist/goober-global.module.js",
-      "import": "./global/dist/goober-global.module.js",
+      "browser": "./global/dist/goober-global.modern.js",
+      "import": "./global/dist/goober-global.mjs",
       "require": "./global/dist/goober-global.js",
       "umd": "./global/dist/goober-global.umd.js"
+    },
+    "./prefixer": {
+      "browser": "./prefixer/dist/goober-autoprefixer.modern.js",
+      "import": "./prefixer/dist/goober-autoprefixer.mjs",
+      "require": "./prefixer/dist/goober-autoprefixer.js",
+      "umd": "./prefixer/dist/goober-autoprefixer.umd.js"
     }
   },
   "scripts": {
@@ -45,11 +56,13 @@
     "test-perf": "NODE_ENV=production node benchmarks/perf.js",
     "test-unit": "jest --setupFiles ./tests/setup.js --roots ./src packages && npm run test-addon-global",
     "test-addon-global": "cd global && npm run test",
+    "test-addon-prefixer": "cd prefixer && npm run test",
     "test-ts": "tsc -p ts-tests",
     "clean": "rimraf dist",
     "size-check": "filesize",
-    "build": "npm run build:core && npm run build:prefixer",
-    "build:prefixer": "cd ./packages/goober-autoprefixer && npm run build",
+    "build": "npm run build:core && npm run build:prefixer && npm run build:global",
+    "build:prefixer": "cd ./prefixer && npm run build",
+    "build:global": "cd ./global && npm run build:lib",
     "build:core": "npm run clean && npm run build:dist && npm run size-check",
     "build:lib": "microbundle --entry src/index.js --name goober --no-sourcemap",
     "build:dist": "npm run build:lib -- --output dist",
@@ -102,7 +115,7 @@
   },
   "typings": "./goober.d.ts",
   "filesize": {
-    "./dist/goober.module.js": {
+    "./dist/goober.modern.js": {
       "gzip": "1200B"
     },
     "./dist/goober.js": {
