@@ -13,7 +13,7 @@
     "url": "https://www.jovidecroock.com/"
   },
   "scripts": {
-    "build": "microbundle --entry src/index.js --name gooberPrefixer --no-sourcemap",
+    "build": "rm -rf ./dist && microbundle --entry src/index.js --name gooberPrefixer --no-sourcemap",
     "test": "jest"
   },
   "devDependencies": {
