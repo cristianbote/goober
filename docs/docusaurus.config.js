@@ -1,8 +1,8 @@
 module.exports = {
     title: 'goober',
     tagline: 'a less than 1KB 🎉 css-in-js alternative with a familiar API',
-    url: 'https://cristianbote.github.io',
-    baseUrl: '/goober/',
+    url: 'https://goober.js.org',
+    baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
