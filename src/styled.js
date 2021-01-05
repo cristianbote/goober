@@ -47,7 +47,7 @@ function styled(tag, forwardRef) {
                 _props.ref = ref;
             }
 
-            const _propsToPass = forwardProp
+            let _propsToPass = forwardProp
                 ? Object.keys(_props)
                       .filter(forwardProp)
                       .reduce((acc, curr) => {
