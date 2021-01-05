@@ -13,6 +13,6 @@ jobs:
             - name: Installing packages
               run: |
                   npm install
-                  npm --prefix ./packages/goober-autoprefixer install ./packages/goober-autoprefixer
+                  npm --prefix ./prefixer install ./prefixer
             - name: Run tests
               run: npm run test
