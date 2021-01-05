@@ -1,14 +1,15 @@
 import { css } from './css';
 import { parse } from './core/parse';
 
-let h, useTheme;
-function setup(pragma, prefix, theme) {
+let h, useTheme, forwardProp;
+function setup(pragma, prefix, theme, shouldForwardProp) {
     // This one needs to stay in here, so we won't have cyclic dependencies
     parse.p = prefix;
 
     // These are scope to this context
     h = pragma;
     useTheme = theme;
+    forwardProp = shouldForwardProp;
 }
 
 /**
@@ -46,7 +47,16 @@ function styled(tag, forwardRef) {
                 _props.ref = ref;
             }
 
-            return h(_props.as || tag, _props);
+            const _propsToPass = forwardProp
+                ? Object.keys(_props)
+                      .filter(forwardProp)
+                      .reduce((acc, curr) => {
+                          acc[curr] = _props[curr];
+                          return acc;
+                      }, {})
+                : _props;
+
+            return h(_props.as || tag, _propsToPass);
         }
 
         return forwardRef ? forwardRef(Styled) : Styled;
