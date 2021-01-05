@@ -130,4 +130,16 @@ describe('styled', () => {
         const vnode = Comp({});
         expect(vnode).toMatchVNode('tag', { className: 'go foobar' });
     });
+
+    it('omits css prop with falsy should forward prop function', () => {
+        const shouldForwardProp = (prop) => !prop.includes('$');
+        // Overwrite setup for this test
+        setup(pragma, undefined, undefined, shouldForwardProp);
+
+        const vnode = styled('tag')`
+            color: peachpuff;
+        `({ bar: 1, $templateColumns: '1fr 1fr' });
+
+        expect(vnode).toMatchVNode('tag', { className: 'go', bar: 1 });
+    });
 });
