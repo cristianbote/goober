@@ -4,7 +4,7 @@ A css autoprefixer for [🥜goober](https://github.com/cristianbote/goober) usin
 
 ## Install
 
-`npm install --save goober goober-autoprefixer`
+`npm install --save goober`
 
 ## How to use it
 
@@ -13,7 +13,7 @@ This packages exports a `prefix` function that needs to be passed to goober's `s
 ```jsx
 import React from 'react';
 import { setup } from 'goober';
-import { prefix } from 'goober-autoprefixer';
+import { prefix } from 'goober/prefixer';
 
 // Setup goober for react with autoprefixer
 setup(React.createElement, prefix);

@@ -1,6 +1,6 @@
 import { prefix } from '../src';
 
-const sanitize = str => str.replace(/\s/g, '');
+const sanitize = (str) => str.replace(/\s/g, '');
 
 describe('goober-autoprefixer', () => {
     it('can prefix values', () => {
