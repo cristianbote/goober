@@ -6,7 +6,7 @@ export const Text = styled('p')(({ theme, size, faded, accent, bold, color, mono
         fontWeight: bold ? 'bold' : 'normal',
         fontSize: theme.fontSizes[size] || theme.fontSizes[200],
         color: 'currentcolor',
-        lineHeight: 1.4,
+        lineHeight: 1.6,
         letterSpacing: '0.01em'
     },
     faded && { color: theme.colors['gray-300'] },

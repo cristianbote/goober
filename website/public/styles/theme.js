@@ -12,6 +12,8 @@ export const theme = {
         'accent-100': '#ed553b',
         'accent-200': '#0894a1',
         'accent-300': '#8c76ff',
+        'accent-400': '#30a5b0',
+        'accent-500': '#f17964',
         error: 'tomato'
     },
     sizes: {
@@ -23,7 +25,14 @@ export const theme = {
         600: '3em',
         700: '4em'
     },
-    fontSizes: { 100: '0.75em', 200: '1em', 300: '1.25em', 400: '1.75em', 500: '2.5em' },
+    fontSizes: {
+        100: '0.75em',
+        200: '1em',
+        300: '1.25em',
+        400: '1.75em',
+        500: '2.5em',
+        600: '3.5em'
+    },
     widthSmall: '766px',
     maxWidth: '1024px'
 };

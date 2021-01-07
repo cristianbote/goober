@@ -1,33 +1,35 @@
 import { styled } from 'goober';
 
-export const Button = styled('button')(({ theme, plain }) => [
+export const Button = styled('button')(({ theme, secondary }) => [
     {
         display: 'flex',
         padding: [theme.sizes[300], theme.sizes[400]].join(' '),
-        backgroundColor: theme.colors['accent-200'],
+        backgroundColor: theme.colors['gray-100'],
         color: theme.colors['white'],
         borderRadius: theme.sizes[500],
         border: 0,
         fontSize: theme.fontSizes[300],
-        fontWeight: 'bold',
+        letterSpacing: 0,
+        fontWeight: 'normal',
         cursor: 'pointer',
-        boxShadow: [0, theme.sizes[100], theme.sizes[400], theme.colors['black']].join(' '),
-        transition: 'transform 100ms ease-out',
+        boxShadow: [0, theme.sizes[100], theme.sizes[400], theme.colors['gray-25']].join(' '),
+        transition: 'transform 100ms ease-out, letter-spacing 200ms ease-out',
         transform: 'translateY(0)',
         '&:active,&:focus': {
             outline: 0
         },
         '&:hover': {
-            transform: 'translateY(-2px) scale(1.05)'
+            transform: 'translateY(-2px)'
         }
     },
-    plain
+    secondary
         ? {
-              backgroundColor: theme.colors['gray-100'],
-              fontWeight: 'normal',
-              color: theme.colors.white,
-              boxShadow: 'unset',
+              backgroundColor: theme.colors['accent-200'],
+              backgroundImage: `linear-gradient(to left, ${theme.colors['accent-200']}, ${theme.colors['accent-100']})`,
+              fontWeight: 'bold',
+              boxShadow: [0, theme.sizes[100], theme.sizes[400], theme.colors['black']].join(' '),
               '&:hover': {
+                  letterSpacing: '1px',
                   transform: 'translateY(-2px)'
               }
           }

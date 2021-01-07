@@ -6,14 +6,10 @@
 	"scripts": {
 		"start": "wmr",
 		"build": "rm -rf ./build && wmr build --prerender && npm run postbuild",
-		"postbuild": "cp ./static/. ./dist"
+		"postbuild": "cp -a ./static/. ./dist"
 	},
 	"eslintConfig": {
 		"extends": "preact"
-	},
-	"alias": {
-		"react": "preact/compat",
-		"react-dom": "preact/compat"
 	},
 	"dependencies": {
 		"goober": "^2.0.19",

@@ -1,10 +1,24 @@
 import { styled } from 'goober';
 
 export const Box = styled('div')(
-    ({ theme, bg, size, centered, horizontal, reactive, flex, full, onTop, rounded, max }) => [
+    ({
+        theme,
+        bg,
+        border,
+        size,
+        centered,
+        horizontal,
+        reactive,
+        flex,
+        full,
+        onTop,
+        rounded,
+        max
+    }) => [
         {
             display: 'flex',
             flexShrink: 0,
+            position: 'relative',
             flexDirection: horizontal ? 'row' : 'column',
             margin: 0,
             padding: theme.sizes[size] || 0,
@@ -12,6 +26,11 @@ export const Box = styled('div')(
             justifyContent: centered ? 'center' : 'flex-start'
         },
         rounded ? { borderRadius: theme.sizes[rounded] } : null,
+        border
+            ? {
+                  border: `1px solid ${theme.colors[border]}`
+              }
+            : null,
         onTop ? { zIndex: 1 } : null,
         flex ? { flex: 1 } : null,
         full ? { width: '100%' } : null,
