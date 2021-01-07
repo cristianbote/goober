@@ -489,8 +489,6 @@ export default (config, env) => {
 ```
 When you build your Preact application this will run `extractCss` on your prerendered pages and add critical styles for each page.
 
-Visit the package in here for more info (https://github.com/gerhardsletten/preact-cli-goober-ssr)
-
 # Features
 
 -   [x] Basic CSS parsing
