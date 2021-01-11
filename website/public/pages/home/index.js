@@ -1,6 +1,7 @@
 import { styled } from 'goober';
 import { Box } from '../../components/box/box';
 import { Button } from '../../components/button/button';
+import { Feature } from '../../components/feature/feature';
 import { Text } from '../../components/text/text';
 
 const BoxWithBorder = styled(Box)(({ theme }) => ({
@@ -9,7 +10,7 @@ const BoxWithBorder = styled(Box)(({ theme }) => ({
 
 const BoxOverlapAndShadow = styled(Box)(({ theme, size }) => ({
     boxShadow: [0, theme.sizes[100], theme.sizes[400], theme.colors['gray-25']].join(' '),
-    marginBottom: '-' + theme.sizes[size]
+    marginTop: '-' + theme.sizes[size]
 }));
 
 const TopLeft = styled(Box)(({ theme }) => ({
@@ -29,18 +30,6 @@ const Dot = styled('div')(({ theme, bg }) => ({
     backgroundColor: theme.colors[bg]
 }));
 
-const Keyword = styled('span')(({ theme }) => ({
-    color: theme.colors['accent-200']
-}));
-
-const Value = styled('span')(({ theme }) => ({
-    color: theme.colors['accent-100']
-}));
-
-const Prop = styled('span')(({ theme }) => ({
-    color: theme.colors['accent-300']
-}));
-
 const Code = styled('pre')(({ theme }) => ({
     color: theme.colors['gray-300'],
     fontSize: theme.fontSizes['300'],
@@ -56,7 +45,7 @@ export default function Home() {
     return (
         <Box full>
             <Box size={700} centered full>
-                <Text size={600} as="h1" bold>
+                <Text size={600} as="h1" bold spaced>
                     <Text as="span" bold color="accent-100">
                         g
                     </Text>
@@ -88,13 +77,11 @@ export default function Home() {
                     <Button>GitHub</Button>
                 </Box>
                 <Box size={500} />
-                <Box bg="gray-25" centered full>
-                    <Box size={500} />
-                    <Box size={600} rounded={300} border="gray-100">
+                <Box centered full>
+                    <Box size={600} rounded={300} bg="gray-25">
                         <Code
                             dangerouslySetInnerHTML={{
-                                __html: `
-<i>import</i> { <b>styled</b> } <i>from</i> <u>'goober'</u>;
+                                __html: `<i>import</i> { <b>styled</b> } <i>from</i> <u>'goober'</u>;
 
 <i>const</i> <b>Button</b> = <b>styled</b>(<u>'button'</u>)\`
   <i>border</i>: 0;
@@ -110,12 +97,10 @@ export default function Home() {
       <i>color</i/>: black;
     }
   }
-\`;
-`
+\`;`
                             }}
                         />
                     </Box>
-                    <Box size={500} />
                     <BoxOverlapAndShadow bg="gray-50" size={500} rounded={300}>
                         <TopLeft>
                             <Dot bg="accent-100" />
@@ -132,7 +117,7 @@ export default function Home() {
                 </Box>
                 <Box size={600} />
                 <Text size={300} bold>
-                    Some of the features
+                    Features
                 </Text>
                 <Text size={300} faded>
                     Even though small in size &nbsp;
@@ -145,63 +130,45 @@ export default function Home() {
                 <Box size={400} />
                 <Box horizontal full max reactive size={400}>
                     <Box flex>
-                        <Box size={200}>
-                            <Text size={300} bold>
-                                Lightweight
-                            </Text>
-                            <Box size={200} />
-                            <Text size={200} faded>
-                                As the subtitle notes, this is the smallest and fullest featured
-                                css-in-js solution out there. Weighing at 1KB and once bundled it's
-                                gonna be less due to tree-shake.
-                            </Text>
-                        </Box>
+                        <Feature title={'Lightweight'}>
+                            As the subtitle notes, this is the smallest and fullest featured
+                            css-in-js solution out there. Weighing at 1KB and once bundled it's
+                            gonna be less due to tree-shake.
+                        </Feature>
                         <Box size={400} />
-                        <Box size={200}>
-                            <Text size={300} bold>
-                                Familiar API
+                        <Feature title={'Familiar API'}>
+                            <Text color="accent-100" size={200} bold as="span">
+                                goober
+                            </Text>{' '}
+                            &nbsp; is built on the shoulders of well established solutions. That
+                            means the API has been paved and we need to follow it. You'll find{' '}
+                            &nbsp;
+                            <Text color="accent-200" size={200} bold as="span">
+                                as
                             </Text>
-                            <Box size={200} />
-                            <Text size={200} faded>
-                                <Text color="accent-100" size={200} bold as="span">
-                                    goober
-                                </Text>{' '}
-                                &nbsp; is built on the shoulders of well established solutions. That
-                                means the API has been paved and we need to follow it. You'll find{' '}
-                                &nbsp;
-                                <Text color="accent-200" size={200} bold as="span">
-                                    as
-                                </Text>
-                                , &nbsp;
-                                <Text color="accent-200" size={200} bold as="span">
-                                    forwardRef
-                                </Text>
-                                , &nbsp;
-                                <Text color="accent-200" size={200} bold as="span">
-                                    css
-                                </Text>
-                                , &nbsp;
-                                <Text color="accent-200" size={200} bold as="span">
-                                    keyframes
-                                </Text>
-                                , &nbsp;
-                                <Text color="accent-200" size={200} bold as="span">
-                                    styled
-                                </Text>{' '}
-                                &nbsp; and so much more.
+                            , &nbsp;
+                            <Text color="accent-200" size={200} bold as="span">
+                                forwardRef
                             </Text>
-                        </Box>
+                            , &nbsp;
+                            <Text color="accent-200" size={200} bold as="span">
+                                css
+                            </Text>
+                            , &nbsp;
+                            <Text color="accent-200" size={200} bold as="span">
+                                keyframes
+                            </Text>
+                            , &nbsp;
+                            <Text color="accent-200" size={200} bold as="span">
+                                styled
+                            </Text>{' '}
+                            &nbsp; and so much more.
+                        </Feature>
                         <Box size={400} />
-                        <Box size={200}>
-                            <Text size={300} bold>
-                                Themeing
-                            </Text>
-                            <Box size={200} />
-                            <Text size={200} faded>
-                                Easily access your common sizes, colors, anything really with the
-                                use of a theme.
-                            </Text>
-                        </Box>
+                        <Feature title="Themeing">
+                            Easily access your common sizes, colors, anything really with the use of
+                            a theme.
+                        </Feature>
                     </Box>
                     <Box size={300} />
                     <Box flex>
@@ -259,7 +226,6 @@ export default function Home() {
                             <Text size={100} bold>
                                 goober
                             </Text>
-                            <Box size={300} />
                             <Text size={100}>A less than 1KB css-in-js solution.</Text>
                             <Box size={300} />
                             <Text size={100}>Maintained with love by a bunch of good people.</Text>

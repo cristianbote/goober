@@ -34,7 +34,7 @@ export const Box = styled('div')(
         onTop ? { zIndex: 1 } : null,
         flex ? { flex: 1 } : null,
         full ? { width: '100%' } : null,
-        max ? { maxWidth: theme.widthSmall } : null,
+        max ? { maxWidth: theme.maxWidth } : null,
         bg && { backgroundColor: theme.colors[bg] },
         reactive
             ? {
