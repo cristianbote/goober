@@ -28,6 +28,7 @@ module.exports = {
             darkTheme: require('prism-react-renderer/themes/dracula')
         },
         navbar: {
+            hideOnScroll: true,
             logo: {
                 alt: 'goober',
                 src: 'img/logo.png'
