@@ -47,16 +47,10 @@ function styled(tag, forwardRef) {
                 _props.ref = ref;
             }
 
-            let _propsToPass = forwardProp
-                ? Object.keys(_props)
-                      .filter(forwardProp)
-                      .reduce((acc, curr) => {
-                          acc[curr] = _props[curr];
-                          return acc;
-                      }, {})
-                : _props;
+            // Handle the forward props filter if defined
+            if (fwdProp) fwdProp(_props);
 
-            return h(_props.as || tag, _propsToPass);
+            return h(_props.as || tag, _props);
         }
 
         return forwardRef ? forwardRef(Styled) : Styled;
