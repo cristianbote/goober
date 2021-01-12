@@ -1,15 +1,15 @@
 import { css } from './css';
 import { parse } from './core/parse';
 
-let h, useTheme, forwardProp;
-function setup(pragma, prefix, theme, shouldForwardProp) {
+let h, useTheme, fwdProp;
+function setup(pragma, prefix, theme, forwardProp) {
     // This one needs to stay in here, so we won't have cyclic dependencies
     parse.p = prefix;
 
     // These are scope to this context
     h = pragma;
     useTheme = theme;
-    forwardProp = shouldForwardProp;
+    fwdProp = forwardProp;
 }
 
 /**
