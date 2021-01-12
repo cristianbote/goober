@@ -10,14 +10,21 @@
 [![version](https://img.shields.io/npm/v/goober)](https://www.npmjs.com/package/goober)
 [![status](https://travis-ci.org/cristianbote/goober.svg?branch=master)](https://travis-ci.org/cristianbote/goober)
 [![gzip size](https://img.badgesize.io/https://unpkg.com/goober@latest/dist/goober.module.js?compression=gzip)](https://unpkg.com/goober)
-[![downloads](https://img.shields.io/npm/dw/goober)](https://www.npmjs.com/package/goober)
+[![downloads](https://img.shields.io/npm/dm/goober)](https://www.npmjs.com/package/goober)
 [![coverage](https://img.shields.io/codecov/c/github/cristianbote/goober.svg?maxAge=2592000)](https://codecov.io/github/cristianbote/goober?branch=master)
 [![Slack](https://img.shields.io/badge/slack-join-orange)](https://join.slack.com/t/gooberdev/shared_invite/enQtOTM5NjUyOTcwNzI1LWUwNzg0NTQwODY1NDJmMzQ2NzdlODI4YTM3NWUwYjlkY2ZkNGVmMTFlNGMwZGUyOWQyZmI4OTYwYmRiMzE0NGQ)
 [![Greenkeeper badge](https://badges.greenkeeper.io/cristianbote/goober.svg)](https://greenkeeper.io/)
 
 # Motivation
 
-I always wondered, if you can get a working solution for css-in-js with a smaller footprint. I started a project and wanted a to use styled-components. Looking at their sizes, it seems that I would rather not include ~12kB([styled-components](https://github.com/styled-components/styled-components)) or ~11kB([emotion](https://github.com/emotion-js/emotion)) just so I can use the `styled` paradigm. So, I embarked in a mission to create a smaller alternative for these well established apis.
+I always wondered, if you can get a working solution for css-in-js with a smaller footprint. So, while I was working on a side-project I wanted a to use styled-components or more accurate the `styled` pattern. Looking at the JavaScript bundled sizes, I quickly realized that I would have to include ~12kB([styled-components](https://github.com/styled-components/styled-components)) or ~11kB([emotion](https://github.com/emotion-js/emotion)) just so I can use the `styled` paradigm. So, I embarked in a mission to create a smaller alternative for these well established apis.
+
+# Why the peanuts emoji?
+
+It's a pun on the tagline.
+
+> css-in-js at the cost of peanuts!
+> 🥜goober
 
 # Table of contents
 
@@ -98,11 +105,11 @@ You can get the critical CSS for SSR, via `extractCss`. Take a look at this exam
 
 # Benchmarks
 
-You results are included inside the build output as well.
+The results are included inside the build output as well.
 
 ## Browser
 
-These are not yet measured. Need some time.
+Comming soon!
 
 ## SSR
 
