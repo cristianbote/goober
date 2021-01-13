@@ -132,7 +132,11 @@ describe('styled', () => {
     });
 
     it('omits css prop with falsy should forward prop function', () => {
-        const shouldForwardProp = (prop) => !prop.includes('$');
+        const shouldForwardProp = (props) => {
+            for (let prop in props) {
+                if (prop.includes('$')) delete props[prop];
+            }
+        };
         // Overwrite setup for this test
         setup(pragma, undefined, undefined, shouldForwardProp);
 
