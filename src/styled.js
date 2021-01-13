@@ -2,14 +2,14 @@ import { css } from './css';
 import { parse } from './core/parse';
 
 let h, useTheme, fwdProp;
-function setup(pragma, prefix, theme, forwardProp) {
+function setup(pragma, prefix, theme, forwardProps) {
     // This one needs to stay in here, so we won't have cyclic dependencies
     parse.p = prefix;
 
     // These are scope to this context
     h = pragma;
     useTheme = theme;
-    fwdProp = forwardProp;
+    fwdProp = forwardProps;
 }
 
 /**
@@ -48,7 +48,9 @@ function styled(tag, forwardRef) {
             }
 
             // Handle the forward props filter if defined
-            if (fwdProp) fwdProp(_props);
+            if (fwdProp) {
+                fwdProp(_props);
+            }
 
             return h(_props.as || tag, _props);
         }

@@ -39,14 +39,16 @@ declare namespace goober {
         (props: any, ref: any): any;
     };
 
-    type ForwardPropFunction = (prop: string) => boolean;
+    type ForwardPropsFunction = {
+        (props: object): undefined;
+    };
 
     const styled: StyledFunction;
     function setup<T>(
         val: T,
         prefixer?: (key: string, val: any) => string,
         theme?: Function,
-        shouldForwardProp?: ForwardPropFunction
+        forwardProps?: ForwardPropsFunction
     ): void;
     function extractCss(): string;
     function glob(
