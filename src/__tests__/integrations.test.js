@@ -164,7 +164,8 @@ describe('integrations', () => {
                 '<span class="go2081835032"></span>',
                 '</div>',
                 '"'
-            ].join('')
+            ].join(''),
+            `"<div><div class=\\"go103173764\\"></div><div class=\\"go103194166\\"></div><span class=\\"go2081835032\\"></span></div>"`
         );
 
         expect(extractCss()).toMatchInlineSnapshot(
