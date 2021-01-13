@@ -39,6 +39,7 @@ It's a pun on the tagline.
     -   [setup](#setuppragma-function-prefixer-function-theme-function-forwardprops-function)
         -   [With prefixer](#with-prefixer)
         -   [With theme](#with-theme)
+        -   [With forwardProps](#with-forwardProps)
     -   [css](#csstaggedtemplate)
     -   [targets](#targets)
     -   [extractCss](#extractcsstarget)
@@ -270,6 +271,21 @@ setup(React.createElement, undefined, undefined, (props) => {
         // Or any other conditions.
         // This could also check if this is a dev build and not remove the props
         if (prop === 'size') {
+            delete props[prop];
+        }
+    }
+});
+```
+
+The functionality of "transient props" (with a "$" prefix) can be implemented as follows:
+
+```js
+import React from 'react';
+import { setup, styled } from 'goober';
+
+setup(React.createElement, undefined, undefined, (props) => {
+    for (let prop in props) {
+        if (prop[0] === '$') {
             delete props[prop];
         }
     }
