@@ -26,6 +26,7 @@ module.exports = {
         "integrations/babel-plugin",
         "integrations/babel-macro-plugin",
         "integrations/gatsby",
+        "integrations/preact-cli-plugin",
       ],
     },
     {
