@@ -155,15 +155,13 @@ describe('integrations', () => {
         );
 
         // Makes sure the resulting DOM does not contain any props
-        expect(target.innerHTML).toMatchInlineSnapshot(
+        expect(target.innerHTML).toEqual(
             [
-                '"',
                 '<div>',
                 '<div class="go103173764"></div>',
                 '<div class="go103194166"></div>',
                 '<span class="go2081835032"></span>',
-                '</div>',
-                '"'
+                '</div>'
             ].join(''),
             `"<div><div class=\\"go103173764\\"></div><div class=\\"go103194166\\"></div><span class=\\"go2081835032\\"></span></div>"`
         );
