@@ -1,14 +1,14 @@
 import { css } from 'goober';
 
-import { forwardProp } from '../index';
+import { shouldForwardProp } from '../index';
 
 describe('shouldForwardProp', () => {
     it('type', () => {
-        expect(typeof forwardProp).toEqual('function');
+        expect(typeof shouldForwardProp).toEqual('function');
     });
 
-    it('forwardProp', () => {
-        const fn = forwardProp((prop) => {
+    it('shouldForwardProp', () => {
+        const fn = shouldForwardProp((prop) => {
             // Filter out props prefixed with '$'
             return prop[0] !== '$';
         });

@@ -1,15 +1,15 @@
 {
-  "name": "goober-forward-prop",
+  "name": "goober-should-should-forward-prop",
   "amdName": "gooberForwardProp",
   "version": "0.0.1",
-  "description": "The forwardProp addon function for goober",
+  "description": "The shouldForwardProp addon function for goober",
   "sideEffects": false,
-  "main": "dist/goober-forward-prop.js",
-  "module": "dist/goober-forward-prop.mjs",
-  "umd:main": "dist/goober-forward-prop.umd.js",
+  "main": "dist/goober-should-should-forward-prop.js",
+  "module": "dist/goober-should-should-forward-prop.mjs",
+  "umd:main": "dist/goober-should-should-forward-prop.umd.js",
   "source": "src/index.js",
-  "unpkg": "dist/goober-forward-prop.umd.js",
-  "types": "./forward-prop.d.ts",
+  "unpkg": "dist/goober-should-should-forward-prop.umd.js",
+  "types": "./should-should-forward-prop.d.ts",
   "scripts": {
     "build:lib": "rm -rf dist && microbundle --entry src/index.js --name gooberForwardProp --no-sourcemap",
     "test": "jest --setupFiles ./jest.setup.js"
@@ -17,13 +17,13 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/cristianbote/goober.git",
-    "directory": "forwardProp"
+    "directory": "shouldForwardProp"
   },
-  "author": "Cristian <botecristian@yahoo.com>",
+  "author": "Jonas De Vrient <devrient.jonas@gmail.com>",
   "keywords": [
     "goober",
     "styled",
-    "forward-prop"
+    "should-should-forward-prop"
   ],
   "license": "ISC",
   "peerDependencies": {
