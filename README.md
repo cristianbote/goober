@@ -43,6 +43,7 @@ It's a pun on the tagline.
     -   [css](#csstaggedtemplate)
     -   [targets](#targets)
     -   [extractCss](#extractcsstarget)
+    -   [clx](#clx)
     -   [createGlobalStyles](#createglobalstyles)
     -   [keyframes](#keyframes)
 -   [Integrations](#integrations)
@@ -277,7 +278,7 @@ setup(React.createElement, undefined, undefined, (props) => {
 });
 ```
 
-The functionality of "transient props" (with a "$" prefix) can be implemented as follows:
+The functionality of "transient props" (with a "\$" prefix) can be implemented as follows:
 
 ```js
 import React from 'react';
@@ -396,6 +397,27 @@ const { extractCss } = require('goober');
 const styleTag = `<style id="_goober">${extractCss()}</style>`;
 
 // Note: To be able to `hydrate` the styles you should use the proper `id` so `goober` can pick it up and use it as the target from now on
+```
+
+### `clx(...classes)`
+
+-   `@returns {String}`
+
+Returns a new string of class names.
+
+```js
+const { css, clx } = require('goober');
+
+const SecondaryStyles = css`
+    color: red;
+`;
+
+const PrimaryStyles = css`
+    color: black;
+`;
+
+// PrimaryStyles will be overriden by SecondaryStyles even though SecondaryStyles was declared first.
+const CombinedStyles = clx(PrimaryStyles, SecondaryStyles);
 ```
 
 ### `createGlobalStyles`

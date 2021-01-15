@@ -5,7 +5,7 @@ import { getSheet } from './core/get-sheet';
 
 /**
  * clx
- * @param {String[]} classes
+ * @param {...String} classes
  */
 function clx() {
     let ctx = this || {};
