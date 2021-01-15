@@ -47,12 +47,15 @@ function styled(tag, forwardRef) {
                 _props.ref = ref;
             }
 
-            // Handle the forward props filter if defined
-            if (fwdProp) {
+            // Let the closure do the capture, cause it might get removed in the fwdProp
+            let _as = _props.as || tag;
+
+            // Handle the forward props filter if defined and _as is a string
+            if (fwdProp && _as[0]) {
                 fwdProp(_props);
             }
 
-            return h(_props.as || tag, _props);
+            return h(_as, _props);
         }
 
         return forwardRef ? forwardRef(Styled) : Styled;
