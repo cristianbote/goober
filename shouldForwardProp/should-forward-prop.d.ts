@@ -1,4 +1,4 @@
-export = gooberGlobal;
+export = gooberShouldForwardProp;
 
 export as namespace shouldForwardProp;
 
