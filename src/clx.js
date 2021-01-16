@@ -9,27 +9,27 @@ import { getSheet } from './core/get-sheet';
  */
 function clx() {
     let ctx = this || {};
-    let classes = [].reduce.call(arguments, (classes, c) => classes.concat(c.split(' ')), []);
+    let args = [].slice.call(arguments);
+    let classes = args.reduce((classes, c) => classes.concat(c.split(' ')), []);
 
-    let id = toHash(classes.join(''));
+    let id = toHash(args.join('$'));
 
-    let hashedClasses = classes.reduce((hashedClasses, c) => {
-        let hashedClass = c + '-' + id;
+    let scopedClasses = classes.map((c) => {
+        let scopedClass = c + '-' + id;
 
         if (cache[c]) {
-            if (!cache[hashedClass]) {
-                cache[hashedClass] = cache[c].replace(c, hashedClass);
-                update(cache[hashedClass], getSheet(ctx.target), ctx.o);
+            if (!cache[scopedClass]) {
+                cache[scopedClass] = cache[c].replace(c, scopedClass);
+                update(cache[scopedClass], getSheet(ctx.target), ctx.o);
             }
-            hashedClasses.push(hashedClass);
+
+            return scopedClass;
         } else {
-            hashedClasses.push(c);
+            return c;
         }
+    });
 
-        return hashedClasses;
-    }, []);
-
-    return hashedClasses.join(' ');
+    return scopedClasses.join(' ');
 }
 
 export { clx };

@@ -1,6 +1,9 @@
 import { clx } from '../clx';
 import { update } from '../core/update';
 import { toHash } from '../core/to-hash';
+import { compile } from '../core/compile';
+import { getSheet } from '../core/get-sheet';
+import hash from '../core/hash';
 
 jest.mock('../core/to-hash', () => ({
     toHash: jest.fn().mockReturnValue('hash()')
@@ -12,15 +15,7 @@ jest.mock('../core/get-sheet', () => ({
 
 jest.mock('../core/hash', () => ({
     hash: jest.fn().mockReturnValue('hash()'),
-    cache: {
-        // Fake classes and styles
-        foo: '.foo{foo:1;}',
-        foo1: 'foo',
-        bar: '.bar{bar:1;}',
-        bar1: 'bar',
-        baz: '.baz{baz:1;}',
-        baz1: 'baz'
-    }
+    cache: {}
 }));
 
 jest.mock('../core/compile', () => ({
@@ -33,7 +28,20 @@ jest.mock('../core/update', () => ({
 
 describe('clx', () => {
     beforeEach(() => {
-        jest.restoreAllMocks();
+        toHash.mockClear();
+        getSheet.mockClear();
+        compile.mockClear();
+        update.mockClear();
+        hash.hash.mockClear();
+        hash.cache = {
+            // Fake classes and styles
+            foo: '.foo{foo:1;}',
+            foo1: 'foo',
+            bar: '.bar{bar:1;}',
+            bar1: 'bar',
+            baz: '.baz{baz:1;}',
+            baz1: 'baz'
+        };
     });
 
     it('type', () => {
@@ -43,7 +51,14 @@ describe('clx', () => {
     it('hash', () => {
         clx('foo', 'bar');
 
-        expect(toHash).toHaveBeenCalledWith('foobar');
+        expect(toHash).toHaveBeenCalledWith('foo$bar');
+    });
+
+    it('hash: nested', () => {
+        clx('foo', clx('bar', 'baz'));
+
+        expect(toHash).toHaveBeenCalledWith('bar$baz');
+        expect(toHash).toHaveBeenCalledWith('foo$bar-hash() baz-hash()');
     });
 
     it('args', () => {
@@ -77,5 +92,6 @@ describe('clx', () => {
 
         expect(combined).toEqual('foo-hash() my-class');
         expect(update).toHaveBeenCalledWith('.foo-hash(){foo:1;}', 'sheet()', undefined);
+        expect(update).toHaveBeenCalledTimes(1);
     });
 });
