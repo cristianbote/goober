@@ -486,11 +486,11 @@ Visit the package in here for more info (https://github.com/cristianbote/goober/
 
 ## Babel macro plugin
 
-A [babel-plugin-macros][babel-plugin-macros] macro for [🥜goober][goober], rewriting `styled.div` syntax to `styled('div')` calls.
+A babel-plugin-macros macro for [🥜goober][goober], rewriting `styled.div` syntax to `styled('div')` calls.
 
 ### Usage
 
-Once you've configured [babel-plugin-macros][babel-plugin-macros], change your imports from `goober` to `goober/macro`.
+Once you've configured [babel-plugin-macros](https://github.com/kentcdodds/babel-plugin-macros), change your imports from `goober` to `goober/macro`.
 
 Now you can create your components using `styled.*` syntax:.
 
@@ -533,6 +533,34 @@ export default (config, env) => {
 ```
 
 When you build your Preact application this will run `extractCss` on your prerendered pages and add critical styles for each page.
+
+## CSS Prop
+
+You can use a custom `css` prop to pass in styles on HTML elements with this Babel plugin.
+
+Installation:
+
+```sh
+npm install --save-dev @agney/babel-plugin-goober-css-prop
+```
+
+List the plugin in `.babelrc`:
+
+```
+{
+  "plugins": [
+    "@agney/babel-plugin-goober-css-prop"
+  ]
+}
+```
+
+Usage:
+
+```javascript
+<main css={`display: flex; min-height: 100vh; justify-content: center; align-items: center;`}>
+  <h1 css="color: dodgerblue">Goober</h1>
+</main>
+```
 
 # Features
 
