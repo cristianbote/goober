@@ -49,6 +49,8 @@ It's a pun on the tagline.
     -   [Babel Plugin](#babel-plugin)
     -   [Babel Macro Plugin](#babel-macro-plugin)
     -   [Gatsby](#gatsby)
+    -   [Preact CLI Plugin](#preact-cli-plugin)
+    -   [CSS Prop](#css-prop)
 -   [Features](#features)
     -   [Sharing Style](#sharing-style)
     -   [Autoprefixer](#autoprefixer)
