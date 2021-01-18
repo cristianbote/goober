@@ -27,6 +27,7 @@ module.exports = {
         "integrations/babel-macro-plugin",
         "integrations/gatsby",
         "integrations/preact-cli-plugin",
+        "integrations/css-prop",
       ],
     },
     {
