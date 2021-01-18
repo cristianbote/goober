@@ -124,4 +124,56 @@ describe('integrations', () => {
             })
         );
     });
+
+    it('shouldForwardProps', () => {
+        const list = ['p', 'm', 'as'];
+        setup(h, undefined, undefined, (props) => {
+            for (let prop in props) {
+                if (list.indexOf(prop) !== -1) {
+                    delete props[prop];
+                }
+            }
+        });
+
+        const target = document.createElement('div');
+
+        const Base = styled('div')(({ p = 0, m }) => [
+            {
+                color: 'white',
+                padding: p + 'em'
+            },
+            m != null && { margin: m + 'em' }
+        ]);
+
+        render(
+            <div>
+                <Base />
+                <Base p={2} />
+                <Base m={1} p={3} as={'span'} />
+            </div>,
+            target
+        );
+
+        // Makes sure the resulting DOM does not contain any props
+        expect(target.innerHTML).toEqual(
+            [
+                '<div>',
+                '<div class="go103173764"></div>',
+                '<div class="go103194166"></div>',
+                '<span class="go2081835032"></span>',
+                '</div>'
+            ].join(''),
+            `"<div><div class=\\"go103173764\\"></div><div class=\\"go103194166\\"></div><span class=\\"go2081835032\\"></span></div>"`
+        );
+
+        expect(extractCss()).toMatchInlineSnapshot(
+            [
+                '"',
+                '.go103173764{color:white;padding:0em;}',
+                '.go103194166{color:white;padding:2em;}',
+                '.go2081835032{color:white;padding:3em;margin:1em;}',
+                '"'
+            ].join('')
+        );
+    });
 });
