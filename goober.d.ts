@@ -71,7 +71,9 @@ declare namespace goober {
             | string
             | ((props: P & PP) => CSSAttribute | string),
         ...props: Array<
-            string | number | ((props: P & PP) => CSSAttribute | string | number | undefined)
+            | string
+            | number
+            | ((props: P & PP) => CSSAttribute | string | number | false | undefined)
         >
     ) => StyledVNode<Omit<P & PP, keyof Theme<DefaultTheme>>>;
     interface CSSAttribute extends CSSProperties {
