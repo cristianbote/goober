@@ -45,6 +45,7 @@ It's a pun on the tagline.
     -   [extractCss](#extractcsstarget)
     -   [createGlobalStyles](#createglobalstyles)
     -   [keyframes](#keyframes)
+    -   [shouldForwardProp](#shouldForwardProp)
 -   [Integrations](#integrations)
     -   [Babel Plugin](#babel-plugin)
     -   [Babel Macro Plugin](#babel-macro-plugin)
@@ -279,7 +280,7 @@ setup(React.createElement, undefined, undefined, (props) => {
 });
 ```
 
-The functionality of "transient props" (with a "$" prefix) can be implemented as follows:
+The functionality of "transient props" (with a "\$" prefix) can be implemented as follows:
 
 ```js
 import React from 'react';
@@ -292,6 +293,25 @@ setup(React.createElement, undefined, undefined, (props) => {
         }
     }
 });
+```
+
+Alternatively you can use `goober/should-forward-prop` addon, to pass only the filter function and not have to deal with the full `props` object.
+
+```js
+import React from 'react';
+import { setup, styled } from 'goober';
+import { shouldForwardProp } from 'goober/should-forward-prop';
+
+setup(
+    React.createElement,
+    undefined,
+    undefined,
+    // This package accepts a `filter` function. If you return false that prop
+    // won't be included in the forwarded props.
+    shouldForwardProp((prop) => {
+        return prop !== 'size';
+    })
+);
 ```
 
 ### `css(taggedTemplate)`
@@ -470,6 +490,26 @@ const Wicked = styled('div')`
     color: white;
     animation: ${rotate} 1s ease-in-out;
 `;
+```
+
+### `shouldForwardProp`
+
+To seamingly implement the `shouldForwardProp` without the need to provide the full loop over `props` you can use the `goober/should-forward-prop` addon.
+
+```js
+import { h } from 'preact';
+import { setup } from 'goober';
+import { shouldForwardProp } from 'goober/should-forward-prop';
+
+setup(
+    h,
+    undefined,
+    undefined,
+    shouldForwardProp((prop) => {
+        // Do NOT forward props that start with `$` symbol
+        return prop['0'] !== '$';
+    })
+);
 ```
 
 # Integrations
