@@ -293,6 +293,25 @@ setup(React.createElement, undefined, undefined, (props) => {
 });
 ```
 
+Alternatively you can use `goober/should-forward-prop` addon, to pass only the filter function and not have to deal with the full `props` object.
+
+```js
+import React from 'react';
+import { setup, styled } from 'goober';
+import { shouldForwardProp } from 'goober/should-forward-prop';
+
+setup(
+    React.createElement,
+    undefined,
+    undefined,
+    // This package accepts a `filter` function. If you return false that prop
+    // won't be included in the forwarded props.
+    shouldForwardProp((prop) => {
+        return prop !== 'size';
+    })
+);
+```
+
 ### `css(taggedTemplate)`
 
 -   `@returns {String}` Returns the className.
