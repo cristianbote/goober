@@ -86,6 +86,27 @@ const testStyledCss = () => {
         background-color: ${(props) => props.theme.colors.primary};
     `;
 
+    const BoxWithLogicalAnd = styled('div')<{ border: boolean }>`
+        color: red;
+
+        ${({ border }) =>
+            border &&
+            `
+                border: 1px solid red;
+            `}
+    `;
+
+    const BoxWithTernary = styled('div')<{ border: boolean }>`
+        color: red;
+
+        ${({ border }) =>
+            border
+                ? `
+                border: 1px solid red;
+            `
+                : ``}
+    `;
+
     const TestComp = () => {
         return (
             <div>
@@ -104,6 +125,8 @@ const testStyledCss = () => {
                 <StyledObject disabled />
                 <Animated>test</Animated>
                 <ThemeContainer isActive={true} />
+                <BoxWithLogicalAnd border />
+                <BoxWithTernary border />
             </div>
         );
     };
