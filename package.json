@@ -20,6 +20,7 @@
     "prefixer/package.json",
     "prefixer/autoprefixer.d.ts",
     "prefixer/README.md",
+    "shouldForwardProp/dist",
     "shouldForwardProp/src",
     "shouldForwardProp/package.json",
     "shouldForwardProp/should-forward-prop.d.ts",
