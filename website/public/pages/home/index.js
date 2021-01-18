@@ -45,7 +45,7 @@ export default function Home() {
     return (
         <Box full>
             <Box size={700} centered full>
-                <Text size={600} as="h1" bold spaced>
+                <Text size={600} as="h1" bold superSpaced>
                     <Text as="span" bold color="accent-100">
                         g
                     </Text>
@@ -72,9 +72,13 @@ export default function Home() {
             </Box>
             <Box full centered>
                 <Box size={400} rounded={100} centered horizontal>
-                    <Button secondary>Documentation</Button>
+                    <Button as="a" href="/docs/" secondary>
+                        Documentation
+                    </Button>
                     <Box size={300} />
-                    <Button>GitHub</Button>
+                    <Button as="a" href="https://github.com/cristianbote/goober">
+                        GitHub
+                    </Button>
                 </Box>
                 <Box size={500} />
                 <Box centered full>
@@ -108,8 +112,8 @@ export default function Home() {
                             <Dot bg="accent-200" />
                         </TopLeft>
                         <Text mono size={300} color="gray-300">
-                            npm install &nbsp;
-                            <Text as="span" mono bold color="accent-100">
+                            npm install
+                            <Text pl={200} as="span" mono bold color="accent-100">
                                 goober
                             </Text>
                         </Text>
@@ -120,12 +124,11 @@ export default function Home() {
                     Features
                 </Text>
                 <Text size={300} faded>
-                    Even though small in size &nbsp;
-                    <Text color="accent-100" size={200} bold as="span">
-                        {' '}
+                    Even though small in size
+                    <Text ph={200} color="accent-100" size={200} bold as="span">
                         goober
-                    </Text>{' '}
-                    &nbsp; has got you covered, feature wise.
+                    </Text>
+                    has got you covered, feature wise.
                 </Text>
                 <Box size={400} />
                 <Box horizontal full max reactive size={400}>
@@ -137,32 +140,31 @@ export default function Home() {
                         </Feature>
                         <Box size={400} />
                         <Feature title={'Familiar API'}>
-                            <Text color="accent-100" size={200} bold as="span">
+                            <Text pr={200} color="accent-100" size={200} bold as="span">
                                 goober
-                            </Text>{' '}
-                            &nbsp; is built on the shoulders of well established solutions. That
-                            means the API has been paved and we need to follow it. You'll find{' '}
-                            &nbsp;
-                            <Text color="accent-200" size={200} bold as="span">
+                            </Text>
+                            is built on the shoulders of well established solutions. That means the
+                            API has been paved and we need to follow it. You'll find
+                            <Text pl={200} color="accent-200" size={200} bold as="span">
                                 as
                             </Text>
-                            , &nbsp;
-                            <Text color="accent-200" size={200} bold as="span">
+                            ,
+                            <Text pl={200} color="accent-200" size={200} bold as="span">
                                 forwardRef
                             </Text>
-                            , &nbsp;
-                            <Text color="accent-200" size={200} bold as="span">
+                            ,
+                            <Text pl={200} color="accent-200" size={200} bold as="span">
                                 css
                             </Text>
-                            , &nbsp;
-                            <Text color="accent-200" size={200} bold as="span">
+                            ,
+                            <Text pl={200} color="accent-200" size={200} bold as="span">
                                 keyframes
                             </Text>
-                            , &nbsp;
-                            <Text color="accent-200" size={200} bold as="span">
+                            ,
+                            <Text ph={200} color="accent-200" size={200} bold as="span">
                                 styled
-                            </Text>{' '}
-                            &nbsp; and so much more.
+                            </Text>
+                            and so much more.
                         </Feature>
                         <Box size={400} />
                         <Feature title="Themeing">
@@ -178,11 +180,11 @@ export default function Home() {
                             </Text>
                             <Box size={200} />
                             <Text size={200} faded>
-                                <Text color="accent-100" size={200} bold as="span">
+                                <Text pr={200} color="accent-100" size={200} bold as="span">
                                     goober
-                                </Text>{' '}
-                                &nbsp; does more with less! Since the code measure less in size,
-                                it's served, read and ran quicker.
+                                </Text>
+                                does more with less! Since the code measure less in size, it's
+                                served, read and ran quicker.
                             </Text>
                         </Box>
                         <Box size={400} />
@@ -193,8 +195,8 @@ export default function Home() {
                             <Box size={200} />
                             <Text size={200} faded>
                                 On the server you can easily extract the css for the current state
-                                with &nbsp;
-                                <Text color="accent-200" size={200} bold as="span">
+                                with
+                                <Text pl={200} color="accent-200" size={200} bold as="span">
                                     extractCss
                                 </Text>
                                 .
@@ -207,15 +209,33 @@ export default function Home() {
                             </Text>
                             <Box size={200} />
                             <Text size={200} faded>
-                                The initial thought of &nbsp;
-                                <Text color="accent-100" size={200} bold as="span">
+                                The initial thought of
+                                <Text ph={200} color="accent-100" size={200} bold as="span">
                                     goober
-                                </Text>{' '}
-                                &nbsp; was a css-in-js solution at the cost of peanunts. Hence the
-                                peanuts emoji.
+                                </Text>
+                                was a css-in-js solution at the cost of peanunts. Hence the peanuts
+                                emoji.
                             </Text>
                         </Box>
                     </Box>
+                </Box>
+                <Box size={300} />
+                <Text as="h2" faded>
+                    Take
+                    <Text ph={200} color="accent-100" size={200} bold as="span">
+                        goober
+                    </Text>
+                    for a spin.
+                </Text>
+                <Box size={300} />
+                <Box size={400} rounded={100} centered horizontal>
+                    <Button as="a" href="/docs/" secondary>
+                        Documentation
+                    </Button>
+                    <Box size={300} />
+                    <Button as="a" href="https://github.com/cristianbote/goober">
+                        GitHub
+                    </Button>
                 </Box>
             </Box>
             <Box size={400} />
@@ -234,11 +254,16 @@ export default function Home() {
                     <Box size={300} />
                     <Box>
                         <Box size={200}>
-                            <Text as="a" href="/" size={100} bold>
+                            <Text as="a" href="/docs/" size={100} bold>
                                 Documentation
                             </Text>
                             <Box size={300} />
-                            <Text as="a" href="https://github.com" size={100} bold>
+                            <Text
+                                as="a"
+                                href="https://github.com/cristianbote/goober"
+                                size={100}
+                                bold
+                            >
                                 GitHub
                             </Text>
                         </Box>

@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "wmr",
 		"build": "rm -rf ./build && wmr build --prerender && npm run postbuild",
-		"postbuild": "cp -a ./static/. ./dist"
+		"postbuild": "cp ./dist/index.html ../docs/static/index.html"
 	},
 	"eslintConfig": {
 		"extends": "preact"

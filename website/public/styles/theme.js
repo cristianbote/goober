@@ -36,3 +36,26 @@ export const theme = {
     widthSmall: '766px',
     maxWidth: '1024px'
 };
+
+export const props = [
+    'as',
+    'bg',
+    'border',
+    'size',
+    'centered',
+    'horizontal',
+    'reactive',
+    'flex',
+    'full',
+    'onTop',
+    'rounded',
+    'max',
+    'secondary',
+    'faded',
+    'accent',
+    'bold',
+    'color',
+    'mono',
+    'spaced',
+    'superSpaced'
+];

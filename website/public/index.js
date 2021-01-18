@@ -6,11 +6,17 @@ import Home from './pages/home/index.js';
 import NotFound from './pages/_404.js';
 import { setup } from 'goober';
 import { prefix } from 'goober/prefixer';
+import { shouldForwardProp } from 'goober/should-forward-prop';
 import { Box } from './components/box/box.js';
 import { WithStyles } from './styles/with-styles.js';
-import { theme } from './styles/theme.js';
+import { props, theme } from './styles/theme.js';
 
-setup(h, prefix, () => theme);
+setup(
+    h,
+    prefix,
+    () => theme,
+    shouldForwardProp((prop) => props.indexOf(prop) === -1)
+);
 
 export function App() {
     return (
