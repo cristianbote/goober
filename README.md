@@ -10,14 +10,21 @@
 [![version](https://img.shields.io/npm/v/goober)](https://www.npmjs.com/package/goober)
 [![status](https://travis-ci.org/cristianbote/goober.svg?branch=master)](https://travis-ci.org/cristianbote/goober)
 [![gzip size](https://img.badgesize.io/https://unpkg.com/goober@latest/dist/goober.module.js?compression=gzip)](https://unpkg.com/goober)
-[![downloads](https://img.shields.io/npm/dw/goober)](https://www.npmjs.com/package/goober)
+[![downloads](https://img.shields.io/npm/dm/goober)](https://www.npmjs.com/package/goober)
 [![coverage](https://img.shields.io/codecov/c/github/cristianbote/goober.svg?maxAge=2592000)](https://codecov.io/github/cristianbote/goober?branch=master)
 [![Slack](https://img.shields.io/badge/slack-join-orange)](https://join.slack.com/t/gooberdev/shared_invite/enQtOTM5NjUyOTcwNzI1LWUwNzg0NTQwODY1NDJmMzQ2NzdlODI4YTM3NWUwYjlkY2ZkNGVmMTFlNGMwZGUyOWQyZmI4OTYwYmRiMzE0NGQ)
 [![Greenkeeper badge](https://badges.greenkeeper.io/cristianbote/goober.svg)](https://greenkeeper.io/)
 
 # Motivation
 
-I always wondered, if you can get a working solution for css-in-js with a smaller footprint. I started a project and wanted a to use styled-components. Looking at their sizes, it seems that I would rather not include ~12kB([styled-components](https://github.com/styled-components/styled-components)) or ~11kB([emotion](https://github.com/emotion-js/emotion)) just so I can use the `styled` paradigm. So, I embarked in a mission to create a smaller alternative for these well established apis.
+I always wondered, if you can get a working solution for css-in-js with a smaller footprint. So, while I was working on a side-project I wanted a to use styled-components or more accurate the `styled` pattern. Looking at the JavaScript bundled sizes, I quickly realized that I would have to include ~12kB([styled-components](https://github.com/styled-components/styled-components)) or ~11kB([emotion](https://github.com/emotion-js/emotion)) just so I can use the `styled` paradigm. So, I embarked in a mission to create a smaller alternative for these well established apis.
+
+# Why the peanuts emoji?
+
+It's a pun on the tagline.
+
+> css-in-js at the cost of peanuts!
+> 🥜goober
 
 # Table of contents
 
@@ -29,18 +36,22 @@ I always wondered, if you can get a working solution for css-in-js with a smalle
     -   [SSR](#ssr-1)
 -   [API](#api)
     -   [styled](#styledtagname-string--function-forwardref-function)
-    -   [setup](#setuppragma-function-prefixer-function-theme-function)
+    -   [setup](#setuppragma-function-prefixer-function-theme-function-forwardprops-function)
         -   [With prefixer](#with-prefixer)
         -   [With theme](#with-theme)
+        -   [With forwardProps](#with-forwardProps)
     -   [css](#csstaggedtemplate)
     -   [targets](#targets)
     -   [extractCss](#extractcsstarget)
     -   [createGlobalStyles](#createglobalstyles)
     -   [keyframes](#keyframes)
+    -   [shouldForwardProp](#shouldForwardProp)
 -   [Integrations](#integrations)
     -   [Babel Plugin](#babel-plugin)
     -   [Babel Macro Plugin](#babel-macro-plugin)
     -   [Gatsby](#gatsby)
+    -   [Preact CLI Plugin](#preact-cli-plugin)
+    -   [CSS Prop](#css-prop)
 -   [Features](#features)
     -   [Sharing Style](#sharing-style)
     -   [Autoprefixer](#autoprefixer)
@@ -98,11 +109,11 @@ You can get the critical CSS for SSR, via `extractCss`. Take a look at this exam
 
 # Benchmarks
 
-You results are included inside the build output as well.
+The results are included inside the build output as well.
 
 ## Browser
 
-These are not yet measured. Need some time.
+Comming soon!
 
 ## SSR
 
@@ -209,7 +220,7 @@ const Btn = styled('button')([
 <Btn isPrimary />; // This will render the `Button` with `background: cyan;`
 ```
 
-### `setup(pragma: Function, prefixer?: Function, theme?: Function)`
+### `setup(pragma: Function, prefixer?: Function, theme?: Function, forwardProps?: Function)`
 
 Given the fact that `react` uses `createElement` for the transformed elements and `preact` uses `h`, `setup` should be called with the proper _pragma_ function. This was added to reduce the bundled size and being able to bundle esmodule version. At the moment I think it's the best tradeoff we can have.
 
@@ -246,6 +257,61 @@ setup(React.createElement, undefined, useTheme);
 const ContainerWithTheme = styled('div')`
     color: ${(props) => props.theme.primary};
 `;
+```
+
+#### With forwardProps
+
+The `forwardProps` function, offers a way to achieve the same `shouldForwardProps` functionality as emotion and styled-components(with transient props) offer. The difference in here is that the function receives the whole props and you are in charge of removing the props that are should not end-up in the dom.
+
+This is a super useful functionality when paired with theme object, variants or any other customisation one might need.
+
+```js
+import React from 'react';
+import { setup, styled } from 'goober';
+
+setup(React.createElement, undefined, undefined, (props) => {
+    for (let prop in props) {
+        // Or any other conditions.
+        // This could also check if this is a dev build and not remove the props
+        if (prop === 'size') {
+            delete props[prop];
+        }
+    }
+});
+```
+
+The functionality of "transient props" (with a "\$" prefix) can be implemented as follows:
+
+```js
+import React from 'react';
+import { setup, styled } from 'goober';
+
+setup(React.createElement, undefined, undefined, (props) => {
+    for (let prop in props) {
+        if (prop[0] === '$') {
+            delete props[prop];
+        }
+    }
+});
+```
+
+Alternatively you can use `goober/should-forward-prop` addon, to pass only the filter function and not have to deal with the full `props` object.
+
+```js
+import React from 'react';
+import { setup, styled } from 'goober';
+import { shouldForwardProp } from 'goober/should-forward-prop';
+
+setup(
+    React.createElement,
+    undefined,
+    undefined,
+    // This package accepts a `filter` function. If you return false that prop
+    // won't be included in the forwarded props.
+    shouldForwardProp((prop) => {
+        return prop !== 'size';
+    })
+);
 ```
 
 ### `css(taggedTemplate)`
@@ -426,6 +492,26 @@ const Wicked = styled('div')`
 `;
 ```
 
+### `shouldForwardProp`
+
+To seamingly implement the `shouldForwardProp` without the need to provide the full loop over `props` you can use the `goober/should-forward-prop` addon.
+
+```js
+import { h } from 'preact';
+import { setup } from 'goober';
+import { shouldForwardProp } from 'goober/should-forward-prop';
+
+setup(
+    h,
+    undefined,
+    undefined,
+    shouldForwardProp((prop) => {
+        // Do NOT forward props that start with `$` symbol
+        return prop['0'] !== '$';
+    })
+);
+```
+
 # Integrations
 
 ## Babel plugin
@@ -442,11 +528,11 @@ Visit the package in here for more info (https://github.com/cristianbote/goober/
 
 ## Babel macro plugin
 
-A [babel-plugin-macros][babel-plugin-macros] macro for [🥜goober][goober], rewriting `styled.div` syntax to `styled('div')` calls.
+A babel-plugin-macros macro for [🥜goober][goober], rewriting `styled.div` syntax to `styled('div')` calls.
 
 ### Usage
 
-Once you've configured [babel-plugin-macros][babel-plugin-macros], change your imports from `goober` to `goober/macro`.
+Once you've configured [babel-plugin-macros](https://github.com/kentcdodds/babel-plugin-macros), change your imports from `goober` to `goober/macro`.
 
 Now you can create your components using `styled.*` syntax:.
 
@@ -469,6 +555,53 @@ Want to use `goober` with Gatsby? We've got you covered! We have our own plugin 
 npm i --save gatsby-plugin-goober
 # or
 yarn add gatsby-plugin-goober
+```
+
+## Preact CLI plugin
+
+If you use Goober with Preact CLI, you can use [preact-cli-goober-ssr](https://github.com/gerhardsletten/preact-cli-goober-ssr)
+
+```sh
+npm i --save-dev preact-cli-goober-ssr
+# or
+yarn add --dev preact-cli-goober-ssr
+
+# preact.config.js
+const gooberPlugin = require('preact-cli-goober-ssr')
+
+export default (config, env) => {
+  gooberPlugin(config, env)
+}
+```
+
+When you build your Preact application this will run `extractCss` on your prerendered pages and add critical styles for each page.
+
+## CSS Prop
+
+You can use a custom `css` prop to pass in styles on HTML elements with this Babel plugin.
+
+Installation:
+
+```sh
+npm install --save-dev @agney/babel-plugin-goober-css-prop
+```
+
+List the plugin in `.babelrc`:
+
+```
+{
+  "plugins": [
+    "@agney/babel-plugin-goober-css-prop"
+  ]
+}
+```
+
+Usage:
+
+```javascript
+<main css={`display: flex; min-height: 100vh; justify-content: center; align-items: center;`}>
+  <h1 css="color: dodgerblue">Goober</h1>
+</main>
 ```
 
 # Features

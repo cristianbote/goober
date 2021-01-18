@@ -130,4 +130,30 @@ describe('styled', () => {
         const vnode = Comp({});
         expect(vnode).toMatchVNode('tag', { className: 'go foobar' });
     });
+
+    it('omits css prop with falsy should forward prop function', () => {
+        const shouldForwardProp = (props) => {
+            for (let prop in props) {
+                if (prop.includes('$')) delete props[prop];
+            }
+        };
+        // Overwrite setup for this test
+        setup(pragma, undefined, undefined, shouldForwardProp);
+
+        const vnode = styled('tag')`
+            color: peachpuff;
+        `({ bar: 1, $templateColumns: '1fr 1fr' });
+
+        expect(vnode).toMatchVNode('tag', { className: 'go', bar: 1 });
+    });
+
+    it('pass truthy logical and operator', () => {
+        const Tag = styled('tag')((props) => props.draw && { color: 'yellow' });
+
+        // Simulate a render
+        let vnode = Tag({ draw: true });
+
+        expect(vnode).toMatchVNode('tag', { className: 'go', draw: true });
+        expect(extractCss()).toEqual('.go2986228274{color:yellow;}');
+    });
 });
