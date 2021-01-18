@@ -1,3 +1,6 @@
+/**
+ * Used for testing
+ */
 module.exports = {
     plugins: [
         [

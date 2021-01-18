@@ -1,5 +1,4 @@
 import { css } from 'goober';
-
 import { shouldForwardProp } from '../index';
 
 describe('shouldForwardProp', () => {

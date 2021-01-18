@@ -55,11 +55,11 @@
       "require": "./prefixer/dist/goober-autoprefixer.js",
       "umd": "./prefixer/dist/goober-autoprefixer.umd.js"
     },
-    "./shouldForwardProp": {
-      "browser": "./shouldForwardProp/dist/goober-should-forward-prop.modern.js",
-      "import": "./shouldForwardProp/dist/goober-should-forward-prop.mjs",
-      "require": "./shouldForwardProp/dist/goober-should-forward-prop.js",
-      "umd": "./shouldForwardProp/dist/goober-should-forward-prop.umd.js"
+    "./should-forward-prop": {
+      "browser": "./should-forward-prop/dist/goober-should-forward-prop.modern.js",
+      "import": "./should-forward-prop/dist/goober-should-forward-prop.mjs",
+      "require": "./should-forward-prop/dist/goober-should-forward-prop.js",
+      "umd": "./should-forward-prop/dist/goober-should-forward-prop.umd.js"
     }
   },
   "scripts": {
@@ -73,8 +73,8 @@
     "size-check": "filesize",
     "build": "npm run build:core && npm run build:prefixer && npm run build:global && npm run build:should-forward-prop",
     "build:prefixer": "cd ./prefixer && npm run build",
-    "build:global": "cd ./global && npm run build:lib",
-    "build:should-forward-prop": "cd ./shouldForwardProp && npm run build:lib",
+    "build:global": "cd ./global && npm run build",
+    "build:should-forward-prop": "cd ./should-forward-prop && npm run build",
     "build:core": "npm run clean && npm run build:dist && npm run size-check",
     "build:lib": "microbundle --entry src/index.js --name goober --no-sourcemap",
     "build:dist": "npm run build:lib -- --output dist",

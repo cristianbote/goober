@@ -45,6 +45,7 @@ It's a pun on the tagline.
     -   [extractCss](#extractcsstarget)
     -   [createGlobalStyles](#createglobalstyles)
     -   [keyframes](#keyframes)
+    -   [shouldForwardProp](#shouldForwardProp)
 -   [Integrations](#integrations)
     -   [Babel Plugin](#babel-plugin)
     -   [Babel Macro Plugin](#babel-macro-plugin)
@@ -277,7 +278,7 @@ setup(React.createElement, undefined, undefined, (props) => {
 });
 ```
 
-The functionality of "transient props" (with a "$" prefix) can be implemented as follows:
+The functionality of "transient props" (with a "\$" prefix) can be implemented as follows:
 
 ```js
 import React from 'react';
@@ -468,6 +469,26 @@ const Wicked = styled('div')`
     color: white;
     animation: ${rotate} 1s ease-in-out;
 `;
+```
+
+### `shouldForwardProp`
+
+To seamingly implement the `shouldForwardProp` without the need to provide the full loop over `props` you can use the `goober/should-forward-prop` addon.
+
+```js
+import { h } from 'preact';
+import { setup } from 'goober';
+import { shouldForwardProp } from 'goober/should-forward-prop';
+
+setup(
+    h,
+    undefined,
+    undefined,
+    shouldForwardProp((prop) => {
+        // Do NOT forward props that start with `$` symbol
+        return prop['0'] !== '$';
+    })
+);
 ```
 
 # Integrations
