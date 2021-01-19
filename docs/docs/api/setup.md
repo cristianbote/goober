@@ -43,7 +43,7 @@ const ContainerWithTheme = styled('div')`
 `;
 ```
 
-#### With forwardProps
+## With forwardProps
 
 The `forwardProps` function, offers a way to achieve the same `shouldForwardProps` functionality as emotion and styled-components(with transient props) offer. The difference in here is that the function receives the whole props and you are in charge of removing the props that are should not end-up in the dom.
 
@@ -62,4 +62,23 @@ setup(React.createElement, undefined, undefined, (props) => {
         }
     }
 });
+```
+
+Alternatively you can use `goober/should-forward-prop` addon, to pass only the filter function and not have to deal with the full `props` object.
+
+```js
+import React from 'react';
+import { setup, styled } from 'goober';
+import { shouldForwardProp } from 'goober/should-forward-prop';
+
+setup(
+    React.createElement,
+    undefined,
+    undefined,
+    // This package accepts a `filter` function. If you return false that prop
+    // won't be included in the forwarded props.
+    shouldForwardProp((prop) => {
+        return prop !== 'size';
+    })
+);
 ```

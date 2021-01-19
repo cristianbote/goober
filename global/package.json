@@ -11,7 +11,7 @@
   "unpkg": "dist/goober-global.umd.js",
   "types": "./global.d.ts",
   "scripts": {
-    "build:lib": "rm -rf dist && microbundle --entry src/index.js --name gooberGlobal --no-sourcemap",
+    "build": "rm -rf dist && microbundle --entry src/index.js --name gooberGlobal --no-sourcemap",
     "test": "jest --setupFiles ./jest.setup.js"
   },
   "repository": {

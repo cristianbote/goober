@@ -46,10 +46,13 @@ It's a pun on the tagline.
     -   [clx](#clx)
     -   [createGlobalStyles](#createglobalstyles)
     -   [keyframes](#keyframes)
+    -   [shouldForwardProp](#shouldForwardProp)
 -   [Integrations](#integrations)
     -   [Babel Plugin](#babel-plugin)
     -   [Babel Macro Plugin](#babel-macro-plugin)
     -   [Gatsby](#gatsby)
+    -   [Preact CLI Plugin](#preact-cli-plugin)
+    -   [CSS Prop](#css-prop)
 -   [Features](#features)
     -   [Sharing Style](#sharing-style)
     -   [Autoprefixer](#autoprefixer)
@@ -293,6 +296,25 @@ setup(React.createElement, undefined, undefined, (props) => {
 });
 ```
 
+Alternatively you can use `goober/should-forward-prop` addon, to pass only the filter function and not have to deal with the full `props` object.
+
+```js
+import React from 'react';
+import { setup, styled } from 'goober';
+import { shouldForwardProp } from 'goober/should-forward-prop';
+
+setup(
+    React.createElement,
+    undefined,
+    undefined,
+    // This package accepts a `filter` function. If you return false that prop
+    // won't be included in the forwarded props.
+    shouldForwardProp((prop) => {
+        return prop !== 'size';
+    })
+);
+```
+
 ### `css(taggedTemplate)`
 
 -   `@returns {String}` Returns the className.
@@ -492,6 +514,26 @@ const Wicked = styled('div')`
 `;
 ```
 
+### `shouldForwardProp`
+
+To seamingly implement the `shouldForwardProp` without the need to provide the full loop over `props` you can use the `goober/should-forward-prop` addon.
+
+```js
+import { h } from 'preact';
+import { setup } from 'goober';
+import { shouldForwardProp } from 'goober/should-forward-prop';
+
+setup(
+    h,
+    undefined,
+    undefined,
+    shouldForwardProp((prop) => {
+        // Do NOT forward props that start with `$` symbol
+        return prop['0'] !== '$';
+    })
+);
+```
+
 # Integrations
 
 ## Babel plugin
@@ -508,11 +550,11 @@ Visit the package in here for more info (https://github.com/cristianbote/goober/
 
 ## Babel macro plugin
 
-A [babel-plugin-macros][babel-plugin-macros] macro for [🥜goober][goober], rewriting `styled.div` syntax to `styled('div')` calls.
+A babel-plugin-macros macro for [🥜goober][goober], rewriting `styled.div` syntax to `styled('div')` calls.
 
 ### Usage
 
-Once you've configured [babel-plugin-macros][babel-plugin-macros], change your imports from `goober` to `goober/macro`.
+Once you've configured [babel-plugin-macros](https://github.com/kentcdodds/babel-plugin-macros), change your imports from `goober` to `goober/macro`.
 
 Now you can create your components using `styled.*` syntax:.
 
@@ -555,6 +597,34 @@ export default (config, env) => {
 ```
 
 When you build your Preact application this will run `extractCss` on your prerendered pages and add critical styles for each page.
+
+## CSS Prop
+
+You can use a custom `css` prop to pass in styles on HTML elements with this Babel plugin.
+
+Installation:
+
+```sh
+npm install --save-dev @agney/babel-plugin-goober-css-prop
+```
+
+List the plugin in `.babelrc`:
+
+```
+{
+  "plugins": [
+    "@agney/babel-plugin-goober-css-prop"
+  ]
+}
+```
+
+Usage:
+
+```javascript
+<main css={`display: flex; min-height: 100vh; justify-content: center; align-items: center;`}>
+  <h1 css="color: dodgerblue">Goober</h1>
+</main>
+```
 
 # Features
 

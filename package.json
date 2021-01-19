@@ -1,6 +1,6 @@
 {
   "name": "goober",
-  "version": "2.0.21",
+  "version": "2.0.25",
   "description": "A less than 1KB css-in-js solution",
   "sideEffects": false,
   "main": "dist/goober.js",
@@ -20,6 +20,11 @@
     "prefixer/package.json",
     "prefixer/autoprefixer.d.ts",
     "prefixer/README.md",
+    "should-forward-prop/dist",
+    "should-forward-prop/src",
+    "should-forward-prop/package.json",
+    "should-forward-prop/should-forward-prop.d.ts",
+    "should-forward-prop/README.md",
     "README.md",
     "dist",
     "package.json",
@@ -49,6 +54,12 @@
       "import": "./prefixer/dist/goober-autoprefixer.mjs",
       "require": "./prefixer/dist/goober-autoprefixer.js",
       "umd": "./prefixer/dist/goober-autoprefixer.umd.js"
+    },
+    "./should-forward-prop": {
+      "browser": "./should-forward-prop/dist/goober-should-forward-prop.modern.js",
+      "import": "./should-forward-prop/dist/goober-should-forward-prop.mjs",
+      "require": "./should-forward-prop/dist/goober-should-forward-prop.js",
+      "umd": "./should-forward-prop/dist/goober-should-forward-prop.umd.js"
     }
   },
   "scripts": {
@@ -60,9 +71,10 @@
     "test-ts": "tsc -p ts-tests",
     "clean": "rimraf dist",
     "size-check": "filesize",
-    "build": "npm run build:core && npm run build:prefixer && npm run build:global",
+    "build": "npm run build:core && npm run build:prefixer && npm run build:global && npm run build:should-forward-prop",
     "build:prefixer": "cd ./prefixer && npm run build",
-    "build:global": "cd ./global && npm run build:lib",
+    "build:global": "cd ./global && npm run build",
+    "build:should-forward-prop": "cd ./should-forward-prop && npm run build",
     "build:core": "npm run clean && npm run build:dist && npm run size-check",
     "build:lib": "microbundle --entry src/index.js --name goober --no-sourcemap",
     "build:dist": "npm run build:lib -- --output dist",
