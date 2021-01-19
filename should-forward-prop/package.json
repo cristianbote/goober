@@ -9,7 +9,7 @@
   "umd:main": "./dist/goober-should-forward-prop.umd.js",
   "source": "./src/index.js",
   "unpkg": "./dist/goober-should-forward-prop.umd.js",
-  "types": "./goober-should-forward-prop.d.ts",
+  "types": "./should-forward-prop.d.ts",
   "scripts": {
     "build": "rm -rf dist && microbundle --entry src/index.js --name gooberForwardProp --no-sourcemap",
     "test": "jest --setupFiles ./jest.setup.js"
