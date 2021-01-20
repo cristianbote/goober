@@ -141,11 +141,11 @@ renderToString(<Foo counter={Math.random()} />);
 The results are:
 
 ```
-goober x 39,348 ops/sec ±1.67% (87 runs sampled)
-styled-components x 21,469 ops/sec ±3.60% (85 runs sampled)
-emotion x 46,504 ops/sec ±4.67% (85 runs sampled)
+goober x 169,157 ops/sec ±1.29% (91 runs sampled)
+styled-components x 10,558 ops/sec ±7.44% (55 runs sampled)
+emotion@10.0.27 x 73,287 ops/sec ±3.69% (88 runs sampled)
 
-Fastest is: emotion
+Fastest is: goober
 ```
 
 # API
@@ -599,8 +599,15 @@ List the plugin in `.babelrc`:
 Usage:
 
 ```javascript
-<main css={`display: flex; min-height: 100vh; justify-content: center; align-items: center;`}>
-  <h1 css="color: dodgerblue">Goober</h1>
+<main
+    css={`
+        display: flex;
+        min-height: 100vh;
+        justify-content: center;
+        align-items: center;
+    `}
+>
+    <h1 css="color: dodgerblue">Goober</h1>
 </main>
 ```
 

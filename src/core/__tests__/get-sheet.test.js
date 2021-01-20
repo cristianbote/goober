@@ -32,14 +32,17 @@ describe('getSheet', () => {
         global.document = bkp;
     });
 
-    it('server side with custom collection', () => {
+    it('server side with custom collector', () => {
         const bkp = global.document;
+        const win = global.window;
         delete global.document;
+        delete global.window;
 
         const collector = { data: '' };
 
         expect(collector === getSheet(collector)).toBeTruthy();
 
         global.document = bkp;
+        global.window = win;
     });
 });
