@@ -142,7 +142,7 @@ The results are:
 
 ```
 goober x 169,157 ops/sec ±1.29% (91 runs sampled)
-styled-components@5.1.0 x 10,558 ops/sec ±7.44% (55 runs sampled)
+styled-components x 10,558 ops/sec ±7.44% (55 runs sampled)
 emotion@10.0.27 x 73,287 ops/sec ±3.69% (88 runs sampled)
 
 Fastest is: goober
@@ -599,8 +599,15 @@ List the plugin in `.babelrc`:
 Usage:
 
 ```javascript
-<main css={`display: flex; min-height: 100vh; justify-content: center; align-items: center;`}>
-  <h1 css="color: dodgerblue">Goober</h1>
+<main
+    css={`
+        display: flex;
+        min-height: 100vh;
+        justify-content: center;
+        align-items: center;
+    `}
+>
+    <h1 css="color: dodgerblue">Goober</h1>
 </main>
 ```
 
