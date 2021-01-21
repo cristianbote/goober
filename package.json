@@ -15,6 +15,7 @@
     "global/dist",
     "global/src",
     "global/package.json",
+    "global/global.d.ts",
     "prefixer/dist",
     "prefixer/src",
     "prefixer/package.json",
