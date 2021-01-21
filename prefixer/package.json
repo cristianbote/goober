@@ -3,7 +3,7 @@
   "version": "1.2.1",
   "sideEffects": false,
   "main": "./dist/goober-autoprefixer.js",
-  "module": "./dist/goober-autoprefixer.mjs",
+  "module": "./dist/goober-autoprefixer.esm.js",
   "umd:main": "./dist/goober-autoprefixer.umd.js",
   "source": "./src/index.js",
   "unpkg": "./dist/goober-autoprefixer.umd.js",

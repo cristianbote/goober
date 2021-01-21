@@ -5,7 +5,7 @@
   "description": "The shouldForwardProp addon function for goober",
   "sideEffects": false,
   "main": "./dist/goober-should-forward-prop.js",
-  "module": "./dist/goober-should-forward-prop.mjs",
+  "module": "./dist/goober-should-forward-prop.esm.js",
   "umd:main": "./dist/goober-should-forward-prop.umd.js",
   "source": "./src/index.js",
   "unpkg": "./dist/goober-should-forward-prop.umd.js",

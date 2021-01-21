@@ -4,7 +4,7 @@
   "description": "A less than 1KB css-in-js solution",
   "sideEffects": false,
   "main": "dist/goober.js",
-  "module": "dist/goober.mjs",
+  "module": "dist/goober.esm.js",
   "umd:main": "dist/goober.umd.js",
   "source": "src/index.js",
   "unpkg": "dist/goober.umd.js",
@@ -35,7 +35,7 @@
   "exports": {
     ".": {
       "browser": "./dist/goober.modern.js",
-      "import": "./dist/goober.mjs",
+      "import": "./dist/goober.esm.js",
       "require": "./dist/goober.js",
       "umd": "./dist/goober.umd.js"
     },
@@ -46,19 +46,19 @@
     },
     "./global": {
       "browser": "./global/dist/goober-global.modern.js",
-      "import": "./global/dist/goober-global.mjs",
+      "import": "./global/dist/goober-global.esm.js",
       "require": "./global/dist/goober-global.js",
       "umd": "./global/dist/goober-global.umd.js"
     },
     "./prefixer": {
       "browser": "./prefixer/dist/goober-autoprefixer.modern.js",
-      "import": "./prefixer/dist/goober-autoprefixer.mjs",
+      "import": "./prefixer/dist/goober-autoprefixer.esm.js",
       "require": "./prefixer/dist/goober-autoprefixer.js",
       "umd": "./prefixer/dist/goober-autoprefixer.umd.js"
     },
     "./should-forward-prop": {
       "browser": "./should-forward-prop/dist/goober-should-forward-prop.modern.js",
-      "import": "./should-forward-prop/dist/goober-should-forward-prop.mjs",
+      "import": "./should-forward-prop/dist/goober-should-forward-prop.esm.js",
       "require": "./should-forward-prop/dist/goober-should-forward-prop.js",
       "umd": "./should-forward-prop/dist/goober-should-forward-prop.umd.js"
     }
