@@ -3,7 +3,6 @@
   "version": "2.0.27",
   "description": "A less than 1KB css-in-js solution",
   "sideEffects": false,
-  "type": "module",
   "main": "dist/goober.js",
   "module": "dist/goober.esm.js",
   "umd:main": "dist/goober.umd.js",

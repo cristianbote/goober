@@ -4,7 +4,6 @@
   "version": "0.0.1",
   "description": "The createGlobalStyles addon function for goober",
   "sideEffects": false,
-  "type": "module",
   "main": "dist/goober-global.js",
   "module": "dist/goober-global.esm.js",
   "umd:main": "dist/goober-global.umd.js",
