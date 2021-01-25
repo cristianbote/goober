@@ -55,6 +55,7 @@ It's a pun on the tagline.
 -   [Features](#features)
     -   [Sharing Style](#sharing-style)
     -   [Autoprefixer](#autoprefixer)
+    -   [TypeScript](#typescript)
 -   [Browser Support](#browser-support)
 -   [Contributing](#contributing)
 
@@ -695,6 +696,56 @@ setup(React.createElement, prefix);
 ```
 
 And voila! It is done!
+
+# TypeScript
+
+`goober` comes with type definitions build in, making it easy to get started in TypeScript straight away.
+
+## Prop Types
+
+If you're utilising custom props and wish to style based on them, you can do so when initialising as follows:
+
+```ts
+interface Props {
+    size: number;
+}
+
+styled('div')<Props>`
+    border-radius: ${(props) => props.size}px;
+`;
+
+// This also works!
+
+styled<Props>('div')`
+    border-radius: ${(props) => props.size}px;
+`;
+```
+
+## Extending Theme
+
+If you're using a [custom theme](../api/setup.md#with-theme) with goober, to add types to it you should create a declaration file at the base of your project.
+
+```ts
+// goober.d.t.s
+
+import 'goober';
+
+declare module 'goober' {
+    export interface DefaultTheme {
+        colors: {
+            primary: string;
+        };
+    }
+}
+```
+
+You should now have autocompletion for your theme.
+
+```ts
+const ThemeContainer = styled('div')`
+    background-color: ${(props) => props.theme.colors.primary};
+`;
+```
 
 # Browser support
 
