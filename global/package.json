@@ -12,7 +12,7 @@
   "types": "./global.d.ts",
   "scripts": {
     "build": "rm -rf dist && microbundle --entry src/index.js --name gooberGlobal --no-sourcemap",
-    "test": "jest --setupFiles ./jest.setup.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
