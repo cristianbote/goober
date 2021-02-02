@@ -142,9 +142,9 @@ renderToString(<Foo counter={Math.random()} />);
 The results are:
 
 ```
-goober x 169,157 ops/sec ±1.29% (91 runs sampled)
-styled-components x 10,558 ops/sec ±7.44% (55 runs sampled)
-emotion@10.0.27 x 73,287 ops/sec ±3.69% (88 runs sampled)
+goober x 200,437 ops/sec ±1.93% (87 runs sampled)
+styled-components@5.2.1 x 12,650 ops/sec ±9.09% (48 runs sampled)
+emotion@11.0.0 x 104,229 ops/sec ±2.06% (88 runs sampled)
 
 Fastest is: goober
 ```
