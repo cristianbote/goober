@@ -1,5 +1,5 @@
 import { glob, createGlobalStyles } from '../index';
-import { css } from 'goober';
+import { css, setup } from 'goober';
 
 jest.mock('goober', () => ({
     css: jest.fn().mockReturnValue('css()')
@@ -18,17 +18,5 @@ describe('global', () => {
     it('glob', () => {
         glob`a:b`;
         expect(css).toBeCalledWith(['a:b']);
-    });
-
-    it('createGlobalStyles', () => {
-        const fn = createGlobalStyles`opacity: 1;`;
-
-        expect(css).not.toBeCalled();
-
-        // 'render'
-        fn();
-
-        expect(css).toHaveBeenCalledTimes(1);
-        expect(css).toHaveBeenCalledWith(['opacity: 1;']);
     });
 });

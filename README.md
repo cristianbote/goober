@@ -55,6 +55,7 @@ It's a pun on the tagline.
 -   [Features](#features)
     -   [Sharing Style](#sharing-style)
     -   [Autoprefixer](#autoprefixer)
+    -   [TypeScript](#typescript)
 -   [Browser Support](#browser-support)
 -   [Contributing](#contributing)
 
@@ -141,9 +142,9 @@ renderToString(<Foo counter={Math.random()} />);
 The results are:
 
 ```
-goober x 169,157 ops/sec ±1.29% (91 runs sampled)
-styled-components x 10,558 ops/sec ±7.44% (55 runs sampled)
-emotion@10.0.27 x 73,287 ops/sec ±3.69% (88 runs sampled)
+goober x 200,437 ops/sec ±1.93% (87 runs sampled)
+styled-components@5.2.1 x 12,650 ops/sec ±9.09% (48 runs sampled)
+emotion@11.0.0 x 104,229 ops/sec ±2.06% (88 runs sampled)
 
 Fastest is: goober
 ```
@@ -695,6 +696,56 @@ setup(React.createElement, prefix);
 ```
 
 And voila! It is done!
+
+# TypeScript
+
+`goober` comes with type definitions build in, making it easy to get started in TypeScript straight away.
+
+## Prop Types
+
+If you're utilising custom props and wish to style based on them, you can do so when initialising as follows:
+
+```ts
+interface Props {
+    size: number;
+}
+
+styled('div')<Props>`
+    border-radius: ${(props) => props.size}px;
+`;
+
+// This also works!
+
+styled<Props>('div')`
+    border-radius: ${(props) => props.size}px;
+`;
+```
+
+## Extending Theme
+
+If you're using a [custom theme](../api/setup.md#with-theme) with goober, to add types to it you should create a declaration file at the base of your project.
+
+```ts
+// goober.d.t.s
+
+import 'goober';
+
+declare module 'goober' {
+    export interface DefaultTheme {
+        colors: {
+            primary: string;
+        };
+    }
+}
+```
+
+You should now have autocompletion for your theme.
+
+```ts
+const ThemeContainer = styled('div')`
+    background-color: ${(props) => props.theme.colors.primary};
+`;
+```
 
 # Browser support
 
