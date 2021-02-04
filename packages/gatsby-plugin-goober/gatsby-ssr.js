@@ -1,9 +1,22 @@
 const React = require('react');
 const goober = require('goober');
-const autoprefixer = require('goober-autoprefixer');
+
+const moduleExists = (path) => {
+    try {
+        require.resolve(path);
+        return true;
+    } catch (_) {
+        return false;
+    }
+};
+
+// Support new and old goober versions
+const autoprefixer = moduleExists('goober/prefixer')
+    ? require('goober/prefixer').prefix
+    : require('goober-autoprefixer').default;
 
 // Set the pragma for `goober` to know which to use
-goober.setup(React.createElement, autoprefixer.prefix);
+goober.setup(React.createElement, autoprefixer);
 
 // Define a cache entry
 const cache = new Map();
