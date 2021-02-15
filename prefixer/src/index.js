@@ -5,7 +5,8 @@ export const prefix = (prop, value) => {
     value = prefixValue(prop, value);
 
     // Handle cases where value can have multiple definitions.
-    if (value.indexOf(', ') !== -1) value = value.replace(/, /g, `; ${prop}: `);
+    if (typeof value === 'string' && value.indexOf(', ') !== -1)
+        value = value.replace(/, /g, `; ${prop}: `);
 
     let css = `${prop}: ${value};`;
     const flag = prefixProperty(prop);
