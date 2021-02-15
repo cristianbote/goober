@@ -4,9 +4,10 @@ export const prefix = (prop, value) => {
     const base = `${prop}: ${value};`;
     value = prefixValue(prop, value);
 
+    // TODO: Investigate more cause this is not a solution.
     // Handle cases where value can have multiple definitions.
-    if (typeof value === 'string' && value.indexOf(', ') !== -1)
-        value = value.replace(/, /g, `; ${prop}: `);
+    // if (typeof value === 'string' && value.indexOf(', ') !== -1)
+    //     value = value.replace(/, /g, `; ${prop}: `);
 
     let css = `${prop}: ${value};`;
     const flag = prefixProperty(prop);

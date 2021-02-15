@@ -3,7 +3,7 @@ import { prefix } from '../src';
 const sanitize = (str) => str.replace(/\s/g, '');
 
 describe('goober-autoprefixer', () => {
-    it('can prefix values', () => {
+    it.skip('can prefix values', () => {
         const output = prefix('position', 'sticky');
         expect(sanitize(output)).toEqual('position:-webkit-sticky;position:sticky;');
     });
