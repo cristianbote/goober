@@ -14,4 +14,9 @@ describe('goober-autoprefixer', () => {
             `appearance:none;-moz-appearance:none;-webkit-appearance:none;`
         );
     });
+
+    it('leaves unprefixed the values that do not need prefixing', () => {
+        const output = prefix('font-weight', 400);
+        expect(sanitize(output)).toEqual('font-weight:400;');
+    });
 });
