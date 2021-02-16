@@ -22,7 +22,7 @@
     "@babel/preset-env": "^7.3.1",
     "babel-jest": "^24.1.0",
     "jest": "^24.1.0",
-    "tiny-css-prefixer": "^1.1.4"
+    "style-vendorizer": "^2.0.0"
   },
   "keywords": [
     "goober",
