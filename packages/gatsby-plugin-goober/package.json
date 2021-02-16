@@ -1,6 +1,6 @@
 {
     "name": "gatsby-plugin-goober",
-    "version": "2.3.0",
+    "version": "2.3.1",
     "description": "Gatsby plugin to add support for goober",
     "main": "index.js",
     "scripts": {},
