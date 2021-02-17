@@ -9,7 +9,7 @@
 
 [![version](https://img.shields.io/npm/v/goober)](https://www.npmjs.com/package/goober)
 [![status](https://travis-ci.org/cristianbote/goober.svg?branch=master)](https://travis-ci.org/cristianbote/goober)
-[![gzip size](https://img.badgesize.io/https://unpkg.com/goober@latest/dist/goober.module.js?compression=gzip)](https://unpkg.com/goober)
+[![gzip size](https://img.badgesize.io/https://unpkg.com/goober@latest/dist/goober.js?compression=gzip)](https://unpkg.com/goober)
 [![downloads](https://img.shields.io/npm/dm/goober)](https://www.npmjs.com/package/goober)
 [![coverage](https://img.shields.io/codecov/c/github/cristianbote/goober.svg?maxAge=2592000)](https://codecov.io/github/cristianbote/goober?branch=master)
 [![Slack](https://img.shields.io/badge/slack-join-orange)](https://join.slack.com/t/gooberdev/shared_invite/enQtOTM5NjUyOTcwNzI1LWUwNzg0NTQwODY1NDJmMzQ2NzdlODI4YTM3NWUwYjlkY2ZkNGVmMTFlNGMwZGUyOWQyZmI4OTYwYmRiMzE0NGQ)
@@ -55,6 +55,7 @@ It's a pun on the tagline.
 -   [Features](#features)
     -   [Sharing Style](#sharing-style)
     -   [Autoprefixer](#autoprefixer)
+    -   [TypeScript](#typescript)
 -   [Browser Support](#browser-support)
 -   [Contributing](#contributing)
 
@@ -141,11 +142,11 @@ renderToString(<Foo counter={Math.random()} />);
 The results are:
 
 ```
-goober x 39,348 ops/sec ±1.67% (87 runs sampled)
-styled-components x 21,469 ops/sec ±3.60% (85 runs sampled)
-emotion x 46,504 ops/sec ±4.67% (85 runs sampled)
+goober x 200,437 ops/sec ±1.93% (87 runs sampled)
+styled-components@5.2.1 x 12,650 ops/sec ±9.09% (48 runs sampled)
+emotion@11.0.0 x 104,229 ops/sec ±2.06% (88 runs sampled)
 
-Fastest is: emotion
+Fastest is: goober
 ```
 
 # API
@@ -599,8 +600,15 @@ List the plugin in `.babelrc`:
 Usage:
 
 ```javascript
-<main css={`display: flex; min-height: 100vh; justify-content: center; align-items: center;`}>
-  <h1 css="color: dodgerblue">Goober</h1>
+<main
+    css={`
+        display: flex;
+        min-height: 100vh;
+        justify-content: center;
+        align-items: center;
+    `}
+>
+    <h1 css="color: dodgerblue">Goober</h1>
 </main>
 ```
 
@@ -688,6 +696,56 @@ setup(React.createElement, prefix);
 ```
 
 And voila! It is done!
+
+# TypeScript
+
+`goober` comes with type definitions build in, making it easy to get started in TypeScript straight away.
+
+## Prop Types
+
+If you're utilising custom props and wish to style based on them, you can do so when initialising as follows:
+
+```ts
+interface Props {
+    size: number;
+}
+
+styled('div')<Props>`
+    border-radius: ${(props) => props.size}px;
+`;
+
+// This also works!
+
+styled<Props>('div')`
+    border-radius: ${(props) => props.size}px;
+`;
+```
+
+## Extending Theme
+
+If you're using a [custom theme](../api/setup.md#with-theme) with goober, to add types to it you should create a declaration file at the base of your project.
+
+```ts
+// goober.d.t.s
+
+import 'goober';
+
+declare module 'goober' {
+    export interface DefaultTheme {
+        colors: {
+            primary: string;
+        };
+    }
+}
+```
+
+You should now have autocompletion for your theme.
+
+```ts
+const ThemeContainer = styled('div')`
+    background-color: ${(props) => props.theme.colors.primary};
+`;
+```
 
 # Browser support
 

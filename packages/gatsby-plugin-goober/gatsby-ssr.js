@@ -1,9 +1,9 @@
 const React = require('react');
 const goober = require('goober');
-const autoprefixer = require('goober-autoprefixer');
+const { prefix } = require('goober/prefixer');
 
 // Set the pragma for `goober` to know which to use
-goober.setup(React.createElement, autoprefixer.prefix);
+goober.setup(React.createElement, prefix);
 
 // Define a cache entry
 const cache = new Map();
