@@ -13,8 +13,7 @@ jobs:
               with:
                   node-version: '14.x'
 
-            - run: cd ./website && npm i
-            - run: npm run build
+            - run: cd ./website && npm i && npm run build
 
             - name: GitHub Action for Firebase
               uses: w9jds/firebase-action@v1.5.0
@@ -22,3 +21,4 @@ jobs:
                   args: deploy --only hosting
               env:
                   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+                  PROJECT_PATH: ./website
