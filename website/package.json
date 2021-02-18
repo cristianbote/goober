@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"start": "wmr",
-		"build": "rm -rf ./dist && wmr build --prerender",
+		"build": "wmr build --prerender",
 		"postbuild": "cp -r ./static/ ./dist"
 	},
 	"eslintConfig": {
