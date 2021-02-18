@@ -110,16 +110,16 @@ export default function Home() {
 
 <i>const</i> <b>Button</b> = <b>styled</b>(<u>'button'</u>)\`
   <i>border</i>: 0;
-  <i>background</i/>: dodgerblue;
+  <i>background</i>: dodgerblue;
 
-  <i>span</i/> {
-    <i>color</i/>: white;
+  <i>span</i> {
+    <i>color</i>: white;
   }
 
-  <i>&:hover</i/> {
-    <i>background</i/>: tomato;
-    <i>span</i/> {
-      <i>color</i/>: black;
+  <i>&:hover</i> {
+    <i>background</i>: tomato;
+    <i>span</i> {
+      <i>color</i>: black;
     }
   }
 \`;`

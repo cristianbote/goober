@@ -8,8 +8,8 @@ import { extractCss, setup } from 'goober';
 import { prefix } from 'goober/prefixer';
 import { shouldForwardProp } from 'goober/should-forward-prop';
 import { Box } from './components/box/box.js';
-import { WithStyles } from './styles/with-styles.js';
 import { props, theme } from './styles/theme.js';
+import { GlobalStyles } from './styles/global.js';
 
 setup(
     h,
@@ -20,18 +20,17 @@ setup(
 
 export function App() {
     return (
-        <WithStyles>
-            <LocationProvider>
-                <Box full flex>
-                    <ErrorBoundary>
-                        <Router>
-                            <Home path="/" />
-                            <NotFound default />
-                        </Router>
-                    </ErrorBoundary>
-                </Box>
-            </LocationProvider>
-        </WithStyles>
+        <LocationProvider>
+            <GlobalStyles />
+            <Box full flex>
+                <ErrorBoundary>
+                    <Router>
+                        <Home path="/" />
+                        <NotFound default />
+                    </Router>
+                </ErrorBoundary>
+            </Box>
+        </LocationProvider>
     );
 }
 
