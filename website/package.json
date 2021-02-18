@@ -6,7 +6,6 @@
 	"scripts": {
 		"start": "wmr",
 		"build": "rm -rf ./dist && wmr build --prerender",
-		"deploy": "npm run build && npx firebase-tools deploy",
 		"postbuild": "cp -r ./static/ ./dist"
 	},
 	"eslintConfig": {

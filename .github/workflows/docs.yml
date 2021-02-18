@@ -28,9 +28,6 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-yarn-
 
-            - run: cd ./website && npm i
-            - run: npm run build
-
             - run: cd ../docs && yarn install --frozen-lockfile
             - run: yarn build
 
