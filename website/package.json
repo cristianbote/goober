@@ -5,14 +5,14 @@
 	"type": "module",
 	"scripts": {
 		"start": "wmr",
-		"build": "rm -rf ./build && wmr build --prerender && npm run postbuild",
-		"postbuild": "cp ./dist/index.html ../docs/static/index.html"
+		"build": "rm -rf ./dist && wmr build --prerender",
+		"postbuild": "cp -r ./static/ ./dist"
 	},
 	"eslintConfig": {
 		"extends": "preact"
 	},
 	"dependencies": {
-		"goober": "^2.0.19",
+		"goober": "^2.0.33",
 		"preact-iso": "^0.2.0"
 	},
 	"devDependencies": {

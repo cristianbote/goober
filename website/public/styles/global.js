@@ -16,6 +16,7 @@ export const GlobalStyles = createGlobalStyles`
 		color: ${theme.colors.white};
 		background-color: ${theme.colors['gray-50']};
 		position: relative;
+		overflow: 'hidden'
 	}
 
 	* {

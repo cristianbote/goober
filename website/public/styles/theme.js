@@ -57,5 +57,8 @@ export const props = [
     'color',
     'mono',
     'spaced',
-    'superSpaced'
+    'superSpaced',
+    'ph',
+    'pl',
+    'pr'
 ];

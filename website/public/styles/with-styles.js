@@ -10,6 +10,5 @@ export const WithStyles = ({ children }) => (
     <>
         <GlobalStyles />
         {children}
-        {typeof window == 'undefined' ? <Styles /> : null}
     </>
 );

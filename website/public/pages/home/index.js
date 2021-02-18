@@ -3,6 +3,7 @@ import { Box } from '../../components/box/box';
 import { Button } from '../../components/button/button';
 import { Feature } from '../../components/feature/feature';
 import { Text } from '../../components/text/text';
+import { Nav } from '../../components/nav/nav';
 
 const BoxWithBorder = styled(Box)(({ theme }) => ({
     borderTop: `1px solid ${theme.colors['gray-100']}`
@@ -41,29 +42,49 @@ const Code = styled('pre')(({ theme }) => ({
     u: { textDecoration: 'none', color: theme.colors['accent-300'] }
 }));
 
+const Logo = () => (
+    <>
+        <Text as="span" bold color="accent-100">
+            g
+        </Text>
+        <Text as="span" bold color="accent-400">
+            o
+        </Text>
+        <Text as="span" bold color="accent-100">
+            o
+        </Text>
+        <Text as="span" bold color="accent-500">
+            b
+        </Text>
+        <Text as="span" bold color="accent-400">
+            e
+        </Text>
+        <Text as="span" bold color="accent-300">
+            r
+        </Text>
+    </>
+);
+
 export default function Home() {
     return (
         <Box full>
+            <Nav
+                logo={<Logo />}
+                buttons={
+                    <>
+                        <Button as="a" href="https://goober.js.org/" secondary>
+                            Documentation
+                        </Button>
+                        <Box size={300} />
+                        <Button as="a" href="https://github.com/cristianbote/goober">
+                            GitHub
+                        </Button>
+                    </>
+                }
+            />
             <Box size={700} centered full>
                 <Text size={600} as="h1" bold superSpaced>
-                    <Text as="span" bold color="accent-100">
-                        g
-                    </Text>
-                    <Text as="span" bold color="accent-400">
-                        o
-                    </Text>
-                    <Text as="span" bold color="accent-100">
-                        o
-                    </Text>
-                    <Text as="span" bold color="accent-500">
-                        b
-                    </Text>
-                    <Text as="span" bold color="accent-400">
-                        e
-                    </Text>
-                    <Text as="span" bold color="accent-300">
-                        r
-                    </Text>
+                    <Logo />
                 </Text>
                 <Box size={300} />
                 <Text as="h2" faded>
@@ -72,7 +93,7 @@ export default function Home() {
             </Box>
             <Box full centered>
                 <Box size={400} rounded={100} centered horizontal>
-                    <Button as="a" href="/docs/" secondary>
+                    <Button as="a" href="https://goober.js.org/" secondary>
                         Documentation
                     </Button>
                     <Box size={300} />
@@ -81,7 +102,7 @@ export default function Home() {
                     </Button>
                 </Box>
                 <Box size={500} />
-                <Box centered full>
+                <Box centered full fill>
                     <Box size={600} rounded={300} bg="gray-25">
                         <Code
                             dangerouslySetInnerHTML={{
@@ -118,20 +139,23 @@ export default function Home() {
                             </Text>
                         </Text>
                     </BoxOverlapAndShadow>
+                    <Box size={300} />
                 </Box>
-                <Box size={600} />
-                <Text size={300} bold>
-                    Features
-                </Text>
-                <Text size={300} faded>
-                    Even though small in size
-                    <Text ph={200} color="accent-100" size={200} bold as="span">
-                        goober
+                <Box size={200} />
+                <Box size={400} centered full fill>
+                    <Text size={300} bold>
+                        Features
                     </Text>
-                    has got you covered, feature wise.
-                </Text>
-                <Box size={400} />
-                <Box horizontal full max reactive size={400}>
+                    <Text size={300} faded>
+                        Even though small in size
+                        <Text ph={200} color="accent-100" size={200} bold as="span">
+                            goober
+                        </Text>
+                        has got you covered, feature wise.
+                    </Text>
+                </Box>
+                <Box size={200} />
+                <Box horizontal fill full max reactive size={400}>
                     <Box flex>
                         <Feature title={'Lightweight'}>
                             As the subtitle notes, this is the smallest and fullest featured
@@ -217,6 +241,15 @@ export default function Home() {
                                 emoji.
                             </Text>
                         </Box>
+                        <Box size={400} />
+                        <Feature title="Build more">
+                            By using{' '}
+                            <Text ph={200} color="accent-100" size={200} bold as="span">
+                                goober
+                            </Text>
+                            , you are practically getting back space in size to build more of the
+                            needed features.
+                        </Feature>
                     </Box>
                 </Box>
                 <Box size={300} />
@@ -229,7 +262,7 @@ export default function Home() {
                 </Text>
                 <Box size={300} />
                 <Box size={400} rounded={100} centered horizontal>
-                    <Button as="a" href="/docs/" secondary>
+                    <Button as="a" href="https://goober.js.org/" secondary>
                         Documentation
                     </Button>
                     <Box size={300} />
@@ -248,13 +281,37 @@ export default function Home() {
                             </Text>
                             <Text size={100}>A less than 1KB css-in-js solution.</Text>
                             <Box size={300} />
+                            <Text size={100}>
+                                This website was built with{' '}
+                                <Text
+                                    as="a"
+                                    href="https://github.com/preactjs/wmr"
+                                    color="accent-100"
+                                    size={300}
+                                    bold
+                                >
+                                    wmr
+                                </Text>{' '}
+                                and{' '}
+                                <Text
+                                    as="a"
+                                    href="https://github.com/cristianbote/goober"
+                                    color="accent-100"
+                                    size={300}
+                                    bold
+                                >
+                                    goober
+                                </Text>
+                                .
+                            </Text>
+                            <Box size={300} />
                             <Text size={100}>Maintained with love by a bunch of good people.</Text>
                         </Box>
                     </Box>
                     <Box size={300} />
                     <Box>
                         <Box size={200}>
-                            <Text as="a" href="/docs/" size={100} bold>
+                            <Text as="a" href="https://goober.js.org/" size={100} bold>
                                 Documentation
                             </Text>
                             <Box size={300} />

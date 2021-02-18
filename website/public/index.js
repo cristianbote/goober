@@ -4,7 +4,7 @@ import { LocationProvider, Router } from 'preact-iso/router';
 import { ErrorBoundary } from 'preact-iso/lazy';
 import Home from './pages/home/index.js';
 import NotFound from './pages/_404.js';
-import { setup } from 'goober';
+import { extractCss, setup } from 'goober';
 import { prefix } from 'goober/prefixer';
 import { shouldForwardProp } from 'goober/should-forward-prop';
 import { Box } from './components/box/box.js';
@@ -22,7 +22,7 @@ export function App() {
     return (
         <WithStyles>
             <LocationProvider>
-                <Box flex>
+                <Box full flex>
                     <ErrorBoundary>
                         <Router>
                             <Home path="/" />
@@ -39,5 +39,10 @@ hydrate(<App />);
 
 export async function prerender(data) {
     const { default: prerender } = await import('preact-iso/prerender');
-    return await prerender(<App {...data} />);
+    const res = await prerender(<App {...data} />);
+    const css = extractCss();
+
+    res.html = `<style id="_goober"> ${css}</style>${res.html}`;
+
+    return res;
 }
