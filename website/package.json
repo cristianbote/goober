@@ -16,6 +16,6 @@
 		"preact-iso": "^0.2.0"
 	},
 	"devDependencies": {
-		"wmr": "^1.1.0"
+		"wmr": "^1.2.0"
 	}
 }
