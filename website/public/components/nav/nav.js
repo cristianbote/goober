@@ -3,7 +3,7 @@ import { styled } from 'goober';
 import { Box } from '../box/box';
 import { Text } from '../text/text';
 
-const Wrapper = styled('div')(({ show }) => [
+const Wrapper = styled('div')(({ show, theme }) => [
     {
         position: 'fixed',
         top: 0,
@@ -11,7 +11,8 @@ const Wrapper = styled('div')(({ show }) => [
         right: 0,
         zIndex: 1,
         opacity: 0,
-        transition: 'opacity 200ms ease-out'
+        transition: 'opacity 200ms ease-out',
+        boxShadow: [0, theme.sizes[100], theme.sizes[400], theme.colors['black']].join(' ')
     },
     show && { opacity: 1 }
 ]);
@@ -47,7 +48,7 @@ export const Nav = ({ logo, buttons }) => {
     }, []);
     return (
         <Wrapper show={show}>
-            <Box reactive size={300} centered full horizontal bg={'gray-200'}>
+            <Box reactive size={300} centered full horizontal bg={'gray-50'}>
                 <BoxWithCenter full max horizontal reactive>
                     <Box horizontal centered>
                         <Text size={400} superSpaced>
