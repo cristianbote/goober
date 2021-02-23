@@ -1,5 +1,5 @@
 import { glob, createGlobalStyles } from '../index';
-import { css, setup } from 'goober';
+import { css } from 'goober';
 
 jest.mock('goober', () => ({
     css: jest.fn().mockReturnValue('css()')
