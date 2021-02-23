@@ -3,9 +3,9 @@ module.exports = {
     tagline: 'a less than 1KB 🎉 css-in-js alternative with a familiar API',
     url: 'https://goober.js.org',
     baseUrl: '/',
-    onBrokenLinks: 'warn',
+    onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
-    favicon: '/img/favicon.ico',
+    favicon: 'img/favicon.ico',
     organizationName: 'cristianbote',
     projectName: 'goober',
     themeConfig: {
@@ -31,7 +31,7 @@ module.exports = {
             hideOnScroll: true,
             logo: {
                 alt: 'goober',
-                src: '/img/logo.png'
+                src: 'img/logo.png'
             },
             items: [
                 {
@@ -55,7 +55,7 @@ module.exports = {
             '@docusaurus/preset-classic',
             {
                 docs: {
-                    routeBasePath: '/docs/',
+                    routeBasePath: '/',
                     sidebarPath: require.resolve('./sidebars.js'),
                     editUrl: 'https://github.com/cristianbote/goober/edit/master/'
                 },
