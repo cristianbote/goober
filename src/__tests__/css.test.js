@@ -87,17 +87,6 @@ describe('css', () => {
     });
 });
 
-describe('glob', () => {
-    it('type', () => {
-        expect(typeof glob).toEqual('function');
-    });
-
-    it('args: g', () => {
-        glob`a:b`;
-        expect(hash).toBeCalledWith('compile()', 'getSheet()', 1, undefined, undefined);
-    });
-});
-
 describe('keyframes', () => {
     it('type', () => {
         expect(typeof keyframes).toEqual('function');
