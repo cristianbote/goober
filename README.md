@@ -246,14 +246,14 @@ setup(React.createElement, customPrefixer);
 #### With theme
 
 ```js
-import React from 'react';
+import React, { createContext, useContext, createElement } from 'react';
 import { setup, styled } from 'goober';
 
 const theme = { primary: 'blue' };
 const ThemeContext = createContext(theme);
 const useTheme = () => useContext(ThemeContext);
 
-setup(React.createElement, undefined, useTheme);
+setup(createElement, undefined, useTheme);
 
 const ContainerWithTheme = styled('div')`
     color: ${(props) => props.theme.primary};
