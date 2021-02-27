@@ -67,6 +67,7 @@ declare namespace goober {
     type Tagged<P extends Object = {}> = <PP extends Object = {}>(
         tag:
             | CSSAttribute
+            | CSSAttribute[]
             | TemplateStringsArray
             | string
             | ((props: P & PP) => CSSAttribute | string),
