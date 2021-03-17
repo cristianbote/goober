@@ -21,29 +21,63 @@ const inner = (props) => ({
         display: 'space'
     }
 });
+const tagged = `
+    opacity: ${(props) => (props.counter > 0.5 ? 1 : 0)};
+
+    @media (min-width: 1px) {
+        rule: all;
+    }
+
+    &:hover {
+        another: 1;
+        display: space;
+    }
+`;
 const def = () => inner;
+const arr = () => (props) => [
+    {
+        opacity: 0,
+        '@media (min-width: 1px)': {
+            rule: 'all'
+        },
+        '&:hover': {
+            another: 1,
+            display: 'space'
+        }
+    },
+    props.counter > 0.5 && { opacity: 1 }
+];
 
 function renderComponent(Foo) {
     render(react.createElement(Foo, { counter: Math.random() }));
 }
 
-const suite = new Benchmark.Suite('styled');
-suite
-    .add('goober', () => {
-        renderComponent(goober.styled('div')(def()));
-    })
-    .add(`styled-components@${styledVersion}`, () => {
-        renderComponent(styled.div(def()));
-    })
-    .add(`emotion@${emotionVersion}`, () => {
-        renderComponent(emotion.div(def()));
-    })
-    .on('error', (e) => console.log(e))
-    .on('cycle', function (event) {
-        console.log(String(event.target));
-    })
-    .on('complete', function () {
-        const fastest = this.filter('fastest').map('name')[0];
-        console.log('\nFastest is: ' + fastest);
-    })
-    .run();
+function createSuite(name, arg) {
+    const suite = new Benchmark.Suite(name);
+    suite
+        .add('goober', () => {
+            renderComponent(goober.styled('div')(arg()));
+        })
+        .add(`styled-components@${styledVersion}`, () => {
+            renderComponent(styled.div(arg()));
+        })
+        .add(`emotion@${emotionVersion}`, () => {
+            renderComponent(emotion.div(arg()));
+        })
+        .on('start', function (e) {
+            console.log('\nStarting:', e.currentTarget.name);
+        })
+        .on('error', (e) => console.log(e))
+        .on('cycle', function (event) {
+            console.log('▸', String(event.target));
+        })
+        .on('complete', function () {
+            const fastest = this.filter('fastest').map('name')[0];
+            console.log('\nFastest is: ' + fastest);
+        })
+        .run();
+}
+
+createSuite('styled:object', () => def());
+createSuite('styled:tagged', () => tagged);
+createSuite('styled:array', () => arr());
