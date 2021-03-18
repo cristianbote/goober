@@ -34,16 +34,12 @@
   ],
   "exports": {
     ".": {
+      "require": "./dist/goober.js",
       "browser": "./dist/goober.modern.js",
       "import": "./dist/goober.esm.js",
-      "require": "./dist/goober.js",
       "umd": "./dist/goober.umd.js"
     },
-    "./macro": {
-      "browser": "./macro/index.js",
-      "import": "./macro/index.js",
-      "require": "./macro/index.js"
-    },
+    "./macro": "./macro/index.js",
     "./global": {
       "browser": "./global/dist/goober-global.modern.js",
       "import": "./global/dist/goober-global.esm.js",
