@@ -26,9 +26,15 @@ function css(val) {
 }
 
 /**
+ * CSS Global function to declare global styles
+ * @type {Function}
+ */
+let glob = css.bind({ g: 1 });
+
+/**
  * `keyframes` function for defining animations
  * @type {Function}
  */
 let keyframes = css.bind({ k: 1 });
 
-export { css, keyframes };
+export { css, glob, keyframes };
