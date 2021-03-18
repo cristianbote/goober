@@ -450,7 +450,7 @@ export default function App() {
 }
 ```
 
-#### How about using the `glob` function directly?
+#### How about using `glob` function directly?
 
 Before the global addon, `goober/global`, there was a method named `glob` that was part of the main package that would do the same thing, more or less. Having only that method to define global styles usually led to missing global styles from the extracted css, since the pattern did not enforced the evaluation of the styles at render time. The `glob` method it is still exported from `goober/global` if you have a hard dependency on it. It still has the same API:
 
@@ -624,7 +624,7 @@ Usage:
 -   [x] Styling any component
     -   via `` const Btn = ({className}) => {...}; const TomatoBtn = styled(Btn)`color: tomato;` ``
 -   [x] Vanilla(via `css` function)
--   [x] `globalStyle`(via `glob`, `createGlobalStyles`) so one would be able to create global styles
+-   [x] `globalStyle`(via `glob`) so one would be able to create global styles
 -   [x] target/extract from elements other than `<head>`
 -   [x] [vendor prefixing](#autoprefixer)
 
