@@ -1,6 +1,6 @@
 {
     "name": "gatsby-plugin-goober",
-    "version": "2.3.1",
+    "version": "2.4.0",
     "description": "Gatsby plugin to add support for goober",
     "main": "index.js",
     "scripts": {},
@@ -23,8 +23,8 @@
     "dependencies": {},
     "devDependencies": {},
     "peerDependencies": {
-        "goober": "^2.0.33",
-        "gatsby": "^2.10.0"
+        "goober": "^2.0.35",
+        "gatsby": "^3.0.0"
     },
     "repository": {
         "type": "git",
