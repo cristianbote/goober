@@ -225,7 +225,7 @@ const Btn = styled('button')([
 
 As goober is JSX library agnostic, you need to pass in the forward ref function for the library you are using. Here's how you do it for React.  
 
-```
+```js
 const Title = styled("h1", React.forwardRef)`
   font-weight: bold;
   color: dodgerblue;
