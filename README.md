@@ -221,6 +221,18 @@ const Btn = styled('button')([
 <Btn isPrimary />; // This will render the `Button` with `background: cyan;`
 ```
 
+##### Forward ref function
+
+As goober is JSX library agnostic, you need to pass in the forward ref function for the library you are using. Here's how you do it for React.  
+
+```
+const Title = styled("h1", React.forwardRef)`
+  font-weight: bold;
+  color: dodgerblue;
+`;
+```
+
+
 ### `setup(pragma: Function, prefixer?: Function, theme?: Function, forwardProps?: Function)`
 
 Given the fact that `react` uses `createElement` for the transformed elements and `preact` uses `h`, `setup` should be called with the proper _pragma_ function. This was added to reduce the bundled size and being able to bundle esmodule version. At the moment I think it's the best tradeoff we can have.
