@@ -12,6 +12,11 @@ suite
     while (i < l) out = (101 * out + str.charCodeAt(i++)) >>> 0
     const c = 'go' + out;
 })
+.add('twind HASH', () => {
+    let i = str.length - 1, out = 9;
+    while (i >= 0) out = Math.imul(out ^ str.charCodeAt(i--), 0x5f356495);
+    const c = 'go' + ((out ^ (out >>> 9)) >>> 0).toString(36);
+})
 .on('start', function (e) {
     console.log('\nStarting', e.currentTarget.name);
 })
