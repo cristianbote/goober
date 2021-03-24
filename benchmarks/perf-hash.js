@@ -8,9 +8,9 @@ suite
     const c = 'go' + str.split('').reduce((out, s) => (101 * out + s.charCodeAt(0)) >>> 0, 11);
 })
 .add('goober optimized HASH', () => {
-    let i = 0, l = str.length - 1, v = 11;
-    while (i < l) v = (101 * v + str.charCodeAt(i++)) >>> 0
-    const c = 'go' + v;
+    let i = 0, l = str.length, out = 11;
+    while (i < l) out = (101 * out + str.charCodeAt(i++)) >>> 0
+    const c = 'go' + out;
 })
 .on('start', function (e) {
     console.log('\nStarting', e.currentTarget.name);
