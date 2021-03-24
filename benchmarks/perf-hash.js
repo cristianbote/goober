@@ -9,7 +9,7 @@ suite
 })
 .add('goober optimized HASH', () => {
     let i = 0, l = str.length - 1, v = 11;
-    while (i++ < l) v = (101 * v + str.charCodeAt(i)) >>> 0
+    while (i < l) v = (101 * v + str.charCodeAt(i++)) >>> 0
     const c = 'go' + v;
 })
 .on('start', function (e) {
