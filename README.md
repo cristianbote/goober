@@ -30,6 +30,7 @@ It's a pun on the tagline.
 
 -   [Usage](#usage)
 -   [Examples](#examples)
+-   [Tradeoffs](#comparison-and-tradeoffs)
 -   [SSR](#ssr)
 -   [Benchmarks](#benchmarks)
     -   [Browser](#browser)
@@ -103,6 +104,46 @@ const Button = styled('button')`
 -   [Preact](https://codesandbox.io/s/r15wj2qm7o)
 -   [SSR with Preact](https://codesandbox.io/s/7m9zzl6746)
 -   [Fre](https://codesandbox.io/s/fre-goober-ffqjv)
+
+# Comparison and tradeoffs
+
+In this section I would like to describe as objectively as I can the comparision between the two most known css-in-js packages: styled-component and emotion. The latest versions to date.
+
+I would use the follwing markers to reflect the state of each point:
+
+-   ✅ Supported
+-   🟡 Partially supported
+-   🛑 Not supported
+
+Here we go:
+
+| Feature name           | Goober  | Styled Components | Emotion |
+| ---------------------- | ------- | ----------------- | ------- |
+| Base bundle size       | 1.25 kB | 12.6 kB           | 7.4 kB  |
+| Framework agnostic     | ✅      | 🛑                | 🛑      |
+| Render with target \*1 | ✅      | 🛑                | 🛑      |
+| `css` api              | ✅      | ✅                | ✅      |
+| `css` prop             | ✅      | ✅                | ✅      |
+| `styled`               | ✅      | ✅                | ✅      |
+| `styled.<tag>`         | ✅ \*2  | ✅                | ✅      |
+| `as`                   | ✅      | ✅                | ✅      |
+| `.withComponent`       | 🛑      | ✅                | ✅      |
+| `.attrs`               | 🛑      | ✅                | 🛑      |
+| `shouldForwardProp`    | ✅      | ✅                | ✅      |
+| `keyframes`            | ✅      | ✅                | ✅      |
+| Labels                 | 🛑      | 🛑                | ✅      |
+| ClassNames             | 🛑      | 🛑                | ✅      |
+| Global styles          | ✅      | ✅                | ✅      |
+| SSR                    | ✅      | ✅                | ✅      |
+| Theming                | ✅      | ✅                | ✅      |
+| Tagged Templates       | ✅      | ✅                | ✅      |
+| Object styles          | ✅      | ✅                | ✅      |
+| Dynamic styles         | ✅      | ✅                | ✅      |
+
+Footnotes
+
+-   [1] `goober` can render in _any_ dom target. Meaning you can use `goober` to define scoped styles in any context. Really usefull for web-components.
+-   [2] Supported only via `babel-plugin-transform-goober`
 
 # SSR
 
@@ -223,15 +264,14 @@ const Btn = styled('button')([
 
 ##### Forward ref function
 
-As goober is JSX library agnostic, you need to pass in the forward ref function for the library you are using. Here's how you do it for React.  
+As goober is JSX library agnostic, you need to pass in the forward ref function for the library you are using. Here's how you do it for React.
 
 ```js
-const Title = styled("h1", React.forwardRef)`
-  font-weight: bold;
-  color: dodgerblue;
+const Title = styled('h1', React.forwardRef)`
+    font-weight: bold;
+    color: dodgerblue;
 `;
 ```
-
 
 ### `setup(pragma: Function, prefixer?: Function, theme?: Function, forwardProps?: Function)`
 
