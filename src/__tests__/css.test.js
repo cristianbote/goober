@@ -45,11 +45,15 @@ describe('css', () => {
     });
 
     it('args: array', () => {
-        const payload = [{ foo: 1 }, { baz: 2 }, { opacity: 0, color: 'red' }];
+        const propsBased = jest.fn().mockReturnValue({
+            backgroundColor: 'gold'
+        });
+        const payload = [{ foo: 1 }, { baz: 2 }, { opacity: 0, color: 'red' }, propsBased];
         const out = css(payload);
 
+        expect(propsBased).toHaveBeenCalled();
         expect(hash).toBeCalledWith(
-            { foo: 1, baz: 2, opacity: 0, color: 'red' },
+            { foo: 1, baz: 2, opacity: 0, color: 'red', backgroundColor: 'gold' },
             'getSheet()',
             undefined,
             undefined,
