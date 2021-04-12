@@ -6,6 +6,8 @@ sidebar_label: setup
 
 `setup(pragma: Function, prefixer?: Function, theme?: Function, forwardProps?: Function)`
 
+The call to `setup()` should occur once only. It should be called in the entry file of you project.
+
 Given the fact that `react` uses `createElement` for the transformed elements and `preact` uses `h`, `setup` should be called with the proper _pragma_ function. This was added to reduce the bundled size and being able to bundle esmodule version. At the moment I think it's the best tradeoff we can have.
 
 ```js
