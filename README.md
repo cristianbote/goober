@@ -50,6 +50,7 @@ It's a pun on the tagline.
 -   [Integrations](#integrations)
     -   [Babel Plugin](#babel-plugin)
     -   [Babel Macro Plugin](#babel-macro-plugin)
+    -   [Next.js](#next.js)
     -   [Gatsby](#gatsby)
     -   [Preact CLI Plugin](#preact-cli-plugin)
     -   [CSS Prop](#css-prop)
@@ -598,6 +599,16 @@ const Button = styled.button`
     font-size: 1rem;
     background-color: tomato;
 `;
+```
+
+## [Next.js](https://github.com/vercel/next.js)
+
+Want to use `goober` with Next.js? We've got you covered! Follow the example below or from the main [examples](https://github.com/vercel/next.js/tree/canary/examples/with-goober) directory.
+
+```sh
+npx create-next-app --example with-goober with-goober-app
+# or
+yarn create next-app --example with-goober with-goober-app
 ```
 
 ## [Gatsby](https://github.com/gatsbyjs/gatsby)
