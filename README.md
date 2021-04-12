@@ -50,7 +50,7 @@ It's a pun on the tagline.
 -   [Integrations](#integrations)
     -   [Babel Plugin](#babel-plugin)
     -   [Babel Macro Plugin](#babel-macro-plugin)
-    -   [Next.js](#next.js)
+    -   [Next.js](#nextjs)
     -   [Gatsby](#gatsby)
     -   [Preact CLI Plugin](#preact-cli-plugin)
     -   [CSS Prop](#css-prop)
