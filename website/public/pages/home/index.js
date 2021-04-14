@@ -3,11 +3,7 @@ import { Box } from '../../components/box/box';
 import { Button } from '../../components/button/button';
 import { Feature } from '../../components/feature/feature';
 import { Text } from '../../components/text/text';
-import { Nav } from '../../components/nav/nav';
-
-const BoxWithBorder = styled(Box)(({ theme }) => ({
-    borderTop: `1px solid ${theme.colors['gray-100']}`
-}));
+import { Logo } from '../../components/logo/logo';
 
 const BoxOverlapAndShadow = styled(Box)(({ theme, size }) => ({
     boxShadow: [0, theme.sizes[100], theme.sizes[400], theme.colors['gray-25']].join(' '),
@@ -42,46 +38,9 @@ const Code = styled('pre')(({ theme }) => ({
     u: { textDecoration: 'none', color: theme.colors['accent-300'] }
 }));
 
-const Logo = () => (
-    <>
-        <Text as="span" bold color="accent-100">
-            g
-        </Text>
-        <Text as="span" bold color="accent-400">
-            o
-        </Text>
-        <Text as="span" bold color="accent-100">
-            o
-        </Text>
-        <Text as="span" bold color="accent-500">
-            b
-        </Text>
-        <Text as="span" bold color="accent-400">
-            e
-        </Text>
-        <Text as="span" bold color="accent-300">
-            r
-        </Text>
-    </>
-);
-
 export default function Home() {
     return (
-        <Box full>
-            <Nav
-                logo={<Logo />}
-                buttons={
-                    <>
-                        <Button as="a" href="https://goober.js.org/" secondary>
-                            Documentation
-                        </Button>
-                        <Box size={300} />
-                        <Button as="a" href="https://github.com/cristianbote/goober">
-                            GitHub
-                        </Button>
-                    </>
-                }
-            />
+        <>
             <Box size={700} centered full>
                 <Text size={600} as="h1" bold superSpaced>
                     <Logo />
@@ -92,6 +51,12 @@ export default function Home() {
                 </Text>
             </Box>
             <Box full centered>
+                <Button as="a" href="/the-great-shave-off">
+                    <Text color="accent-100" bold>
+                        The Great Shave Off Challenge
+                    </Text>
+                </Button>
+                <Box size={400} />
                 <Box size={400} rounded={100} centered horizontal>
                     <Button as="a" href="https://goober.js.org/" secondary>
                         Documentation
@@ -271,62 +236,6 @@ export default function Home() {
                     </Button>
                 </Box>
             </Box>
-            <Box size={400} />
-            <BoxWithBorder centered full>
-                <Box horizontal full max reactive size={400}>
-                    <Box flex>
-                        <Box size={200}>
-                            <Text size={100} bold>
-                                goober
-                            </Text>
-                            <Text size={100}>A less than 1KB css-in-js solution.</Text>
-                            <Box size={300} />
-                            <Text size={100}>
-                                This website was built with{' '}
-                                <Text
-                                    as="a"
-                                    href="https://github.com/preactjs/wmr"
-                                    color="accent-100"
-                                    size={300}
-                                    bold
-                                >
-                                    wmr
-                                </Text>{' '}
-                                and{' '}
-                                <Text
-                                    as="a"
-                                    href="https://github.com/cristianbote/goober"
-                                    color="accent-100"
-                                    size={300}
-                                    bold
-                                >
-                                    goober
-                                </Text>
-                                .
-                            </Text>
-                            <Box size={300} />
-                            <Text size={100}>Maintained with love by a bunch of good people.</Text>
-                        </Box>
-                    </Box>
-                    <Box size={300} />
-                    <Box>
-                        <Box size={200}>
-                            <Text as="a" href="https://goober.js.org/" size={100} bold>
-                                Documentation
-                            </Text>
-                            <Box size={300} />
-                            <Text
-                                as="a"
-                                href="https://github.com/cristianbote/goober"
-                                size={100}
-                                bold
-                            >
-                                GitHub
-                            </Text>
-                        </Box>
-                    </Box>
-                </Box>
-            </BoxWithBorder>
-        </Box>
+        </>
     );
 }

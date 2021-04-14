@@ -15,6 +15,10 @@
 [![Slack](https://img.shields.io/badge/slack-join-orange)](https://join.slack.com/t/gooberdev/shared_invite/enQtOTM5NjUyOTcwNzI1LWUwNzg0NTQwODY1NDJmMzQ2NzdlODI4YTM3NWUwYjlkY2ZkNGVmMTFlNGMwZGUyOWQyZmI4OTYwYmRiMzE0NGQ)
 [![Greenkeeper badge](https://badges.greenkeeper.io/cristianbote/goober.svg)](https://greenkeeper.io/)
 
+# 🪒 The Great Shave Off Challenge
+
+Can you shave off bytes from goober? Do it and your gonna get paid! [More info here](https://goober.rocks/the-great-shave-off)
+
 # Motivation
 
 I always wondered, if you can get a working solution for css-in-js with a smaller footprint. So, while I was working on a side-project I wanted a to use styled-components or more accurate the `styled` pattern. Looking at the JavaScript bundled sizes, I quickly realized that I would have to include ~12kB([styled-components](https://github.com/styled-components/styled-components)) or ~11kB([emotion](https://github.com/emotion-js/emotion)) just so I can use the `styled` paradigm. So, I embarked in a mission to create a smaller alternative for these well established apis.
