@@ -1,5 +1,5 @@
 let newRule = /(?:([A-Z0-9-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(})/gi;
-let ruleClean = /\/\*[^]*?\*\/|\s{2,}|\n/gm;
+let ruleClean = /\/\*[^]*?\*\/|\s\s+|\n/gm;
 
 /**
  * Convert a css style string into a object
