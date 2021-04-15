@@ -150,12 +150,6 @@ Fastest is: goober
 
 ## Browser support
 
-`goober` uses microbundle to bundle and transpile it's src into code that browsers can leverage. As you might figure it out, until now, Internet Explorer was the buggiest of them all. `goober` works on IE9, as we've successfully test it.
+`goober` supports all major browsers (Chrome, Edge, Firefox, Safari).
 
-```
-IE 9
-iOS 9.3
-Chrome 42
-FF 34
-Safari 9
-```
+To support IE 11 and older browsers, make sure to use a tool like [Babel](https://babeljs.io/) to transform your code into code that works in the browsers you target.
