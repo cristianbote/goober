@@ -21,7 +21,7 @@ export let parse = (obj, selector) => {
                       // Return the current selector with the key matching multiple selectors if any
                       return key.replace(/([^,])+/g, (k) => {
                           // If the current `k`(key) has a nested selector replace it
-                          if (/&/g.test(k)) return k.replace(/&/g, sel);
+                          if (/&/.test(k)) return k.replace(/&/g, sel);
 
                           // If there's a current selector concat it
                           return sel ? sel + ' ' + k : k;
