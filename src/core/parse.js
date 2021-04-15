@@ -57,14 +57,6 @@ export let parse = (obj, selector) => {
         }
     }
 
-    // If we have properties
-    if (current[0]) {
-        // Standard rule composition
-        next = selector ? selector + '{' + current + '}' : current;
-
-        // Else just push the rule
-        return outer + next + blocks;
-    }
-
-    return outer + blocks;
+    // If we have properties apply standard rule composition
+    return outer + (selector && current ? selector + '{' + current + '}' : current) + blocks;
 };
