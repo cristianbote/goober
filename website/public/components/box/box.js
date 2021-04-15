@@ -14,7 +14,8 @@ export const Box = styled('div')(
         fill,
         onTop,
         rounded,
-        max
+        max,
+        marginAuto
     }) => [
         {
             display: 'flex',
@@ -26,6 +27,11 @@ export const Box = styled('div')(
             alignItems: centered ? 'center' : 'flex-start',
             justifyContent: centered ? 'center' : 'flex-start'
         },
+        marginAuto
+            ? {
+                  margin: 'auto'
+              }
+            : null,
         rounded ? { borderRadius: theme.sizes[rounded] } : null,
         border
             ? {
