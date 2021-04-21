@@ -29,11 +29,11 @@ let stringify = (data) => {
  * @param {String|Object} compiled
  * @param {Object} sheet StyleSheet target
  * @param {Object} global Global flag
- * @param {Boolean} append Append or not
+ * @param {Boolean} before To insert style before an other style
  * @param {Boolean} keyframes Keyframes mode. The input is the keyframes body that needs to be wrapped.
  * @returns {String}
  */
-export let hash = (compiled, sheet, global, append, keyframes) => {
+export let hash = (compiled, sheet, global, before, keyframes) => {
     // Get a string representation of the object or the value that is called 'compiled'
     let stringifiedCompiled = typeof compiled == 'object' ? stringify(compiled) : compiled;
 
@@ -55,7 +55,8 @@ export let hash = (compiled, sheet, global, append, keyframes) => {
     }
 
     // add or update
-    update(cache[className], sheet, append);
+    //"/*" + className + "*/" is a marker to insert styles before .className
+    update('/*' + className + '*/' + cache[className], sheet, before);
 
     // return hash
     return className;
