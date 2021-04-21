@@ -9,7 +9,7 @@ let ssr = {
  * @returns {HTMLStyleElement|{data: ''}}
  */
 export let getSheet = (target) => {
-    if (typeof window !== 'undefined') {
+    if (!!typeof window) {
         // Querying the existing target for a previously defined <style> tag
         // We're doing a querySelector because the <head> element doesn't implemented the getElementById api
         return (

@@ -16,10 +16,7 @@ let cache = {};
 let stringify = (data) => {
     let out = '';
 
-    for (let p in data) {
-        let val = data[p];
-        out += p + (typeof val == 'object' ? stringify(data[p]) : data[p]);
-    }
+    for (let p in data) out += p + (typeof data[p] == 'object' ? stringify(data[p]) : data[p]);
 
     return out;
 };
