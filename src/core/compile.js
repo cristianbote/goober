@@ -10,12 +10,12 @@ export let compile = (str, defs, data) => {
         let tail = defs[i];
 
         // If this is a function we need to:
-        if (tail && tail.call) {
+        if ((tail || {}).call) {
             // 1. Call it with `data`
             let res = tail(data);
 
             // 2. Grab the className
-            let className = res && res.props && res.props.className;
+            let className = ((res || {}).props || {}).className;
 
             // 3. If there's none, see if this is basically a
             // previously styled className by checking the prefix

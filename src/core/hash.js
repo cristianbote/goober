@@ -14,11 +14,13 @@ let cache = {};
  * @returns {String}
  */
 let stringify = (data) => {
+    if (typeof data !== 'object') return data;
+
     let out = '';
 
     for (let p in data) {
         let val = data[p];
-        out += p + (typeof val == 'object' ? stringify(data[p]) : data[p]);
+        out += p + stringify(data[p]);
     }
 
     return out;
@@ -35,7 +37,7 @@ let stringify = (data) => {
  */
 export let hash = (compiled, sheet, global, append, keyframes) => {
     // Get a string representation of the object or the value that is called 'compiled'
-    let stringifiedCompiled = typeof compiled == 'object' ? stringify(compiled) : compiled;
+    let stringifiedCompiled = stringify(compiled);
 
     // Retrieve the className from cache or hash it in place
     let className =
