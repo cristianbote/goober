@@ -43,9 +43,7 @@ function styled(tag, forwardRef) {
                 css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '');
 
             // If the forwardRef fun is defined we have the ref
-            if (forwardRef) {
-                _props.ref = ref;
-            }
+            _props.ref = forwardRef && ref;
 
             // Let the closure do the capture, cause it might get removed in the fwdProp
             let _as = _props.as || tag;
