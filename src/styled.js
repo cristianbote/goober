@@ -36,7 +36,7 @@ function styled(tag, forwardRef) {
             // Set a flag if the current components had a previous className
             // similar to goober. This is the append/prepend flag
             // The _empty_ space compresses better than `\s`
-            _ctx.o = / *go\d+/g.test(_previousClassName);
+            _ctx.o = / *go\d+/.test(_previousClassName);
 
             _props.className =
                 // Define the new className
