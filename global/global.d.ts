@@ -8,7 +8,10 @@ declare namespace gooberGlobal {
         [key: string]: CSSAttribute | string | number | undefined;
     }
 
-    function createGlobalStyles(tag: CSSAttribute | TemplateStringsArray | string): Function;
+    function createGlobalStyles(
+        tag: CSSAttribute | TemplateStringsArray | string,
+        ...props: Array<string | number | Function>
+    ): Function;
     function glob(
         tag: CSSAttribute | TemplateStringsArray | string,
         ...props: Array<string | number>

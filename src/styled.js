@@ -1,14 +1,15 @@
 import { css } from './css';
 import { parse } from './core/parse';
 
-let h, useTheme;
-function setup(pragma, prefix, theme) {
+let h, useTheme, fwdProp;
+function setup(pragma, prefix, theme, forwardProps) {
     // This one needs to stay in here, so we won't have cyclic dependencies
     parse.p = prefix;
 
     // These are scope to this context
     h = pragma;
     useTheme = theme;
+    fwdProp = forwardProps;
 }
 
 /**
@@ -35,7 +36,7 @@ function styled(tag, forwardRef) {
             // Set a flag if the current components had a previous className
             // similar to goober. This is the append/prepend flag
             // The _empty_ space compresses better than `\s`
-            _ctx.o = / *go\d+/g.test(_previousClassName);
+            _ctx.o = / *go\d+/.test(_previousClassName);
 
             _props.className =
                 // Define the new className
@@ -46,7 +47,15 @@ function styled(tag, forwardRef) {
                 _props.ref = ref;
             }
 
-            return h(_props.as || tag, _props);
+            // Let the closure do the capture, cause it might get removed in the fwdProp
+            let _as = _props.as || tag;
+
+            // Handle the forward props filter if defined and _as is a string
+            if (fwdProp && _as[0]) {
+                fwdProp(_props);
+            }
+
+            return h(_as, _props);
         }
 
         return forwardRef ? forwardRef(Styled) : Styled;

@@ -21,7 +21,7 @@ export let parse = (obj, selector) => {
                       // Return the current selector with the key matching multiple selectors if any
                       return key.replace(/([^,])+/g, (k) => {
                           // If the current `k`(key) has a nested selector replace it
-                          if (/&/g.test(k)) return k.replace(/&/g, sel);
+                          if (/&/.test(k)) return k.replace(/&/g, sel);
 
                           // If there's a current selector concat it
                           return sel ? sel + ' ' + k : k;
@@ -47,12 +47,13 @@ export let parse = (obj, selector) => {
             if (key[0] == '@' && key[1] == 'i') {
                 outer = key + ' ' + val + ';';
             } else {
+                key = key.replace(/[A-Z]/g, '-$&').toLowerCase();
                 // Push the line for this property
                 current += parse.p
                     ? // We have a prefixer and we need to run this through that
-                      parse.p(key.replace(/[A-Z]/g, '-$&').toLowerCase(), val)
+                      parse.p(key, val)
                     : // Nope no prefixer just append it
-                      key.replace(/[A-Z]/g, '-$&').toLowerCase() + ':' + val + ';';
+                      key + ':' + val + ';';
             }
         }
     }
