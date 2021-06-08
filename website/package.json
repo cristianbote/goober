@@ -12,10 +12,10 @@
 		"extends": "preact"
 	},
 	"dependencies": {
-		"goober": "^2.0.33",
-		"preact-iso": "^0.2.0"
+		"goober": "^2.0.37",
+		"preact-iso": "^2.0.2"
 	},
 	"devDependencies": {
-		"wmr": "^1.2.0"
+		"wmr": "^2.1.0"
 	}
 }
