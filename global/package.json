@@ -5,14 +5,14 @@
   "description": "The createGlobalStyles addon function for goober",
   "sideEffects": false,
   "main": "dist/goober-global.js",
-  "module": "dist/goober-global.mjs",
+  "module": "dist/goober-global.esm.js",
   "umd:main": "dist/goober-global.umd.js",
   "source": "src/index.js",
   "unpkg": "dist/goober-global.umd.js",
   "types": "./global.d.ts",
   "scripts": {
     "build": "rm -rf dist && microbundle --entry src/index.js --name gooberGlobal --no-sourcemap",
-    "test": "jest --setupFiles ./jest.setup.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -27,9 +27,10 @@
   ],
   "license": "ISC",
   "peerDependencies": {
-    "goober": "^2.0.18"
+    "goober": "^2.0.29"
   },
   "devDependencies": {
+    "goober": "^2.0.29",
     "microbundle": "^0.12.4",
     "jest": "^24.1.0",
     "preact": "^10.5.6",

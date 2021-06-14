@@ -1,10 +1,10 @@
 {
   "name": "goober",
-  "version": "2.0.25",
+  "version": "2.0.37",
   "description": "A less than 1KB css-in-js solution",
   "sideEffects": false,
   "main": "dist/goober.js",
-  "module": "dist/goober.mjs",
+  "module": "dist/goober.esm.js",
   "umd:main": "dist/goober.umd.js",
   "source": "src/index.js",
   "unpkg": "dist/goober.umd.js",
@@ -15,6 +15,7 @@
     "global/dist",
     "global/src",
     "global/package.json",
+    "global/global.d.ts",
     "prefixer/dist",
     "prefixer/src",
     "prefixer/package.json",
@@ -33,31 +34,27 @@
   ],
   "exports": {
     ".": {
-      "browser": "./dist/goober.modern.js",
-      "import": "./dist/goober.mjs",
       "require": "./dist/goober.js",
+      "browser": "./dist/goober.modern.js",
+      "import": "./dist/goober.esm.js",
       "umd": "./dist/goober.umd.js"
     },
-    "./macro": {
-      "browser": "./macro/index.js",
-      "import": "./macro/index.js",
-      "require": "./macro/index.js"
-    },
+    "./macro": "./macro/index.js",
     "./global": {
       "browser": "./global/dist/goober-global.modern.js",
-      "import": "./global/dist/goober-global.mjs",
+      "import": "./global/dist/goober-global.esm.js",
       "require": "./global/dist/goober-global.js",
       "umd": "./global/dist/goober-global.umd.js"
     },
     "./prefixer": {
       "browser": "./prefixer/dist/goober-autoprefixer.modern.js",
-      "import": "./prefixer/dist/goober-autoprefixer.mjs",
+      "import": "./prefixer/dist/goober-autoprefixer.esm.js",
       "require": "./prefixer/dist/goober-autoprefixer.js",
       "umd": "./prefixer/dist/goober-autoprefixer.umd.js"
     },
     "./should-forward-prop": {
       "browser": "./should-forward-prop/dist/goober-should-forward-prop.modern.js",
-      "import": "./should-forward-prop/dist/goober-should-forward-prop.mjs",
+      "import": "./should-forward-prop/dist/goober-should-forward-prop.esm.js",
       "require": "./should-forward-prop/dist/goober-should-forward-prop.js",
       "umd": "./should-forward-prop/dist/goober-should-forward-prop.umd.js"
     }
@@ -65,6 +62,7 @@
   "scripts": {
     "test": "npm run test-ts && npm run test-unit -- --ci --coverage && npm run build && npm run test-perf",
     "test-perf": "NODE_ENV=production node benchmarks/perf.js",
+    "test-perf-hash": "NODE_ENV=production node benchmarks/perf-hash.js",
     "test-unit": "jest --setupFiles ./tests/setup.js --roots ./src packages && npm run test-addon-global && npm run test-addon-prefixer",
     "test-addon-global": "cd global && npm run test",
     "test-addon-prefixer": "cd prefixer && npm run test",
@@ -104,8 +102,9 @@
     "@babel/core": "^7.2.2",
     "@babel/plugin-transform-react-jsx": "^7.7.0",
     "@babel/preset-env": "^7.3.1",
-    "@emotion/core": "^10.0.22",
-    "@emotion/styled": "^10.0.23",
+    "@emotion/core": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "@emotion/react": "^11.1.4",
     "@types/react": "^16.9.34",
     "babel-jest": "^24.1.0",
     "benchmark": "^2.1.4",
@@ -119,7 +118,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "rimraf": "3.0.2",
-    "styled-components": "^5.0.0",
+    "styled-components": "^5.2.1",
     "typescript": "^3.6.3"
   },
   "peerDependencies": {

@@ -1,6 +1,6 @@
 # goober-autoprefixer
 
-A css autoprefixer for [🥜goober](https://github.com/cristianbote/goober) using [tiny-css-prefixer](https://github.com/kitten/tiny-css-prefixer).
+A css autoprefixer for [🥜goober](https://github.com/cristianbote/goober) using [style-vendorizer](https://github.com/kripod/style-vendorizer).
 
 ## Install
 

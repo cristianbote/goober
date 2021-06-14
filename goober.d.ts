@@ -65,12 +65,14 @@ declare namespace goober {
         ...props: Array<string | number>
     ): string;
     type StyledVNode<T> = (props: T, ...args: any[]) => any;
+    type StylesGenerator<P extends Object = {}> = (props: P) => CSSAttribute | string;
     type Tagged<P extends Object = {}> = <PP extends Object = {}>(
         tag:
             | CSSAttribute
+            | (CSSAttribute | StylesGenerator<P & PP>)[]
             | TemplateStringsArray
             | string
-            | ((props: P & PP) => CSSAttribute | string),
+            | StylesGenerator<P & PP>,
         ...props: Array<
             | string
             | number

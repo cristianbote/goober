@@ -12,7 +12,7 @@ slug: /
 
 [![version](https://img.shields.io/npm/v/goober)](https://www.npmjs.com/package/goober)
 [![status](https://travis-ci.org/cristianbote/goober.svg?branch=master)](https://travis-ci.org/cristianbote/goober)
-[![gzip size](https://img.badgesize.io/https://unpkg.com/goober@latest/dist/goober.module.js?compression=gzip)](https://unpkg.com/goober)
+[![gzip size](https://img.badgesize.io/https://unpkg.com/goober@latest/dist/goober.js?compression=gzip)](https://unpkg.com/goober)
 [![downloads](https://img.shields.io/npm/dm/goober)](https://www.npmjs.com/package/goober)
 [![coverage](https://img.shields.io/codecov/c/github/cristianbote/goober.svg?maxAge=2592000)](https://codecov.io/github/cristianbote/goober?branch=master)
 [![Slack](https://img.shields.io/badge/slack-join-orange)](https://join.slack.com/t/gooberdev/shared_invite/enQtOTM5NjUyOTcwNzI1LWUwNzg0NTQwODY1NDJmMzQ2NzdlODI4YTM3NWUwYjlkY2ZkNGVmMTFlNGMwZGUyOWQyZmI4OTYwYmRiMzE0NGQ)
@@ -63,6 +63,46 @@ const Button = styled('button')`
 -   [SSR with Preact](https://codesandbox.io/s/7m9zzl6746)
 -   [Fre](https://codesandbox.io/s/fre-goober-ffqjv)
 
+## Comparison and tradeoffs
+
+In this section I would like to describe as objectively as I can the comparision between the two most known css-in-js packages: styled-component and emotion. The latest versions to date.
+
+I would use the follwing markers to reflect the state of each point:
+
+-   ✅ Supported
+-   🟡 Partially supported
+-   🛑 Not supported
+
+Here we go:
+
+| Feature name           | Goober  | Styled Components | Emotion |
+| ---------------------- | ------- | ----------------- | ------- |
+| Base bundle size       | 1.25 kB | 12.6 kB           | 7.4 kB  |
+| Framework agnostic     | ✅      | 🛑                | 🛑      |
+| Render with target \*1 | ✅      | 🛑                | 🛑      |
+| `css` api              | ✅      | ✅                | ✅      |
+| `css` prop             | ✅      | ✅                | ✅      |
+| `styled`               | ✅      | ✅                | ✅      |
+| `styled.<tag>`         | ✅ \*2  | ✅                | ✅      |
+| `as`                   | ✅      | ✅                | ✅      |
+| `.withComponent`       | 🛑      | ✅                | ✅      |
+| `.attrs`               | 🛑      | ✅                | 🛑      |
+| `shouldForwardProp`    | ✅      | ✅                | ✅      |
+| `keyframes`            | ✅      | ✅                | ✅      |
+| Labels                 | 🛑      | 🛑                | ✅      |
+| ClassNames             | 🛑      | 🛑                | ✅      |
+| Global styles          | ✅      | ✅                | ✅      |
+| SSR                    | ✅      | ✅                | ✅      |
+| Theming                | ✅      | ✅                | ✅      |
+| Tagged Templates       | ✅      | ✅                | ✅      |
+| Object styles          | ✅      | ✅                | ✅      |
+| Dynamic styles         | ✅      | ✅                | ✅      |
+
+Footnotes
+
+-   [1] `goober` can render in _any_ dom target. Meaning you can use `goober` to define scoped styles in any context. Really usefull for web-components.
+-   [2] Supported only via `babel-plugin-transform-goober`
+
 ## SSR
 
 You can get the critical CSS for SSR, via `extractCss`. Take a look at this example: [CodeSandbox: SSR with Preact and goober](https://codesandbox.io/s/7m9zzl6746) and read the full explanation for `extractCSS` and `targets` below.
@@ -101,21 +141,15 @@ renderToString(<Foo counter={Math.random()} />);
 The results are:
 
 ```
-goober x 39,348 ops/sec ±1.67% (87 runs sampled)
-styled-components x 21,469 ops/sec ±3.60% (85 runs sampled)
-emotion x 46,504 ops/sec ±4.67% (85 runs sampled)
+goober x 169,157 ops/sec ±1.29% (91 runs sampled)
+styled-components x 10,558 ops/sec ±7.44% (55 runs sampled)
+emotion@10.0.27 x 73,287 ops/sec ±3.69% (88 runs sampled)
 
-Fastest is: emotion
+Fastest is: goober
 ```
 
 ## Browser support
 
-`goober` uses microbundle to bundle and transpile it's src into code that browsers can leverage. As you might figure it out, until now, Internet Explorer was the buggiest of them all. `goober` works on IE9, as we've successfully test it.
+`goober` supports all major browsers (Chrome, Edge, Firefox, Safari).
 
-```
-IE 9
-iOS 9.3
-Chrome 42
-FF 34
-Safari 9
-```
+To support IE 11 and older browsers, make sure to use a tool like [Babel](https://babeljs.io/) to transform your code into code that works in the browsers you target.

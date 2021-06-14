@@ -35,7 +35,12 @@ module.exports = {
             type: 'category',
             label: 'Features',
             collapsed: false,
-            items: ['features/checklist', 'features/sharing-style', 'features/autoprefixer']
+            items: [
+                'features/checklist',
+                'features/sharing-style',
+                'features/autoprefixer',
+                'features/typescript'
+            ]
         },
         {
             type: 'doc',
