@@ -6,7 +6,7 @@ import { parse } from './parse';
 /**
  * In-memory cache.
  */
-let cache = {};
+export let cache = {};
 
 /**
  * Stringifies a object structure
