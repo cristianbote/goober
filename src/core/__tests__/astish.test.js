@@ -158,6 +158,22 @@ describe('astish', () => {
         });
     });
 
+    // for reference on what is valid:
+    // https://www.w3.org/TR/CSS22/syndata.html#value-def-identifier
+    it('should not mangle valid css identifiers', () => {
+        expect(
+            astish(`
+                :root {
+                  --azAZ09-_: 0;
+                }
+            `)
+        ).toEqual({
+            ':root': {
+                '--azAZ09-_': '0'
+            }
+        });
+    });
+
     it('should parse multiline background declaration', () => {
         expect(
             astish(`
