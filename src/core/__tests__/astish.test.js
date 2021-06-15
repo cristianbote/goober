@@ -164,12 +164,12 @@ describe('astish', () => {
         expect(
             astish(`
                 :root {
-                  --azAZ09-_: 0;
+                  --azAZ-_09: 0;
                 }
             `)
         ).toEqual({
             ':root': {
-                '--azAZ09-_': '0'
+                '--azAZ-_09': '0'
             }
         });
     });
