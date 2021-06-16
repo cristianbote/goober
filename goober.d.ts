@@ -50,7 +50,7 @@ declare namespace goober {
         theme?: Function,
         forwardProps?: ForwardPropsFunction
     ): void;
-    function extractCss(): string;
+    function extractCss(target?: Element): string;
     function glob(
         tag: CSSAttribute | TemplateStringsArray | string,
         ...props: Array<string | number>
