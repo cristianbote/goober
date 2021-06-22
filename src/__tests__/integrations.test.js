@@ -129,7 +129,7 @@ describe('integrations', () => {
         const list = ['p', 'm', 'as'];
         setup(h, undefined, undefined, (props) => {
             for (let prop in props) {
-                if (list.indexOf(prop) !== -1) {
+                if (list.includes(prop)) {
                     delete props[prop];
                 }
             }
