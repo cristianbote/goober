@@ -50,7 +50,7 @@ declare namespace goober {
         (props: object): undefined;
     };
 
-    const styled: StyledFunction | BabelPluginTransformGooberStyledFunction;
+    const styled: StyledFunction & BabelPluginTransformGooberStyledFunction;
     function setup<T>(
         val: T,
         prefixer?: (key: string, val: any) => string,
