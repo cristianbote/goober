@@ -62,4 +62,4 @@ function styled(tag, forwardRef) {
     };
 }
 
-export { styled, setup };
+export { styled, setup, useTheme };

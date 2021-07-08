@@ -8,7 +8,8 @@ describe('goober', () => {
             'glob',
             'keyframes',
             'setup',
-            'styled'
+            'styled',
+            'useTheme'
         ]);
     });
 });
