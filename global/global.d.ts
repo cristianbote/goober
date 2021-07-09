@@ -1,4 +1,6 @@
 import { Properties as CSSProperties } from 'csstype';
+import { Theme, DefaultTheme } from 'goober';
+
 export = gooberGlobal;
 
 export as namespace gooberGlobal;
@@ -10,7 +12,11 @@ declare namespace gooberGlobal {
 
     function createGlobalStyles(
         tag: CSSAttribute | TemplateStringsArray | string,
-        ...props: Array<string | number | Function>
+        ...props: Array<
+            | string
+            | number
+            | ((props: Theme<DefaultTheme>) => CSSAttribute | string | number | false | undefined)
+        >
     ): Function;
     function glob(
         tag: CSSAttribute | TemplateStringsArray | string,
