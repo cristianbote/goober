@@ -16,7 +16,7 @@ function css(val) {
                 ? // Tagged templates
                   compile(_val, [].slice.call(arguments, 1), ctx.p)
                 : // Regular arrays
-                  _val.reduce((o, i) => (i ? Object.assign(o, i.call ? i(ctx.p) : i) : o), {})
+                  _val.reduce((o, i) => Object.assign(o, i && i.call ? i(ctx.p) : i), {})
             : _val,
         getSheet(ctx.target),
         ctx.g,
