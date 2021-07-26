@@ -28,8 +28,6 @@ function styled(tag, forwardRef) {
             for (const i in props) {
                 if (i != 'as') _props[i] = props[i];
             }
-            // Grab a shallow copy of the props
-            let _props = Object.assign({}, props);
 
             // Keep a local reference to the previous className
             let _previousClassName = _props.className || Styled.className;
