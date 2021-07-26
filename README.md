@@ -41,6 +41,7 @@ It's a pun on the tagline.
         -   [With theme](#with-theme)
         -   [With forwardProps](#with-forwardProps)
     -   [css](#csstaggedtemplate)
+    -   [clsx](#clsxclasses)
     -   [targets](#targets)
     -   [extractCss](#extractcsstarget)
     -   [createGlobalStyles](#createglobalstyles)
@@ -277,7 +278,7 @@ setup(React.createElement, undefined, undefined, (props) => {
 });
 ```
 
-The functionality of "transient props" (with a "$" prefix) can be implemented as follows:
+The functionality of "transient props" (with a "\$" prefix) can be implemented as follows:
 
 ```js
 import React from 'react';
@@ -382,6 +383,47 @@ const styled = goober.styled.bind({ target: target });
 ```
 
 If you don't provide a target, goober always defaults to `<head>` and in environments without a DOM (think certain SSR solutions), it will just use a plain string cache to store generated styles which you can extract with `extractCSS`(see below).
+
+### `clsx(...classes)`
+
+-   `@returns {String}`
+
+The `clsx` helper lets you combine class names. This can let you
+override styles you've previously created using Goober.
+
+```jsx
+import { css } from 'goober';
+import clsx from 'goober/clsx';
+
+const SecondaryStyles = css`
+    color: red;
+`;
+
+const PrimaryStyles = css`
+    color: black;
+`;
+
+/**
+ * PrimaryStyles will be overriden by SecondaryStyles
+ * even though SecondaryStyles was declared first.
+ */
+const CombinedStyles = clx(PrimaryStyles, SecondaryStyles);
+
+/**
+ * You can now use the new class name `CombinedStyles`
+ * to style an element.
+ */
+<div className={CombinedStyles} />;
+```
+
+Any non-goober classes are passed through to the resulting string.
+
+```js
+import clsx from 'goober/clsx';
+
+const MyClasses = clsx('class-a', 'class-b');
+// MyClasses has the value: "class-a class-b"
+```
 
 ### `extractCss(target?)`
 
