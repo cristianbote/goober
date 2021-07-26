@@ -24,10 +24,8 @@ function styled(tag, forwardRef) {
         let _args = arguments;
 
         function Styled(props, ref) {
-            let _props = {};
-            for (const i in props) {
-                if (i != 'as') _props[i] = props[i];
-            }
+            // Grab a shallow copy of the props
+            let _props = Object.assign({}, props);
 
             // Keep a local reference to the previous className
             let _previousClassName = _props.className || Styled.className;
@@ -50,7 +48,8 @@ function styled(tag, forwardRef) {
             }
 
             // Let the closure do the capture, cause it might get removed in the fwdProp
-            let _as = props.as || tag;
+            let _as = _props.as || tag;
+            delete _props.as;
 
             // Handle the forward props filter if defined and _as is a string
             if (fwdProp && _as[0]) {
