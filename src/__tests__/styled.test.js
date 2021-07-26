@@ -146,4 +146,14 @@ describe('styled', () => {
 
         expect(vnode).toMatchVNode('tag', { className: 'go', bar: 1 });
     });
+
+    it('pass truthy logical and operator', () => {
+        const Tag = styled('tag')((props) => props.draw && { color: 'yellow' });
+
+        // Simulate a render
+        let vnode = Tag({ draw: true });
+
+        expect(vnode).toMatchVNode('tag', { className: 'go', draw: true });
+        expect(extractCss()).toEqual('.go2986228274{color:yellow;}');
+    });
 });

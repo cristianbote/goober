@@ -1,0 +1,21 @@
+{
+	"name": "goober-docs",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"start": "wmr",
+		"build": "wmr build --prerender",
+		"postbuild": "cp -r ./static/ ./dist"
+	},
+	"eslintConfig": {
+		"extends": "preact"
+	},
+	"dependencies": {
+		"goober": "^2.0.37",
+		"preact-iso": "^2.0.2"
+	},
+	"devDependencies": {
+		"wmr": "^2.1.0"
+	}
+}

@@ -1,17 +1,17 @@
-const React = require('react');
-const goober = require('goober');
-const autoprefixer = require('goober-autoprefixer');
+import React from 'react';
+import { setup, extractCss } from 'goober';
+import { prefix } from 'goober/prefixer';
 
 // Set the pragma for `goober` to know which to use
-goober.setup(React.createElement, autoprefixer.prefix);
+setup(React.createElement, prefix);
 
 // Define a cache entry
 const cache = new Map();
 
-exports.onRenderBody = ({ setHeadComponents, pathname }) => {
+export const onRenderBody = ({ setHeadComponents, pathname }) => {
     // Add cache support for short-circuiting the processing part
     if (!cache.has(pathname)) {
-        cache.set(pathname, goober.extractCss());
+        cache.set(pathname, extractCss());
     }
 
     // Set the head style component with the extracted css

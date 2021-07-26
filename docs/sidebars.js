@@ -16,7 +16,8 @@ module.exports = {
                 'api/targets',
                 'api/extractCss',
                 'api/createGlobalStyles',
-                'api/keyframes'
+                'api/keyframes',
+                'api/shouldForwardProp'
             ]
         },
         {
@@ -27,14 +28,20 @@ module.exports = {
                 'integrations/babel-plugin',
                 'integrations/babel-macro-plugin',
                 'integrations/gatsby',
-                'integrations/preact-cli-plugin'
+                'integrations/preact-cli-plugin',
+                'integrations/css-prop'
             ]
         },
         {
             type: 'category',
             label: 'Features',
             collapsed: false,
-            items: ['features/checklist', 'features/sharing-style', 'features/autoprefixer']
+            items: [
+                'features/checklist',
+                'features/sharing-style',
+                'features/autoprefixer',
+                'features/typescript'
+            ]
         },
         {
             type: 'doc',
