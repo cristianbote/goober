@@ -43,6 +43,14 @@ declare namespace goober {
         (props: object): undefined;
     };
 
+    const core: {
+        cache: Record<string, string>;
+        update: (css: string, sheet: any, append: boolean) => void;
+        toHash: (str: string) => string;
+        getSheet: (target?: any) => HTMLStyleElement | { data: '' };
+        compile: (str: any, defs: any, data: any) => any;
+    };
+
     const styled: StyledFunction;
     function setup<T>(
         val: T,

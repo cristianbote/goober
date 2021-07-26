@@ -1,0 +1,40 @@
+{
+  "name": "goober-clsx",
+  "amdName": "gooberClsx",
+  "version": "0.0.1",
+  "description": "The clsx addon function for goober",
+  "sideEffects": false,
+  "main": "dist/goober-clsx.js",
+  "module": "dist/goober-clsx.mjs",
+  "umd:main": "dist/goober-clsx.umd.js",
+  "source": "src/index.js",
+  "unpkg": "dist/goober-clsx.umd.js",
+  "types": "./clsx.d.ts",
+  "scripts": {
+    "build:lib": "rm -rf dist && microbundle --entry src/index.js --name gooberClsx --no-sourcemap",
+    "test": "jest --setupFiles ./jest.setup.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cristianbote/goober.git",
+    "directory": "global"
+  },
+  "author": "Cristian <botecristian@yahoo.com>",
+  "keywords": [
+    "goober",
+    "styled",
+    "global"
+  ],
+  "license": "ISC",
+  "peerDependencies": {
+    "goober": "^2.0.18"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.7.0",
+    "@babel/preset-env": "^7.3.1",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "microbundle": "^0.12.4",
+    "preact": "^10.5.6"
+  }
+}
