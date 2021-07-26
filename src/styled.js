@@ -24,6 +24,10 @@ function styled(tag, forwardRef) {
         let _args = arguments;
 
         function Styled(props, ref) {
+            let _props = {};
+            for (const i in props) {
+                if (i != 'as') _props[i] = props[i];
+            }
             // Grab a shallow copy of the props
             let _props = Object.assign({}, props);
 
@@ -48,8 +52,7 @@ function styled(tag, forwardRef) {
             }
 
             // Let the closure do the capture, cause it might get removed in the fwdProp
-            let _as = _props.as || tag;
-            delete _props.as;
+            let _as = props.as || tag;
 
             // Handle the forward props filter if defined and _as is a string
             if (fwdProp && _as[0]) {
