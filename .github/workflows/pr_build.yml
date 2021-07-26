@@ -15,5 +15,6 @@ jobs:
                   npm install
                   npm --prefix ./prefixer install ./prefixer
                   npm --prefix ./global install ./global
+                  npm --prefix ./clsx install ./clsx
             - name: Run tests
               run: npm run test
