@@ -81,7 +81,7 @@ describe('styled', () => {
         // Simulate a render with
         vnode = Tag({ as: 'foo' });
         // Expect it to be changed to foo
-        expect(vnode).toMatchVNode('foo', { className: 'go', as: 'foo' });
+        expect(vnode).toMatchVNode('foo', { className: 'go' });
 
         // Simulate a render
         vnode = Tag();

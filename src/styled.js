@@ -49,6 +49,7 @@ function styled(tag, forwardRef) {
 
             // Let the closure do the capture, cause it might get removed in the fwdProp
             let _as = _props.as || tag;
+            delete _props.as;
 
             // Handle the forward props filter if defined and _as is a string
             if (fwdProp && _as[0]) {
