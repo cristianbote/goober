@@ -46,9 +46,7 @@ declare namespace goober {
         (props: any, ref: any): any;
     };
 
-    type ForwardPropsFunction = {
-        (props: object): undefined;
-    };
+    type ForwardPropsFunction = (props: object) => void;
 
     const styled: StyledFunction & BabelPluginTransformGooberStyledFunction;
     function setup<T>(
