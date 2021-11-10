@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`css functions regular 1`] = `" .go778789575{color:rgb(0,0,255);background:#FFA500;}"`;
+
+exports[`css functions regular 2`] = `"<div class=\\"go778789575\\"></div>"`;
+
+exports[`css functions with theme 1`] = `".go3354288217{color:rgb(255,128,0);background:blue;}"`;
+
+exports[`css functions with theme 2`] = `"<div class=\\"go3354288217\\"></div>"`;

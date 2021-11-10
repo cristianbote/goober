@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cssProps regular 1`] = `" .go3700499678{color:blue;background:orange;}"`;
+
+exports[`cssProps regular 2`] = `"<div class=\\"go3700499678\\"></div>"`;
+
+exports[`cssProps with theme 1`] = `".go4230365694{color:orange;background:blue;}"`;
+
+exports[`cssProps with theme 2`] = `"<div class=\\"go4230365694\\"></div>"`;

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pseudoSelectors regular 1`] = `" .go1382657062:hover{color:blue;background:orange;}"`;
+
+exports[`pseudoSelectors regular 2`] = `"<div class=\\"go1382657062\\"></div>"`;
+
+exports[`pseudoSelectors with theme 1`] = `".go1912523078:hover{color:orange;background:blue;}"`;
+
+exports[`pseudoSelectors with theme 2`] = `"<div class=\\"go1912523078\\"></div>"`;

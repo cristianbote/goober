@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cssProps regular 1`] = `" .go1669064858{min-width:10px;font-size:20em;}"`;
+
+exports[`cssProps regular 2`] = `"<div class=\\"go1669064858\\"></div>"`;
+
+exports[`cssProps with theme 1`] = `".go1669064858{min-width:10px;font-size:20em;}"`;
+
+exports[`cssProps with theme 2`] = `"<div class=\\"go1669064858\\"></div>"`;

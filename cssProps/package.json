@@ -1,0 +1,44 @@
+{
+  "name": "goober-cssProps",
+  "amdName": "gooberCssProps",
+  "version": "0.0.1",
+  "description": "The cssProps addon function for goober",
+  "sideEffects": false,
+  "main": "dist/goober-cssProps.js",
+  "module": "dist/goober-cssProps.esm.js",
+  "umd:main": "dist/goober-cssProps.umd.js",
+  "source": "src/index.js",
+  "unpkg": "dist/goober-cssProps.umd.js",
+  "types": "./cssProps.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && microbundle --entry src/index.js --name gooberCssProps --no-sourcemap",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cristianbote/goober.git",
+    "directory": "cssProps"
+  },
+  "author": "Cristian <botecristian@yahoo.com>",
+  "keywords": [
+    "goober",
+    "styled",
+    "cssProps"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "goober": "^2.0.29"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.7.0",
+    "@babel/preset-env": "^7.3.1",
+    "babel-jest": "^24.1.0",
+    "fs-jetpack": "^4.2.0",
+    "goober": "^2.0.29",
+    "jest": "^24.1.0",
+    "mdn-browser-compat-data": "^1.1.2",
+    "mdn-data": "^2.0.22",
+    "microbundle": "^0.12.4",
+    "preact": "^10.5.6"
+  }
+}

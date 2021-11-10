@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cssProps regular 1`] = `" @media screen and (min-width: 900px){.go3237185770{color:blue;background:orange;}}"`;
+
+exports[`cssProps regular 2`] = `"<div class=\\"go3237185770\\"></div>"`;
+
+exports[`cssProps with theme 1`] = `"@media screen and (min-width: 900px){.go3767051786{color:orange;background:blue;}}"`;
+
+exports[`cssProps with theme 2`] = `"<div class=\\"go3767051786\\"></div>"`;
