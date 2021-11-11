@@ -96,7 +96,7 @@
     "type": "git",
     "url": "https://github.com/cristianbote/goober"
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@ampproject/filesize": "^4.0.0",
     "@babel/core": "^7.2.2",
