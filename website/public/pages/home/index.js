@@ -156,7 +156,7 @@ export default function Home() {
                             and so much more.
                         </Feature>
                         <Box size={400} />
-                        <Feature title="Themeing">
+                        <Feature title="Theming">
                             Easily access your common sizes, colors, anything really with the use of
                             a theme.
                         </Feature>

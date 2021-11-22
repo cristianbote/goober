@@ -1,6 +1,6 @@
 {
   "name": "goober",
-  "version": "2.0.37",
+  "version": "2.0.43",
   "description": "A less than 1KB css-in-js solution",
   "sideEffects": false,
   "main": "dist/goober.js",
@@ -63,7 +63,8 @@
     "test": "npm run test-ts && npm run test-unit -- --ci --coverage && npm run build && npm run test-perf",
     "test-perf": "NODE_ENV=production node benchmarks/perf.js",
     "test-perf-hash": "NODE_ENV=production node benchmarks/perf-hash.js",
-    "test-unit": "jest --setupFiles ./tests/setup.js --roots ./src packages && npm run test-addon-global && npm run test-addon-prefixer",
+    "test-unit-core": "jest --setupFiles ./tests/setup.js --roots ./src packages",
+    "test-unit": "npm run test-unit-core && npm run test-addon-global && npm run test-addon-prefixer",
     "test-addon-global": "cd global && npm run test",
     "test-addon-prefixer": "cd prefixer && npm run test",
     "test-ts": "tsc -p ts-tests",
@@ -96,7 +97,7 @@
     "type": "git",
     "url": "https://github.com/cristianbote/goober"
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@ampproject/filesize": "^4.0.0",
     "@babel/core": "^7.2.2",

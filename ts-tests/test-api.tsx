@@ -107,6 +107,8 @@ const testStyledCss = () => {
                 : ``}
     `;
 
+    Button.displayName = 'displayName';
+
     const TestComp = () => {
         return (
             <div>
