@@ -29,8 +29,11 @@ export let compile = (str, defs, data) => {
                 // or an object returned from a function interpolation
                 tail = res.props ? '' : parse(res, '');
             } else {
-                // Regular value returned. Can be falsy as well
-                tail = res;
+                // Regular value returned. Can be falsy as well.
+                // Here we check if this is strictly a boolean with false value
+                // define it as `''` to be picked up as empty, otherwise use
+                // res value
+                tail = res === false ? '' : res;
             }
         }
         return out + next + (tail == null ? '' : tail);

@@ -1,3 +1,5 @@
+⚠️ Heya! Take a look in here: https://github.com/cristianbote/goober/issues/351
+
 <p align="center">
   <img src="./goober_cover.png" width="500" alt="goober" />
 </p>
