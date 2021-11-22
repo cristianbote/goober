@@ -169,7 +169,7 @@ Coming soon!
 The benchmark is testing the following scenario:
 
 ```jsx
-import styled from 'package';
+import styled from '<packageName>';
 
 // Create the dynamic styled component
 const Foo = styled('div')((props) => ({
