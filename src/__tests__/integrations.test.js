@@ -125,6 +125,64 @@ describe('integrations', () => {
         );
     });
 
+    it('support extending with as', () => {
+        const list = ['p', 'm', 'as', 'bg'];
+        setup(h, undefined, undefined, (props) => {
+            for (let prop in props) {
+                if (list.indexOf(prop) !== -1) {
+                    delete props[prop];
+                }
+            }
+        });
+        const target = document.createElement('div');
+
+        const Base = styled('div')(({ p = 0, m }) => [
+            {
+                color: 'white',
+                padding: p + 'em'
+            },
+            m != null && { margin: m + 'em' }
+        ]);
+
+        const Super = styled(Base)`
+            background: ${(p) => p.bg || 'none'};
+        `;
+
+        render(
+            <div>
+                <Base />
+                <Base p={2} />
+                <Base m={1} p={3} as={'span'} />
+                <Super m={1} bg={'dodgerblue'} as={'button'} />
+            </div>,
+            target
+        );
+
+        // Makes sure the resulting DOM does not contain any props
+        expect(target.innerHTML).toEqual(
+            [
+                '<div>',
+                '<div class="go103173764"></div>',
+                '<div class="go103194166"></div>',
+                '<span class="go2081835032"></span>',
+                '<button class="go1969245729 go1824201605"></button>',
+                '</div>'
+            ].join('')
+        );
+
+        expect(extractCss()).toMatchInlineSnapshot(
+            [
+                '"',
+                '.go1969245729{color:white;padding:0em;margin:1em;}',
+                '.go103173764{color:white;padding:0em;}',
+                '.go103194166{color:white;padding:2em;}',
+                '.go2081835032{color:white;padding:3em;margin:1em;}',
+                '.go1824201605{background:dodgerblue;}',
+                '"'
+            ].join('')
+        );
+    });
+
     it('shouldForwardProps', () => {
         const list = ['p', 'm', 'as'];
         setup(h, undefined, undefined, (props) => {
