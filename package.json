@@ -130,10 +130,10 @@
   "typings": "./goober.d.ts",
   "filesize": {
     "./dist/goober.modern.js": {
-      "gzip": "1200B"
+      "gzip": "1300B"
     },
     "./dist/goober.js": {
-      "gzip": "1200B"
+      "gzip": "1300B"
     }
   },
   "lint-staged": {
