@@ -121,7 +121,7 @@ const testStyledCss = () => {
                 <EmptyPropsText>base text</EmptyPropsText>
                 <NestedText>text</NestedText>
                 <MultipleFunctions isActive={false} />
-                <CustomTagged>test</CustomTagged>
+                <CustomTagged as={'custom'}>test</CustomTagged>
                 <Childless />
                 <StyledHello name="you" />
                 <StyledObject disabled />
