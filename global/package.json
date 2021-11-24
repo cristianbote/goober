@@ -25,7 +25,7 @@
     "styled",
     "global"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "goober": "^2.0.29"
   },

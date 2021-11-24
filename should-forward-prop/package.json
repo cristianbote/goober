@@ -25,7 +25,7 @@
     "styled",
     "should-forward-prop"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "goober": "^2.0.18"
   },

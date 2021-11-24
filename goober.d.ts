@@ -35,15 +35,20 @@ declare namespace goober {
         ): Tagged<P>;
     }
 
+    // used when creating a styled component from a native HTML element with the babel-plugin-transform-goober parser
+    type BabelPluginTransformGooberStyledFunction = {
+        [T in keyof JSX.IntrinsicElements]: Tagged<
+            JSX.LibraryManagedAttributes<T, JSX.IntrinsicElements[T]> & Theme<DefaultTheme>
+        >;
+    };
+
     type ForwardRefFunction = {
         (props: any, ref: any): any;
     };
 
-    type ForwardPropsFunction = {
-        (props: object): undefined;
-    };
+    type ForwardPropsFunction = (props: object) => void;
 
-    const styled: StyledFunction;
+    const styled: StyledFunction & BabelPluginTransformGooberStyledFunction;
     function setup<T>(
         val: T,
         prefixer?: (key: string, val: any) => string,
@@ -63,10 +68,16 @@ declare namespace goober {
         tag: CSSAttribute | TemplateStringsArray | string,
         ...props: Array<string | number>
     ): string;
+
     const useTheme: (() => DefaultTheme) | undefined;
-    type StyledVNode<T> = (props: T, ...args: any[]) => any;
+
+    type StyledVNode<T> = ((props: T, ...args: any[]) => any) & {
+        displayName?: string;
+    };
+
     type StylesGenerator<P extends Object = {}> = (props: P) => CSSAttribute | string;
-    type Tagged<P extends Object = {}> = <PP extends Object = {}>(
+
+    type Tagged<P extends Object = {}> = <PP extends Object = { as?: any }>(
         tag:
             | CSSAttribute
             | (CSSAttribute | StylesGenerator<P & PP>)[]
@@ -79,6 +90,7 @@ declare namespace goober {
             | ((props: P & PP) => CSSAttribute | string | number | false | undefined)
         >
     ) => StyledVNode<Omit<P & PP, keyof Theme<DefaultTheme>>>;
+
     interface CSSAttribute extends CSSProperties {
         [key: string]: CSSAttribute | string | number | undefined;
     }
