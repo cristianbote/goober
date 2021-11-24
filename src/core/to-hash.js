@@ -8,9 +8,8 @@
  * @returns {String}
  */
 export let toHash = (str) => {
-    let char,
-        i = 0,
+    let i = 0,
         out = 11;
-    while ((char = str.charCodeAt(i++)) || char == char) out = (101 * out + char) >>> 0;
+    while (i < str.length) out = (101 * out + str.charCodeAt(i++)) >>> 0;
     return 'go' + out;
 };
