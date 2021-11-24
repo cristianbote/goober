@@ -59,7 +59,7 @@ function styled(tag, forwardRef) {
             }
 
             // Handle the forward props filter if defined and _as is a string
-            if (fwdProp && _as) {
+            if (fwdProp && _as[0]) {
                 fwdProp(_props);
             }
 
