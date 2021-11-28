@@ -1,10 +1,9 @@
-//Do not modify this file.  This file is generated from ./scripts/generateUnits.js
-import { default as appendArgs } from '../../util/index'
+/* Do not modify this file.  This file is generated from ./cssProps/templates/functions.function.index.mustache */
+import { default as appendArgs } from '../../util/index';
 
 /**
  * @name rotate
  * @category CssProps Helper
- * @summary Returns a function call for css function rotate() with the passed in argmunets comma delimited
  *
  * @description
  * Returns a comma delimited function call for the css function rotate()
@@ -13,5 +12,5 @@ import { default as appendArgs } from '../../util/index'
  * @returns {string} Returns a comma delimited function call for the function rotate()
  */
 export default function rotate() {
-    return "rotate(" + appendArgs(arguments, ",") + ")"
+    return 'rotate(' + appendArgs(arguments, ',') + ')';
 }

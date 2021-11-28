@@ -1,10 +1,9 @@
-//Do not modify this file.  This file is generated from ./scripts/generateUnits.js
-import { default as appendArgs } from '../../util/index'
+/* Do not modify this file.  This file is generated from ./cssProps/templates/functions.function.index.mustache */
+import { default as appendArgs } from '../../util/index';
 
 /**
  * @name rotateZ
  * @category CssProps Helper
- * @summary Returns a function call for css function rotateZ() with the passed in argmunets comma delimited
  *
  * @description
  * Returns a comma delimited function call for the css function rotateZ()
@@ -13,5 +12,5 @@ import { default as appendArgs } from '../../util/index'
  * @returns {string} Returns a comma delimited function call for the function rotateZ()
  */
 export default function rotateZ() {
-    return "rotateZ(" + appendArgs(arguments, ",") + ")"
+    return 'rotateZ(' + appendArgs(arguments, ',') + ')';
 }

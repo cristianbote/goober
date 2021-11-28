@@ -1,10 +1,9 @@
-//Do not modify this file.  This file is generated from ./scripts/generateUnits.js
-import { default as appendArgs } from '../../util/index'
+/* Do not modify this file.  This file is generated from ./cssProps/templates/functions.function.index.mustache */
+import { default as appendArgs } from '../../util/index';
 
 /**
  * @name radialGradient
  * @category CssProps Helper
- * @summary Returns a function call for css function radialGradient() with the passed in argmunets comma delimited
  *
  * @description
  * Returns a comma delimited function call for the css function radialGradient()
@@ -13,5 +12,5 @@ import { default as appendArgs } from '../../util/index'
  * @returns {string} Returns a comma delimited function call for the function radialGradient()
  */
 export default function radialGradient() {
-    return "radialGradient(" + appendArgs(arguments, ",") + ")"
+    return 'radialGradient(' + appendArgs(arguments, ',') + ')';
 }

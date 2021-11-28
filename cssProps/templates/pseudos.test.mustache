@@ -1,0 +1,30 @@
+/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.test.mustache */
+import * as cssPseudo from '../index';
+import { color, maxWidth } from '../../props/index'
+import { css, setup } from 'goober';
+
+jest.mock('goober', () => ({
+    css: jest.fn().mockReturnValue('css()')
+}));
+
+describe('cssPseudo', () => {
+    beforeEach(() => {
+        css.mockClear();
+    });
+
+    {{#Pseudos}}
+    it('{{pseudo}} type', () => {
+        expect(typeof cssPseudo.{{pseudoCamelCase}}).toEqual('function');
+    });
+
+    it('{{pseudo}}', () => {
+        expect(cssPseudo.{{pseudoCamelCase}}([
+            color("blue"),
+            maxWidth("20px")
+        ])).toEqual({"&{{pseudo}}":{
+            color: "blue",
+            maxWidth: "20px"
+        }});
+    });
+    {{/Pseudos}}
+});

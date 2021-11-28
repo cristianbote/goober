@@ -1,10 +1,9 @@
-//Do not modify this file.  This file is generated from ./scripts/generateUnits.js
-import { default as appendArgs } from '../../util/index'
+/* Do not modify this file.  This file is generated from ./cssProps/templates/functions.function.index.mustache */
+import { default as appendArgs } from '../../util/index';
 
 /**
  * @name polygon
  * @category CssProps Helper
- * @summary Returns a function call for css function polygon() with the passed in argmunets comma delimited
  *
  * @description
  * Returns a comma delimited function call for the css function polygon()
@@ -13,5 +12,5 @@ import { default as appendArgs } from '../../util/index'
  * @returns {string} Returns a comma delimited function call for the function polygon()
  */
 export default function polygon() {
-    return "polygon(" + appendArgs(arguments, ",") + ")"
+    return 'polygon(' + appendArgs(arguments, ',') + ')';
 }

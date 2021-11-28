@@ -1,10 +1,9 @@
-//Do not modify this file.  This file is generated from ./scripts/generateUnits.js
-import { default as appendArgs } from '../../util/index'
+/* Do not modify this file.  This file is generated from ./cssProps/templates/functions.function.index.mustache */
+import { default as appendArgs } from '../../util/index';
 
 /**
  * @name translateX
  * @category CssProps Helper
- * @summary Returns a function call for css function translateX() with the passed in argmunets comma delimited
  *
  * @description
  * Returns a comma delimited function call for the css function translateX()
@@ -13,5 +12,5 @@ import { default as appendArgs } from '../../util/index'
  * @returns {string} Returns a comma delimited function call for the function translateX()
  */
 export default function translateX() {
-    return "translateX(" + appendArgs(arguments, ",") + ")"
+    return 'translateX(' + appendArgs(arguments, ',') + ')';
 }
