@@ -1,6 +1,6 @@
 {
   "name": "goober",
-  "version": "2.0.43",
+  "version": "2.1.0",
   "description": "A less than 1KB css-in-js solution",
   "sideEffects": false,
   "main": "dist/goober.js",
@@ -79,6 +79,7 @@
     "build:dist": "npm run build:lib -- --output dist",
     "build:debug": "npm run build:lib -- --output debug --no-compress",
     "dev": "npm run clean && microbundle watch --entry src/index.js --output dist --name goober",
+    "sandbox": "wmr --public sandbox/wmr",
     "deploy": "npm run build && npm publish",
     "format": "prettier \"**/*.{js,ts,tsx,md}\" --write"
   },
@@ -120,7 +121,8 @@
     "react-dom": "^16.12.0",
     "rimraf": "3.0.2",
     "styled-components": "^5.2.1",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.3",
+    "wmr": "^3.7.2"
   },
   "peerDependencies": {
     "csstype": "^2.6.2"
@@ -128,10 +130,10 @@
   "typings": "./goober.d.ts",
   "filesize": {
     "./dist/goober.modern.js": {
-      "gzip": "1200B"
+      "gzip": "1300B"
     },
     "./dist/goober.js": {
-      "gzip": "1200B"
+      "gzip": "1300B"
     }
   },
   "lint-staged": {
