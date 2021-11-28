@@ -1,0 +1,29 @@
+/* Do not modify this file.  This file is generated from ./cssProps/templates/atRules.test.mustache */
+import * as cssAtRules from '../index';
+import { color, maxWidth } from '../../props/index';
+import { css, setup } from 'goober';
+
+jest.mock('goober', () => ({
+    css: jest.fn().mockReturnValue('css()')
+}));
+
+describe('cssAtRules', () => {
+    beforeEach(() => {
+        css.mockClear();
+    });
+
+    {{#atRuleTests}}
+    it('{{atRule}} type', () => {
+        expect(typeof cssAtRules.{{atRuleCamelCase}}).toEqual('function');
+    });
+
+    it('{{atRule}}', () => {
+        expect(cssAtRules.{{atRuleCamelCase}}("(param)", [
+            color("blue"),
+            maxWidth("100px")
+        ])).toEqual({"{{atRule}} (param)": {"color": "blue", "maxWidth": "100px"}});
+    });
+    {{/atRuleTests}}
+});
+
+

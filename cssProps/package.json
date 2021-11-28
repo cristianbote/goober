@@ -39,6 +39,7 @@
     "mdn-browser-compat-data": "^1.1.2",
     "mdn-data": "^2.0.22",
     "microbundle": "^0.12.4",
+    "mustache": "^4.2.0",
     "preact": "^10.5.6"
   }
 }

@@ -1,0 +1,23 @@
+/* Do not modify this file.  This file is generated from ./cssProps/templates/props.test.mustache */
+import * as cssProps from '../index';
+import { css, setup } from 'goober';
+
+jest.mock('goober', () => ({
+    css: jest.fn().mockReturnValue('css()')
+}));
+
+describe('cssProps', () => {
+    beforeEach(() => {
+        css.mockClear();
+    });
+
+    {{#Props}}
+    it('{{prop}} type', () => {
+        expect(typeof cssProps.{{prop}}).toEqual('function');
+    });
+
+    it('{{prop}}', () => {
+        expect(cssProps.{{prop}}("value")).toEqual({ {{prop}}:'value'});
+    });
+    {{/Props}}
+});

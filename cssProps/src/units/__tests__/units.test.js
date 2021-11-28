@@ -1,4 +1,4 @@
-//Do not modify this file.  This file is generated from ./scripts/generateUnits.js
+/* Do not modify this file.  This file is generated from ./cssProps/templates/units.test.mustache */
 import * as cssUnits from '../index';
 import { css, setup } from 'goober';
 
@@ -18,8 +18,6 @@ describe('cssUnits', () => {
     it('ch', () => {
         expect(cssUnits.ch(5)).toEqual('5ch');
     });
-
-
     it('cm type', () => {
         expect(typeof cssUnits.cm).toEqual('function');
     });
@@ -27,8 +25,6 @@ describe('cssUnits', () => {
     it('cm', () => {
         expect(cssUnits.cm(5)).toEqual('5cm');
     });
-
-
     it('deg type', () => {
         expect(typeof cssUnits.deg).toEqual('function');
     });
@@ -36,8 +32,6 @@ describe('cssUnits', () => {
     it('deg', () => {
         expect(cssUnits.deg(5)).toEqual('5deg');
     });
-
-
     it('dpcm type', () => {
         expect(typeof cssUnits.dpcm).toEqual('function');
     });
@@ -45,8 +39,6 @@ describe('cssUnits', () => {
     it('dpcm', () => {
         expect(cssUnits.dpcm(5)).toEqual('5dpcm');
     });
-
-
     it('dpi type', () => {
         expect(typeof cssUnits.dpi).toEqual('function');
     });
@@ -54,8 +46,6 @@ describe('cssUnits', () => {
     it('dpi', () => {
         expect(cssUnits.dpi(5)).toEqual('5dpi');
     });
-
-
     it('dppx type', () => {
         expect(typeof cssUnits.dppx).toEqual('function');
     });
@@ -63,8 +53,6 @@ describe('cssUnits', () => {
     it('dppx', () => {
         expect(cssUnits.dppx(5)).toEqual('5dppx');
     });
-
-
     it('em type', () => {
         expect(typeof cssUnits.em).toEqual('function');
     });
@@ -72,8 +60,6 @@ describe('cssUnits', () => {
     it('em', () => {
         expect(cssUnits.em(5)).toEqual('5em');
     });
-
-
     it('ex type', () => {
         expect(typeof cssUnits.ex).toEqual('function');
     });
@@ -81,8 +67,6 @@ describe('cssUnits', () => {
     it('ex', () => {
         expect(cssUnits.ex(5)).toEqual('5ex');
     });
-
-
     it('fr type', () => {
         expect(typeof cssUnits.fr).toEqual('function');
     });
@@ -90,8 +74,6 @@ describe('cssUnits', () => {
     it('fr', () => {
         expect(cssUnits.fr(5)).toEqual('5fr');
     });
-
-
     it('grad type', () => {
         expect(typeof cssUnits.grad).toEqual('function');
     });
@@ -99,8 +81,6 @@ describe('cssUnits', () => {
     it('grad', () => {
         expect(cssUnits.grad(5)).toEqual('5grad');
     });
-
-
     it('Hz type', () => {
         expect(typeof cssUnits.Hz).toEqual('function');
     });
@@ -108,8 +88,6 @@ describe('cssUnits', () => {
     it('Hz', () => {
         expect(cssUnits.Hz(5)).toEqual('5Hz');
     });
-
-
     it('inch type', () => {
         expect(typeof cssUnits.inch).toEqual('function');
     });
@@ -117,8 +95,6 @@ describe('cssUnits', () => {
     it('inch', () => {
         expect(cssUnits.inch(5)).toEqual('5inch');
     });
-
-
     it('kHz type', () => {
         expect(typeof cssUnits.kHz).toEqual('function');
     });
@@ -126,8 +102,6 @@ describe('cssUnits', () => {
     it('kHz', () => {
         expect(cssUnits.kHz(5)).toEqual('5kHz');
     });
-
-
     it('mm type', () => {
         expect(typeof cssUnits.mm).toEqual('function');
     });
@@ -135,8 +109,6 @@ describe('cssUnits', () => {
     it('mm', () => {
         expect(cssUnits.mm(5)).toEqual('5mm');
     });
-
-
     it('ms type', () => {
         expect(typeof cssUnits.ms).toEqual('function');
     });
@@ -144,8 +116,6 @@ describe('cssUnits', () => {
     it('ms', () => {
         expect(cssUnits.ms(5)).toEqual('5ms');
     });
-
-
     it('pc type', () => {
         expect(typeof cssUnits.pc).toEqual('function');
     });
@@ -153,8 +123,6 @@ describe('cssUnits', () => {
     it('pc', () => {
         expect(cssUnits.pc(5)).toEqual('5pc');
     });
-
-
     it('pt type', () => {
         expect(typeof cssUnits.pt).toEqual('function');
     });
@@ -162,8 +130,6 @@ describe('cssUnits', () => {
     it('pt', () => {
         expect(cssUnits.pt(5)).toEqual('5pt');
     });
-
-
     it('px type', () => {
         expect(typeof cssUnits.px).toEqual('function');
     });
@@ -171,8 +137,6 @@ describe('cssUnits', () => {
     it('px', () => {
         expect(cssUnits.px(5)).toEqual('5px');
     });
-
-
     it('Q type', () => {
         expect(typeof cssUnits.Q).toEqual('function');
     });
@@ -180,8 +144,6 @@ describe('cssUnits', () => {
     it('Q', () => {
         expect(cssUnits.Q(5)).toEqual('5Q');
     });
-
-
     it('rad type', () => {
         expect(typeof cssUnits.rad).toEqual('function');
     });
@@ -189,8 +151,6 @@ describe('cssUnits', () => {
     it('rad', () => {
         expect(cssUnits.rad(5)).toEqual('5rad');
     });
-
-
     it('rem type', () => {
         expect(typeof cssUnits.rem).toEqual('function');
     });
@@ -198,8 +158,6 @@ describe('cssUnits', () => {
     it('rem', () => {
         expect(cssUnits.rem(5)).toEqual('5rem');
     });
-
-
     it('s type', () => {
         expect(typeof cssUnits.s).toEqual('function');
     });
@@ -207,8 +165,6 @@ describe('cssUnits', () => {
     it('s', () => {
         expect(cssUnits.s(5)).toEqual('5s');
     });
-
-
     it('turn type', () => {
         expect(typeof cssUnits.turn).toEqual('function');
     });
@@ -216,8 +172,6 @@ describe('cssUnits', () => {
     it('turn', () => {
         expect(cssUnits.turn(5)).toEqual('5turn');
     });
-
-
     it('vh type', () => {
         expect(typeof cssUnits.vh).toEqual('function');
     });
@@ -225,8 +179,6 @@ describe('cssUnits', () => {
     it('vh', () => {
         expect(cssUnits.vh(5)).toEqual('5vh');
     });
-
-
     it('vmax type', () => {
         expect(typeof cssUnits.vmax).toEqual('function');
     });
@@ -234,8 +186,6 @@ describe('cssUnits', () => {
     it('vmax', () => {
         expect(cssUnits.vmax(5)).toEqual('5vmax');
     });
-
-
     it('vmin type', () => {
         expect(typeof cssUnits.vmin).toEqual('function');
     });
@@ -243,8 +193,6 @@ describe('cssUnits', () => {
     it('vmin', () => {
         expect(cssUnits.vmin(5)).toEqual('5vmin');
     });
-
-
     it('vw type', () => {
         expect(typeof cssUnits.vw).toEqual('function');
     });
@@ -252,8 +200,6 @@ describe('cssUnits', () => {
     it('vw', () => {
         expect(cssUnits.vw(5)).toEqual('5vw');
     });
-
-
     it('x type', () => {
         expect(typeof cssUnits.x).toEqual('function');
     });
@@ -261,5 +207,4 @@ describe('cssUnits', () => {
     it('x', () => {
         expect(cssUnits.x(5)).toEqual('5x');
     });
-
 });

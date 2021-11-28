@@ -1,81 +1,47 @@
-const jetpack = require('fs-jetpack')
-const mdnData = require('mdn-data')
+const jetpack = require('fs-jetpack');
+const Mustache = require('mustache');
+const mdnData = require('mdn-data');
 //[ 'api', 'css', 'l10n' ]
 
 const cssData = mdnData.css;
 //[ 'atRules', 'selectors', 'types', 'properties', 'syntaxes', 'units' ]
 
-const cssUnits = cssData.units
+const cssUnits = cssData.units;
 //ch: { groups: [ 'CSS Units', 'CSS Lengths' ], status: 'standard' },
 
-const cssStandardUnits = Object.keys(cssUnits).reduce((result, nextKey) => { 
-    if(cssUnits[nextKey].status === 'standard'){
-        result[nextKey] = cssUnits[nextKey]
+const cssStandardUnits = Object.keys(cssUnits).reduce((result, nextKey) => {
+    if (cssUnits[nextKey].status === 'standard') {
+        result[nextKey] = cssUnits[nextKey];
     }
-    return result
-}, {})
+    return result;
+}, {});
 
-// jetpack.write('./cssStandardUnits.json', cssStandardUnits)
+const unitsIndexTemplate = jetpack.read('./templates/units.index.mustache');
+const unitsUnitIndexTemplate = jetpack.read('./templates/units.unit.index.mustache');
+const unitsTestTemplate = jetpack.read('./templates/units.test.mustache');
 
-
-let indexTemplate = "//Do not modify this file.  This file is generated from ./scripts/generateUnits.js\n"
-let testTemplate = `//Do not modify this file.  This file is generated from ./scripts/generateUnits.js
-import * as cssUnits from '../index';
-import { css, setup } from 'goober';
-
-jest.mock('goober', () => ({
-    css: jest.fn().mockReturnValue('css()')
-}));
-
-describe('cssUnits', () => {
-    beforeEach(() => {
-        css.mockClear();
-    });
-`
+const unitsListView = {
+    Units: []
+};
 
 //Loop through all the css properties generating the source code, the root index file, and the jest tests
-Object.keys(cssStandardUnits).forEach(unit => {
+Object.keys(cssStandardUnits).forEach((unit) => {
+    if (unit === 'in') {
+        //"in" is a javascript keyword, so rename "in" unit function to "inch" unit function
+        unit = 'inch';
+    }
 
-        if(unit === 'in'){
-            unit = 'inch'
-        }
-        
-        jetpack.dir(`./src/units/${unit}`);
-        jetpack.write(`./src/units/${unit}/index.js`, functionIndexTemplate(unit));
-        
-        indexTemplate += `export { default as ${unit} } from './${unit}/index'\n`
-        
-        testTemplate += `
-    it('${unit} type', () => {
-        expect(typeof cssUnits.${unit}).toEqual('function');
-    });
+    const unitView = { unit: unit };
+    unitsListView.Units.push(unitView);
 
-    it('${unit}', () => {
-        expect(cssUnits.${unit}(5)).toEqual('5${unit}');
-    });
+    const unitsUnitIndexFile = Mustache.render(unitsUnitIndexTemplate, unitView);
 
-`
+    jetpack.dir(`./src/units/${unit}`);
+    jetpack.write(`./src/units/${unit}/index.js`, unitsUnitIndexFile);
 });
 
-testTemplate += "});"
-jetpack.write('./src/units/index.js', indexTemplate);
-jetpack.write('./src/units/__tests__/units.test.js', testTemplate);
+unitsIndexFile = Mustache.render(unitsIndexTemplate, unitsListView);
+jetpack.write('./src/units/index.js', unitsIndexFile);
 
-function functionIndexTemplate(unit) {
-    return `//Do not modify this file.  This file is generated from ./scripts/generateUnits.js
-/**
- * @name ${unit}
- * @category CssProps Helper
- * @summary Returns a numerical value appended with the css unit ${unit}
- *
- * @description
- * Returns a numerical value appended with the css unit ${unit}
- *
- * @param {number} unit- The numerical value that the css unit will be appended
- * @returns {string} numerical value with appended unit ${unit}
- */
-
-export default function ${unit}(unit) {
-    return unit + "${unit}"
-}`
-}
+unitsTestFile = Mustache.render(unitsTestTemplate, unitsListView);
+jetpack.write('./src/units/__tests__/units.test.js', unitsTestFile);

@@ -1,0 +1,22 @@
+/* Do not modify this file.  This file is generated from ./cssProps/templates/atRules.atRule.index.mustache */
+/**
+ * @name {{atRuleCamelCase}}
+ * @category CssProps Helper
+ * @summary {{atRule}} {{atRuleSyntax}}
+ *
+ * @description
+ * {{atRule}} {{atRuleSyntax}}
+ *
+ {{#atRuleParams}}
+ * @param {{atRuleParamType}} {{atRuleParamName}} - {{atRuleParamDescription}}
+ {{/atRuleParams}}
+ * @returns {{atRuleReturnType}} - {{atRuleReturnDescription}}
+ */
+
+export default function {{atRuleCamelCase}}({{#atRuleArgs}}{{atRuleArg}},{{/atRuleArgs}}{{#cssProps}}cssProps{{/cssProps}}) {
+    return {
+        ["{{atRule}}{{#atRuleFunction}}({{rule}}){{/atRuleFunction}}"]: cssProps.reduce((result, cssPropObj) => {
+            return Object.assign(result, cssPropObj)
+        }, {})
+    }
+}
