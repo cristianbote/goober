@@ -259,4 +259,19 @@ describe('parse', () => {
             ].join('')
         );
     });
+
+    it('should handle the :where(a,b) cases', () => {
+        expect(
+            parse(
+                {
+                    div: {
+                        ':where(a, b)': {
+                            color: 'blue'
+                        }
+                    }
+                },
+                ''
+            )
+        ).toEqual('div :where(a, b){color:blue;}');
+    });
 });

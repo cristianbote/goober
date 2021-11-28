@@ -27,6 +27,21 @@ describe('compile', () => {
         expect(template`prop: 1; ${() => 0},${() => undefined},${() => null},${2}`({})).toEqual(
             'prop: 1; 0,,,2'
         );
+
+        const tmpl = template`
+            background: dodgerblue;
+            ${(props) =>
+                props.padding === 'bloo' &&
+                `
+                padding: ${props.padding}px;
+            `}
+            border: 1px solid blue;
+        `;
+        expect(tmpl({})).toEqual(`
+            background: dodgerblue;
+            
+            border: 1px solid blue;
+        `);
     });
 
     describe('objects', () => {

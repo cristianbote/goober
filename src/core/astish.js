@@ -1,4 +1,4 @@
-let newRule = /(?:([\u0080-\uFFFF\w-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(})/g;
+let newRule = /(?:([\u0080-\uFFFF\w-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(}\s*)/g;
 let ruleClean = /\/\*[^]*?\*\/|\s\s+|\n/g;
 
 /**
@@ -12,11 +12,11 @@ export let astish = (val) => {
 
     while ((block = newRule.exec(val.replace(ruleClean, '')))) {
         // Remove the current entry
-        if (block[4]) tree.shift();
-
-        if (block[3]) {
+        if (block[4]) {
+            tree.shift();
+        } else if (block[3]) {
             tree.unshift((tree[0][block[3]] = tree[0][block[3]] || {}));
-        } else if (!block[4]) {
+        } else {
             tree[0][block[1]] = block[2];
         }
     }
