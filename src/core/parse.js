@@ -25,7 +25,7 @@ export let parse = (obj, selector) => {
                 // Regular at rule block
                 blocks += key + '{' + parse(val, key[1] == 'k' ? '' : selector) + '}';
             }
-        } else if (typeof val == 'object') {
+        } else if ((typeof val)[0] == 'o') {
             // Call the parse for this block
             blocks += parse(
                 val,
@@ -43,7 +43,7 @@ export let parse = (obj, selector) => {
                       })
                     : key
             );
-        } else if (val != null) {
+        } else if (val != undefined) {
             // If this isn't an empty rule
             key = key.replace(/[A-Z]/g, '-$&').toLowerCase();
             // Push the line for this property
