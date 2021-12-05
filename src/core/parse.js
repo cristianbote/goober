@@ -43,7 +43,7 @@ export let parse = (obj, selector) => {
                       })
                     : key
             );
-        } else if (val != undefined) {
+        } else if (val != null) {
             // If this isn't an empty rule
             key = key.replace(/[A-Z]/g, '-$&').toLowerCase();
             // Push the line for this property
