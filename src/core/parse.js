@@ -8,28 +8,14 @@ export let parse = (obj, selector) => {
     let outer = '';
     let blocks = '';
     let current = '';
-    let next;
 
     for (let key in obj) {
         let val = obj[key];
 
-        if (val !== undefined && val !== null)
+        // If this isn't an empty rule
+        if (val != undefined && val != null) {
+            // If this is a 'block'
             if (typeof val == 'object') {
-                // If this is a 'block'
-                next = selector
-                    ? // Go over the selector and replace the matching multiple selectors if any
-                      selector.replace(/([^,])+/g, (sel) => {
-                          // Return the current selector with the key matching multiple selectors if any
-                          return key.replace(/(^:.*)|([^,])+/g, (k) => {
-                              // If the current `k`(key) has a nested selector replace it
-                              if (/&/.test(k)) return k.replace(/&/g, sel);
-
-                              // If there's a current selector concat it
-                              return sel ? sel + ' ' + k : k;
-                          });
-                      })
-                    : key;
-
                 // If these are the `@` rule
                 if (key[0] == '@') {
                     // Handling the `@font-face` where the
@@ -42,10 +28,25 @@ export let parse = (obj, selector) => {
                     }
                 } else {
                     // Call the parse for this block
-                    blocks += parse(val, next);
+                    blocks += parse(
+                        val,
+                        selector
+                            ? // Go over the selector and replace the matching multiple selectors if any
+                              selector.replace(/([^,])+/g, (sel) => {
+                                  // Return the current selector with the key matching multiple selectors if any
+                                  return key.replace(/(^:.*)|([^,])+/g, (k) => {
+                                      // If the current `k`(key) has a nested selector replace it
+                                      if (/&/.test(k)) return k.replace(/&/g, sel);
+
+                                      // If there's a current selector concat it
+                                      return sel ? sel + ' ' + k : k;
+                                  });
+                              })
+                            : key
+                    );
                 }
             } else {
-                if (key[0] == '@' && key[1] == 'i') {
+                if (/^@i/.test(key)) {
                     outer = key + ' ' + val + ';';
                 } else {
                     key = key.replace(/[A-Z]/g, '-$&').toLowerCase();
@@ -57,6 +58,7 @@ export let parse = (obj, selector) => {
                           key + ':' + val + ';';
                 }
             }
+        }
     }
 
     // If we have properties apply standard rule composition
