@@ -274,4 +274,27 @@ describe('parse', () => {
             )
         ).toEqual('div :where(a, b){color:blue;}');
     });
+
+    it('should handle null and undefined values', () => {
+        expect(
+            parse(
+                {
+                    div: {
+                        color: null
+                    }
+                },
+                ''
+            )
+        ).toEqual('div{}');
+        expect(
+            parse(
+                {
+                    div: {
+                        color: undefined // or `void 0` when minified
+                    }
+                },
+                ''
+            )
+        ).toEqual('div{}');
+    });
 });
