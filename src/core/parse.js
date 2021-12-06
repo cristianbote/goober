@@ -25,7 +25,7 @@ export let parse = (obj, selector) => {
                 // Regular at rule block
                 blocks += key + '{' + parse(val, key[1] == 'k' ? '' : selector) + '}';
             }
-        } else if ((typeof val)[0] == 'o') {
+        } else if (typeof val == 'object') {
             // Call the parse for this block
             blocks += parse(
                 val,
