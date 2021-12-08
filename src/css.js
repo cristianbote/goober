@@ -7,7 +7,7 @@ import { getSheet } from './core/get-sheet';
  * @param {String|Object|Function} val
  */
 function css(val) {
-    let ctx = this || {};
+    let ctx = this || { c: {} };
     let _val = val.call ? val(ctx.p) : val;
 
     return hash(
@@ -21,7 +21,8 @@ function css(val) {
         getSheet(ctx.target),
         ctx.g,
         ctx.o,
-        ctx.k
+        ctx.k,
+        ctx.c
     );
 }
 
@@ -29,12 +30,12 @@ function css(val) {
  * CSS Global function to declare global styles
  * @type {Function}
  */
-let glob = css.bind({ g: 1 });
+let glob = css.bind({ g: 1, c: {} });
 
 /**
  * `keyframes` function for defining animations
  * @type {Function}
  */
-let keyframes = css.bind({ k: 1 });
+let keyframes = css.bind({ k: 1, c: {} });
 
 export { css, glob, keyframes };

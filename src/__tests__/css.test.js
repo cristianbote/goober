@@ -31,14 +31,14 @@ describe('css', () => {
 
         expect(compile).toBeCalledWith(['base', ''], [1], undefined);
         expect(getSheet).toBeCalled();
-        expect(hash).toBeCalledWith('compile()', 'getSheet()', undefined, undefined, undefined);
+        expect(hash).toBeCalledWith('compile()', 'getSheet()', undefined, undefined, undefined, {});
         expect(out).toEqual('hash()');
     });
 
     it('args: object', () => {
         const out = css({ foo: 1 });
 
-        expect(hash).toBeCalledWith({ foo: 1 }, 'getSheet()', undefined, undefined, undefined);
+        expect(hash).toBeCalledWith({ foo: 1 }, 'getSheet()', undefined, undefined, undefined, {});
         expect(compile).not.toBeCalled();
         expect(getSheet).toBeCalled();
         expect(out).toEqual('hash()');
@@ -57,7 +57,8 @@ describe('css', () => {
             'getSheet()',
             undefined,
             undefined,
-            undefined
+            undefined,
+            {}
         );
         expect(compile).not.toBeCalled();
         expect(getSheet).toBeCalled();
@@ -68,7 +69,7 @@ describe('css', () => {
         const incoming = { foo: 'foo' };
         const out = css.call({ p: incoming }, (props) => ({ foo: props.foo }));
 
-        expect(hash).toBeCalledWith(incoming, 'getSheet()', undefined, undefined, undefined);
+        expect(hash).toBeCalledWith(incoming, 'getSheet()', undefined, undefined, undefined, undefined);
         expect(compile).not.toBeCalled();
         expect(getSheet).toBeCalled();
         expect(out).toEqual('hash()');
@@ -84,7 +85,7 @@ describe('css', () => {
             g
         })`foo: 1`;
 
-        expect(hash).toBeCalledWith('compile()', 'getSheet()', true, undefined, undefined);
+        expect(hash).toBeCalledWith('compile()', 'getSheet()', true, undefined, undefined, undefined);
         expect(compile).toBeCalledWith(['foo: 1'], [], p);
         expect(getSheet).toBeCalledWith(target);
         expect(out).toEqual('hash()');
@@ -98,7 +99,7 @@ describe('glob', () => {
 
     it('args: g', () => {
         glob`a:b`;
-        expect(hash).toBeCalledWith('compile()', 'getSheet()', 1, undefined, undefined);
+        expect(hash).toBeCalledWith('compile()', 'getSheet()', 1, undefined, undefined, {});
     });
 });
 
@@ -109,6 +110,6 @@ describe('keyframes', () => {
 
     it('args: k', () => {
         keyframes`a:b`;
-        expect(hash).toBeCalledWith('compile()', 'getSheet()', undefined, undefined, 1);
+        expect(hash).toBeCalledWith('compile()', 'getSheet()', undefined, undefined, 1, {});
     });
 });

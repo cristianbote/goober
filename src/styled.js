@@ -27,6 +27,9 @@ function styled(tag, forwardRef) {
             // Grab a shallow copy of the props
             let _props = Object.assign({}, props);
 
+            // Keep local cache for className
+            _ctx.c = {};
+
             // Keep a local reference to the previous className
             let _previousClassName = _props.className || Styled.className;
 

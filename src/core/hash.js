@@ -4,11 +4,6 @@ import { astish } from './astish';
 import { parse } from './parse';
 
 /**
- * In-memory cache.
- */
-let cache = {};
-
-/**
  * Stringifies a object structure
  * @param {Object} data
  * @returns {String}
@@ -32,7 +27,7 @@ let stringify = (data) => {
  * @param {Boolean} keyframes Keyframes mode. The input is the keyframes body that needs to be wrapped.
  * @returns {String}
  */
-export let hash = (compiled, sheet, global, append, keyframes) => {
+export let hash = (compiled, sheet, global, append, keyframes, cache) => {
     // Get a string representation of the object or the value that is called 'compiled'
     let stringifiedCompiled = stringify(compiled);
 
