@@ -44,6 +44,16 @@ const cssStandardAtRules = Object.keys(cssAtRules).reduce((result, nextKey) => {
     return result;
 }, {});
 
+const atRulesSyntax = Object.keys(cssStandardAtRules).reduce((result, nextKey) => {
+    result[nextKey] = cssStandardAtRules[nextKey].syntax
+        .replace(/\n/g, '')
+        .replace(/\s{2}/g, ' ')
+        .replace(/\}/g, ' }');
+    return result;
+}, {});
+
+jetpack.write('./syntax/atRules.syntax.json', atRulesSyntax);
+
 //Loop through all the css properties generating the source code, the root index file, and the jest tests
 Object.keys(cssStandardAtRules).forEach((atRule) => {
     const isNested = ['@charset', '@import', '@namespace'].includes(atRule) ? false : true;

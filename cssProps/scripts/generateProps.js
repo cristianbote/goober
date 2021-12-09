@@ -14,9 +14,10 @@ const cssStandardProperties = Object.keys(cssProperties).reduce((result, nextKey
     return result;
 }, {});
 
-const cssSyntax = Object.keys(cssStandardProperties).map((prop) => {
-    return cssStandardProperties[prop].syntax;
-});
+const cssSyntax = Object.keys(cssStandardProperties).reduce((result, prop) => {
+    result[prop] = cssStandardProperties[prop].syntax;
+    return result;
+}, {});
 // {
 //     syntax: 'false | true',
 //     media: 'visual',
@@ -31,6 +32,8 @@ const cssSyntax = Object.keys(cssStandardProperties).map((prop) => {
 //     status: 'nonstandard',
 //     mdn_url: 'https://developer.mozilla.org/docs/Web/CSS/-ms-accelerator'
 // }
+
+jetpack.write('./syntax/props.syntax.json', cssSyntax);
 
 const propsIndexTemplate = jetpack.read('./templates/props.index.mustache');
 const propsPropIndexTemplate = jetpack.read('./templates/props.prop.index.mustache');
