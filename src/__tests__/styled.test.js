@@ -45,7 +45,7 @@ describe('styled', () => {
             bar: 1,
             className: 'go'
         });
-        expect(extractCss()).toEqual('.go3183460609{color:peachpuff;}');
+        expect(extractCss()).toEqual('.go3701941655{color:peachpuff;}');
     });
 
     it('concat className if present in props', () => {
@@ -66,7 +66,7 @@ describe('styled', () => {
             className: 'go',
             color: 'red'
         });
-        expect(extractCss()).toEqual('.go3433634237{color:red;}');
+        expect(extractCss()).toEqual('.go3199674309{color:red;}');
     });
 
     it('change tag via "as" prop', () => {
@@ -154,6 +154,23 @@ describe('styled', () => {
         let vnode = Tag({ draw: true });
 
         expect(vnode).toMatchVNode('tag', { className: 'go', draw: true });
-        expect(extractCss()).toEqual('.go2986228274{color:yellow;}');
+        expect(extractCss()).toEqual('.go2606564840{color:yellow;}');
+    });
+
+    it('creates unique className per call', () => {
+        const Tag = styled('tag')`
+            color: red;
+        `;
+        const AnotherTag = styled('tag')`
+            color: red;
+        `;
+
+        // Simulate a render
+        let vnode1 = Tag();
+        let vnode2 = AnotherTag();
+
+        expect(vnode1).toMatchVNode('tag', { className: 'go' });
+        expect(vnode2).toMatchVNode('tag', { className: 'go' });
+        expect(extractCss()).toEqual('.go3671897309{color:red;}.go3671897310{color:red;}');
     });
 });

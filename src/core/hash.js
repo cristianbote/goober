@@ -32,13 +32,13 @@ let stringify = (data) => {
  * @param {Boolean} keyframes Keyframes mode. The input is the keyframes body that needs to be wrapped.
  * @returns {String}
  */
-export let hash = (compiled, sheet, global, append, keyframes) => {
+export let hash = (compiled, sheet, global, append, keyframes, counter) => {
     // Get a string representation of the object or the value that is called 'compiled'
     let stringifiedCompiled = stringify(compiled);
+    let key = stringifiedCompiled + (counter || '');
 
     // Retrieve the className from cache or hash it in place
-    let className =
-        cache[stringifiedCompiled] || (cache[stringifiedCompiled] = toHash(stringifiedCompiled));
+    let className = cache[key] || (cache[key] = toHash(key));
 
     // If there's no entry for the current className
     if (!cache[className]) {

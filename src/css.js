@@ -21,7 +21,8 @@ function css(val) {
         getSheet(ctx.target),
         ctx.g,
         ctx.o,
-        ctx.k
+        ctx.k,
+        ctx.c
     );
 }
 

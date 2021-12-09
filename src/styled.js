@@ -17,8 +17,11 @@ function setup(pragma, prefix, theme, forwardProps) {
  * @param {string} tag
  * @param {function} forwardRef
  */
+
+let counter = 0;
+
 function styled(tag, forwardRef) {
-    let _ctx = this || {};
+    let _ctx = this || { c: counter++ };
 
     return function wrapper() {
         let _args = arguments;
