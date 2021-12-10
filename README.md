@@ -32,9 +32,9 @@ It's a pun on the tagline.
 
 # Talks and Podcasts
 
-* ReactDay Berlin 2019 https://www.youtube.com/watch?v=k4-AVy3acqk
-* [PodRocket](https://podrocket.logrocket.com/) by [LogRocket](https://logrocket.com/) https://podrocket.logrocket.com/goober
-* [ngParty](https://www.ngparty.cz/) https://www.youtube.com/watch?v=XKFvOBDPeB0
+* ReactDay Berlin 2019 👉  https://www.youtube.com/watch?v=k4-AVy3acqk
+* [PodRocket](https://podrocket.logrocket.com/) by [LogRocket](https://logrocket.com/) 👉 https://podrocket.logrocket.com/goober
+* [ngParty](https://www.ngparty.cz/) 👉 https://www.youtube.com/watch?v=XKFvOBDPeB0
 
 # Table of contents
 
