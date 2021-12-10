@@ -12,13 +12,15 @@ function setup(pragma, prefix, theme, forwardProps) {
     fwdProp = forwardProps;
 }
 
+let id = 1;
+
 /**
  * styled function
  * @param {string} tag
  * @param {function} forwardRef
  */
 function styled(tag, forwardRef) {
-    let _ctx = this || {};
+    let _ctx = this || { i: id++ };
 
     return function wrapper() {
         let _args = arguments;

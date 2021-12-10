@@ -1,4 +1,3 @@
-import { toHash } from './to-hash';
 import { update } from './update';
 import { astish } from './astish';
 import { parse } from './parse';
@@ -7,6 +6,7 @@ import { parse } from './parse';
  * In-memory cache.
  */
 let cache = {};
+let counter = 0;
 
 /**
  * Stringifies a object structure
@@ -32,13 +32,13 @@ let stringify = (data) => {
  * @param {Boolean} keyframes Keyframes mode. The input is the keyframes body that needs to be wrapped.
  * @returns {String}
  */
-export let hash = (compiled, sheet, global, append, keyframes) => {
+export let hash = (compiled, sheet, global, append, keyframes, id) => {
     // Get a string representation of the object or the value that is called 'compiled'
     let stringifiedCompiled = stringify(compiled);
+    let key = stringifiedCompiled + (id || '');
 
     // Retrieve the className from cache or hash it in place
-    let className =
-        cache[stringifiedCompiled] || (cache[stringifiedCompiled] = toHash(stringifiedCompiled));
+    let className = cache[key] || (cache[key] = 'go' + counter++);
 
     // If there's no entry for the current className
     if (!cache[className]) {

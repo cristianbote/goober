@@ -24,6 +24,9 @@ describe('integrations', () => {
             }
         `;
 
+        const Button = styled('button')``;
+        const AnotherButton = styled('button')``;
+
         const BoxWithColor = styled('div')`
             color: ${(props) => props.color};
         `;
@@ -82,6 +85,8 @@ describe('integrations', () => {
                     <SpanWrapper>
                         <Span />
                     </SpanWrapper>
+                    <Button />
+                    <AnotherButton />
                     <BoxWithColor color={'red'} />
                     <BoxWithColorFn color={'red'} />
                     <BoxWithThemeColor />
@@ -98,22 +103,66 @@ describe('integrations', () => {
             target
         );
 
+        expect(target.innerHTML).toEqual(
+            [
+                '<div>',
+                '<span class="go2">',
+                '</span>',
+                '<div class="go2">',
+                '</div>',
+                '<div class="go3">',
+                '<span class="go2">',
+                '</span>',
+                '</div>',
+                '<button class="go4">',
+                '</button>',
+                '<button class="go5">',
+                '</button>',
+                '<div color="red" class="go6">',
+                '</div>',
+                '<div color="red" class="go7">',
+                '</div>',
+                '<div class="go8">',
+                '</div>',
+                '<div class="go9">',
+                '</div>',
+                '<div theme="[object Object]" class="go10">',
+                '</div>',
+                '<div theme="[object Object]" class="go11">',
+                '</div>',
+                '<span class="go12">',
+                '</span>',
+                '<div isactive="true" class="go13">',
+                '</div>',
+                '<div class="go14">',
+                '</div>',
+                '<div class="go15">',
+                '</div>',
+                '<div class="go1">',
+                '</div>',
+                '</div>'
+            ].join('')
+        );
+
         expect(extractCss()).toMatchInlineSnapshot(
             [
                 '"',
                 ' ', // Empty white space that holds the textNode that the styles are appended
-                '@keyframes go384228713{0%{opacity:0;}99%{opacity:1;color:dodgerblue;}}',
-                '.go1127809067{opacity:0;background:cyan;}',
-                '.go3865451590{color:red;}',
-                '.go3991234422{color:cyan;}',
-                '.go3991234422 .go3865451590{border:1px solid red;}',
-                '.go1925576363{color:blue;}',
-                '.go3206651468{color:green;}',
-                '.go4276997079{color:orange;}',
-                '.go2069586824{opacity:0;animation:go384228713 500ms ease-in-out;}',
-                '.go631307347{foo:1;color:red;baz:0;}',
-                '.go3865943372{opacity:0;}',
-                '.go1162430001{opacity:0;baz:0;}',
+                '@keyframes go0{0%{opacity:0;}99%{opacity:1;color:dodgerblue;}}',
+                '.go1{opacity:0;background:cyan;}',
+                '.go2{color:red;}',
+                '.go3{color:cyan;}',
+                '.go3 .go2{border:1px solid red;}',
+                '.go6{color:red;}',
+                '.go7{color:red;}',
+                '.go8{color:blue;}',
+                '.go9{color:blue;}',
+                '.go10{color:green;}',
+                '.go11{color:orange;}',
+                '.go12{opacity:0;animation:go0 500ms ease-in-out;}',
+                '.go13{foo:1;color:red;baz:0;}',
+                '.go14{opacity:0;}',
+                '.go15{opacity:0;baz:0;}',
                 '"'
             ].join('')
         );
@@ -162,10 +211,10 @@ describe('integrations', () => {
         expect(target.innerHTML).toEqual(
             [
                 '<div>',
-                '<div class="go103173764"></div>',
-                '<div class="go103194166"></div>',
-                '<span class="go2081835032"></span>',
-                '<button class="go1969245729 go1824201605"></button>',
+                '<div class="go16"></div>',
+                '<div class="go17"></div>',
+                '<span class="go18"></span>',
+                '<button class="go20 go19"></button>',
                 '</div>'
             ].join('')
         );
@@ -173,11 +222,11 @@ describe('integrations', () => {
         expect(extractCss()).toMatchInlineSnapshot(
             [
                 '"',
-                '.go1969245729{color:white;padding:0em;margin:1em;}',
-                '.go103173764{color:white;padding:0em;}',
-                '.go103194166{color:white;padding:2em;}',
-                '.go2081835032{color:white;padding:3em;margin:1em;}',
-                '.go1824201605{background:dodgerblue;}',
+                '.go20{color:white;padding:0em;margin:1em;}',
+                '.go16{color:white;padding:0em;}',
+                '.go17{color:white;padding:2em;}',
+                '.go18{color:white;padding:3em;margin:1em;}',
+                '.go19{background:dodgerblue;}',
                 '"'
             ].join('')
         );
@@ -216,20 +265,19 @@ describe('integrations', () => {
         expect(target.innerHTML).toEqual(
             [
                 '<div>',
-                '<div class="go103173764"></div>',
-                '<div class="go103194166"></div>',
-                '<span class="go2081835032"></span>',
+                '<div class="go21"></div>',
+                '<div class="go22"></div>',
+                '<span class="go23"></span>',
                 '</div>'
-            ].join(''),
-            `"<div><div class=\\"go103173764\\"></div><div class=\\"go103194166\\"></div><span class=\\"go2081835032\\"></span></div>"`
+            ].join('')
         );
 
         expect(extractCss()).toMatchInlineSnapshot(
             [
                 '"',
-                '.go103173764{color:white;padding:0em;}',
-                '.go103194166{color:white;padding:2em;}',
-                '.go2081835032{color:white;padding:3em;margin:1em;}',
+                '.go21{color:white;padding:0em;}',
+                '.go22{color:white;padding:2em;}',
+                '.go23{color:white;padding:3em;margin:1em;}',
                 '"'
             ].join('')
         );
