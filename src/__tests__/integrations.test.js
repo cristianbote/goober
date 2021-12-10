@@ -24,6 +24,9 @@ describe('integrations', () => {
             }
         `;
 
+        const Button = styled('button', null, 'id1')``;
+        const AnotherButton = styled('button', null, 'id2')``;
+
         const BoxWithColor = styled('div')`
             color: ${(props) => props.color};
         `;
@@ -82,6 +85,8 @@ describe('integrations', () => {
                     <SpanWrapper>
                         <Span />
                     </SpanWrapper>
+                    <Button />
+                    <AnotherButton />
                     <BoxWithColor color={'red'} />
                     <BoxWithColorFn color={'red'} />
                     <BoxWithThemeColor />
@@ -96,6 +101,31 @@ describe('integrations', () => {
                 </div>
             </ThemeContext.Provider>,
             target
+        );
+
+        expect(target.innerHTML).toEqual(
+            [
+                '<div>',
+                '<span class="go3865451590"></span>',
+                '<div class="go3865451590"></div>',
+                '<div class="go3991234422">',
+                '<span class="go3865451590"></span>',
+                '</div>',
+                '<button class="go12414565"></button>',
+                '<button class="go12414566"></button>',
+                '<div color="red" class="go3865451590"></div>',
+                '<div color="red" class="go3865451590"></div>',
+                '<div class="go1925576363"></div>',
+                '<div class="go1925576363"></div>',
+                '<div theme="[object Object]" class="go3206651468"></div>',
+                '<div theme="[object Object]" class="go4276997079"></div>',
+                '<span class="go2069586824"></span>',
+                '<div isactive="true" class="go631307347"></div>',
+                '<div class="go3865943372"></div>',
+                '<div class="go1162430001"></div>',
+                '<div class="go1127809067"></div>',
+                '</div>'
+            ].join('')
         );
 
         expect(extractCss()).toMatchInlineSnapshot(
@@ -220,8 +250,7 @@ describe('integrations', () => {
                 '<div class="go103194166"></div>',
                 '<span class="go2081835032"></span>',
                 '</div>'
-            ].join(''),
-            `"<div><div class=\\"go103173764\\"></div><div class=\\"go103194166\\"></div><span class=\\"go2081835032\\"></span></div>"`
+            ].join('')
         );
 
         expect(extractCss()).toMatchInlineSnapshot(

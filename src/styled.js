@@ -16,8 +16,9 @@ function setup(pragma, prefix, theme, forwardProps) {
  * styled function
  * @param {string} tag
  * @param {function} forwardRef
+ * @param {string} id
  */
-function styled(tag, forwardRef) {
+function styled(tag, forwardRef, id) {
     let _ctx = this || {};
 
     return function wrapper() {
@@ -37,6 +38,8 @@ function styled(tag, forwardRef) {
             // similar to goober. This is the append/prepend flag
             // The _empty_ space compresses better than `\s`
             _ctx.o = / *go\d+/.test(_previousClassName);
+
+            _ctx.i = id;
 
             _props.className =
                 // Define the new className
