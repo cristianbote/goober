@@ -82,3 +82,22 @@ const Title = styled("h1", React.forwardRef)`
   color: dodgerblue;
 `;
 ```
+
+### Conditional styling
+
+If the value of a property is `undefined` or `null`, goober will ommit them.
+
+```js
+const Btn = styled("button")(
+  (props) => `
+  border-radius: ${props.rounded};
+`
+);
+
+<Btn rounded="2px" />; // => `border-radius: 2;`
+
+let isRounded = false
+<Btn rounded={isRounded ? "4px" : null} />; // => `border-radius: null;`
+
+<Btn>; // => `border-radius: undefined;`
+```
