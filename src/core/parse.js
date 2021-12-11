@@ -8,53 +8,50 @@ export let parse = (obj, selector) => {
     let outer = '';
     let blocks = '';
     let current = '';
-    let next;
 
     for (let key in obj) {
         let val = obj[key];
 
-        // If this is a 'block'
-        if (typeof val == 'object') {
-            next = selector
-                ? // Go over the selector and replace the matching multiple selectors if any
-                  selector.replace(/([^,])+/g, (sel) => {
-                      // Return the current selector with the key matching multiple selectors if any
-                      return key.replace(/(^:.*)|([^,])+/g, (k) => {
-                          // If the current `k`(key) has a nested selector replace it
-                          if (/&/.test(k)) return k.replace(/&/g, sel);
-
-                          // If there's a current selector concat it
-                          return sel ? sel + ' ' + k : k;
-                      });
-                  })
-                : key;
-
+        if (key[0] == '@') {
             // If these are the `@` rule
-            if (key[0] == '@') {
+            if (key[1] == 'i') {
+                // Handling the `@import`
+                outer = key + ' ' + val + ';';
+            } else if (key[1] == 'f') {
                 // Handling the `@font-face` where the
                 // block doesn't need the brackets wrapped
-                if (key[1] == 'f') {
-                    blocks += parse(val, key);
-                } else {
-                    // Regular rule block
-                    blocks += key + '{' + parse(val, key[1] == 'k' ? '' : selector) + '}';
-                }
+                blocks += parse(val, key);
             } else {
-                // Call the parse for this block
-                blocks += parse(val, next);
+                // Regular at rule block
+                blocks += key + '{' + parse(val, key[1] == 'k' ? '' : selector) + '}';
             }
-        } else {
-            if (key[0] == '@' && key[1] == 'i') {
-                outer = key + ' ' + val + ';';
-            } else {
-                key = key.replace(/[A-Z]/g, '-$&').toLowerCase();
-                // Push the line for this property
-                current += parse.p
-                    ? // We have a prefixer and we need to run this through that
-                      parse.p(key, val)
-                    : // Nope no prefixer just append it
-                      key + ':' + val + ';';
-            }
+        } else if (typeof val == 'object') {
+            // Call the parse for this block
+            blocks += parse(
+                val,
+                selector
+                    ? // Go over the selector and replace the matching multiple selectors if any
+                      selector.replace(/([^,])+/g, (sel) => {
+                          // Return the current selector with the key matching multiple selectors if any
+                          return key.replace(/(^:.*)|([^,])+/g, (k) => {
+                              // If the current `k`(key) has a nested selector replace it
+                              if (/&/.test(k)) return k.replace(/&/g, sel);
+
+                              // If there's a current selector concat it
+                              return sel ? sel + ' ' + k : k;
+                          });
+                      })
+                    : key
+            );
+        } else if (val != undefined) {
+            // If this isn't an empty rule
+            key = key.replace(/[A-Z]/g, '-$&').toLowerCase();
+            // Push the line for this property
+            current += parse.p
+                ? // We have a prefixer and we need to run this through that
+                  parse.p(key, val)
+                : // Nope no prefixer just append it
+                  key + ':' + val + ';';
         }
     }
 
