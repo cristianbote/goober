@@ -219,7 +219,7 @@ describe('astish', () => {
     it('should work without last semicolon', () => {
         expect(
             astish(`
-                h1 {
+                h1: {
                   color: white;
                   padding: 1em
                 }
