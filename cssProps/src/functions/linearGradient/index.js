@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/functions.function.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name linearGradient
@@ -11,6 +10,4 @@ import { default as appendArgs } from '../../util/index';
  * @param arguments - String or numerical values that will be comma delimited for the function call
  * @returns {string} Returns a comma delimited function call for the function linearGradient()
  */
-export default function linearGradient() {
-    return 'linearGradient(' + appendArgs(arguments, ',') + ')';
-}
+export default (...args) => `linearGradient(${args.join()})`;

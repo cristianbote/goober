@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/functions.function.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name repeatingRadialGradient
@@ -11,6 +10,4 @@ import { default as appendArgs } from '../../util/index';
  * @param arguments - String or numerical values that will be comma delimited for the function call
  * @returns {string} Returns a comma delimited function call for the function repeatingRadialGradient()
  */
-export default function repeatingRadialGradient() {
-    return 'repeatingRadialGradient(' + appendArgs(arguments, ',') + ')';
-}
+export default (...args) => `repeatingRadialGradient(${args.join()})`;

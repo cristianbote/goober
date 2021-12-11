@@ -14,12 +14,12 @@ const cssSyntaxes = cssData.syntaxes;
 const cssSyntaxFunctions = Object.keys(cssSyntaxes).reduce((result, nextKey) => {
     if (nextKey.slice(-2) === '()') {
         const cssFunction = nextKey.slice(0, -2);
-        result[cssFunction] = cssSyntaxes[nextKey];
+        result[cssFunction] = cssSyntaxes[nextKey].syntax;
     }
     return result;
 }, {});
 
-// jetpack.write('./cssSyntaxFunctions.json', cssSyntaxFunctions)
+jetpack.write('./syntax/functions.syntax.json', cssSyntaxFunctions);
 
 const functionsIndexTemplate = jetpack.read('./templates/functions.index.mustache');
 const functionsFunctionIndexTemplate = jetpack.read(
