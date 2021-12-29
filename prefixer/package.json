@@ -2,12 +2,13 @@
   "name": "goober-autoprefixer",
   "version": "1.2.1",
   "sideEffects": false,
-  "main": "./dist/goober-autoprefixer.js",
+  "main": "./dist/goober-autoprefixer.cjs",
   "module": "./dist/goober-autoprefixer.esm.js",
   "umd:main": "./dist/goober-autoprefixer.umd.js",
   "source": "./src/index.js",
   "unpkg": "./dist/goober-autoprefixer.umd.js",
   "types": "./autoprefixer.d.ts",
+  "type": "module",
   "author": {
     "name": "Jovi De Croock",
     "url": "https://www.jovidecroock.com/"
