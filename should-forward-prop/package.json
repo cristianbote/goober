@@ -31,7 +31,7 @@
     "goober": "^2.0.18"
   },
   "devDependencies": {
-    "microbundle": "^0.12.4",
+    "microbundle": "^0.14.2",
     "jest": "^24.1.0",
     "preact": "^10.5.6",
     "@babel/plugin-transform-react-jsx": "^7.7.0",
