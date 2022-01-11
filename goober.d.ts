@@ -70,6 +70,7 @@ declare namespace goober {
     ): string;
 
     type StyledVNode<T> = ((props: T, ...args: any[]) => any) & {
+        defaultProps?: T;
         displayName?: string;
     };
 
