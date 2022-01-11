@@ -72,7 +72,7 @@
     "build:global": "cd ./global && npm run build",
     "build:should-forward-prop": "cd ./should-forward-prop && npm run build",
     "build:core": "npm run clean && npm run build:dist && npm run size-check",
-    "build:lib": "microbundle --entry src/index.js --name goober --no-sourcemap",
+    "build:lib": "microbundle --entry src/index.js --name goober --no-sourcemap --generateTypes false",
     "build:dist": "npm run build:lib -- --output dist",
     "build:debug": "npm run build:lib -- --output debug --no-compress",
     "dev": "npm run clean && microbundle watch --entry src/index.js --output dist --name goober",
