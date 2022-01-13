@@ -201,34 +201,4 @@ describe('astish', () => {
             }
         });
     });
-
-    it('should handle css string values', () => {
-        expect(
-            astish(`
-                color: white;
-                padding: 1em;
-                background-image: url("data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7");
-            `)
-        ).toEqual({
-            color: 'white',
-            padding: '1em',
-            'background-image': `url("data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7")`
-        });
-    });
-
-    it('should work without last semicolon', () => {
-        expect(
-            astish(`
-                h1 {
-                  color: white;
-                  padding: 1em
-                }
-            `)
-        ).toEqual({
-            h1: {
-                color: 'white',
-                padding: '1em'
-            }
-        });
-    });
 });
