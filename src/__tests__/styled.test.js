@@ -66,7 +66,7 @@ describe('styled', () => {
             className: 'go',
             color: 'red'
         });
-        expect(extractCss()).toEqual('.go3433634237{color:red;}');
+        expect(extractCss()).toEqual('.go3127686001{color:red;}');
     });
 
     it('change tag via "as" prop', () => {
@@ -154,6 +154,6 @@ describe('styled', () => {
         let vnode = Tag({ draw: true });
 
         expect(vnode).toMatchVNode('tag', { className: 'go', draw: true });
-        expect(extractCss()).toEqual('.go2986228274{color:yellow;}');
+        expect(extractCss()).toEqual('.go452517270{color:yellow;}');
     });
 });
