@@ -3,7 +3,7 @@ const Benchmark = require('benchmark');
 const react = require('react');
 const { renderToString: render } = require('react-dom/server');
 
-const goober = require('../dist/goober');
+const goober = require('../dist/goober.cjs');
 goober.setup(react.createElement);
 
 const styled = require('styled-components').default;

@@ -1,14 +1,15 @@
 {
   "name": "goober",
-  "version": "2.1.1",
+  "version": "2.1.7",
   "description": "A less than 1KB css-in-js solution",
   "sideEffects": false,
-  "main": "dist/goober.js",
+  "main": "dist/goober.cjs",
   "module": "dist/goober.esm.js",
   "umd:main": "dist/goober.umd.js",
   "source": "src/index.js",
   "unpkg": "dist/goober.umd.js",
   "types": "goober.d.ts",
+  "type": "module",
   "files": [
     "src",
     "macro",
@@ -34,35 +35,31 @@
   ],
   "exports": {
     ".": {
-      "require": "./dist/goober.js",
-      "browser": "./dist/goober.modern.js",
-      "import": "./dist/goober.esm.js",
+      "require": "./dist/goober.cjs",
+      "import": "./dist/goober.modern.js",
       "umd": "./dist/goober.umd.js"
     },
     "./macro": "./macro/index.js",
     "./global": {
-      "browser": "./global/dist/goober-global.modern.js",
-      "import": "./global/dist/goober-global.esm.js",
-      "require": "./global/dist/goober-global.js",
+      "import": "./global/dist/goober-global.modern.js",
+      "require": "./global/dist/goober-global.cjs",
       "umd": "./global/dist/goober-global.umd.js"
     },
     "./prefixer": {
-      "browser": "./prefixer/dist/goober-autoprefixer.modern.js",
-      "import": "./prefixer/dist/goober-autoprefixer.esm.js",
-      "require": "./prefixer/dist/goober-autoprefixer.js",
+      "import": "./prefixer/dist/goober-autoprefixer.modern.js",
+      "require": "./prefixer/dist/goober-autoprefixer.cjs",
       "umd": "./prefixer/dist/goober-autoprefixer.umd.js"
     },
     "./should-forward-prop": {
-      "browser": "./should-forward-prop/dist/goober-should-forward-prop.modern.js",
-      "import": "./should-forward-prop/dist/goober-should-forward-prop.esm.js",
-      "require": "./should-forward-prop/dist/goober-should-forward-prop.js",
+      "import": "./should-forward-prop/dist/goober-should-forward-prop.modern.js",
+      "require": "./should-forward-prop/dist/goober-should-forward-prop.cjs",
       "umd": "./should-forward-prop/dist/goober-should-forward-prop.umd.js"
     }
   },
   "scripts": {
     "test": "npm run test-ts && npm run test-unit -- --ci --coverage && npm run build && npm run test-perf",
-    "test-perf": "NODE_ENV=production node benchmarks/perf.js",
-    "test-perf-hash": "NODE_ENV=production node benchmarks/perf-hash.js",
+    "test-perf": "NODE_ENV=production node benchmarks/perf.cjs",
+    "test-perf-hash": "NODE_ENV=production node benchmarks/perf-hash.cjs",
     "test-unit-core": "jest --setupFiles ./tests/setup.js --roots ./src packages",
     "test-unit": "npm run test-unit-core && npm run test-addon-global && npm run test-addon-prefixer",
     "test-addon-global": "cd global && npm run test",
@@ -75,7 +72,7 @@
     "build:global": "cd ./global && npm run build",
     "build:should-forward-prop": "cd ./should-forward-prop && npm run build",
     "build:core": "npm run clean && npm run build:dist && npm run size-check",
-    "build:lib": "microbundle --entry src/index.js --name goober --no-sourcemap",
+    "build:lib": "microbundle --entry src/index.js --name goober --no-sourcemap --generateTypes false",
     "build:dist": "npm run build:lib -- --output dist",
     "build:debug": "npm run build:lib -- --output debug --no-compress",
     "dev": "npm run clean && microbundle watch --entry src/index.js --output dist --name goober",
@@ -114,7 +111,7 @@
     "husky": "4.2.4",
     "jest": "^24.1.0",
     "lint-staged": "10.2.0",
-    "microbundle": "^0.12.0",
+    "microbundle": "^0.14.0",
     "preact": "^10.0.0",
     "prettier": "2.0.5",
     "react": "^16.12.0",
@@ -132,7 +129,7 @@
     "./dist/goober.modern.js": {
       "gzip": "1300B"
     },
-    "./dist/goober.js": {
+    "./dist/goober.cjs": {
       "gzip": "1300B"
     }
   },
