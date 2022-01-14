@@ -43,7 +43,7 @@ export let hash = (compiled, sheet, global, append, keyframes) => {
     // If there's no entry for the current className
     if (!cache[className]) {
         // Build the _ast_-ish structure if needed
-        let ast = stringifiedCompiled !== compiled ? compiled : astish(compiled);
+        let ast = stringifiedCompiled !== compiled ? compiled : astish(compiled, [{}]);
 
         // Parse it
         cache[className] = parse(

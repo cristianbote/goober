@@ -41,7 +41,7 @@ describe('hash', () => {
 
         expect(toHash).toBeCalledWith('compiled');
         expect(update).toBeCalledWith('parse()', 'target', undefined);
-        expect(astish).toBeCalledWith('compiled');
+        expect(astish).toBeCalledWith('compiled', [{}]);
         expect(parse).toBeCalledWith('astish()', '.toHash()');
 
         expect(res).toEqual('toHash()');
