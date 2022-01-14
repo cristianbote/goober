@@ -70,6 +70,7 @@ declare namespace goober {
     ): string;
 
     type StyledVNode<T> = ((props: T, ...args: any[]) => any) & {
+        defaultProps?: T;
         displayName?: string;
     };
 
@@ -90,6 +91,6 @@ declare namespace goober {
     ) => StyledVNode<Omit<P & PP, keyof Theme<DefaultTheme>>>;
 
     interface CSSAttribute extends CSSProperties {
-        [key: string]: CSSAttribute | string | number | undefined;
+        [key: string]: CSSAttribute | string | number | undefined | null;
     }
 }

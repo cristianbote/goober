@@ -4,14 +4,15 @@
   "version": "0.0.1",
   "description": "The shouldForwardProp addon function for goober",
   "sideEffects": false,
-  "main": "./dist/goober-should-forward-prop.js",
+  "main": "./dist/goober-should-forward-prop.cjs",
   "module": "./dist/goober-should-forward-prop.esm.js",
   "umd:main": "./dist/goober-should-forward-prop.umd.js",
   "source": "./src/index.js",
   "unpkg": "./dist/goober-should-forward-prop.umd.js",
   "types": "./should-forward-prop.d.ts",
+  "type": "module",
   "scripts": {
-    "build": "rm -rf dist && microbundle --entry src/index.js --name gooberForwardProp --no-sourcemap",
+    "build": "rm -rf dist && microbundle --entry src/index.js --name gooberForwardProp --no-sourcemap --generateTypes false",
     "test": "jest --setupFiles ./jest.setup.js"
   },
   "repository": {
@@ -30,7 +31,7 @@
     "goober": "^2.0.18"
   },
   "devDependencies": {
-    "microbundle": "^0.12.4",
+    "microbundle": "^0.14.2",
     "jest": "^24.1.0",
     "preact": "^10.5.6",
     "@babel/plugin-transform-react-jsx": "^7.7.0",
