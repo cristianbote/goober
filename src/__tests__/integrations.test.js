@@ -103,7 +103,7 @@ describe('integrations', () => {
                 '"',
                 ' ', // Empty white space that holds the textNode that the styles are appended
                 '@keyframes go384228713{0%{opacity:0;}99%{opacity:1;color:dodgerblue;}}',
-                '.go2626112847{opacity:0;background:cyan;}',
+                '.go3244392539{opacity:0;background:cyan;}',
                 '.go3865451590{color:red;}',
                 '.go3991234422{color:cyan;}',
                 '.go3991234422 .go3865451590{border:1px solid red;}',
@@ -111,9 +111,9 @@ describe('integrations', () => {
                 '.go3206651468{color:green;}',
                 '.go4276997079{color:orange;}',
                 '.go2069586824{opacity:0;animation:go384228713 500ms ease-in-out;}',
-                '.go2648019963{foo:1;color:red;baz:0;}',
-                '.go3913223576{opacity:0;}',
-                '.go3863620777{opacity:0;baz:0;}',
+                '.go1162043959{foo:1;color:red;baz:0;}',
+                '.go98589992{opacity:0;}',
+                '.go3678641885{opacity:0;baz:0;}',
                 '"'
             ].join('')
         );
@@ -162,10 +162,10 @@ describe('integrations', () => {
         expect(target.innerHTML).toEqual(
             [
                 '<div>',
-                '<div class="go748886164"></div>',
-                '<div class="go748906566"></div>',
-                '<span class="go2235611440"></span>',
-                '<button class="go468399569 go1824201605"></button>',
+                '<div class="go2623058580"></div>',
+                '<div class="go2625119182"></div>',
+                '<span class="go2458456096"></span>',
+                '<button class="go63716261 go1824201605"></button>',
                 '</div>'
             ].join('')
         );
@@ -173,10 +173,10 @@ describe('integrations', () => {
         expect(extractCss()).toMatchInlineSnapshot(
             [
                 '"',
-                '.go468399569{color:white;padding:0em;margin:1em;}',
-                '.go748886164{color:white;padding:0em;}',
-                '.go748906566{color:white;padding:2em;}',
-                '.go2235611440{color:white;padding:3em;margin:1em;}',
+                '.go63716261{color:white;padding:0em;margin:1em;}',
+                '.go2623058580{color:white;padding:0em;}',
+                '.go2625119182{color:white;padding:2em;}',
+                '.go2458456096{color:white;padding:3em;margin:1em;}',
                 '.go1824201605{background:dodgerblue;}',
                 '"'
             ].join('')
@@ -216,9 +216,9 @@ describe('integrations', () => {
         expect(target.innerHTML).toEqual(
             [
                 '<div>',
-                '<div class="go748886164"></div>',
-                '<div class="go748906566"></div>',
-                '<span class="go2235611440"></span>',
+                '<div class="go2623058580"></div>',
+                '<div class="go2625119182"></div>',
+                '<span class="go2458456096"></span>',
                 '</div>'
             ].join(''),
             `"<div><div class=\\"go103173764\\"></div><div class=\\"go103194166\\"></div><span class=\\"go2081835032\\"></span></div>"`
@@ -227,9 +227,9 @@ describe('integrations', () => {
         expect(extractCss()).toMatchInlineSnapshot(
             [
                 '"',
-                '.go748886164{color:white;padding:0em;}',
-                '.go748906566{color:white;padding:2em;}',
-                '.go2235611440{color:white;padding:3em;margin:1em;}',
+                '.go2623058580{color:white;padding:0em;}',
+                '.go2625119182{color:white;padding:2em;}',
+                '.go2458456096{color:white;padding:3em;margin:1em;}',
                 '"'
             ].join('')
         );

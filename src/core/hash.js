@@ -19,8 +19,7 @@ let cache = {};
  */
 export let hash = (compiled, sheet, global, append, keyframes) => {
     // Get a string representation of the object or the value that is called 'compiled'
-    let stringifiedCompiled =
-        typeof compiled == 'object' ? Object.entries(compiled) + '' : compiled;
+    let stringifiedCompiled = typeof compiled == 'object' ? Object.entries(compiled) + 0 : compiled;
 
     // Retrieve the className from cache or hash it in place
     let className =
