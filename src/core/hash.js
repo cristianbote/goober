@@ -40,21 +40,28 @@ export let hash = (compiled, sheet, global, append, keyframes) => {
     let className =
         cache[stringifiedCompiled] || (cache[stringifiedCompiled] = toHash(stringifiedCompiled));
 
-    // If there's no entry for the current className
-    if (!cache[className]) {
-        // Build the _ast_-ish structure if needed
-        let ast = stringifiedCompiled !== compiled ? compiled : astish(compiled);
-
-        // Parse it
-        cache[className] = parse(
-            // For keyframes
-            keyframes ? { ['@keyframes ' + className]: ast } : ast,
-            global ? '' : '.' + className
-        );
-    }
-
     // add or update
-    update(cache[className], sheet, append);
+    update(
+        (cache[className] =
+            cache[className] ||
+            // If there's no entry for the current className
+            // Parse it
+            parse(
+                // For keyframes
+                keyframes
+                    ? // Build the _ast_-ish structure if needed
+                      {
+                          ['@keyframes ' + className]:
+                              stringifiedCompiled !== compiled ? compiled : astish(compiled)
+                      }
+                    : stringifiedCompiled !== compiled
+                    ? compiled
+                    : astish(compiled),
+                global ? '' : '.' + className
+            )),
+        sheet,
+        append
+    );
 
     // return hash
     return className;
