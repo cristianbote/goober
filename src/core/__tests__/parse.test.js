@@ -299,4 +299,29 @@ describe('parse', () => {
             )
         ).toEqual('div{opacity:0;}');
     });
+
+    it('does not transform the case of custom CSS variables', () => {
+        expect(
+            parse({
+                '--cP': 'red'
+            })
+        ).toEqual('--cP:red;');
+        expect(
+            parse({
+                '--c-P': 'red'
+            })
+        ).toEqual('--c-P:red;');
+        expect(
+            parse({
+                '--cp': 'red'
+            })
+        ).toEqual('--cp:red;');
+        expect(
+            parse({
+                ':root': {
+                    '--cP': 'red'
+                }
+            })
+        ).toEqual(':root{--cP:red;}');
+    });
 });
