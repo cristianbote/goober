@@ -43,7 +43,8 @@ export let parse = (obj, selector) => {
                       })
                     : key
             );
-        } else if (val != undefined) {
+            // Parse and standardize all but custom CSS properties
+        } else if (val != undefined && !key.startsWith('--')) {
             // If this isn't an empty rule
             key = key.replace(/[A-Z]/g, '-$&').toLowerCase();
             // Push the line for this property
