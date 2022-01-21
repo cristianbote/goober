@@ -11,7 +11,7 @@ export let parse = (obj, selector) => {
 
     for (let key in obj) {
         let val = obj[key];
-        if (/^(null|undefined)$/.test(val)) {
+        if (!/^(null|undefined)$/.test(val)) {
             if (key[0] == '@') {
                 // If these are the `@` rule
                 if (key[1] == 'i') {
