@@ -122,7 +122,7 @@
     "wmr": "^3.7.2"
   },
   "peerDependencies": {
-    "csstype": "^2.6.2"
+    "csstype": "^3.0.10"
   },
   "typings": "./goober.d.ts",
   "filesize": {
