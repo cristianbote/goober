@@ -9,7 +9,7 @@
 
 [![version](https://img.shields.io/npm/v/goober)](https://www.npmjs.com/package/goober)
 [![status](https://travis-ci.org/cristianbote/goober.svg?branch=master)](https://travis-ci.org/cristianbote/goober)
-[![gzip size](https://img.badgesize.io/https://unpkg.com/goober@latest/dist/goober.js?compression=gzip)](https://unpkg.com/goober)
+[![gzip size](https://img.badgesize.io/https://unpkg.com/goober@latest/dist/goober.modern.js?compression=gzip)](https://unpkg.com/goober)
 [![downloads](https://img.shields.io/npm/dm/goober)](https://www.npmjs.com/package/goober)
 [![coverage](https://img.shields.io/codecov/c/github/cristianbote/goober.svg?maxAge=2592000)](https://codecov.io/github/cristianbote/goober?branch=master)
 [![Slack](https://img.shields.io/badge/slack-join-orange)](https://join.slack.com/t/gooberdev/shared_invite/enQtOTM5NjUyOTcwNzI1LWUwNzg0NTQwODY1NDJmMzQ2NzdlODI4YTM3NWUwYjlkY2ZkNGVmMTFlNGMwZGUyOWQyZmI4OTYwYmRiMzE0NGQ)
