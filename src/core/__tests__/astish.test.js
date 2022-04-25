@@ -3,9 +3,12 @@ import { astish } from '../astish';
 describe('astish', () => {
     it('regular', () => {
         expect(
-            astish(`
+            astish(
+                `
             prop: value;
-        `)
+        `,
+                [{}]
+            )
         ).toEqual({
             prop: 'value'
         });
@@ -13,7 +16,8 @@ describe('astish', () => {
 
     it('nested', () => {
         expect(
-            astish(`
+            astish(
+                `
             prop: value;
             @keyframes foo {
                 0% {
@@ -34,7 +38,9 @@ describe('astish', () => {
             &:hover {
                 -webkit-touch: none;
             }
-        `)
+        `,
+                [{}]
+            )
         ).toEqual({
             prop: 'value',
             opacity: '0',
@@ -61,7 +67,8 @@ describe('astish', () => {
 
     it('merging', () => {
         expect(
-            astish(`
+            astish(
+                `
             .c {
                 font-size:24px;
             }
@@ -69,7 +76,9 @@ describe('astish', () => {
             .c {
                 color:red;
             }
-        `)
+        `,
+                [{}]
+            )
         ).toEqual({
             '.c': {
                 'font-size': '24px',
@@ -80,7 +89,8 @@ describe('astish', () => {
 
     it('regression', () => {
         expect(
-            astish(`
+            astish(
+                `
             &.g0ssss {
                 aa: foo;
                 box-shadow: 0 1px rgba(0, 2, 33, 4) inset;
@@ -104,7 +114,9 @@ describe('astish', () => {
             .b  {
                 color: blue;
             }
-        `)
+        `,
+                [{}]
+            )
         ).toEqual({
             '&.g0ssss': {
                 aa: 'foo',
@@ -135,7 +147,8 @@ describe('astish', () => {
 
     it('should strip comments', () => {
         expect(
-            astish(`
+            astish(
+                `
                 color: red;
                 /*
                     some comment
@@ -148,7 +161,9 @@ describe('astish', () => {
                 font-size: xx-large; /* inline comment */
                 /* foo: bar */
                 font-weight: bold;
-            `)
+            `,
+                [{}]
+            )
         ).toEqual({
             color: 'red',
             transform: 'translate3d(0, 0, 0)',
@@ -162,11 +177,14 @@ describe('astish', () => {
     // https://www.w3.org/TR/CSS22/syndata.html#value-def-identifier
     it('should not mangle valid css identifiers', () => {
         expect(
-            astish(`
+            astish(
+                `
                 :root {
                   --azAZ-_中文09: 0;
                 }
-            `)
+            `,
+                [{}]
+            )
         ).toEqual({
             ':root': {
                 '--azAZ-_中文09': '0'
@@ -176,10 +194,13 @@ describe('astish', () => {
 
     it('should parse multiline background declaration', () => {
         expect(
-            astish(`
+            astish(
+                `
                 background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="white"><path d="M7.5 36.7h58.4v10.6H7.5V36.7zm0-15.9h58.4v10.6H7.5V20.8zm0 31.9h58.4v10.6H7.5V52.7zm0 15.9h58.4v10.6H7.5V68.6zm63.8-15.9l10.6 15.9 10.6-15.9H71.3zm21.2-5.4L81.9 31.4 71.3 47.3h21.2z"/></svg>')
                     center/contain;
-            `)
+            `,
+                [{}]
+            )
         ).toEqual({
             background: `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="white"><path d="M7.5 36.7h58.4v10.6H7.5V36.7zm0-15.9h58.4v10.6H7.5V20.8zm0 31.9h58.4v10.6H7.5V52.7zm0 15.9h58.4v10.6H7.5V68.6zm63.8-15.9l10.6 15.9 10.6-15.9H71.3zm21.2-5.4L81.9 31.4 71.3 47.3h21.2z"/></svg>')center/contain`
         });
@@ -188,7 +209,8 @@ describe('astish', () => {
     it('should handle inline @media block', () => {
         expect(
             astish(
-                `h1 { font-size: 1rem; } @media only screen and (min-width: 850px) { h1 { font-size: 2rem; } }`
+                `h1 { font-size: 1rem; } @media only screen and (min-width: 850px) { h1 { font-size: 2rem; } }`,
+                [{}]
             )
         ).toEqual({
             h1: {
