@@ -1,6 +1,6 @@
 {
   "name": "goober",
-  "version": "2.1.7",
+  "version": "2.1.9",
   "description": "A less than 1KB css-in-js solution",
   "sideEffects": false,
   "main": "dist/goober.cjs",
@@ -107,11 +107,11 @@
     "@types/react": "^16.9.34",
     "babel-jest": "^24.1.0",
     "benchmark": "^2.1.4",
-    "csstype": "^2.6.3",
+    "csstype": "^3.0.10",
     "husky": "4.2.4",
     "jest": "^24.1.0",
     "lint-staged": "10.2.0",
-    "microbundle": "^0.14.0",
+    "microbundle": "^0.15.0",
     "preact": "^10.0.0",
     "prettier": "2.0.5",
     "react": "^16.12.0",
@@ -122,7 +122,7 @@
     "wmr": "^3.7.2"
   },
   "peerDependencies": {
-    "csstype": "^2.6.2"
+    "csstype": "^3.0.10"
   },
   "typings": "./goober.d.ts",
   "filesize": {

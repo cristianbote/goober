@@ -43,10 +43,9 @@ export let parse = (obj, selector) => {
                       })
                     : key
             );
-        } else if (val + 1) {
-            // val != undefined
-            // If this isn't an empty rule
-            key = key.replace(/[A-Z]/g, '-$&').toLowerCase();
+        } else if (val +1 ) {
+            // Convert all but CSS variables
+            key = /^--/.test(key) ? key : key.replace(/[A-Z]/g, '-$&').toLowerCase();
             // Push the line for this property
             current += parse.p
                 ? // We have a prefixer and we need to run this through that
