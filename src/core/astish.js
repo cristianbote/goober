@@ -1,5 +1,5 @@
 let newRule = /(?:([\u0080-\uFFFF\w-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(}\s*)/g;
-let ruleClean = /\/\*[^]*?\*\/|\s\s+|\n/g;
+let ruleClean = /\/\*[^]*?\*\/+/g;
 
 /**
  * Convert a css style string into a object
@@ -9,15 +9,19 @@ let ruleClean = /\/\*[^]*?\*\/|\s\s+|\n/g;
 export let astish = (val) => {
     let tree = [{}];
     let block;
+    let selector;
 
     while ((block = newRule.exec(val.replace(ruleClean, '')))) {
         // Remove the current entry
+        selector = (block[3] || '').trim().replace(/\s+|\n+/g, ' ');
+
         if (block[4]) {
             tree.shift();
-        } else if (block[3]) {
-            tree.unshift((tree[0][block[3]] = tree[0][block[3]] || {}));
+        } else if (selector) {
+            tree.unshift((tree[0][selector] = tree[0][selector] || {}));
         } else {
-            tree[0][block[1]] = block[2];
+            selector = (block[1] || '').trim().replace(/\s+|\n+/g, ' ');
+            tree[0][selector] = block[2].trim().replace(/\s+|\n+/g, ' ');
         }
     }
 

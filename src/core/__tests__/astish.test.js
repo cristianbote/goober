@@ -201,4 +201,19 @@ describe('astish', () => {
             }
         });
     });
+
+    it('should handle newlines as part of the rule value', () => {
+        expect(
+            astish(
+                `tag {
+                    font-size: first
+                        second;
+                }`
+            )
+        ).toEqual({
+            h1: {
+                'font-size': 'first second'
+            }
+        });
+    });
 });
