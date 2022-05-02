@@ -75,7 +75,7 @@
     "build:lib": "microbundle --entry src/index.js --name goober --no-sourcemap --generateTypes false",
     "build:dist": "npm run build:lib -- --output dist",
     "build:debug": "npm run build:lib -- --output debug --no-compress",
-    "dev": "npm run clean && microbundle watch --entry src/index.js --output dist --name goober",
+    "dev": "npm run clean && microbundle watch --entry src/index.js --output dist --name goober --generateTypes false",
     "sandbox": "wmr --public sandbox/wmr",
     "deploy": "npm run build && npm publish",
     "format": "prettier \"**/*.{js,ts,tsx,md}\" --write"

@@ -25,6 +25,9 @@
     "jest": "^24.1.0",
     "style-vendorizer": "^2.0.0"
   },
+  "peerDependencies": {
+    "goober": ">= 3.0.0"
+  },
   "keywords": [
     "goober",
     "prefixer",
