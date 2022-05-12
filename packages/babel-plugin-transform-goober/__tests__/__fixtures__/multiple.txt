@@ -1,3 +1,0 @@
-const Foo = styled("div")``;
-const Bar = styled("div")``;
-const Baz = styled("div")``;
