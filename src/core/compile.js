@@ -1,0 +1,1 @@
+import{parse}from"./parse";export let compile=(e,p,r)=>e.reduce(((e,o,t)=>{let l=p[t];if(l&&l.call){let e=l(r),p=e&&e.props&&e.props.className||/^go/.test(e)&&e;l=p?"."+p:e&&"object"==typeof e?e.props?"":parse(e,""):!1===e?"":e}return e+o+(null==l?"":l)}),"");

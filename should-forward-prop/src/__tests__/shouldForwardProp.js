@@ -1,0 +1,1 @@
+import{css}from"goober";import{shouldForwardProp}from"../index";describe("shouldForwardProp",(()=>{it("type",(()=>{expect(typeof shouldForwardProp).toEqual("function")})),it("shouldForwardProp",(()=>{const o={color:"red",$shouldAnimate:!0};shouldForwardProp((o=>"$"!==o[0]))(o),expect(o).toEqual({color:"red"})}))}));

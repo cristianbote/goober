@@ -1,0 +1,1 @@
+let newRule=/(?:([\u0080-\uFFFF\w-%@]+) *:? *([^{;]+?);|([^;}{]*?) *{)|(}\s*)/g,ruleClean=/\/\*[^]*?\*\/|  +/g,ruleNewline=/\n+/g,empty=" ";export let astish=e=>{let l,r,t=[{}];for(;l=newRule.exec(e.replace(ruleClean,""));)l[4]?t.shift():l[3]?(r=l[3].replace(ruleNewline,empty).trim(),t.unshift(t[0][r]=t[0][r]||{})):t[0][l[1]]=l[2].replace(ruleNewline,empty).trim();return t[0]};

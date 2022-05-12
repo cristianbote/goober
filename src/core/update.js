@@ -1,0 +1,1 @@
+import{getSheet}from"./get-sheet";export let extractCss=t=>{let e=getSheet(t),a=e.data;return e.data="",a};export let update=(t,e,a)=>{-1==e.data.indexOf(t)&&(e.data=a?t+e.data:e.data+t)};
