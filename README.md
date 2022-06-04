@@ -32,10 +32,10 @@ It's a pun on the tagline.
 
 # Talks and Podcasts
 
-* [React Round Up](https://reactroundup.com/wrangle-your-css-in-js-for-peanuts-using-goober-ft-cristian-bote-rru-177) 👉 https://reactroundup.com/wrangle-your-css-in-js-for-peanuts-using-goober-ft-cristian-bote-rru-177
-* ReactDay Berlin 2019 👉  https://www.youtube.com/watch?v=k4-AVy3acqk
-* [PodRocket](https://podrocket.logrocket.com/) by [LogRocket](https://logrocket.com/) 👉 https://podrocket.logrocket.com/goober
-* [ngParty](https://www.ngparty.cz/) 👉 https://www.youtube.com/watch?v=XKFvOBDPeB0
+-   [React Round Up](https://reactroundup.com/wrangle-your-css-in-js-for-peanuts-using-goober-ft-cristian-bote-rru-177) 👉 https://reactroundup.com/wrangle-your-css-in-js-for-peanuts-using-goober-ft-cristian-bote-rru-177
+-   ReactDay Berlin 2019 👉 https://www.youtube.com/watch?v=k4-AVy3acqk
+-   [PodRocket](https://podrocket.logrocket.com/) by [LogRocket](https://logrocket.com/) 👉 https://podrocket.logrocket.com/goober
+-   [ngParty](https://www.ngparty.cz/) 👉 https://www.youtube.com/watch?v=XKFvOBDPeB0
 
 # Table of contents
 
@@ -285,7 +285,7 @@ const Title = styled('h1', React.forwardRef)`
 `;
 ```
 
-### `setup(pragma: Function, prefixer?: Function, theme?: Function, forwardProps?: Function)`
+### `setup(pragma: Function, prefixer?: Function, theme?: Function, forwardProps?: Function, parser?: Function)`
 
 The call to `setup()` should occur only once. It should be called in the entry file of your project.
 
@@ -380,6 +380,10 @@ setup(
     })
 );
 ```
+
+#### With parser
+
+This optional `parser` function overrides [the default parse function](https://github.com/cristianbote/goober/blob/master/src/core/parse.js). This allows for any number of customizations to styles being output.
 
 ### `css(taggedTemplate)`
 
