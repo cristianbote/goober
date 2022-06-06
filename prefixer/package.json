@@ -13,6 +13,7 @@
     "name": "Jovi De Croock",
     "url": "https://www.jovidecroock.com/"
   },
+  "license": "MIT",
   "scripts": {
     "build": "rm -rf ./dist && microbundle --entry src/index.js --name gooberPrefixer --no-sourcemap --generateTypes false",
     "test": "jest"
