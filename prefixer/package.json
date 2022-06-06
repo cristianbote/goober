@@ -1,6 +1,6 @@
 {
   "name": "goober-autoprefixer",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "sideEffects": false,
   "main": "./dist/goober-autoprefixer.cjs",
   "module": "./dist/goober-autoprefixer.esm.js",
