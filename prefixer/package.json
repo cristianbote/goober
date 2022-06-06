@@ -31,5 +31,13 @@
     "autoprefixer",
     "css",
     "postcss"
+  ],
+  "files": [
+    "src",
+    "dist",
+    "README.md",
+    "package.json",
+    "LICENSE",
+    "autoprefixer.d.ts"
   ]
 }
