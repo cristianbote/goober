@@ -2,7 +2,7 @@ import { parse } from '../parse';
 
 describe('parse', () => {
     it('regular', () => {
-        const out = parse(
+        const out = parse.f(
             {
                 display: 'value',
                 button: {
@@ -26,7 +26,7 @@ describe('parse', () => {
     });
 
     it('camelCase', () => {
-        const out = parse(
+        const out = parse.f(
             {
                 fooBarProperty: 'value',
                 button: {
@@ -50,7 +50,7 @@ describe('parse', () => {
     });
 
     it('keyframes', () => {
-        const out = parse(
+        const out = parse.f(
             {
                 '@keyframes superAnimation': {
                     '11.1%': {
@@ -94,7 +94,7 @@ describe('parse', () => {
     });
 
     it('font-face', () => {
-        const out = parse(
+        const out = parse.f(
             {
                 '@font-face': {
                     'font-weight': 100
@@ -107,7 +107,7 @@ describe('parse', () => {
     });
 
     it('@media', () => {
-        const out = parse(
+        const out = parse.f(
             {
                 '@media any all (no-really-anything)': {
                     position: 'super-absolute'
@@ -122,7 +122,7 @@ describe('parse', () => {
     });
 
     it('@import', () => {
-        const out = parse(
+        const out = parse.f(
             {
                 '@import': "url('https://domain.com/path?1=s')"
             },
@@ -134,7 +134,7 @@ describe('parse', () => {
 
     it('cra', () => {
         expect(
-            parse(
+            parse.f(
                 {
                     '@import': "url('path/to')",
                     '@font-face': {
@@ -185,7 +185,7 @@ describe('parse', () => {
 
     it('@supports', () => {
         expect(
-            parse(
+            parse.f(
                 {
                     '@supports (some: 1px)': {
                         '@media (s: 1)': {
@@ -208,7 +208,7 @@ describe('parse', () => {
 
     it('unwrapp', () => {
         expect(
-            parse(
+            parse.f(
                 {
                     '--foo': 1,
                     opacity: 1,
@@ -227,7 +227,7 @@ describe('parse', () => {
     });
 
     it('nested with multiple selector', () => {
-        const out = parse(
+        const out = parse.f(
             {
                 display: 'value',
                 '&:hover,&:focus': {
@@ -262,7 +262,7 @@ describe('parse', () => {
 
     it('should handle the :where(a,b) cases', () => {
         expect(
-            parse(
+            parse.f(
                 {
                     div: {
                         ':where(a, b)': {
@@ -277,7 +277,7 @@ describe('parse', () => {
 
     it('should handle null and undefined values', () => {
         expect(
-            parse(
+            parse.f(
                 {
                     div: {
                         opacity: 0,
@@ -288,7 +288,7 @@ describe('parse', () => {
             )
         ).toEqual('div{opacity:0;}');
         expect(
-            parse(
+            parse.f(
                 {
                     div: {
                         opacity: 0,
@@ -302,22 +302,22 @@ describe('parse', () => {
 
     it('does not transform the case of custom CSS variables', () => {
         expect(
-            parse({
+            parse.f({
                 '--cP': 'red'
             })
         ).toEqual('--cP:red;');
         expect(
-            parse({
+            parse.f({
                 '--c-P': 'red'
             })
         ).toEqual('--c-P:red;');
         expect(
-            parse({
+            parse.f({
                 '--cp': 'red'
             })
         ).toEqual('--cp:red;');
         expect(
-            parse({
+            parse.f({
                 ':root': {
                     '--cP': 'red'
                 }

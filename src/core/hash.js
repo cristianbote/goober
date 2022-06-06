@@ -46,7 +46,7 @@ export let hash = (compiled, sheet, global, append, keyframes) => {
         let ast = stringifiedCompiled !== compiled ? compiled : astish(compiled);
 
         // Parse it
-        cache[className] = parse(
+        cache[className] = parse.f(
             // For keyframes
             keyframes ? { ['@keyframes ' + className]: ast } : ast,
             global ? '' : '.' + className
