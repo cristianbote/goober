@@ -1,6 +1,6 @@
 {
   "name": "goober-autoprefixer",
-  "version": "1.2.1",
+  "version": "1.2.3",
   "sideEffects": false,
   "main": "./dist/goober-autoprefixer.cjs",
   "module": "./dist/goober-autoprefixer.esm.js",
@@ -13,6 +13,7 @@
     "name": "Jovi De Croock",
     "url": "https://www.jovidecroock.com/"
   },
+  "license": "MIT",
   "scripts": {
     "build": "rm -rf ./dist && microbundle --entry src/index.js --name gooberPrefixer --no-sourcemap --generateTypes false",
     "test": "jest"
@@ -31,5 +32,13 @@
     "autoprefixer",
     "css",
     "postcss"
+  ],
+  "files": [
+    "src",
+    "dist",
+    "README.md",
+    "package.json",
+    "LICENSE",
+    "autoprefixer.d.ts"
   ]
 }
