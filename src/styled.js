@@ -48,15 +48,11 @@ function styled(tag, forwardRef) {
             }
 
             // Assign the _as with the provided `tag` value
-            let _as = tag;
-
             // If this is a string -- checking that is has a first valid char
-            if (tag[0]) {
-                // Try to assign the _as with the given _as value if any
-                _as = _props.as || tag;
-                // And remove it
-                delete _props.as;
-            }
+            // Try to assign the _as with the given _as value if any
+            let _as = (tag[0] && _props.as) || tag;
+            // And remove it
+            tag[0] && delete _props.as;
 
             // Handle the forward props filter if defined and _as is a string
             if (fwdProp && _as[0]) {
