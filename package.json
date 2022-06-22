@@ -1,6 +1,6 @@
 {
   "name": "goober",
-  "version": "2.1.9",
+  "version": "2.1.10",
   "description": "A less than 1KB css-in-js solution",
   "sideEffects": false,
   "main": "dist/goober.cjs",
