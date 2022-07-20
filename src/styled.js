@@ -38,7 +38,7 @@ function styled(tag, forwardRef) {
             // The _empty_ space compresses better than `\s`
             _ctx.o = / *go\d+/.test(_previousClassName);
 
-            className =
+          let  className =
                 // Define the new className
                 css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '');
 
