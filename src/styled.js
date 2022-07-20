@@ -38,7 +38,7 @@ function styled(tag, forwardRef) {
             // The _empty_ space compresses better than `\s`
             _ctx.o = / *go\d+/.test(_previousClassName);
 
-            _props.className =
+            className =
                 // Define the new className
                 css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '');
 
@@ -63,7 +63,8 @@ function styled(tag, forwardRef) {
                 fwdProp(_props);
             }
 
-            return h(_as, _props);
+            return h(_as, { className, props:  _props
+                          });
         }
 
         return forwardRef ? forwardRef(Styled) : Styled;
