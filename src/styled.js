@@ -1,6 +1,6 @@
 import { css } from './css';
 import { parse } from './core/parse';
-
+import { tag } from './core/domElements';
 let h, useTheme, fwdProp;
 function setup(pragma, prefix, theme, forwardProps) {
     // This one needs to stay in here, so we won't have cyclic dependencies
@@ -14,7 +14,7 @@ function setup(pragma, prefix, theme, forwardProps) {
 
 /**
  * styled function
- * @param {string} tag
+ * @param {tag} tag
  * @param {function} forwardRef
  */
 function styled(tag, forwardRef) {
