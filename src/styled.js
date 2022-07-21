@@ -23,6 +23,10 @@ function styled(tag, forwardRef) {
     return function wrapper() {
         let _args = arguments;
 
+         /**
+           * @param { {as:tag,className:string|number,children:React.ReactNode}} props
+           * TODO: add AllHTMLAttributes.js 
+         */
         function Styled(props, ref) {
             // Grab a shallow copy of the props
             let _props = Object.assign({}, props);
