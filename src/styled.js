@@ -1,6 +1,6 @@
 import { css } from './css';
 import { parse } from './core/parse';
-import { tag } from './core/domElements';
+import { tag } from './core/domElement';
 let h, useTheme, fwdProp;
 function setup(pragma, prefix, theme, forwardProps) {
     // This one needs to stay in here, so we won't have cyclic dependencies
