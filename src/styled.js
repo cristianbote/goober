@@ -15,7 +15,7 @@ function setup(pragma, prefix, theme, forwardProps) {
 /**
  * styled function
  * @param {tag} tag
- * @param {function} forwardRef
+ * @param {function} [forwardRef]
  */
 function styled(tag, forwardRef) {
     let _ctx = this || {};
