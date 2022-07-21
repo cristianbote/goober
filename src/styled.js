@@ -24,7 +24,7 @@ function styled(tag, forwardRef) {
         let _args = arguments;
 
          /**
-           * @param { {as:tag,className:string|number,children:React.ReactNode}} props
+           * @param { {as:tag,className:string|number,children:any}} props
            * TODO: add AllHTMLAttributes.js 
          */
         function Styled(props, ref) {
