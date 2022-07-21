@@ -57,6 +57,21 @@ function styled(tag, forwardRef) {
                 // And remove it
                 delete _props.as;
             }
+             /**
+             * Fixes For Console Warning Warning: Received `true` for a non-boolean attribute `primary`.
+             * * 1: Loop Through Each Member In _props
+             * * 2: Check if _props has a member whose value is a typeof `boolean` ?
+             * * 3: if true... , reInitialize _props by....
+             * * 4: spread initial State {..._props}
+             * * 5: access the member whose value is a boolean {..._props:[member]:booleanValue}
+             * * 6: Conver the value of boolean to string using template literals {..._props:[member]:`${booleanValue}`}
+             */
+
+            for (const member in _props) {
+              if (typeof props[member] === "boolean") {
+                _props = { ..._props, [member]: `${_props[member]}` };
+              }
+             }
 
             // Handle the forward props filter if defined and _as is a string
             if (fwdProp && _as[0]) {
