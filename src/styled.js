@@ -2,10 +2,11 @@ import { css } from './css';
 import { parse } from './core/parse';
 
 let h, useTheme, fwdProp;
-function setup(pragma, prefix, theme, forwardProps, parser) {
-    if (parser) parse.f = parser;
-    // This one needs to stay in here, so we won't have cyclic dependencies
-    parse.p = prefix;
+function setup(pragma, parser, theme, forwardProps) {
+    if (parser?.at) parse.a = parser.at;
+    if (parser?.obj) parse.o = parser.obj;
+    if (parser?.str) parse.s = parser.str;
+    if (parser?.prefix) parse.p = parser.prefix;
 
     // These are scope to this context
     h = pragma;
