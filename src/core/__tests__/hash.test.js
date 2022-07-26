@@ -9,7 +9,7 @@ jest.mock('../astish', () => ({
 }));
 
 jest.mock('../parse', () => ({
-    parse: jest.fn().mockReturnValue('parse()')
+    parse: { f: jest.fn().mockReturnValue('f()') }
 }));
 
 jest.mock('../to-hash', () => ({
@@ -25,14 +25,14 @@ jest.mock('../astish', () => ({
 }));
 
 jest.mock('../parse', () => ({
-    parse: jest.fn().mockReturnValue('parse()')
+    parse: { f: jest.fn().mockReturnValue('f()') }
 }));
 
 describe('hash', () => {
     beforeEach(() => {
         toHash.mockClear();
         update.mockClear();
-        parse.mockClear();
+        parse.f.mockClear();
         astish.mockClear();
     });
 
@@ -40,9 +40,9 @@ describe('hash', () => {
         const res = hash('compiled', 'target');
 
         expect(toHash).toBeCalledWith('compiled');
-        expect(update).toBeCalledWith('parse()', 'target', undefined);
+        expect(update).toBeCalledWith('f()', 'target', undefined);
         expect(astish).toBeCalledWith('compiled');
-        expect(parse).toBeCalledWith('astish()', '.toHash()');
+        expect(parse.f).toBeCalledWith('astish()', '.toHash()');
 
         expect(res).toEqual('toHash()');
     });
@@ -52,8 +52,8 @@ describe('hash', () => {
 
         expect(toHash).not.toBeCalled();
         expect(astish).not.toBeCalled();
-        expect(parse).not.toBeCalled();
-        expect(update).toBeCalledWith('parse()', 'target', undefined);
+        expect(parse.f).not.toBeCalled();
+        expect(update).toBeCalledWith('f()', 'target', undefined);
 
         expect(res).toEqual('toHash()');
     });
@@ -63,8 +63,8 @@ describe('hash', () => {
 
         expect(toHash).toBeCalledWith('global');
         expect(astish).not.toBeCalled();
-        expect(parse).not.toBeCalled();
-        expect(update).toBeCalledWith('parse()', 'target', undefined);
+        expect(parse.f).not.toBeCalled();
+        expect(update).toBeCalledWith('f()', 'target', undefined);
 
         expect(res).toEqual('toHash()');
     });
@@ -74,8 +74,8 @@ describe('hash', () => {
 
         expect(toHash).toBeCalledWith('keyframes');
         expect(astish).not.toBeCalled();
-        expect(parse).not.toBeCalled();
-        expect(update).toBeCalledWith('parse()', 'target', undefined);
+        expect(parse.f).not.toBeCalled();
+        expect(update).toBeCalledWith('f()', 'target', undefined);
 
         expect(res).toEqual('toHash()');
     });
@@ -88,8 +88,8 @@ describe('hash', () => {
 
         expect(toHash).toBeCalledWith('baz1');
         expect(astish).not.toBeCalled();
-        expect(parse).toBeCalledWith({ baz: 1 }, '.' + className);
-        expect(update).toBeCalledWith('parse()', 'target', undefined);
+        expect(parse.f).toBeCalledWith({ baz: 1 }, '.' + className);
+        expect(update).toBeCalledWith('f()', 'target', undefined);
 
         expect(res).toEqual(className);
     });

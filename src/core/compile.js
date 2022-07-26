@@ -27,7 +27,7 @@ export let compile = (str, defs, data) => {
             } else if (res && typeof res == 'object') {
                 // If `res` it's an object, we're either dealing with a vnode
                 // or an object returned from a function interpolation
-                tail = res.props ? '' : parse(res, '');
+                tail = res.props ? '' : parse.f(res, '');
             } else {
                 // Regular value returned. Can be falsy as well.
                 // Here we check if this is strictly a boolean with false value
