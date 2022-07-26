@@ -15,7 +15,7 @@ import { Layout } from './components/layout/layout.js';
 
 setup(
     h,
-    { prefix },
+    { pre: prefix },
     () => theme,
     shouldForwardProp((prop) => props.indexOf(prop) === -1)
 );

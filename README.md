@@ -285,7 +285,7 @@ const Title = styled('h1', React.forwardRef)`
 `;
 ```
 
-### `setup(pragma: Function, prefixer?: Function, theme?: Function, forwardProps?: Function, parser?: Function)`
+### `setup(pragma: Function, parser?: Object, theme?: Function, forwardProps?: Function, parser?: Function)`
 
 The call to `setup()` should occur only once. It should be called in the entry file of your project.
 
@@ -298,7 +298,7 @@ import { setup } from 'goober';
 setup(React.createElement);
 ```
 
-#### With prefixer
+#### With parser
 
 ```js
 import React from 'react';
@@ -306,8 +306,17 @@ import { setup } from 'goober';
 
 const customPrefixer = (key, value) => `${key}: ${value};\n`;
 
-setup(React.createElement, customPrefixer);
+setup(React.createElement, { pre: customPrefixer });
 ```
+
+There are four parser functions you can override to customize how goober handles styles:
+
+-   `at`: Handles @ rules.
+-   `obj`: Handles objects.
+-   `str`: Handles strings.
+-   `pre`: Allows for adding a custom prefix function easily within the default `str` parser function.
+
+You can reference the [default parser functions](https://github.com/cristianbote/goober/blob/master/src/core/parse.js) as a starting point.
 
 #### With theme
 
@@ -380,10 +389,6 @@ setup(
     })
 );
 ```
-
-#### With parser
-
-This optional `parser` function overrides [the default parse function](https://github.com/cristianbote/goober/blob/master/src/core/parse.js). This allows for any number of customizations to styles being output.
 
 ### `css(taggedTemplate)`
 
@@ -772,7 +777,7 @@ import { setup } from 'goober';
 import { prefix } from 'goober/prefixer';
 
 // Bootstrap goober
-setup(React.createElement, prefix);
+setup(React.createElement, { pre: prefix });
 ```
 
 And voilà! It is done!

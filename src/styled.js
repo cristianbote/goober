@@ -6,7 +6,7 @@ function setup(pragma, parser, theme, forwardProps) {
     if (parser?.at) parse.a = parser.at;
     if (parser?.obj) parse.o = parser.obj;
     if (parser?.str) parse.s = parser.str;
-    if (parser?.prefix) parse.p = parser.prefix;
+    if (parser?.pre) parse.p = parser.pre;
 
     // These are scope to this context
     h = pragma;

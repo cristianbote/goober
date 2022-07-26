@@ -3,7 +3,7 @@ import { setup, extractCss } from 'goober';
 import { prefix } from 'goober/prefixer';
 
 // Set the pragma for `goober` to know which to use
-setup(React.createElement, { prefix });
+setup(React.createElement, { pre: prefix });
 
 // Define a cache entry
 const cache = new Map();
