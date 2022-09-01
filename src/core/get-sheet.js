@@ -1,4 +1,4 @@
-let GOOBER_ID = '_goober';
+let GOOBER_ID = '_goober_mod';
 let ssr = {
     data: ''
 };

@@ -1,6 +1,6 @@
 {
-  "name": "goober",
-  "version": "2.1.11",
+  "name": "@onurkerimov/goober",
+  "version": "0.0.1",
   "description": "A less than 1KB css-in-js solution",
   "sideEffects": false,
   "main": "dist/goober.cjs",
@@ -11,22 +11,6 @@
   "types": "goober.d.ts",
   "type": "module",
   "files": [
-    "src",
-    "macro",
-    "global/dist",
-    "global/src",
-    "global/package.json",
-    "global/global.d.ts",
-    "prefixer/dist",
-    "prefixer/src",
-    "prefixer/package.json",
-    "prefixer/autoprefixer.d.ts",
-    "prefixer/README.md",
-    "should-forward-prop/dist",
-    "should-forward-prop/src",
-    "should-forward-prop/package.json",
-    "should-forward-prop/should-forward-prop.d.ts",
-    "should-forward-prop/README.md",
     "README.md",
     "dist",
     "package.json",
@@ -38,22 +22,6 @@
       "require": "./dist/goober.cjs",
       "import": "./dist/goober.modern.js",
       "umd": "./dist/goober.umd.js"
-    },
-    "./macro": "./macro/index.js",
-    "./global": {
-      "import": "./global/dist/goober-global.modern.js",
-      "require": "./global/dist/goober-global.cjs",
-      "umd": "./global/dist/goober-global.umd.js"
-    },
-    "./prefixer": {
-      "import": "./prefixer/dist/goober-autoprefixer.modern.js",
-      "require": "./prefixer/dist/goober-autoprefixer.cjs",
-      "umd": "./prefixer/dist/goober-autoprefixer.umd.js"
-    },
-    "./should-forward-prop": {
-      "import": "./should-forward-prop/dist/goober-should-forward-prop.modern.js",
-      "require": "./should-forward-prop/dist/goober-should-forward-prop.cjs",
-      "umd": "./should-forward-prop/dist/goober-should-forward-prop.umd.js"
     }
   },
   "scripts": {
@@ -102,13 +70,13 @@
     "@babel/plugin-transform-react-jsx": "^7.7.0",
     "@babel/preset-env": "^7.3.1",
     "@emotion/core": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
     "@emotion/react": "^11.1.4",
+    "@emotion/styled": "^11.0.0",
     "@types/react": "^16.9.34",
     "babel-jest": "^24.1.0",
     "benchmark": "^2.1.4",
     "csstype": "^3.0.10",
-    "husky": "4.2.4",
+    "husky": "^4.3.8",
     "jest": "^24.1.0",
     "lint-staged": "10.2.0",
     "microbundle": "^0.15.0",
@@ -121,16 +89,19 @@
     "typescript": "^3.6.3",
     "wmr": "^3.7.2"
   },
-  "peerDependencies": {
-    "csstype": "^3.0.10"
+  "dependencies": {
+    "@emotion/hash": "^0.9.0",
+    "@emotion/unitless": "^0.8.0",
+    "csstype": "^3.0.10",
+    "style-vendorizer": "^2.0.0"
   },
   "typings": "./goober.d.ts",
   "filesize": {
     "./dist/goober.modern.js": {
-      "gzip": "1300B"
+      "gzip": "1400B"
     },
     "./dist/goober.cjs": {
-      "gzip": "1300B"
+      "gzip": "1400B"
     }
   },
   "lint-staged": {

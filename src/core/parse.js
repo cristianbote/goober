@@ -1,3 +1,8 @@
+import { prefix } from './prefix'
+import unitless from '@emotion/unitless'
+
+const isCustomProperty = (key) => key.charCodeAt(1) === 45
+
 /**
  * Parses the object into css, scoped, blocks
  * @param {Object} obj
@@ -31,27 +36,32 @@ export let parse = (obj, selector) => {
                 val,
                 selector
                     ? // Go over the selector and replace the matching multiple selectors if any
-                      selector.replace(/([^,])+/g, (sel) => {
-                          // Return the current selector with the key matching multiple selectors if any
-                          return key.replace(/(^:.*)|([^,])+/g, (k) => {
-                              // If the current `k`(key) has a nested selector replace it
-                              if (/&/.test(k)) return k.replace(/&/g, sel);
+                        selector.replace(/([^,])+/g, (sel) => {
+                            // Return the current selector with the key matching multiple selectors if any
+                            return key.replace(/(^:.*)|([^,])+/g, (k) => {
+                                // If the current `k`(key) has a nested selector replace it
+                                if (/&/.test(k)) return k.replace(/&/g, sel);
 
-                              // If there's a current selector concat it
-                              return sel ? sel + ' ' + k : k;
-                          });
-                      })
+                                // If there's a current selector concat it
+                                return sel ? sel + ' ' + k : k;
+                            });
+                        })
                     : key
             );
         } else if (val != undefined) {
+            if (
+                typeof val === 'number' &&
+                val !== 0 &&
+                unitless[key] !== 1 &&
+                !isCustomProperty(key)
+              ) {
+                val = val + 'px'
+              }
+
             // Convert all but CSS variables
             key = /^--/.test(key) ? key : key.replace(/[A-Z]/g, '-$&').toLowerCase();
             // Push the line for this property
-            current += parse.p
-                ? // We have a prefixer and we need to run this through that
-                  parse.p(key, val)
-                : // Nope no prefixer just append it
-                  key + ':' + val + ';';
+            current += prefix(key, val)
         }
     }
 

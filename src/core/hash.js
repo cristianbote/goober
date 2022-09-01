@@ -1,4 +1,4 @@
-import { toHash } from './to-hash';
+import toHash from '@emotion/hash'
 import { update } from './update';
 import { astish } from './astish';
 import { parse } from './parse';
@@ -38,7 +38,7 @@ export let hash = (compiled, sheet, global, append, keyframes) => {
 
     // Retrieve the className from cache or hash it in place
     let className =
-        cache[stringifiedCompiled] || (cache[stringifiedCompiled] = toHash(stringifiedCompiled));
+        cache[stringifiedCompiled] || (cache[stringifiedCompiled] = 'go-' + toHash(stringifiedCompiled));
 
     // If there's no entry for the current className
     if (!cache[className]) {
