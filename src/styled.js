@@ -2,14 +2,15 @@ import { css } from './css';
 import { parse } from './core/parse';
 
 let h, useTheme, fwdProp;
-function setup(pragma, prefix, theme, forwardProps) {
-    // This one needs to stay in here, so we won't have cyclic dependencies
-    parse.p = prefix;
-
-    // These are scope to this context
-    h = pragma;
-    useTheme = theme;
-    fwdProp = forwardProps;
+function setup() {
+    [
+        // These are scope to this context
+        h,
+        // This one needs to stay in here, so we won't have cyclic dependencies
+        parse.p,
+        useTheme,
+        fwdProp
+    ] = arguments;
 }
 
 /**
