@@ -27,6 +27,8 @@ function styled(tag, forwardRef) {
         function Styled(props, ref) {
             // Grab a shallow copy of the props
             let _props = Object.assign({}, props);
+            // Assign the _as with the provided `tag` value
+            let _as = tag;
 
             // Keep a local reference to the previous className
             let _previousClassName = _props.className || Styled.className;
@@ -47,9 +49,6 @@ function styled(tag, forwardRef) {
             if (forwardRef) {
                 _props.ref = ref;
             }
-
-            // Assign the _as with the provided `tag` value
-            let _as = tag;
 
             // If this is a string -- checking that is has a first valid char
             if (tag[0]) {
