@@ -17,10 +17,9 @@ let stringify = (data) => {
     if (typeof data == 'object') {
         let out = '';
         for (let p in data) out += p + stringify(data[p]);
-        return out;
-    } else {
-        return data;
+        data = out;
     }
+    return data;
 };
 
 /**
