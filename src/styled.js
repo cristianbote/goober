@@ -1,17 +1,18 @@
 import { css } from './css';
 import { parse } from './core/parse';
 
-let h, useTheme, fwdProp;
-function setup() {
-    [
-        // These are scope to this context
-        h,
-        // This one needs to stay in here, so we won't have cyclic dependencies
-        parse.p,
-        useTheme,
-        fwdProp
-    ] = arguments;
-}
+let h,
+    useTheme,
+    fwdProp,
+    setup = (..._args) =>
+        ([
+            // These are scope to this context
+            h,
+            // This one needs to stay in here, so we won't have cyclic dependencies
+            parse.p,
+            useTheme,
+            fwdProp
+        ] = _args);
 
 /**
  * styled function
@@ -21,9 +22,7 @@ function setup() {
 function styled(tag, forwardRef) {
     let _ctx = this || {};
 
-    return function wrapper() {
-        let _args = arguments;
-
+    return function wrapper(..._args) {
         function Styled(props, ref) {
             // Grab a shallow copy of the props
             let _props = Object.assign({}, props);

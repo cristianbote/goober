@@ -6,12 +6,14 @@ import { getSheet } from './core/get-sheet';
  * css entry
  * @param {String|Object|Function} val
  */
-function css(val, ctx = this || {}, _val = val.call ? val(ctx.p) : val) {
+function css(val, ..._args) {
+    let ctx = this || {};
+    let _val = val.call ? val(ctx.p) : val;
     return hash(
         _val.unshift
             ? _val.raw
                 ? // Tagged templates
-                  compile(_val, [].slice.call(arguments, 1), ctx.p)
+                  compile(_val, _args, ctx.p)
                 : // Regular arrays
                   _val.reduce((o, i) => Object.assign(o, i && i.call ? i(ctx.p) : i), {})
             : _val,
