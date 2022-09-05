@@ -13,9 +13,8 @@ let cache = {};
  * @param {Object} data
  * @returns {String}
  */
-let stringify = (data) => {
+let stringify = (data, out = '') => {
     if (typeof data == 'object') {
-        let out = '';
         for (let p in data) out += p + stringify(data[p]);
         data = out;
     }

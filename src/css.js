@@ -6,10 +6,7 @@ import { getSheet } from './core/get-sheet';
  * css entry
  * @param {String|Object|Function} val
  */
-function css(val) {
-    let ctx = this || {};
-    let _val = val.call ? val(ctx.p) : val;
-
+function css(val, ctx = this || {}, _val = val.call ? val(ctx.p) : val) {
     return hash(
         _val.unshift
             ? _val.raw

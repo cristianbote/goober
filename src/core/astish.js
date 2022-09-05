@@ -8,10 +8,7 @@ let empty = ' ';
  * @param {String} val
  * @returns {Object}
  */
-export let astish = (val) => {
-    let tree = [{}];
-    let block, left;
-
+export let astish = (val, tree = [{}], block, left) => {
     while ((block = newRule.exec(val.replace(ruleClean, '')))) {
         // Remove the current entry
         if (block[4]) {
