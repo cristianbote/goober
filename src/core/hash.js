@@ -51,14 +51,18 @@ export let hash = (compiled, sheet, global, append, keyframes) => {
         );
     }
 
-    // If the global flag is set, save the current stringified and compiled CSS to `cache.g`
-    // to allow replacing styles in <style /> instead of appending them.
-    // This is required for using `createGlobalStyles` with themes
-    let cssToReplace = global && cache.g ? cache.g : null;
-    if (global) cache.g = cache[className];
-
     // add or update
-    update(cache[className], sheet, append, cssToReplace);
+    update(
+        cache[className],
+        sheet,
+        append,
+        // If the global flag is set, save the current stringified and compiled CSS to `cache.g`
+        // to allow replacing styles in <style /> instead of appending them.
+        // This is required for using `createGlobalStyles` with themes
+        global && cache.g ? cache.g : null
+    );
+
+    if (global) cache.g = cache[className];
 
     // return hash
     return className;
