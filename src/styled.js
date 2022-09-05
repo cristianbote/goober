@@ -25,44 +25,44 @@ function styled(tag, forwardRef) {
     return function wrapper(..._args) {
         function Styled(props, ref) {
             // Grab a shallow copy of the props
-            let _props = Object.assign({}, props);
+            props = Object.assign({}, props);
             // Assign the _as with the provided `tag` value
             let _as = tag;
 
             // Keep a local reference to the previous className
-            let _previousClassName = _props.className || Styled.className;
+            let _previousClassName = props.className || Styled.className;
 
             // _ctx.p: is the props sent to the context
-            _ctx.p = Object.assign({ theme: useTheme && useTheme() }, _props);
+            _ctx.p = Object.assign({ theme: useTheme && useTheme() }, props);
 
             // Set a flag if the current components had a previous className
             // similar to goober. This is the append/prepend flag
             // The _empty_ space compresses better than `\s`
             _ctx.o = / *go\d+/.test(_previousClassName);
 
-            _props.className =
+            props.className =
                 // Define the new className
                 css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '');
 
             // If the forwardRef fun is defined we have the ref
             if (forwardRef) {
-                _props.ref = ref;
+                props.ref = ref;
             }
 
             // If this is a string -- checking that is has a first valid char
             if (tag[0]) {
                 // Try to assign the _as with the given _as value if any
-                _as = _props.as || tag;
+                _as = props.as || tag;
                 // And remove it
-                delete _props.as;
+                delete props.as;
             }
 
             // Handle the forward props filter if defined and _as is a string
             if (fwdProp && _as[0]) {
-                fwdProp(_props);
+                fwdProp(props);
             }
 
-            return h(_as, _props);
+            return h(_as, props);
         }
 
         return forwardRef ? forwardRef(Styled) : Styled;
