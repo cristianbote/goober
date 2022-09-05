@@ -23,14 +23,16 @@ function styled(tag, forwardRef) {
     let _ctx = this || {};
 
     return function wrapper(..._args) {
-        function Styled(props, ref) {
+        function Styled(
+            props,
+            ref,
+            // Assign the _as with the provided `tag` value
+            _as = tag,
+            // Keep a local reference to the previous className
+            _previousClassName = props.className || Styled.className
+        ) {
             // Grab a shallow copy of the props
             props = Object.assign({}, props);
-            // Assign the _as with the provided `tag` value
-            let _as = tag;
-
-            // Keep a local reference to the previous className
-            let _previousClassName = props.className || Styled.className;
 
             // _ctx.p: is the props sent to the context
             _ctx.p = Object.assign({ theme: useTheme && useTheme() }, props);
