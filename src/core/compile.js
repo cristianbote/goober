@@ -30,8 +30,8 @@ export let compile = (str, defs, data) => {
                 tail = res.props ? '' : parse(res, '');
             } else {
                 // Regular value returned. Can be falsy as well.
-                // Here we check if this is strictly a boolean with false value
-                // define it as `''` to be picked up as empty, otherwise use
+                // Here we check if this is `false`, `undefined` or `null` and if yes,
+                // define it as `_` to be picked up as empty, otherwise use
                 // res value
                 tail = res === false || res === undefined || res === null ? '_' : res;
             }
