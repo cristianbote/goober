@@ -33,7 +33,7 @@ export let compile = (str, defs, data) => {
                 // Here we check if this is strictly a boolean with false value
                 // define it as `''` to be picked up as empty, otherwise use
                 // res value
-                tail = res === false ? '' : res;
+                tail = res === false || res === undefined || res === null ? '_' : res;
             }
         }
         return out + next + (tail == null ? '' : tail);
