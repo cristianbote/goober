@@ -34,7 +34,7 @@ export let compile = (str, defs, data) => {
                 // define it as `_;` to be picked up as empty, otherwise use
                 // res value. The semicolon in `_;` is necessary to make `astish()`
                 // ignore such empty values.
-                tail = res === false || res === undefined || res === null ? '_;' : res;
+                tail = res === false || res == null ? '_;' : res;
             }
         }
         return out + next + (tail == null ? '' : tail);
