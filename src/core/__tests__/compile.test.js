@@ -25,7 +25,7 @@ describe('compile', () => {
     it('value interpolations', () => {
         // This interpolations are testing the ability to interpolate truthy and falsy values
         expect(template`prop: 1; ${() => 0},${() => undefined},${() => null},${2}`({})).toEqual(
-            'prop: 1; 0,_,_,2' // '_' represents a falsy value
+            'prop: 1; 0,_;,_;,2' // '_;' represents a falsy value
         );
 
         const tmpl = template`
@@ -39,7 +39,7 @@ describe('compile', () => {
         `;
         expect(tmpl({})).toEqual(`
             background: dodgerblue;
-            _
+            _;
             border: 1px solid blue;
         `);
     });
