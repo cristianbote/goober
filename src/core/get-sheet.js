@@ -12,13 +12,16 @@ export let getSheet = (target) => {
     if (typeof window === 'object') {
         // Querying the existing target for a previously defined <style> tag
         // We're doing a querySelector because the <head> element doesn't implemented the getElementById api
-        return (
+        const styleElem =
             (target ? target.querySelector('#' + GOOBER_ID) : window[GOOBER_ID]) ||
             Object.assign((target || document.head).appendChild(document.createElement('style')), {
                 innerHTML: ' ',
                 id: GOOBER_ID
-            })
-        ).firstChild;
+            });
+        // if style el is empty populate it with a comment, else it will return `null` and fail out if
+        // anyone attempts to access it's `data` property
+        if (!styleElem.firstChild) styleElem.innerHTML = '/*goober*/';
+        return styleElem.firstChild;
     }
 
     return target || ssr;
