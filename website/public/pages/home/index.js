@@ -202,7 +202,7 @@ export default function Home() {
                                 <Text ph={200} color="accent-100" size={200} bold as="span">
                                     goober
                                 </Text>
-                                was a css-in-js solution at the cost of peanunts. Hence the peanuts
+                                was a css-in-js solution at the cost of peanuts. Hence the peanuts
                                 emoji.
                             </Text>
                         </Box>
