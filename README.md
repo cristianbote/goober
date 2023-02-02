@@ -9,11 +9,10 @@
 
 [![version](https://img.shields.io/npm/v/goober)](https://www.npmjs.com/package/goober)
 [![status](https://travis-ci.org/cristianbote/goober.svg?branch=master)](https://travis-ci.org/cristianbote/goober)
-[![gzip size](https://img.badgesize.io/https://unpkg.com/goober@latest/dist/goober.js?compression=gzip)](https://unpkg.com/goober)
+[![gzip size](https://img.badgesize.io/https://unpkg.com/goober@latest/dist/goober.modern.js?compression=gzip)](https://unpkg.com/goober)
 [![downloads](https://img.shields.io/npm/dm/goober)](https://www.npmjs.com/package/goober)
 [![coverage](https://img.shields.io/codecov/c/github/cristianbote/goober.svg?maxAge=2592000)](https://codecov.io/github/cristianbote/goober?branch=master)
 [![Slack](https://img.shields.io/badge/slack-join-orange)](https://join.slack.com/t/gooberdev/shared_invite/enQtOTM5NjUyOTcwNzI1LWUwNzg0NTQwODY1NDJmMzQ2NzdlODI4YTM3NWUwYjlkY2ZkNGVmMTFlNGMwZGUyOWQyZmI4OTYwYmRiMzE0NGQ)
-[![Greenkeeper badge](https://badges.greenkeeper.io/cristianbote/goober.svg)](https://greenkeeper.io/)
 
 # 🪒 The Great Shave Off Challenge
 
@@ -32,6 +31,7 @@ It's a pun on the tagline.
 
 # Talks and Podcasts
 
+* [React Round Up](https://reactroundup.com/wrangle-your-css-in-js-for-peanuts-using-goober-ft-cristian-bote-rru-177) 👉 https://reactroundup.com/wrangle-your-css-in-js-for-peanuts-using-goober-ft-cristian-bote-rru-177
 * ReactDay Berlin 2019 👉  https://www.youtube.com/watch?v=k4-AVy3acqk
 * [PodRocket](https://podrocket.logrocket.com/) by [LogRocket](https://logrocket.com/) 👉 https://podrocket.logrocket.com/goober
 * [ngParty](https://www.ngparty.cz/) 👉 https://www.youtube.com/watch?v=XKFvOBDPeB0

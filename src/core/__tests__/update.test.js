@@ -48,4 +48,17 @@ describe('update', () => {
         update('start', getSheet(), true);
         expect(extractCss()).toEqual('startend');
     });
+
+    it('regression: global style replacement', () => {
+        const t = { data: 'html, body { background-color: white; }' };
+
+        update(
+            'html, body { background-color: black; }',
+            t,
+            undefined,
+            'html, body { background-color: white; }'
+        );
+
+        expect(t.data).toEqual('html, body { background-color: black; }');
+    });
 });

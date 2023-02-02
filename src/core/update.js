@@ -15,7 +15,11 @@ export let extractCss = (target) => {
  * @param {String} css
  * @param {Object} sheet
  * @param {Boolean} append
+ * @param {?String} cssToReplace
  */
-export let update = (css, sheet, append) => {
-    sheet.data.indexOf(css) == -1 && (sheet.data = append ? css + sheet.data : sheet.data + css);
+export let update = (css, sheet, append, cssToReplace) => {
+    cssToReplace
+        ? (sheet.data = sheet.data.replace(cssToReplace, css))
+        : sheet.data.indexOf(css) === -1 &&
+          (sheet.data = append ? css + sheet.data : sheet.data + css);
 };

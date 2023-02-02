@@ -38,7 +38,7 @@ describe('astish', () => {
         ).toEqual({
             prop: 'value',
             opacity: '0',
-            '.class,&:hover': {
+            '.class, &:hover': {
                 '-webkit-touch': 'none'
             },
             '@keyframes foo': {
@@ -181,7 +181,7 @@ describe('astish', () => {
                     center/contain;
             `)
         ).toEqual({
-            background: `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="white"><path d="M7.5 36.7h58.4v10.6H7.5V36.7zm0-15.9h58.4v10.6H7.5V20.8zm0 31.9h58.4v10.6H7.5V52.7zm0 15.9h58.4v10.6H7.5V68.6zm63.8-15.9l10.6 15.9 10.6-15.9H71.3zm21.2-5.4L81.9 31.4 71.3 47.3h21.2z"/></svg>')center/contain`
+            background: `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="white"><path d="M7.5 36.7h58.4v10.6H7.5V36.7zm0-15.9h58.4v10.6H7.5V20.8zm0 31.9h58.4v10.6H7.5V52.7zm0 15.9h58.4v10.6H7.5V68.6zm63.8-15.9l10.6 15.9 10.6-15.9H71.3zm21.2-5.4L81.9 31.4 71.3 47.3h21.2z"/></svg>') center/contain`
         });
     });
 
@@ -195,9 +195,24 @@ describe('astish', () => {
                 'font-size': '1rem'
             },
             '@media only screen and (min-width: 850px)': {
-                ' h1': {
+                h1: {
                     'font-size': '2rem'
                 }
+            }
+        });
+    });
+
+    it('should handle newlines as part of the rule value', () => {
+        expect(
+            astish(
+                `tag {
+                    font-size: first
+                        second;
+                }`
+            )
+        ).toEqual({
+            tag: {
+                'font-size': 'first second'
             }
         });
     });
