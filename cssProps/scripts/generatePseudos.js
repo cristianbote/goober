@@ -55,7 +55,7 @@ const pseudosIndexFile = Mustache.render(pseudosIndexTemplate, pseudoListView);
 jetpack.write('./src/pseudos/index.js', pseudosIndexFile);
 
 const pseudosTestFile = Mustache.render(pseudosTestTemplate, pseudoListView);
-jetpack.write('./src/pseudos/__tests__/pseudos.test.js', pseudosTestFile);
+jetpack.write('./test/pseudos/pseudos.test.js', pseudosTestFile);
 
 function toCamelCase(str) {
     return str.replace(/-[a-z]/g, (g) => g[1].toUpperCase());

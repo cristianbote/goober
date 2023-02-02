@@ -53,7 +53,7 @@ const functionsIndexFile = Mustache.render(functionsIndexTemplate, funcListView)
 jetpack.write('./src/functions/index.js', functionsIndexFile);
 
 const functionsTestFile = Mustache.render(functionsTestTemplate, funcListView);
-jetpack.write('./src/functions/__tests__/functions.test.js', functionsTestFile);
+jetpack.write('./test/functions/functions.test.js', functionsTestFile);
 
 function toCamelCase(str) {
     return str.replace(/-[a-z]/g, (g) => g[1].toUpperCase());

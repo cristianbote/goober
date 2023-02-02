@@ -1,1 +1,1 @@
-export default (name, delim) => (...args) => `${name}(${args.join(delim)})`;
+export default (name, delim = ' ') => (...args) => `${name}(${args.join(delim)})`;

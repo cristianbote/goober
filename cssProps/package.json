@@ -1,8 +1,8 @@
 {
-  "name": "goober-cssProps",
+  "name": "@goober/css",
   "amdName": "gooberCssProps",
-  "version": "0.0.1",
-  "description": "The cssProps addon function for goober",
+  "version": "0.1.0",
+  "description": "The css property helper functions for goober",
   "sideEffects": false,
   "main": "dist/goober-cssProps.js",
   "module": "dist/goober-cssProps.esm.js",
@@ -11,7 +11,7 @@
   "unpkg": "dist/goober-cssProps.umd.js",
   "types": "./cssProps.d.ts",
   "scripts": {
-    "build": "rm -rf dist && microbundle --entry src/index.js --name gooberCssProps --no-sourcemap",
+    "build": "node scripts/generateAtRules.js && node scripts/generateConstants.js && node scripts/generateFunctions.js && node scripts/generateProps.js && node scripts/generatePseudos.js && node scripts/generateSyntaxes.js && node scripts/generateTypes.js && node scripts/generateUnits.js",
     "test": "jest"
   },
   "repository": {
@@ -38,7 +38,6 @@
     "jest": "^24.1.0",
     "mdn-browser-compat-data": "^1.1.2",
     "mdn-data": "^2.0.22",
-    "microbundle": "^0.12.4",
     "mustache": "^4.2.0",
     "preact": "^10.5.6"
   }

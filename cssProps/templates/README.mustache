@@ -1,0 +1,123 @@
+# CssProps
+
+CssProps is a set of utility functions to make it easier to write CSS in JS.
+
+```javascript
+import { minWidth, color, background, fontSize } from 'goober/CssProps'
+import { rgb } from 'goober/functions'
+import { hover } from 'goober/pseudo'
+import { media } from 'goober/atRules'
+import { px, em, fr } from 'goober/units'
+import { string } from 'goober/util'
+
+const MIN_WIDTH = 900;
+
+const StyledContainer = styled("div")((props) => [
+    minWidth(px(20)),
+    hover([
+        color(rgb(0, 0, 0)),
+        background(props.theme.color)
+    ]),
+    grid([string("a"), px(100), string("b"), fr(1)].join(' ')),
+    media(SCREEN, AND, `(min-width: ${px(MIN_WIDTH)})`, [
+        fontSize(em(5))
+    ])
+])
+```
+
+The functions are arranged in the following category
+
+* at rules - `@import`
+* constants - `AQUA, CENTER`
+* functions - `rgb(0, 0, 0)`
+* properties - `backgroundSize(px(15))`
+* pseudos - `hover([color(BLUE)])`
+* units - `em(10)`
+* util - `string(BLUE) //Outputs "blue" with double quotes`
+
+# At Rules
+
+{{#AtRules}}
+## {{atRule}}
+
+Syntax: {{mdnUrl}}#syntax
+
+```javascript
+{{atRuleCamelCase}}({{#AtRuleArgs}}args,{{/AtRuleArgs}}{{#CssProps}}[
+    prop1(),
+    prop2()
+]{{/CssProps}})
+```
+
+{{/AtRules}}
+
+# Constants
+
+{{#Constants}}
+* {{constant}}
+{{/Constants}}
+
+# Functions
+
+{{#Functions}}
+## {{function}}
+
+Syntax: {{mdnUrl}}#syntax
+
+```javascript
+styled("div")([
+    someCssProperty({{property}}(args)),
+])
+```
+
+{{/Functions}}
+
+# Properties
+
+{{#Properties}}
+## {{property}}
+
+Syntax: {{mdnUrl}}#syntax
+
+```javascript
+styled("div")([
+    {{property}}(args),
+])
+```
+
+{{/Properties}}
+
+# Pseudos
+
+```javascript
+styled("div")([
+    hover([
+        color(BLUE)
+    ]),
+])
+```
+
+{{#Pseudos}}
+## {{pseudo}}
+Syntax: {{mdnUrl}}#syntax
+
+{{/Pseudos}}
+
+# Units
+
+```javascript
+styled("div")([
+    minWidth(px(10))
+])
+```
+
+{{#Pseudos}}
+## {{pseudo}}
+Syntax: {{mdnUrl}}#syntax
+
+{{/Pseudos}}
+
+# Util
+
+* append - builds a function that joins arguments based on a delimiter.  `append('rgb', ' ')` returns the rgb(0,0,0) function
+* string - wrap a string in quotations.  `string(hello)` returns "hello"

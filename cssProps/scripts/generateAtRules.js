@@ -54,20 +54,24 @@ const atRulesSyntax = Object.keys(cssStandardAtRules).reduce((result, nextKey) =
 
 jetpack.write('./syntax/atRules.syntax.json', atRulesSyntax);
 
+const atRulesIndexTemplate = jetpack.read('./templates/atRules.index.mustache');
+const atRulesatRuleIndexTemplate = jetpack.read('./templates/atRules.atRule.index.mustache');
+const atRulesTestTemplate = jetpack.read('./templates/atRules.test.mustache');
+
 //Loop through all the css properties generating the source code, the root index file, and the jest tests
 Object.keys(cssStandardAtRules).forEach((atRule) => {
-    const isNested = ['@charset', '@import', '@namespace'].includes(atRule) ? false : true;
-    const atRuleCamelCase = toCamelCase(atRule.slice(1)); //Also removes '@' character
+    //Figure out function signature based on atRule syntax
+    const tokens = cssStandardAtRules[atRule].syntax.split(/\s+/);
+    const hasArguments = !tokens[1] === '{'; //First token is atRule name
+    const hasProperties = tokens.includes('{'); //This at rule has properties when a '{' is found in the syntax
+    const atRuleCamelCase = toCamelCase(atRule.slice(1)); //Removes '@' character
 
     jetpack.dir(`./src/atRules/${atRuleCamelCase}`);
-    jetpack.write(
-        `./src/atRules/${atRuleCamelCase}/index.js`,
-        functionIndexTemplate(atRule, atRuleCamelCase)
-    );
+    jetpack.write(`./src/atRules/${atRuleCamelCase}/index.js`);
 });
 
 jetpack.write('./src/atRules/index.js', indexTemplate);
-jetpack.write('./src/atRules/__tests__/atRules.test.js', testTemplate);
+jetpack.write('./test/atRules/atRules.test.js', testTemplate);
 
 function toCamelCase(str) {
     return str.replace(/-[a-z]/g, (g) => g[1].toUpperCase());

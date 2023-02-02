@@ -44,4 +44,4 @@ unitsIndexFile = Mustache.render(unitsIndexTemplate, unitsListView);
 jetpack.write('./src/units/index.js', unitsIndexFile);
 
 unitsTestFile = Mustache.render(unitsTestTemplate, unitsListView);
-jetpack.write('./src/units/__tests__/units.test.js', unitsTestFile);
+jetpack.write('./test/units/units.test.js', unitsTestFile);

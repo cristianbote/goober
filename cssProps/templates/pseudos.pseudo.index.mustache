@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name {{pseudoCamelCase}}
  * @category CssProps Helper
@@ -16,5 +15,5 @@ export default function {{pseudoCamelCase}}(arrayOfProps) {
         "&{{pseudo}}": arrayOfProps.reduce((result, cssPropObj) => {
             return Object.assign(result, cssPropObj)
         }, {})
-    }
+    };
 }
