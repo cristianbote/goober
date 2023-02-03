@@ -137,6 +137,7 @@ Here we go:
 | `css` prop             | ✅      | ✅                | ✅      |
 | `styled`               | ✅      | ✅                | ✅      |
 | `styled.<tag>`         | ✅ \*2  | ✅                | ✅      |
+| default export  | 🛑      | ✅                | ✅      |
 | `as`                   | ✅      | ✅                | ✅      |
 | `.withComponent`       | 🛑      | ✅                | ✅      |
 | `.attrs`               | 🛑      | ✅                | 🛑      |
