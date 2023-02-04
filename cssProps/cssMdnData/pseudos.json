@@ -1,0 +1,272 @@
+{
+  ":active": {
+    "syntax": ":active",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:active#syntax"
+  },
+  ":any-link": {
+    "syntax": ":any-link",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:any-link#syntax"
+  },
+  ":checked": {
+    "syntax": ":checked",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:checked#syntax"
+  },
+  ":default": {
+    "syntax": ":default",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:default#syntax"
+  },
+  ":dir": {
+    "syntax": ":dir( [ ltr | rtl ] )",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:dir#syntax"
+  },
+  ":disabled": {
+    "syntax": ":disabled",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:disabled#syntax"
+  },
+  ":empty": {
+    "syntax": ":empty",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:empty#syntax"
+  },
+  ":enabled": {
+    "syntax": ":enabled",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:enabled#syntax"
+  },
+  ":first": {
+    "syntax": ":first",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:first#syntax"
+  },
+  ":first-child": {
+    "syntax": ":first-child",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:first-child#syntax"
+  },
+  ":first-of-type": {
+    "syntax": ":first-of-type",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:first-of-type#syntax"
+  },
+  ":fullscreen": {
+    "syntax": ":fullscreen",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:fullscreen#syntax"
+  },
+  ":future": {
+    "syntax": ":future",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:future#syntax"
+  },
+  ":focus": {
+    "syntax": ":focus",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:focus#syntax"
+  },
+  ":focus-visible": {
+    "syntax": ":focus-visible",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:focus-visible#syntax"
+  },
+  ":focus-within": {
+    "syntax": ":focus-within",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:focus-within#syntax"
+  },
+  ":hover": {
+    "syntax": ":hover",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:hover#syntax"
+  },
+  ":indeterminate": {
+    "syntax": ":indeterminate",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:indeterminate#syntax"
+  },
+  ":in-range": {
+    "syntax": ":in-range",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:in-range#syntax"
+  },
+  ":invalid": {
+    "syntax": ":invalid",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:invalid#syntax"
+  },
+  ":lang": {
+    "syntax": ":lang( <language-code> )",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:lang#syntax"
+  },
+  ":last-child": {
+    "syntax": ":last-child",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:last-child#syntax"
+  },
+  ":last-of-type": {
+    "syntax": ":last-of-type",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:last-of-type#syntax"
+  },
+  ":left": {
+    "syntax": ":left",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:left#syntax"
+  },
+  ":link": {
+    "syntax": ":link",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:link#syntax"
+  },
+  ":not": {
+    "syntax": ":not( <complex-selector-list> )",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:not#syntax"
+  },
+  ":nth-child": {
+    "syntax": ":nth-child( <nth> [ of <complex-selector-list> ]? )",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:nth-child#syntax"
+  },
+  ":nth-last-child": {
+    "syntax": ":nth-last-child( <nth> [ of <complex-selector-list> ]? )",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:nth-last-child#syntax"
+  },
+  ":nth-last-of-type": {
+    "syntax": ":nth-last-of-type( <nth> )",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:nth-last-of-type#syntax"
+  },
+  ":nth-of-type": {
+    "syntax": ":nth-of-type( <nth> )",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:nth-of-type#syntax"
+  },
+  ":only-child": {
+    "syntax": ":only-child",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:only-child#syntax"
+  },
+  ":only-of-type": {
+    "syntax": ":only-of-type",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:only-of-type#syntax"
+  },
+  ":optional": {
+    "syntax": ":optional",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:optional#syntax"
+  },
+  ":out-of-range": {
+    "syntax": ":out-of-range",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:out-of-range#syntax"
+  },
+  ":read-only": {
+    "syntax": ":read-only",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:read-only#syntax"
+  },
+  ":read-write": {
+    "syntax": ":read-write",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:read-write#syntax"
+  },
+  ":required": {
+    "syntax": ":required",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:required#syntax"
+  },
+  ":right": {
+    "syntax": ":right",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:right#syntax"
+  },
+  ":root": {
+    "syntax": ":root",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:root#syntax"
+  },
+  ":scope": {
+    "syntax": ":scope",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:scope#syntax"
+  },
+  ":target": {
+    "syntax": ":target",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:target#syntax"
+  },
+  ":valid": {
+    "syntax": ":valid",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:valid#syntax"
+  },
+  ":visited": {
+    "syntax": ":visited",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/:visited#syntax"
+  },
+  "::after": {
+    "syntax": "/* CSS3 syntax */::after/* CSS2 syntax */:after",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/::after#syntax"
+  },
+  "::backdrop": {
+    "syntax": "::backdrop",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/::backdrop#syntax"
+  },
+  "::before": {
+    "syntax": "/* CSS3 syntax */::before/* CSS2 syntax */:before",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/::before#syntax"
+  },
+  "::cue": {
+    "syntax": "::cue | ::cue( <selector> )",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/::cue#syntax"
+  },
+  "::cue-region": {
+    "syntax": "::cue-region | ::cue-region( <selector> )",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/::cue-region#syntax"
+  },
+  "::first-letter": {
+    "syntax": "/* CSS3 syntax */::first-letter/* CSS2 syntax */:first-letter",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/::first-letter#syntax"
+  },
+  "::first-line": {
+    "syntax": "/* CSS3 syntax */::first-line/* CSS2 syntax */:first-line",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/::first-line#syntax"
+  },
+  "::marker": {
+    "syntax": "::marker",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/::marker#syntax"
+  },
+  "::placeholder": {
+    "syntax": "::placeholder",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/::placeholder#syntax"
+  },
+  "::selection": {
+    "syntax": "::selection",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/::selection#syntax"
+  },
+  "::slotted": {
+    "syntax": "::slotted( <compound-selector> )",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/::slotted#syntax"
+  }
+}
