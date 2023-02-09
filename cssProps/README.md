@@ -1,3 +1,5 @@
+** Do not modify this file. This file is generated from ./cssProps/templates/README.mustache **
+
 # CssProps
 
 CssProps is a set of utility functions to make it easier to write CSS in JS.
@@ -25,6 +27,8 @@ const StyledContainer = styled('div')((props) => [
     media(`screen and (min-width: ${px(MIN_WIDTH)})`, [fontSize(em(5))])
 ]);
 ```
+
+**All the JavaScript code and documentation in cssProps is automatically generated from Mustache files in the templates directory**
 
 The functions are arranged in the following category
 

@@ -30,15 +30,15 @@
     "goober": "^2.0.29"
   },
   "devDependencies": {
-    "@babel/plugin-transform-react-jsx": "^7.7.0",
-    "@babel/preset-env": "^7.3.1",
-    "babel-jest": "^24.1.0",
-    "fs-jetpack": "^4.2.0",
-    "goober": "^2.0.29",
-    "jest": "^24.1.0",
-    "mdn-browser-compat-data": "^1.1.2",
-    "mdn-data": "^2.0.22",
-    "mustache": "^4.2.0",
+    "@babel/plugin-transform-react-jsx": "^7.x",
+    "@babel/preset-env": "^7.x",
+    "babel-jest": "^29.x",
+    "fs-jetpack": "^4.x",
+    "goober": "^2.x",
+    "jest": "^29.x",
+    "mdn-browser-compat-data": "^1.x",
+    "mdn-data": "^2.0.31",
+    "mustache": "^4.x",
     "preact": "^10.5.6"
   }
 }

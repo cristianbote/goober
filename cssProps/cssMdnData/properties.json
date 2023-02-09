@@ -25,7 +25,7 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/align-self#syntax"
   },
   "all": {
-    "syntax": "initial | inherit | unset | revert",
+    "syntax": "initial | inherit | unset | revert | revert-layer",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/all#syntax"
   },
@@ -484,10 +484,20 @@
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/caption-side#syntax"
   },
+  "caret": {
+    "syntax": "<'caret-color'> || <'caret-shape'>",
+    "status": "standard",
+    "mdn_url": "undefined#syntax"
+  },
   "caret-color": {
     "syntax": "auto | <color>",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/caret-color#syntax"
+  },
+  "caret-shape": {
+    "syntax": "auto | bar | block | underscore",
+    "status": "standard",
+    "mdn_url": "undefined#syntax"
   },
   "clear": {
     "syntax": "none | left | right | both | inline-start | inline-end",
@@ -509,13 +519,13 @@
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/color#syntax"
   },
-  "color-adjust": {
+  "print-color-adjust": {
     "syntax": "economy | exact",
     "status": "standard",
-    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/color-adjust#syntax"
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/print-color-adjust#syntax"
   },
   "color-scheme": {
-    "syntax": "normal | [ light | dark | <custom-ident> ]+",
+    "syntax": "normal | [ light | dark | <custom-ident> ]+ && only?",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/color-scheme#syntax"
   },
@@ -570,12 +580,12 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/columns#syntax"
   },
   "contain": {
-    "syntax": "none | strict | content | [ size || layout || style || paint ]",
+    "syntax": "none | strict | content | [ [ size || inline-size ] || layout || style || paint ]",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/contain#syntax"
   },
   "content": {
-    "syntax": "normal | none | [ <content-replacement> | <content-list> ] [/ <string> ]?",
+    "syntax": "normal | none | [ <content-replacement> | <content-list> ] [/ [ <string> | <counter> ]+ ]?",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/content#syntax"
   },
@@ -585,17 +595,17 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/content-visibility#syntax"
   },
   "counter-increment": {
-    "syntax": "[ <custom-ident> <integer>? ]+ | none",
+    "syntax": "[ <counter-name> <integer>? ]+ | none",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/counter-increment#syntax"
   },
   "counter-reset": {
-    "syntax": "[ <custom-ident> <integer>? ]+ | none",
+    "syntax": "[ <counter-name> <integer>? | <reversed-counter-name> <integer>? ]+ | none",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/counter-reset#syntax"
   },
   "counter-set": {
-    "syntax": "[ <custom-ident> <integer>? ]+ | none",
+    "syntax": "[ <counter-name> <integer>? ]+ | none",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/counter-set#syntax"
   },
@@ -854,6 +864,16 @@
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/height#syntax"
   },
+  "hyphenate-character": {
+    "syntax": "auto | <string>",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/hyphenate-character#syntax"
+  },
+  "hyphenate-limit-chars": {
+    "syntax": "[ auto | <integer> ]{1,3 }",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/hyphenate-limit-chars#syntax"
+  },
   "hyphens": {
     "syntax": "none | manual | auto",
     "status": "standard",
@@ -873,6 +893,11 @@
     "syntax": "<'width'>",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/inline-size#syntax"
+  },
+  "input-security": {
+    "syntax": "auto | none",
+    "status": "standard",
+    "mdn_url": "undefined#syntax"
   },
   "inset": {
     "syntax": "<'top'>{1,4 }",
@@ -1109,6 +1134,16 @@
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mask-type#syntax"
   },
+  "math-depth": {
+    "syntax": "auto-add | add(<integer>) | <integer>",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/math-depth#syntax"
+  },
+  "math-shift": {
+    "syntax": "normal | compact",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/math-shift#syntax"
+  },
   "math-style": {
     "syntax": "normal | compact",
     "status": "standard",
@@ -1155,7 +1190,7 @@
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/min-width#syntax"
   },
   "mix-blend-mode": {
-    "syntax": "<blend-mode>",
+    "syntax": "<blend-mode> | plus-lighter",
     "status": "standard",
     "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/mix-blend-mode#syntax"
   },

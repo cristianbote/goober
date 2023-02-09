@@ -6,7 +6,7 @@ const mdnData = require('mdn-data');
 //[ 'api', 'css', 'l10n' ]
 const cssData = mdnData.css;
 
-//[ 'atRules', 'selectors', 'types', 'properties', 'syntaxes', 'units' ]
+//[ 'atRules', 'selectors', 'types', 'properties', 'syntaxes', 'units', 'functions' ]
 
 const cssAtRules = cssData.atRules;
 const atRules = Object.keys(cssAtRules)
@@ -63,6 +63,11 @@ const pseudos = Object.keys(cssSelectors)
 
 jetpack.write('./cssMdnData/pseudos.json', pseudos);
 
+const cssUnits = cssData.units;
+const units = Object.keys(cssUnits).filter((unit) => cssUnits[unit].status === 'standard');
+
+jetpack.write('./cssMdnData/units.json', units);
+
 const cssSyntaxes = cssData.syntaxes;
 
 jetpack.write('./cssMdnData/syntaxes.json', cssSyntaxes);
@@ -77,19 +82,19 @@ constants = Object.keys(cssSyntaxes)
         return result.concat(constantTokens);
     }, [])
     //Remove duplicates
-    .filter((constant, index, list) => list.indexOf(constant) === index);
+    .filter((constant, index, list) => list.indexOf(constant) === index)
+    .sort();
 
 jetpack.write('./cssMdnData/constants.json', constants);
 
-functions = Object.keys(cssSyntaxes)
-    .filter((name) => name.slice(-2) === '()')
-    .reduce((result, name) => {
-        result[name] = cssSyntaxes[name];
-        result[name].mdn_url = `https://developer.mozilla.org/en-US/docs/Web/CSS/${name.slice(
-            0,
-            -2
-        )}#syntax`;
-        return result;
-    }, {});
+const cssFunctions = cssData.functions;
+
+functions = Object.keys(cssFunctions).reduce((result, name) => {
+    result[name] = {
+        syntax: cssFunctions[name].syntax,
+        mdn_url: cssFunctions[name].mdn_url + '#syntax'
+    };
+    return result;
+}, {});
 
 jetpack.write('./cssMdnData/functions.json', functions);
