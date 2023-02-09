@@ -13,7 +13,7 @@
  * @returns {{atRuleReturnType}} - {{atRuleReturnDescription}}
  */
 
-export default function {{atRuleCamelCase}}({{#atRuleArgs}}{{atRuleArg}},{{/atRuleArgs}}{{#cssProps}}cssProps{{/cssProps}}) {
+export default function {{atRuleCamelCase}}({{#hasArgs}}args{{/hasArgs}}{{#hasProps}}, cssProps{{/hasProps}}) {
     return {
         ["{{atRule}}{{#atRuleFunction}}({{rule}}){{/atRuleFunction}}"]: cssProps.reduce((result, cssPropObj) => {
             return Object.assign(result, cssPropObj)
