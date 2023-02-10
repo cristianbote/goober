@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name indeterminate
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :indeterminate property as object with object of css properties
  */
 
-export default function indeterminate(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function indeterminate(cssProps) {
     return {
-        '&:indeterminate': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:indeterminate': flatten(cssProps)
     };
 }

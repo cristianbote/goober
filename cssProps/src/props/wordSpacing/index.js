@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name wordSpacing
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns wordSpacing property as object
  */
 
-export default function wordSpacing() {
+export default function wordSpacing(...args) {
     return {
-        wordSpacing: appendArgs(arguments)
+        wordSpacing: args.join(' ')
     };
 }

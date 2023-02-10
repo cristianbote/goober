@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name shapeMargin
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns shapeMargin property as object
  */
 
-export default function shapeMargin() {
+export default function shapeMargin(...args) {
     return {
-        shapeMargin: appendArgs(arguments)
+        shapeMargin: args.join(' ')
     };
 }

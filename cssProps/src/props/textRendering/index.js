@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textRendering
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textRendering property as object
  */
 
-export default function textRendering() {
+export default function textRendering(...args) {
     return {
-        textRendering: appendArgs(arguments)
+        textRendering: args.join(' ')
     };
 }

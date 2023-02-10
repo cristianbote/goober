@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name wordWrap
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns wordWrap property as object
  */
 
-export default function wordWrap() {
+export default function wordWrap(...args) {
     return {
-        wordWrap: appendArgs(arguments)
+        wordWrap: args.join(' ')
     };
 }

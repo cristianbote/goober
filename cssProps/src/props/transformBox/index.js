@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name transformBox
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns transformBox property as object
  */
 
-export default function transformBox() {
+export default function transformBox(...args) {
     return {
-        transformBox: appendArgs(arguments)
+        transformBox: args.join(' ')
     };
 }

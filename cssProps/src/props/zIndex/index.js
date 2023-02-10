@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name zIndex
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns zIndex property as object
  */
 
-export default function zIndex() {
+export default function zIndex(...args) {
     return {
-        zIndex: appendArgs(arguments)
+        zIndex: args.join(' ')
     };
 }

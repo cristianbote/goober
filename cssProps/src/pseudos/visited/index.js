@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name visited
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :visited property as object with object of css properties
  */
 
-export default function visited(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function visited(cssProps) {
     return {
-        '&:visited': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:visited': flatten(cssProps)
     };
 }

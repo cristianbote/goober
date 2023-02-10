@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name translate
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns translate property as object
  */
 
-export default function translate() {
+export default function translate(...args) {
     return {
-        translate: appendArgs(arguments)
+        translate: args.join(' ')
     };
 }

@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name marker
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns ::marker property as object with object of css properties
  */
 
-export default function marker(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function marker(cssProps) {
     return {
-        '&::marker': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&::marker': flatten(cssProps)
     };
 }

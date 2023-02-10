@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name onlyChild
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :only-child property as object with object of css properties
  */
 
-export default function onlyChild(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function onlyChild(cssProps) {
     return {
-        '&:only-child': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:only-child': flatten(cssProps)
     };
 }

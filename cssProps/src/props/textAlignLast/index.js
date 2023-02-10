@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textAlignLast
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textAlignLast property as object
  */
 
-export default function textAlignLast() {
+export default function textAlignLast(...args) {
     return {
-        textAlignLast: appendArgs(arguments)
+        textAlignLast: args.join(' ')
     };
 }

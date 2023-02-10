@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name hover
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :hover property as object with object of css properties
  */
 
-export default function hover(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function hover(cssProps) {
     return {
-        '&:hover': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:hover': flatten(cssProps)
     };
 }

@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name selection
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns ::selection property as object with object of css properties
  */
 
-export default function selection(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function selection(cssProps) {
     return {
-        '&::selection': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&::selection': flatten(cssProps)
     };
 }

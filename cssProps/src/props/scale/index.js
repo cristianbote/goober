@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name scale
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns scale property as object
  */
 
-export default function scale() {
+export default function scale(...args) {
     return {
-        scale: appendArgs(arguments)
+        scale: args.join(' ')
     };
 }

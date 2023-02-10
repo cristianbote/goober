@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name paintOrder
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns paintOrder property as object
  */
 
-export default function paintOrder() {
+export default function paintOrder(...args) {
     return {
-        paintOrder: appendArgs(arguments)
+        paintOrder: args.join(' ')
     };
 }

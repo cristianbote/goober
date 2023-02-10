@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name inRange
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :in-range property as object with object of css properties
  */
 
-export default function inRange(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function inRange(cssProps) {
     return {
-        '&:in-range': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:in-range': flatten(cssProps)
     };
 }

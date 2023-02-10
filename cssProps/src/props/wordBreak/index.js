@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name wordBreak
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns wordBreak property as object
  */
 
-export default function wordBreak() {
+export default function wordBreak(...args) {
     return {
-        wordBreak: appendArgs(arguments)
+        wordBreak: args.join(' ')
     };
 }

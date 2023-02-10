@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name nthOfType
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :nth-of-type property as object with object of css properties
  */
 
-export default function nthOfType(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function nthOfType(cssProps) {
     return {
-        '&:nth-of-type': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:nth-of-type': flatten(cssProps)
     };
 }

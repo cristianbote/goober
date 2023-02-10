@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name readWrite
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :read-write property as object with object of css properties
  */
 
-export default function readWrite(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function readWrite(cssProps) {
     return {
-        '&:read-write': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:read-write': flatten(cssProps)
     };
 }

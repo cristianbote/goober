@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name tabSize
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns tabSize property as object
  */
 
-export default function tabSize() {
+export default function tabSize(...args) {
     return {
-        tabSize: appendArgs(arguments)
+        tabSize: args.join(' ')
     };
 }

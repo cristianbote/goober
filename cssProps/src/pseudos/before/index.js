@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name before
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns ::before property as object with object of css properties
  */
 
-export default function before(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function before(cssProps) {
     return {
-        '&::before': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&::before': flatten(cssProps)
     };
 }

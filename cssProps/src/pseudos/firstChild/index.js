@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name firstChild
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :first-child property as object with object of css properties
  */
 
-export default function firstChild(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function firstChild(cssProps) {
     return {
-        '&:first-child': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:first-child': flatten(cssProps)
     };
 }

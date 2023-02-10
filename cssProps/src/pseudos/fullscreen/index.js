@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name fullscreen
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :fullscreen property as object with object of css properties
  */
 
-export default function fullscreen(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function fullscreen(cssProps) {
     return {
-        '&:fullscreen': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:fullscreen': flatten(cssProps)
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name transitionDelay
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns transitionDelay property as object
  */
 
-export default function transitionDelay() {
+export default function transitionDelay(...args) {
     return {
-        transitionDelay: appendArgs(arguments)
+        transitionDelay: args.join(' ')
     };
 }

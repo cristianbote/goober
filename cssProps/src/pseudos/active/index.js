@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name active
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :active property as object with object of css properties
  */
 
-export default function active(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function active(cssProps) {
     return {
-        '&:active': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:active': flatten(cssProps)
     };
 }

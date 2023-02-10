@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name scope
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :scope property as object with object of css properties
  */
 
-export default function scope(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function scope(cssProps) {
     return {
-        '&:scope': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:scope': flatten(cssProps)
     };
 }

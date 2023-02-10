@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name visibility
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns visibility property as object
  */
 
-export default function visibility() {
+export default function visibility(...args) {
     return {
-        visibility: appendArgs(arguments)
+        visibility: args.join(' ')
     };
 }

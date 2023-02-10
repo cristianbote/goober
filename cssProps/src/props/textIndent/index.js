@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textIndent
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textIndent property as object
  */
 
-export default function textIndent() {
+export default function textIndent(...args) {
     return {
-        textIndent: appendArgs(arguments)
+        textIndent: args.join(' ')
     };
 }

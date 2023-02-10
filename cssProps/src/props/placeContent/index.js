@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name placeContent
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns placeContent property as object
  */
 
-export default function placeContent() {
+export default function placeContent(...args) {
     return {
-        placeContent: appendArgs(arguments)
+        placeContent: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name top
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns top property as object
  */
 
-export default function top() {
+export default function top(...args) {
     return {
-        top: appendArgs(arguments)
+        top: args.join(' ')
     };
 }

@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.index.mustache */
 export { default as active } from './active/index';
 export { default as anyLink } from './anyLink/index';
 export { default as checked } from './checked/index';

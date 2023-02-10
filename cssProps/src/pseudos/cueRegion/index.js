@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name cueRegion
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns ::cue-region property as object with object of css properties
  */
 
-export default function cueRegion(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function cueRegion(cssProps) {
     return {
-        '&::cue-region': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&::cue-region': flatten(cssProps)
     };
 }

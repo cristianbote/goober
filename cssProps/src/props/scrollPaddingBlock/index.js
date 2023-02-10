@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name scrollPaddingBlock
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns scrollPaddingBlock property as object
  */
 
-export default function scrollPaddingBlock() {
+export default function scrollPaddingBlock(...args) {
     return {
-        scrollPaddingBlock: appendArgs(arguments)
+        scrollPaddingBlock: args.join(' ')
     };
 }

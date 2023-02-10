@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name tableLayout
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns tableLayout property as object
  */
 
-export default function tableLayout() {
+export default function tableLayout(...args) {
     return {
-        tableLayout: appendArgs(arguments)
+        tableLayout: args.join(' ')
     };
 }

@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name onlyOfType
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :only-of-type property as object with object of css properties
  */
 
-export default function onlyOfType(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function onlyOfType(cssProps) {
     return {
-        '&:only-of-type': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:only-of-type': flatten(cssProps)
     };
 }

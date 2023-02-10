@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name shapeImageThreshold
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns shapeImageThreshold property as object
  */
 
-export default function shapeImageThreshold() {
+export default function shapeImageThreshold(...args) {
     return {
-        shapeImageThreshold: appendArgs(arguments)
+        shapeImageThreshold: args.join(' ')
     };
 }

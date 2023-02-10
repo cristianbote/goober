@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textDecorationStyle
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textDecorationStyle property as object
  */
 
-export default function textDecorationStyle() {
+export default function textDecorationStyle(...args) {
     return {
-        textDecorationStyle: appendArgs(arguments)
+        textDecorationStyle: args.join(' ')
     };
 }

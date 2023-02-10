@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name focusWithin
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :focus-within property as object with object of css properties
  */
 
-export default function focusWithin(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function focusWithin(cssProps) {
     return {
-        '&:focus-within': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:focus-within': flatten(cssProps)
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name willChange
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns willChange property as object
  */
 
-export default function willChange() {
+export default function willChange(...args) {
     return {
-        willChange: appendArgs(arguments)
+        willChange: args.join(' ')
     };
 }

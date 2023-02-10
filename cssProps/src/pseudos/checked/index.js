@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name checked
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :checked property as object with object of css properties
  */
 
-export default function checked(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function checked(cssProps) {
     return {
-        '&:checked': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:checked': flatten(cssProps)
     };
 }

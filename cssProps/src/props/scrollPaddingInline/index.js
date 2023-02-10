@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name scrollPaddingInline
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns scrollPaddingInline property as object
  */
 
-export default function scrollPaddingInline() {
+export default function scrollPaddingInline(...args) {
     return {
-        scrollPaddingInline: appendArgs(arguments)
+        scrollPaddingInline: args.join(' ')
     };
 }

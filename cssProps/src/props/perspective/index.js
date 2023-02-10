@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name perspective
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns perspective property as object
  */
 
-export default function perspective() {
+export default function perspective(...args) {
     return {
-        perspective: appendArgs(arguments)
+        perspective: args.join(' ')
     };
 }

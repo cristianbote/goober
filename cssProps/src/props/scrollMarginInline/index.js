@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name scrollMarginInline
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns scrollMarginInline property as object
  */
 
-export default function scrollMarginInline() {
+export default function scrollMarginInline(...args) {
     return {
-        scrollMarginInline: appendArgs(arguments)
+        scrollMarginInline: args.join(' ')
     };
 }

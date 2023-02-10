@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name scrollMarginTop
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns scrollMarginTop property as object
  */
 
-export default function scrollMarginTop() {
+export default function scrollMarginTop(...args) {
     return {
-        scrollMarginTop: appendArgs(arguments)
+        scrollMarginTop: args.join(' ')
     };
 }

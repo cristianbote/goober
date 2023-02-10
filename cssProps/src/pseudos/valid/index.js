@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name valid
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :valid property as object with object of css properties
  */
 
-export default function valid(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function valid(cssProps) {
     return {
-        '&:valid': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:valid': flatten(cssProps)
     };
 }

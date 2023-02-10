@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name backdrop
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns ::backdrop property as object with object of css properties
  */
 
-export default function backdrop(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function backdrop(cssProps) {
     return {
-        '&::backdrop': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&::backdrop': flatten(cssProps)
     };
 }

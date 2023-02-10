@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textDecorationThickness
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textDecorationThickness property as object
  */
 
-export default function textDecorationThickness() {
+export default function textDecorationThickness(...args) {
     return {
-        textDecorationThickness: appendArgs(arguments)
+        textDecorationThickness: args.join(' ')
     };
 }

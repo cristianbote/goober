@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textOrientation
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textOrientation property as object
  */
 
-export default function textOrientation() {
+export default function textOrientation(...args) {
     return {
-        textOrientation: appendArgs(arguments)
+        textOrientation: args.join(' ')
     };
 }

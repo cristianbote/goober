@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textCombineUpright
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textCombineUpright property as object
  */
 
-export default function textCombineUpright() {
+export default function textCombineUpright(...args) {
     return {
-        textCombineUpright: appendArgs(arguments)
+        textCombineUpright: args.join(' ')
     };
 }

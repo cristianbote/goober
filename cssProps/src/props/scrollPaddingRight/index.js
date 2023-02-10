@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name scrollPaddingRight
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns scrollPaddingRight property as object
  */
 
-export default function scrollPaddingRight() {
+export default function scrollPaddingRight(...args) {
     return {
-        scrollPaddingRight: appendArgs(arguments)
+        scrollPaddingRight: args.join(' ')
     };
 }

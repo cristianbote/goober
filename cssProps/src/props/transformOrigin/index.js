@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name transformOrigin
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns transformOrigin property as object
  */
 
-export default function transformOrigin() {
+export default function transformOrigin(...args) {
     return {
-        transformOrigin: appendArgs(arguments)
+        transformOrigin: args.join(' ')
     };
 }

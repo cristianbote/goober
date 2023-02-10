@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name transition
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns transition property as object
  */
 
-export default function transition() {
+export default function transition(...args) {
     return {
-        transition: appendArgs(arguments)
+        transition: args.join(' ')
     };
 }

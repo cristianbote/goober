@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name optional
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :optional property as object with object of css properties
  */
 
-export default function optional(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function optional(cssProps) {
     return {
-        '&:optional': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:optional': flatten(cssProps)
     };
 }

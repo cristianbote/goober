@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name rowGap
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns rowGap property as object
  */
 
-export default function rowGap() {
+export default function rowGap(...args) {
     return {
-        rowGap: appendArgs(arguments)
+        rowGap: args.join(' ')
     };
 }

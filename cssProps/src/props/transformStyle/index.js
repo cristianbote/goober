@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name transformStyle
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns transformStyle property as object
  */
 
-export default function transformStyle() {
+export default function transformStyle(...args) {
     return {
-        transformStyle: appendArgs(arguments)
+        transformStyle: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name userSelect
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns userSelect property as object
  */
 
-export default function userSelect() {
+export default function userSelect(...args) {
     return {
-        userSelect: appendArgs(arguments)
+        userSelect: args.join(' ')
     };
 }

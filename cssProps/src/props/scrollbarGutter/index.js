@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name scrollbarGutter
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns scrollbarGutter property as object
  */
 
-export default function scrollbarGutter() {
+export default function scrollbarGutter(...args) {
     return {
-        scrollbarGutter: appendArgs(arguments)
+        scrollbarGutter: args.join(' ')
     };
 }

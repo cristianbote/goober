@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name scrollbarWidth
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns scrollbarWidth property as object
  */
 
-export default function scrollbarWidth() {
+export default function scrollbarWidth(...args) {
     return {
-        scrollbarWidth: appendArgs(arguments)
+        scrollbarWidth: args.join(' ')
     };
 }

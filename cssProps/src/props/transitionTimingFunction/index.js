@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name transitionTimingFunction
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns transitionTimingFunction property as object
  */
 
-export default function transitionTimingFunction() {
+export default function transitionTimingFunction(...args) {
     return {
-        transitionTimingFunction: appendArgs(arguments)
+        transitionTimingFunction: args.join(' ')
     };
 }

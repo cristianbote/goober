@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name quotes
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns quotes property as object
  */
 
-export default function quotes() {
+export default function quotes(...args) {
     return {
-        quotes: appendArgs(arguments)
+        quotes: args.join(' ')
     };
 }

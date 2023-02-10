@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name resize
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns resize property as object
  */
 
-export default function resize() {
+export default function resize(...args) {
     return {
-        resize: appendArgs(arguments)
+        resize: args.join(' ')
     };
 }

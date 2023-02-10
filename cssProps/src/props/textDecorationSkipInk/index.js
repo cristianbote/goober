@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textDecorationSkipInk
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textDecorationSkipInk property as object
  */
 
-export default function textDecorationSkipInk() {
+export default function textDecorationSkipInk(...args) {
     return {
-        textDecorationSkipInk: appendArgs(arguments)
+        textDecorationSkipInk: args.join(' ')
     };
 }

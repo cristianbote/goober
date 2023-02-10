@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name lastOfType
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :last-of-type property as object with object of css properties
  */
 
-export default function lastOfType(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function lastOfType(cssProps) {
     return {
-        '&:last-of-type': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:last-of-type': flatten(cssProps)
     };
 }

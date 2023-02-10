@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name outOfRange
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :out-of-range property as object with object of css properties
  */
 
-export default function outOfRange(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function outOfRange(cssProps) {
     return {
-        '&:out-of-range': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:out-of-range': flatten(cssProps)
     };
 }

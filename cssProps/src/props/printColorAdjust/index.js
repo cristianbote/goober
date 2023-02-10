@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name printColorAdjust
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns printColorAdjust property as object
  */
 
-export default function printColorAdjust() {
+export default function printColorAdjust(...args) {
     return {
-        printColorAdjust: appendArgs(arguments)
+        printColorAdjust: args.join(' ')
     };
 }

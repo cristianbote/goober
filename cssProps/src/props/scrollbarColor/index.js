@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name scrollbarColor
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns scrollbarColor property as object
  */
 
-export default function scrollbarColor() {
+export default function scrollbarColor(...args) {
     return {
-        scrollbarColor: appendArgs(arguments)
+        scrollbarColor: args.join(' ')
     };
 }

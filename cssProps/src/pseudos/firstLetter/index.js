@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name firstLetter
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns ::first-letter property as object with object of css properties
  */
 
-export default function firstLetter(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function firstLetter(cssProps) {
     return {
-        '&::first-letter': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&::first-letter': flatten(cssProps)
     };
 }

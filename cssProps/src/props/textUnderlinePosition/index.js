@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textUnderlinePosition
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textUnderlinePosition property as object
  */
 
-export default function textUnderlinePosition() {
+export default function textUnderlinePosition(...args) {
     return {
-        textUnderlinePosition: appendArgs(arguments)
+        textUnderlinePosition: args.join(' ')
     };
 }

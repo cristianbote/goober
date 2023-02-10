@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name link
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :link property as object with object of css properties
  */
 
-export default function link(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function link(cssProps) {
     return {
-        '&:link': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:link': flatten(cssProps)
     };
 }

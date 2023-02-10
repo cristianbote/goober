@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name verticalAlign
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns verticalAlign property as object
  */
 
-export default function verticalAlign() {
+export default function verticalAlign(...args) {
     return {
-        verticalAlign: appendArgs(arguments)
+        verticalAlign: args.join(' ')
     };
 }

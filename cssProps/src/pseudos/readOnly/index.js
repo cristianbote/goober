@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name readOnly
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :read-only property as object with object of css properties
  */
 
-export default function readOnly(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function readOnly(cssProps) {
     return {
-        '&:read-only': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:read-only': flatten(cssProps)
     };
 }

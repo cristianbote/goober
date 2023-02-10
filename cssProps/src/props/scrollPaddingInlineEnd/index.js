@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name scrollPaddingInlineEnd
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns scrollPaddingInlineEnd property as object
  */
 
-export default function scrollPaddingInlineEnd() {
+export default function scrollPaddingInlineEnd(...args) {
     return {
-        scrollPaddingInlineEnd: appendArgs(arguments)
+        scrollPaddingInlineEnd: args.join(' ')
     };
 }

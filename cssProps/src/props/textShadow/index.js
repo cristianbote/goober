@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textShadow
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textShadow property as object
  */
 
-export default function textShadow() {
+export default function textShadow(...args) {
     return {
-        textShadow: appendArgs(arguments)
+        textShadow: args.join(' ')
     };
 }

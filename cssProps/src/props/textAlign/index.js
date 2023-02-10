@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textAlign
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textAlign property as object
  */
 
-export default function textAlign() {
+export default function textAlign(...args) {
     return {
-        textAlign: appendArgs(arguments)
+        textAlign: args.join(' ')
     };
 }

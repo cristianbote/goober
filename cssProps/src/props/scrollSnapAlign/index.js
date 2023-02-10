@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name scrollSnapAlign
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns scrollSnapAlign property as object
  */
 
-export default function scrollSnapAlign() {
+export default function scrollSnapAlign(...args) {
     return {
-        scrollSnapAlign: appendArgs(arguments)
+        scrollSnapAlign: args.join(' ')
     };
 }

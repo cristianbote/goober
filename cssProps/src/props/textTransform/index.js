@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textTransform
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textTransform property as object
  */
 
-export default function textTransform() {
+export default function textTransform(...args) {
     return {
-        textTransform: appendArgs(arguments)
+        textTransform: args.join(' ')
     };
 }

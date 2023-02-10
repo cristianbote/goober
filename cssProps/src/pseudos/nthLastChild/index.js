@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name nthLastChild
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :nth-last-child property as object with object of css properties
  */
 
-export default function nthLastChild(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function nthLastChild(cssProps) {
     return {
-        '&:nth-last-child': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:nth-last-child': flatten(cssProps)
     };
 }

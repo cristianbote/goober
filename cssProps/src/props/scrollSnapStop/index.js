@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name scrollSnapStop
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns scrollSnapStop property as object
  */
 
-export default function scrollSnapStop() {
+export default function scrollSnapStop(...args) {
     return {
-        scrollSnapStop: appendArgs(arguments)
+        scrollSnapStop: args.join(' ')
     };
 }

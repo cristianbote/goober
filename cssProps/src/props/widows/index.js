@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name widows
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns widows property as object
  */
 
-export default function widows() {
+export default function widows(...args) {
     return {
-        widows: appendArgs(arguments)
+        widows: args.join(' ')
     };
 }

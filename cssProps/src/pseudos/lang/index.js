@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name lang
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :lang property as object with object of css properties
  */
 
-export default function lang(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function lang(cssProps) {
     return {
-        '&:lang': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:lang': flatten(cssProps)
     };
 }

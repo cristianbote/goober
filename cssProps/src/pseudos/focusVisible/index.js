@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name focusVisible
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :focus-visible property as object with object of css properties
  */
 
-export default function focusVisible(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function focusVisible(cssProps) {
     return {
-        '&:focus-visible': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:focus-visible': flatten(cssProps)
     };
 }

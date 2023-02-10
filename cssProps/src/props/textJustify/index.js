@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textJustify
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textJustify property as object
  */
 
-export default function textJustify() {
+export default function textJustify(...args) {
     return {
-        textJustify: appendArgs(arguments)
+        textJustify: args.join(' ')
     };
 }

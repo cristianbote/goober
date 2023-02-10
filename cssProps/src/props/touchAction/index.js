@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name touchAction
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns touchAction property as object
  */
 
-export default function touchAction() {
+export default function touchAction(...args) {
     return {
-        touchAction: appendArgs(arguments)
+        touchAction: args.join(' ')
     };
 }

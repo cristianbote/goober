@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textEmphasisColor
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textEmphasisColor property as object
  */
 
-export default function textEmphasisColor() {
+export default function textEmphasisColor(...args) {
     return {
-        textEmphasisColor: appendArgs(arguments)
+        textEmphasisColor: args.join(' ')
     };
 }

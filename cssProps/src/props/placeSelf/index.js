@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name placeSelf
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns placeSelf property as object
  */
 
-export default function placeSelf() {
+export default function placeSelf(...args) {
     return {
-        placeSelf: appendArgs(arguments)
+        placeSelf: args.join(' ')
     };
 }

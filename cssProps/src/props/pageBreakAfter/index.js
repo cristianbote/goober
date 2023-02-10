@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name pageBreakAfter
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns pageBreakAfter property as object
  */
 
-export default function pageBreakAfter() {
+export default function pageBreakAfter(...args) {
     return {
-        pageBreakAfter: appendArgs(arguments)
+        pageBreakAfter: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name pointerEvents
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns pointerEvents property as object
  */
 
-export default function pointerEvents() {
+export default function pointerEvents(...args) {
     return {
-        pointerEvents: appendArgs(arguments)
+        pointerEvents: args.join(' ')
     };
 }

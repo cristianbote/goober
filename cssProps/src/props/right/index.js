@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name right
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns right property as object
  */
 
-export default function right() {
+export default function right(...args) {
     return {
-        right: appendArgs(arguments)
+        right: args.join(' ')
     };
 }

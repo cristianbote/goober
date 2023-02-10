@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name required
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :required property as object with object of css properties
  */
 
-export default function required(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function required(cssProps) {
     return {
-        '&:required': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:required': flatten(cssProps)
     };
 }

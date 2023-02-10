@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name WebkitLineClamp
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns WebkitLineClamp property as object
  */
 
-export default function WebkitLineClamp() {
+export default function WebkitLineClamp(...args) {
     return {
-        WebkitLineClamp: appendArgs(arguments)
+        WebkitLineClamp: args.join(' ')
     };
 }

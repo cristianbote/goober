@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name future
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :future property as object with object of css properties
  */
 
-export default function future(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function future(cssProps) {
     return {
-        '&:future': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:future': flatten(cssProps)
     };
 }

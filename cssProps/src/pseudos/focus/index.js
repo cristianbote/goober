@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name focus
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :focus property as object with object of css properties
  */
 
-export default function focus(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function focus(cssProps) {
     return {
-        '&:focus': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:focus': flatten(cssProps)
     };
 }

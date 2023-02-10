@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name disabled
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :disabled property as object with object of css properties
  */
 
-export default function disabled(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function disabled(cssProps) {
     return {
-        '&:disabled': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:disabled': flatten(cssProps)
     };
 }

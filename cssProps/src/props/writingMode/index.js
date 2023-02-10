@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name writingMode
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns writingMode property as object
  */
 
-export default function writingMode() {
+export default function writingMode(...args) {
     return {
-        writingMode: appendArgs(arguments)
+        writingMode: args.join(' ')
     };
 }

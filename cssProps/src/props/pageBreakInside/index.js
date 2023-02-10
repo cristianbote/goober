@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name pageBreakInside
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns pageBreakInside property as object
  */
 
-export default function pageBreakInside() {
+export default function pageBreakInside(...args) {
     return {
-        pageBreakInside: appendArgs(arguments)
+        pageBreakInside: args.join(' ')
     };
 }

@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name right
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :right property as object with object of css properties
  */
 
-export default function right(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function right(cssProps) {
     return {
-        '&:right': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:right': flatten(cssProps)
     };
 }

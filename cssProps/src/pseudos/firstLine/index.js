@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name firstLine
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns ::first-line property as object with object of css properties
  */
 
-export default function firstLine(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function firstLine(cssProps) {
     return {
-        '&::first-line': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&::first-line': flatten(cssProps)
     };
 }

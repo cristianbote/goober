@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name width
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns width property as object
  */
 
-export default function width() {
+export default function width(...args) {
     return {
-        width: appendArgs(arguments)
+        width: args.join(' ')
     };
 }

@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name defaultElement
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns :default property as object with object of css properties
  */
 
-export default function defaultElement(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function defaultElement(cssProps) {
     return {
-        '&:default': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&:default': flatten(cssProps)
     };
 }

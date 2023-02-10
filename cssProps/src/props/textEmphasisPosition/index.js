@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textEmphasisPosition
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textEmphasisPosition property as object
  */
 
-export default function textEmphasisPosition() {
+export default function textEmphasisPosition(...args) {
     return {
-        textEmphasisPosition: appendArgs(arguments)
+        textEmphasisPosition: args.join(' ')
     };
 }

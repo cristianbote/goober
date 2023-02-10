@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name scrollBehavior
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns scrollBehavior property as object
  */
 
-export default function scrollBehavior() {
+export default function scrollBehavior(...args) {
     return {
-        scrollBehavior: appendArgs(arguments)
+        scrollBehavior: args.join(' ')
     };
 }

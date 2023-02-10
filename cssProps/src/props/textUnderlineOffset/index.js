@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textUnderlineOffset
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textUnderlineOffset property as object
  */
 
-export default function textUnderlineOffset() {
+export default function textUnderlineOffset(...args) {
     return {
-        textUnderlineOffset: appendArgs(arguments)
+        textUnderlineOffset: args.join(' ')
     };
 }

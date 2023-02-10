@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name scrollSnapType
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns scrollSnapType property as object
  */
 
-export default function scrollSnapType() {
+export default function scrollSnapType(...args) {
     return {
-        scrollSnapType: appendArgs(arguments)
+        scrollSnapType: args.join(' ')
     };
 }

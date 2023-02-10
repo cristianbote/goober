@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name whiteSpace
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns whiteSpace property as object
  */
 
-export default function whiteSpace() {
+export default function whiteSpace(...args) {
     return {
-        whiteSpace: appendArgs(arguments)
+        whiteSpace: args.join(' ')
     };
 }

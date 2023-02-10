@@ -1,4 +1,3 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/pseudos.pseudo.index.mustache */
 /**
  * @name cue
  * @category CssProps Helper
@@ -11,10 +10,9 @@
  * @returns ::cue property as object with object of css properties
  */
 
-export default function cue(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function cue(cssProps) {
     return {
-        '&::cue': arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj);
-        }, {})
+        '&::cue': flatten(cssProps)
     };
 }

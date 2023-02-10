@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name scrollMarginRight
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns scrollMarginRight property as object
  */
 
-export default function scrollMarginRight() {
+export default function scrollMarginRight(...args) {
     return {
-        scrollMarginRight: appendArgs(arguments)
+        scrollMarginRight: args.join(' ')
     };
 }

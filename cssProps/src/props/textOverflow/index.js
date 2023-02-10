@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name textOverflow
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns textOverflow property as object
  */
 
-export default function textOverflow() {
+export default function textOverflow(...args) {
     return {
-        textOverflow: appendArgs(arguments)
+        textOverflow: args.join(' ')
     };
 }
