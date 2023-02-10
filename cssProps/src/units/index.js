@@ -1,4 +1,4 @@
-/* Do not modify this file.  This file is generated from ./cssProps/templates/units.index.mustache */
+export { default as cap } from './cap/index';
 export { default as ch } from './ch/index';
 export { default as cm } from './cm/index';
 export { default as deg } from './deg/index';
@@ -10,6 +10,7 @@ export { default as ex } from './ex/index';
 export { default as fr } from './fr/index';
 export { default as grad } from './grad/index';
 export { default as Hz } from './Hz/index';
+export { default as ic } from './ic/index';
 export { default as inch } from './inch/index';
 export { default as kHz } from './kHz/index';
 export { default as mm } from './mm/index';

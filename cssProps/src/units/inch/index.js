@@ -4,12 +4,12 @@
  * @category CssProps Helper
  *
  * @description
- * Returns a numerical value appended with the css unit inch
+ * Returns a numerical value appended with the css unit in
  *
  * @param {number} unit- The numerical length for a given unit
- * @returns {string} numerical value with appended unit inch
+ * @returns {string} numerical value with appended unit in
  */
 
 export default function inch(unit) {
-    return unit + 'inch';
+    return unit + 'in';
 }

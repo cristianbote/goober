@@ -65,6 +65,7 @@ jetpack.write('./cssMdnData/pseudos.json', pseudos);
 
 const cssUnits = cssData.units;
 const units = Object.keys(cssUnits).filter((unit) => cssUnits[unit].status === 'standard');
+units.push('%'); //mdn-data is missing '%' unit
 
 jetpack.write('./cssMdnData/units.json', units);
 

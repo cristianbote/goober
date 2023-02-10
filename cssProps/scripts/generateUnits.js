@@ -1,20 +1,7 @@
 const jetpack = require('fs-jetpack');
 const Mustache = require('mustache');
-const mdnData = require('mdn-data');
-//[ 'api', 'css', 'l10n' ]
 
-const cssData = mdnData.css;
-//[ 'atRules', 'selectors', 'types', 'properties', 'syntaxes', 'units' ]
-
-const cssUnits = cssData.units;
-//ch: { groups: [ 'CSS Units', 'CSS Lengths' ], status: 'standard' },
-
-const cssStandardUnits = Object.keys(cssUnits).reduce((result, nextKey) => {
-    if (cssUnits[nextKey].status === 'standard') {
-        result[nextKey] = cssUnits[nextKey];
-    }
-    return result;
-}, {});
+const units = jetpack.read('./cssMdnData/units.json', 'json');
 
 const unitsIndexTemplate = jetpack.read('./templates/units.index.mustache');
 const unitsUnitIndexTemplate = jetpack.read('./templates/units.unit.index.mustache');
@@ -25,23 +12,29 @@ const unitsListView = {
 };
 
 //Loop through all the css properties generating the source code, the root index file, and the jest tests
-Object.keys(cssStandardUnits).forEach((unit) => {
+units.forEach((unit) => {
+    let unitName = unit;
     if (unit === 'in') {
-        //"in" is a javascript keyword, so rename "in" unit function to "inch" unit function
-        unit = 'inch';
+        unitName = 'inch';
+    }
+    if (unit === '%') {
+        unitName = 'percent';
     }
 
-    const unitView = { unit: unit };
+    const unitView = {
+        unitName,
+        unit
+    };
     unitsListView.Units.push(unitView);
 
     const unitsUnitIndexFile = Mustache.render(unitsUnitIndexTemplate, unitView);
 
-    jetpack.dir(`./src/units/${unit}`);
-    jetpack.write(`./src/units/${unit}/index.js`, unitsUnitIndexFile);
+    jetpack.dir(`./src/units/${unitName}`);
+    jetpack.write(`./src/units/${unitName}/index.js`, unitsUnitIndexFile);
 });
 
 unitsIndexFile = Mustache.render(unitsIndexTemplate, unitsListView);
 jetpack.write('./src/units/index.js', unitsIndexFile);
 
 unitsTestFile = Mustache.render(unitsTestTemplate, unitsListView);
-jetpack.write('./test/units/units.test.js', unitsTestFile);
+jetpack.write('./test/units.test.js', unitsTestFile);

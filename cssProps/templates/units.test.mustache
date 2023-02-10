@@ -1,23 +1,15 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/units.test.mustache */
-import * as cssUnits from '../index';
+import * as cssUnits from '../src/units/index';
 import { css, setup } from 'goober';
 
-jest.mock('goober', () => ({
-    css: jest.fn().mockReturnValue('css()')
-}));
-
 describe('cssUnits', () => {
-    beforeEach(() => {
-        css.mockClear();
-    });
-
     {{#Units}}
-    it('{{unit}} type', () => {
-        expect(typeof cssUnits.{{unit}}).toEqual('function');
+    it('{{unitName}} type', () => {
+        expect(typeof cssUnits.{{unitName}}).toEqual('function');
     });
 
     it('{{unit}}', () => {
-        expect(cssUnits.{{unit}}(5)).toEqual('5{{unit}}');
+        expect(cssUnits.{{unitName}}(5)).toEqual('5{{unit}}');
     });
     {{/Units}}
 });
