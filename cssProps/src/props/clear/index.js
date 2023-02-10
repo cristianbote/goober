@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name clear
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns clear property as object
  */
 
-export default function clear() {
+export default function clear(...args) {
     return {
-        clear: appendArgs(arguments)
+        clear: args.join(' ')
     };
 }

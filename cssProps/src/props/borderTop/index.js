@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name borderTop
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns borderTop property as object
  */
 
-export default function borderTop() {
+export default function borderTop(...args) {
     return {
-        borderTop: appendArgs(arguments)
+        borderTop: args.join(' ')
     };
 }

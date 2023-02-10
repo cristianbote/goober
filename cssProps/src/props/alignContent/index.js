@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name alignContent
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns alignContent property as object
  */
 
-export default function alignContent() {
+export default function alignContent(...args) {
     return {
-        alignContent: appendArgs(arguments)
+        alignContent: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name borderBottomColor
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns borderBottomColor property as object
  */
 
-export default function borderBottomColor() {
+export default function borderBottomColor(...args) {
     return {
-        borderBottomColor: appendArgs(arguments)
+        borderBottomColor: args.join(' ')
     };
 }

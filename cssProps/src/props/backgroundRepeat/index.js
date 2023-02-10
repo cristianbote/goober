@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name backgroundRepeat
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns backgroundRepeat property as object
  */
 
-export default function backgroundRepeat() {
+export default function backgroundRepeat(...args) {
     return {
-        backgroundRepeat: appendArgs(arguments)
+        backgroundRepeat: args.join(' ')
     };
 }

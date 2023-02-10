@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name backgroundImage
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns backgroundImage property as object
  */
 
-export default function backgroundImage() {
+export default function backgroundImage(...args) {
     return {
-        backgroundImage: appendArgs(arguments)
+        backgroundImage: args.join(' ')
     };
 }

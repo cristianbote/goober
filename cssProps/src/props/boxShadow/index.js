@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name boxShadow
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns boxShadow property as object
  */
 
-export default function boxShadow() {
+export default function boxShadow(...args) {
     return {
-        boxShadow: appendArgs(arguments)
+        boxShadow: args.join(' ')
     };
 }

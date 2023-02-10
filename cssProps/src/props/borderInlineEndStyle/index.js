@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name borderInlineEndStyle
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns borderInlineEndStyle property as object
  */
 
-export default function borderInlineEndStyle() {
+export default function borderInlineEndStyle(...args) {
     return {
-        borderInlineEndStyle: appendArgs(arguments)
+        borderInlineEndStyle: args.join(' ')
     };
 }

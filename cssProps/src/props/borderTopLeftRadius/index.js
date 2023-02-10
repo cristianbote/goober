@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name borderTopLeftRadius
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns borderTopLeftRadius property as object
  */
 
-export default function borderTopLeftRadius() {
+export default function borderTopLeftRadius(...args) {
     return {
-        borderTopLeftRadius: appendArgs(arguments)
+        borderTopLeftRadius: args.join(' ')
     };
 }

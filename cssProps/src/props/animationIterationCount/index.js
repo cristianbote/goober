@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name animationIterationCount
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns animationIterationCount property as object
  */
 
-export default function animationIterationCount() {
+export default function animationIterationCount(...args) {
     return {
-        animationIterationCount: appendArgs(arguments)
+        animationIterationCount: args.join(' ')
     };
 }

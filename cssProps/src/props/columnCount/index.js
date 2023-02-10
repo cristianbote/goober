@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name columnCount
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns columnCount property as object
  */
 
-export default function columnCount() {
+export default function columnCount(...args) {
     return {
-        columnCount: appendArgs(arguments)
+        columnCount: args.join(' ')
     };
 }

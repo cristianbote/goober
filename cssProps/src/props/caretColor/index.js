@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name caretColor
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns caretColor property as object
  */
 
-export default function caretColor() {
+export default function caretColor(...args) {
     return {
-        caretColor: appendArgs(arguments)
+        caretColor: args.join(' ')
     };
 }

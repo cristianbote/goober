@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name borderBottomWidth
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns borderBottomWidth property as object
  */
 
-export default function borderBottomWidth() {
+export default function borderBottomWidth(...args) {
     return {
-        borderBottomWidth: appendArgs(arguments)
+        borderBottomWidth: args.join(' ')
     };
 }

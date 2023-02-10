@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name columnRuleStyle
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns columnRuleStyle property as object
  */
 
-export default function columnRuleStyle() {
+export default function columnRuleStyle(...args) {
     return {
-        columnRuleStyle: appendArgs(arguments)
+        columnRuleStyle: args.join(' ')
     };
 }

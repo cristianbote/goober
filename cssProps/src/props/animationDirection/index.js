@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name animationDirection
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns animationDirection property as object
  */
 
-export default function animationDirection() {
+export default function animationDirection(...args) {
     return {
-        animationDirection: appendArgs(arguments)
+        animationDirection: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name columnFill
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns columnFill property as object
  */
 
-export default function columnFill() {
+export default function columnFill(...args) {
     return {
-        columnFill: appendArgs(arguments)
+        columnFill: args.join(' ')
     };
 }

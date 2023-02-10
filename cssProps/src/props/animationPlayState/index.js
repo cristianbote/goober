@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name animationPlayState
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns animationPlayState property as object
  */
 
-export default function animationPlayState() {
+export default function animationPlayState(...args) {
     return {
-        animationPlayState: appendArgs(arguments)
+        animationPlayState: args.join(' ')
     };
 }

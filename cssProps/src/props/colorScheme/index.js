@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name colorScheme
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns colorScheme property as object
  */
 
-export default function colorScheme() {
+export default function colorScheme(...args) {
     return {
-        colorScheme: appendArgs(arguments)
+        colorScheme: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name boxDecorationBreak
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns boxDecorationBreak property as object
  */
 
-export default function boxDecorationBreak() {
+export default function boxDecorationBreak(...args) {
     return {
-        boxDecorationBreak: appendArgs(arguments)
+        boxDecorationBreak: args.join(' ')
     };
 }

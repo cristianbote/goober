@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name columnRuleColor
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns columnRuleColor property as object
  */
 
-export default function columnRuleColor() {
+export default function columnRuleColor(...args) {
     return {
-        columnRuleColor: appendArgs(arguments)
+        columnRuleColor: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name backgroundBlendMode
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns backgroundBlendMode property as object
  */
 
-export default function backgroundBlendMode() {
+export default function backgroundBlendMode(...args) {
     return {
-        backgroundBlendMode: appendArgs(arguments)
+        backgroundBlendMode: args.join(' ')
     };
 }

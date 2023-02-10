@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name clipPath
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns clipPath property as object
  */
 
-export default function clipPath() {
+export default function clipPath(...args) {
     return {
-        clipPath: appendArgs(arguments)
+        clipPath: args.join(' ')
     };
 }

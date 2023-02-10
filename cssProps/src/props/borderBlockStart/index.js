@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name borderBlockStart
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns borderBlockStart property as object
  */
 
-export default function borderBlockStart() {
+export default function borderBlockStart(...args) {
     return {
-        borderBlockStart: appendArgs(arguments)
+        borderBlockStart: args.join(' ')
     };
 }

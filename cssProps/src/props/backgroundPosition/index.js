@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name backgroundPosition
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns backgroundPosition property as object
  */
 
-export default function backgroundPosition() {
+export default function backgroundPosition(...args) {
     return {
-        backgroundPosition: appendArgs(arguments)
+        backgroundPosition: args.join(' ')
     };
 }

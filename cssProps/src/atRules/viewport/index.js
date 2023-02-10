@@ -1,20 +1,20 @@
-//Do not modify this file.  This file is generated from ./scripts/generateAtRules.js
+/* Do not modify this file.  This file is generated from ./cssProps/templates/atRules.atRule.index.mustache */
 /**
  * @name viewport
  * @category CssProps Helper
- * @summary Returns a numerical value appended with the css atRule @viewport
+ * @summary @viewport
  *
  * @description
- * Returns a numerical value appended with the css atRule @viewport
+ *    @viewport
+ *    @viewport { &lt;group-rule-body&gt; }
  *
- * @param {number} atRule- The numerical value that the css atRule will be appended
- * @returns {string} numerical value with appended atRule @viewport
+ * @param {Object[]} cssProps - Array of css property objects that apply to the @rule
+ * @returns {Object} atRule - returns an object with the @viewport property
  */
 
-export default function charset(atRuleParams, arrayOfCssProps) {
+import { flatten } from '../../util/index';
+export default function viewport(cssProps) {
     return {
-        ["@viewport" + (atRuleParams ? " " + atRuleParams : "")]: arrayOfCssProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj)
-        }, {})
-    }
+        [`@viewport`]: flatten(cssProps)
+    };
 }

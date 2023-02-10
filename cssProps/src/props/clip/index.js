@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name clip
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns clip property as object
  */
 
-export default function clip() {
+export default function clip(...args) {
     return {
-        clip: appendArgs(arguments)
+        clip: args.join(' ')
     };
 }

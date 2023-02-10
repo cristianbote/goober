@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name animationTimingFunction
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns animationTimingFunction property as object
  */
 
-export default function animationTimingFunction() {
+export default function animationTimingFunction(...args) {
     return {
-        animationTimingFunction: appendArgs(arguments)
+        animationTimingFunction: args.join(' ')
     };
 }

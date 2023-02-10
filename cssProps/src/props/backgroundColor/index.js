@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name backgroundColor
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns backgroundColor property as object
  */
 
-export default function backgroundColor() {
+export default function backgroundColor(...args) {
     return {
-        backgroundColor: appendArgs(arguments)
+        backgroundColor: args.join(' ')
     };
 }

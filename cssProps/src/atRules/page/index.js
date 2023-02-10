@@ -1,20 +1,21 @@
-//Do not modify this file.  This file is generated from ./scripts/generateAtRules.js
+/* Do not modify this file.  This file is generated from ./cssProps/templates/atRules.atRule.index.mustache */
 /**
  * @name page
  * @category CssProps Helper
- * @summary Returns a numerical value appended with the css atRule @page
+ * @summary @page
  *
  * @description
- * Returns a numerical value appended with the css atRule @page
+ *    @page
+ *    @page &lt;page-selector-list&gt; { &lt;page-body&gt; }
  *
- * @param {number} atRule- The numerical value that the css atRule will be appended
- * @returns {string} numerical value with appended atRule @page
+ * @param {string} args - a string representation of the arguments following the @rule
+ * @param {Object[]} cssProps - Array of css property objects that apply to the @rule
+ * @returns {Object} atRule - returns an object with the @page property
  */
 
-export default function charset(atRuleParams, arrayOfCssProps) {
+import { flatten } from '../../util/index';
+export default function page(args, cssProps) {
     return {
-        ["@page" + (atRuleParams ? " " + atRuleParams : "")]: arrayOfCssProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj)
-        }, {})
-    }
+        [`@page ${args}`]: flatten(cssProps)
+    };
 }

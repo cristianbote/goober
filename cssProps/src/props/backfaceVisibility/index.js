@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name backfaceVisibility
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns backfaceVisibility property as object
  */
 
-export default function backfaceVisibility() {
+export default function backfaceVisibility(...args) {
     return {
-        backfaceVisibility: appendArgs(arguments)
+        backfaceVisibility: args.join(' ')
     };
 }

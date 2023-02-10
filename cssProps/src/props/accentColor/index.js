@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name accentColor
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns accentColor property as object
  */
 
-export default function accentColor() {
+export default function accentColor(...args) {
     return {
-        accentColor: appendArgs(arguments)
+        accentColor: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name breakInside
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns breakInside property as object
  */
 
-export default function breakInside() {
+export default function breakInside(...args) {
     return {
-        breakInside: appendArgs(arguments)
+        breakInside: args.join(' ')
     };
 }

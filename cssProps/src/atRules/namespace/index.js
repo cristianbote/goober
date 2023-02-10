@@ -1,20 +1,16 @@
-//Do not modify this file.  This file is generated from ./scripts/generateAtRules.js
+/* Do not modify this file.  This file is generated from ./cssProps/templates/atRules.atRule.index.mustache */
 /**
  * @name namespace
  * @category CssProps Helper
- * @summary Returns a numerical value appended with the css atRule @namespace
+ * @summary @namespace
  *
  * @description
- * Returns a numerical value appended with the css atRule @namespace
+ *    @namespace
+ *    @namespace &lt;namespace-prefix&gt;? [ &lt;string&gt; | &lt;url&gt; ];
  *
- * @param {number} atRule- The numerical value that the css atRule will be appended
- * @returns {string} numerical value with appended atRule @namespace
+ * @param {string} args - a string representation of the arguments following the @rule
  */
 
-export default function charset(atRuleParams, arrayOfCssProps) {
-    return {
-        ["@namespace" + (atRuleParams ? " " + atRuleParams : "")]: arrayOfCssProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj)
-        }, {})
-    }
+export default function namespace(args) {
+    return `@namespace ${args}`;
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name backgroundSize
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns backgroundSize property as object
  */
 
-export default function backgroundSize() {
+export default function backgroundSize(...args) {
     return {
-        backgroundSize: appendArgs(arguments)
+        backgroundSize: args.join(' ')
     };
 }

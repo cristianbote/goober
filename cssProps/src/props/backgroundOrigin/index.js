@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name backgroundOrigin
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns backgroundOrigin property as object
  */
 
-export default function backgroundOrigin() {
+export default function backgroundOrigin(...args) {
     return {
-        backgroundOrigin: appendArgs(arguments)
+        backgroundOrigin: args.join(' ')
     };
 }

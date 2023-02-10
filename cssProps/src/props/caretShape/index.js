@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name caretShape
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns caretShape property as object
  */
 
-export default function caretShape() {
+export default function caretShape(...args) {
     return {
-        caretShape: appendArgs(arguments)
+        caretShape: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name borderImageOutset
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns borderImageOutset property as object
  */
 
-export default function borderImageOutset() {
+export default function borderImageOutset(...args) {
     return {
-        borderImageOutset: appendArgs(arguments)
+        borderImageOutset: args.join(' ')
     };
 }

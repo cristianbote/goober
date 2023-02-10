@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name backgroundClip
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns backgroundClip property as object
  */
 
-export default function backgroundClip() {
+export default function backgroundClip(...args) {
     return {
-        backgroundClip: appendArgs(arguments)
+        backgroundClip: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name borderBlockColor
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns borderBlockColor property as object
  */
 
-export default function borderBlockColor() {
+export default function borderBlockColor(...args) {
     return {
-        borderBlockColor: appendArgs(arguments)
+        borderBlockColor: args.join(' ')
     };
 }

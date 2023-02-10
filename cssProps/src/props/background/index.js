@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name background
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns background property as object
  */
 
-export default function background() {
+export default function background(...args) {
     return {
-        background: appendArgs(arguments)
+        background: args.join(' ')
     };
 }

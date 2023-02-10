@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name borderLeftStyle
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns borderLeftStyle property as object
  */
 
-export default function borderLeftStyle() {
+export default function borderLeftStyle(...args) {
     return {
-        borderLeftStyle: appendArgs(arguments)
+        borderLeftStyle: args.join(' ')
     };
 }

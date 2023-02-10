@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name alignSelf
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns alignSelf property as object
  */
 
-export default function alignSelf() {
+export default function alignSelf(...args) {
     return {
-        alignSelf: appendArgs(arguments)
+        alignSelf: args.join(' ')
     };
 }

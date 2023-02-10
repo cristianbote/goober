@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name breakAfter
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns breakAfter property as object
  */
 
-export default function breakAfter() {
+export default function breakAfter(...args) {
     return {
-        breakAfter: appendArgs(arguments)
+        breakAfter: args.join(' ')
     };
 }

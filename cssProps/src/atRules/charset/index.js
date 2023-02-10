@@ -1,20 +1,16 @@
-//Do not modify this file.  This file is generated from ./scripts/generateAtRules.js
+/* Do not modify this file.  This file is generated from ./cssProps/templates/atRules.atRule.index.mustache */
 /**
  * @name charset
  * @category CssProps Helper
- * @summary Returns a numerical value appended with the css atRule @charset
+ * @summary @charset
  *
  * @description
- * Returns a numerical value appended with the css atRule @charset
+ *    @charset
+ *    @charset &quot;&lt;charset&gt;&quot;;
  *
- * @param {number} atRule- The numerical value that the css atRule will be appended
- * @returns {string} numerical value with appended atRule @charset
+ * @param {string} args - a string representation of the arguments following the @rule
  */
 
-export default function charset(atRuleParams, arrayOfCssProps) {
-    return {
-        ["@charset" + (atRuleParams ? " " + atRuleParams : "")]: arrayOfCssProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj)
-        }, {})
-    }
+export default function charset(args) {
+    return `@charset ${args}`;
 }

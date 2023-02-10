@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name columnGap
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns columnGap property as object
  */
 
-export default function columnGap() {
+export default function columnGap(...args) {
     return {
-        columnGap: appendArgs(arguments)
+        columnGap: args.join(' ')
     };
 }

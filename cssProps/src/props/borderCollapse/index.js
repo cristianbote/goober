@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name borderCollapse
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns borderCollapse property as object
  */
 
-export default function borderCollapse() {
+export default function borderCollapse(...args) {
     return {
-        borderCollapse: appendArgs(arguments)
+        borderCollapse: args.join(' ')
     };
 }

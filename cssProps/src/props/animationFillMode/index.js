@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name animationFillMode
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns animationFillMode property as object
  */
 
-export default function animationFillMode() {
+export default function animationFillMode(...args) {
     return {
-        animationFillMode: appendArgs(arguments)
+        animationFillMode: args.join(' ')
     };
 }

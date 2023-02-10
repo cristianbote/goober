@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name borderInlineStartColor
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns borderInlineStartColor property as object
  */
 
-export default function borderInlineStartColor() {
+export default function borderInlineStartColor(...args) {
     return {
-        borderInlineStartColor: appendArgs(arguments)
+        borderInlineStartColor: args.join(' ')
     };
 }

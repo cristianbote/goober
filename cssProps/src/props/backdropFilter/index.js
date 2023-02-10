@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name backdropFilter
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns backdropFilter property as object
  */
 
-export default function backdropFilter() {
+export default function backdropFilter(...args) {
     return {
-        backdropFilter: appendArgs(arguments)
+        backdropFilter: args.join(' ')
     };
 }

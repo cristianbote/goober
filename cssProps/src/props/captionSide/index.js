@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name captionSide
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns captionSide property as object
  */
 
-export default function captionSide() {
+export default function captionSide(...args) {
     return {
-        captionSide: appendArgs(arguments)
+        captionSide: args.join(' ')
     };
 }
