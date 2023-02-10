@@ -1,8 +1,6 @@
-** Do not modify this file.  This file is generated from ./cssProps/templates/README.mustache **
-
 # CssProps
 
-CssProps is a set of utility functions to make it easier to write CSS in JS.
+CssProps is a set of utility functions to make it easier to write CSS in JS. **Do not modify this file.  This file is generated from ./cssProps/templates/README.mustache**
 
 ```javascript
 import { minWidth, color, background, fontSize } from 'goober/CssProps'
@@ -27,11 +25,11 @@ const StyledContainer = styled("div")((props) => [
 ])
 ```
 
-**All the JavaScript code and documentation in cssProps is automatically generated from Mustache files in the templates directory**
+## All the JavaScript code and documentation in cssProps directory is automatically generated from Mustache files in the templates directory
 
 The functions are arranged in the following category
 
-* at rules - `@import`
+* at rules - `@media (args) { properties }`
 * constants - `AQUA, CENTER`
 * functions - `rgb(0, 0, 0)`
 * properties - `backgroundSize(px(15))`
@@ -39,89 +37,87 @@ The functions are arranged in the following category
 * units - `em(10)`
 * util - `string(BLUE) //Outputs "blue" with double quotes`
 
-# At Rules
+## Special Cases
+
+In some instances, the css property or @rule might conflict with a Javascript keyword.
+Here is a list of values that had to be renamed to prevent conflicts:
+
+## At Rules
+
+@rules have one or two arguments depending on the syntax of the rule.
+The string followed by the @rule is the parameters argument.
+The array or object after the parameters are the css properties for the @rule.
+
+```javascript
+css([
+    media([NOT, ALL, AND, "(hover: hover)"].join(' '), [
+        color(BLUE),
+        fontSize(px(30))
+    ])
+])
+```
 
 {{#AtRules}}
-## {{atRule}}
-
-Syntax: {{mdnUrl}}#syntax
-
-```javascript
-{{atRuleCamelCase}}({{#AtRuleArgs}}args,{{/AtRuleArgs}}{{#CssProps}}[
-    prop1(),
-    prop2()
-]{{/CssProps}})
-```
-
+* {{atRule}} - {{mdn_url}}
 {{/AtRules}}
 
-# Constants
+## Constants
 
 {{#Constants}}
-* {{constant}}
+{{constant}},
 {{/Constants}}
 
-# Functions
+## Functions
+
+CSS Functions that can be used within a CSS property. rgb() for example.
+
+```javascript
+css([
+    color(rgb(0,0,255))
+])
+```
 
 {{#Functions}}
-## {{function}}
-
-Syntax: {{mdnUrl}}#syntax
-
-```javascript
-styled("div")([
-    someCssProperty({{property}}(args)),
-])
-```
-
+* {{function}} - {{mdn_url}}
 {{/Functions}}
 
-# Properties
+## Properties
+
+CSS property methods are delimited by spaces.
+
+```javascript
+css([
+    margin(rem(5), 0)
+])
+```
 
 {{#Properties}}
-## {{property}}
-
-Syntax: {{mdnUrl}}#syntax
-
-```javascript
-styled("div")([
-    {{property}}(args),
-])
-```
-
+* {{property}} - {{mdn_url}}
 {{/Properties}}
 
-# Pseudos
+## Pseudos
+
+Pseudo selectors have one argument which is the CSS properties object or array.
 
 ```javascript
-styled("div")([
+css([
     hover([
-        color(BLUE)
-    ]),
+        color(YELLOW)
+    ])
 ])
 ```
 
 {{#Pseudos}}
-## {{pseudo}}
-Syntax: {{mdnUrl}}#syntax
-
+* {{pseudo}} - {{mdn_url}}
 {{/Pseudos}}
 
-# Units
+## Units
 
-```javascript
-styled("div")([
-    minWidth(px(10))
-])
-```
+{{#Units}}
+{{unit}},
+{{/Units}}
 
-{{#Pseudos}}
-## {{pseudo}}
-Syntax: {{mdnUrl}}#syntax
+## Util
 
-{{/Pseudos}}
-
-# Util
-
-* append - builds a function that joins arguments based on a delimiter.  `append('rgb', ' ')` returns the rgb(0,0,0) function
-* string - wrap a string in quotations.  `string(hello)` returns "hello"
+* flatten - Converts array of objects containing css properties into a single object
+* string - wrap a string in quotations.  `string(BLUE)` returns "BLUE" including double quotes.  Only applies to CSS properties that must have a string literal
