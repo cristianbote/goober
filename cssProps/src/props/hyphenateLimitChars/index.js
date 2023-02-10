@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name hyphenateLimitChars
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns hyphenateLimitChars property as object
  */
 
-export default function hyphenateLimitChars() {
+export default function hyphenateLimitChars(...args) {
     return {
-        hyphenateLimitChars: appendArgs(arguments)
+        hyphenateLimitChars: args.join(' ')
     };
 }

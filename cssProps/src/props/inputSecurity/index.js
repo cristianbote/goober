@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name inputSecurity
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns inputSecurity property as object
  */
 
-export default function inputSecurity() {
+export default function inputSecurity(...args) {
     return {
-        inputSecurity: appendArgs(arguments)
+        inputSecurity: args.join(' ')
     };
 }

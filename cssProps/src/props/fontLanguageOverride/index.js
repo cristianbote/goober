@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name fontLanguageOverride
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns fontLanguageOverride property as object
  */
 
-export default function fontLanguageOverride() {
+export default function fontLanguageOverride(...args) {
     return {
-        fontLanguageOverride: appendArgs(arguments)
+        fontLanguageOverride: args.join(' ')
     };
 }

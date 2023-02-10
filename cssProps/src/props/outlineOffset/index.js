@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name outlineOffset
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns outlineOffset property as object
  */
 
-export default function outlineOffset() {
+export default function outlineOffset(...args) {
     return {
-        outlineOffset: appendArgs(arguments)
+        outlineOffset: args.join(' ')
     };
 }

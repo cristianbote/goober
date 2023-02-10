@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name overflowClipMargin
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns overflowClipMargin property as object
  */
 
-export default function overflowClipMargin() {
+export default function overflowClipMargin(...args) {
     return {
-        overflowClipMargin: appendArgs(arguments)
+        overflowClipMargin: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name contentVisibility
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns contentVisibility property as object
  */
 
-export default function contentVisibility() {
+export default function contentVisibility(...args) {
     return {
-        contentVisibility: appendArgs(arguments)
+        contentVisibility: args.join(' ')
     };
 }

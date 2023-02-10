@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name letterSpacing
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns letterSpacing property as object
  */
 
-export default function letterSpacing() {
+export default function letterSpacing(...args) {
     return {
-        letterSpacing: appendArgs(arguments)
+        letterSpacing: args.join(' ')
     };
 }

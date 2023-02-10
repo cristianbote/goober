@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name fontKerning
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns fontKerning property as object
  */
 
-export default function fontKerning() {
+export default function fontKerning(...args) {
     return {
-        fontKerning: appendArgs(arguments)
+        fontKerning: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name maskBorderWidth
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns maskBorderWidth property as object
  */
 
-export default function maskBorderWidth() {
+export default function maskBorderWidth(...args) {
     return {
-        maskBorderWidth: appendArgs(arguments)
+        maskBorderWidth: args.join(' ')
     };
 }

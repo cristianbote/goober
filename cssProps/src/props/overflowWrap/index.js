@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name overflowWrap
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns overflowWrap property as object
  */
 
-export default function overflowWrap() {
+export default function overflowWrap(...args) {
     return {
-        overflowWrap: appendArgs(arguments)
+        overflowWrap: args.join(' ')
     };
 }

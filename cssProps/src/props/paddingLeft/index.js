@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name paddingLeft
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns paddingLeft property as object
  */
 
-export default function paddingLeft() {
+export default function paddingLeft(...args) {
     return {
-        paddingLeft: appendArgs(arguments)
+        paddingLeft: args.join(' ')
     };
 }

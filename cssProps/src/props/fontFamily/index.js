@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name fontFamily
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns fontFamily property as object
  */
 
-export default function fontFamily() {
+export default function fontFamily(...args) {
     return {
-        fontFamily: appendArgs(arguments)
+        fontFamily: args.join(' ')
     };
 }

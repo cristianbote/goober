@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name minInlineSize
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns minInlineSize property as object
  */
 
-export default function minInlineSize() {
+export default function minInlineSize(...args) {
     return {
-        minInlineSize: appendArgs(arguments)
+        minInlineSize: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name insetBlock
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns insetBlock property as object
  */
 
-export default function insetBlock() {
+export default function insetBlock(...args) {
     return {
-        insetBlock: appendArgs(arguments)
+        insetBlock: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name maskClip
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns maskClip property as object
  */
 
-export default function maskClip() {
+export default function maskClip(...args) {
     return {
-        maskClip: appendArgs(arguments)
+        maskClip: args.join(' ')
     };
 }

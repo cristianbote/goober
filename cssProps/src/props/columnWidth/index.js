@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name columnWidth
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns columnWidth property as object
  */
 
-export default function columnWidth() {
+export default function columnWidth(...args) {
     return {
-        columnWidth: appendArgs(arguments)
+        columnWidth: args.join(' ')
     };
 }

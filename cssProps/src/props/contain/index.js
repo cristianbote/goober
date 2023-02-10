@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name contain
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns contain property as object
  */
 
-export default function contain() {
+export default function contain(...args) {
     return {
-        contain: appendArgs(arguments)
+        contain: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name display
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns display property as object
  */
 
-export default function display() {
+export default function display(...args) {
     return {
-        display: appendArgs(arguments)
+        display: args.join(' ')
     };
 }

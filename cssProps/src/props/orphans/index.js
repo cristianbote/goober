@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name orphans
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns orphans property as object
  */
 
-export default function orphans() {
+export default function orphans(...args) {
     return {
-        orphans: appendArgs(arguments)
+        orphans: args.join(' ')
     };
 }

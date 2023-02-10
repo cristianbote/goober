@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name mathStyle
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns mathStyle property as object
  */
 
-export default function mathStyle() {
+export default function mathStyle(...args) {
     return {
-        mathStyle: appendArgs(arguments)
+        mathStyle: args.join(' ')
     };
 }

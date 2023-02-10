@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name hyphens
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns hyphens property as object
  */
 
-export default function hyphens() {
+export default function hyphens(...args) {
     return {
-        hyphens: appendArgs(arguments)
+        hyphens: args.join(' ')
     };
 }

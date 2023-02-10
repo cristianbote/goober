@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name fontVariantNumeric
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns fontVariantNumeric property as object
  */
 
-export default function fontVariantNumeric() {
+export default function fontVariantNumeric(...args) {
     return {
-        fontVariantNumeric: appendArgs(arguments)
+        fontVariantNumeric: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name counterReset
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns counterReset property as object
  */
 
-export default function counterReset() {
+export default function counterReset(...args) {
     return {
-        counterReset: appendArgs(arguments)
+        counterReset: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name paddingBlock
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns paddingBlock property as object
  */
 
-export default function paddingBlock() {
+export default function paddingBlock(...args) {
     return {
-        paddingBlock: appendArgs(arguments)
+        paddingBlock: args.join(' ')
     };
 }

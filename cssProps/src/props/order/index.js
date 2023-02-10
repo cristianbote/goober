@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name order
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns order property as object
  */
 
-export default function order() {
+export default function order(...args) {
     return {
-        order: appendArgs(arguments)
+        order: args.join(' ')
     };
 }

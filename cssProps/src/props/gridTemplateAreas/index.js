@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name gridTemplateAreas
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns gridTemplateAreas property as object
  */
 
-export default function gridTemplateAreas() {
+export default function gridTemplateAreas(...args) {
     return {
-        gridTemplateAreas: appendArgs(arguments)
+        gridTemplateAreas: args.join(' ')
     };
 }

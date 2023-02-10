@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name cursor
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns cursor property as object
  */
 
-export default function cursor() {
+export default function cursor(...args) {
     return {
-        cursor: appendArgs(arguments)
+        cursor: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name fontVariantEastAsian
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns fontVariantEastAsian property as object
  */
 
-export default function fontVariantEastAsian() {
+export default function fontVariantEastAsian(...args) {
     return {
-        fontVariantEastAsian: appendArgs(arguments)
+        fontVariantEastAsian: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name minWidth
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns minWidth property as object
  */
 
-export default function minWidth() {
+export default function minWidth(...args) {
     return {
-        minWidth: appendArgs(arguments)
+        minWidth: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name maskBorderSlice
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns maskBorderSlice property as object
  */
 
-export default function maskBorderSlice() {
+export default function maskBorderSlice(...args) {
     return {
-        maskBorderSlice: appendArgs(arguments)
+        maskBorderSlice: args.join(' ')
     };
 }

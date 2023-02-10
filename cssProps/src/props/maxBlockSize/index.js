@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name maxBlockSize
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns maxBlockSize property as object
  */
 
-export default function maxBlockSize() {
+export default function maxBlockSize(...args) {
     return {
-        maxBlockSize: appendArgs(arguments)
+        maxBlockSize: args.join(' ')
     };
 }

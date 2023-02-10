@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name maskBorderSource
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns maskBorderSource property as object
  */
 
-export default function maskBorderSource() {
+export default function maskBorderSource(...args) {
     return {
-        maskBorderSource: appendArgs(arguments)
+        maskBorderSource: args.join(' ')
     };
 }

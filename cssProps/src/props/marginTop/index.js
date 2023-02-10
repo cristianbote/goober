@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name marginTop
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns marginTop property as object
  */
 
-export default function marginTop() {
+export default function marginTop(...args) {
     return {
-        marginTop: appendArgs(arguments)
+        marginTop: args.join(' ')
     };
 }

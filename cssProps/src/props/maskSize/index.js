@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name maskSize
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns maskSize property as object
  */
 
-export default function maskSize() {
+export default function maskSize(...args) {
     return {
-        maskSize: appendArgs(arguments)
+        maskSize: args.join(' ')
     };
 }

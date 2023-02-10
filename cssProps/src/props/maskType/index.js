@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name maskType
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns maskType property as object
  */
 
-export default function maskType() {
+export default function maskType(...args) {
     return {
-        maskType: appendArgs(arguments)
+        maskType: args.join(' ')
     };
 }

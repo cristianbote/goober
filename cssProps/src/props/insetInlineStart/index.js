@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name insetInlineStart
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns insetInlineStart property as object
  */
 
-export default function insetInlineStart() {
+export default function insetInlineStart(...args) {
     return {
-        insetInlineStart: appendArgs(arguments)
+        insetInlineStart: args.join(' ')
     };
 }

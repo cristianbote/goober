@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name offsetDistance
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns offsetDistance property as object
  */
 
-export default function offsetDistance() {
+export default function offsetDistance(...args) {
     return {
-        offsetDistance: appendArgs(arguments)
+        offsetDistance: args.join(' ')
     };
 }

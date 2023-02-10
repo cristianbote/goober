@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name listStylePosition
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns listStylePosition property as object
  */
 
-export default function listStylePosition() {
+export default function listStylePosition(...args) {
     return {
-        listStylePosition: appendArgs(arguments)
+        listStylePosition: args.join(' ')
     };
 }

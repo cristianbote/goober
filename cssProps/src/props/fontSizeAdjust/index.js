@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name fontSizeAdjust
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns fontSizeAdjust property as object
  */
 
-export default function fontSizeAdjust() {
+export default function fontSizeAdjust(...args) {
     return {
-        fontSizeAdjust: appendArgs(arguments)
+        fontSizeAdjust: args.join(' ')
     };
 }

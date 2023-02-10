@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name opacity
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns opacity property as object
  */
 
-export default function opacity() {
+export default function opacity(...args) {
     return {
-        opacity: appendArgs(arguments)
+        opacity: args.join(' ')
     };
 }

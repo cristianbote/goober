@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name mathShift
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns mathShift property as object
  */
 
-export default function mathShift() {
+export default function mathShift(...args) {
     return {
-        mathShift: appendArgs(arguments)
+        mathShift: args.join(' ')
     };
 }

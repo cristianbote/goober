@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name fontFeatureSettings
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns fontFeatureSettings property as object
  */
 
-export default function fontFeatureSettings() {
+export default function fontFeatureSettings(...args) {
     return {
-        fontFeatureSettings: appendArgs(arguments)
+        fontFeatureSettings: args.join(' ')
     };
 }

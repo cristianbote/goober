@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name fontVariant
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns fontVariant property as object
  */
 
-export default function fontVariant() {
+export default function fontVariant(...args) {
     return {
-        fontVariant: appendArgs(arguments)
+        fontVariant: args.join(' ')
     };
 }

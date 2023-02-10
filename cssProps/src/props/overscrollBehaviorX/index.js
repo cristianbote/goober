@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name overscrollBehaviorX
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns overscrollBehaviorX property as object
  */
 
-export default function overscrollBehaviorX() {
+export default function overscrollBehaviorX(...args) {
     return {
-        overscrollBehaviorX: appendArgs(arguments)
+        overscrollBehaviorX: args.join(' ')
     };
 }

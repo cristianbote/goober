@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name direction
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns direction property as object
  */
 
-export default function direction() {
+export default function direction(...args) {
     return {
-        direction: appendArgs(arguments)
+        direction: args.join(' ')
     };
 }

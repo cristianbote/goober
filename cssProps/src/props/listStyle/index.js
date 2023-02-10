@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name listStyle
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns listStyle property as object
  */
 
-export default function listStyle() {
+export default function listStyle(...args) {
     return {
-        listStyle: appendArgs(arguments)
+        listStyle: args.join(' ')
     };
 }

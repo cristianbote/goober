@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name inlineSize
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns inlineSize property as object
  */
 
-export default function inlineSize() {
+export default function inlineSize(...args) {
     return {
-        inlineSize: appendArgs(arguments)
+        inlineSize: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name flex
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns flex property as object
  */
 
-export default function flex() {
+export default function flex(...args) {
     return {
-        flex: appendArgs(arguments)
+        flex: args.join(' ')
     };
 }

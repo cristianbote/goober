@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name columnSpan
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns columnSpan property as object
  */
 
-export default function columnSpan() {
+export default function columnSpan(...args) {
     return {
-        columnSpan: appendArgs(arguments)
+        columnSpan: args.join(' ')
     };
 }

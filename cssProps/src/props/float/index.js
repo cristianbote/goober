@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name float
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns float property as object
  */
 
-export default function float() {
+export default function float(...args) {
     return {
-        float: appendArgs(arguments)
+        float: args.join(' ')
     };
 }

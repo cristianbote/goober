@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name objectPosition
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns objectPosition property as object
  */
 
-export default function objectPosition() {
+export default function objectPosition(...args) {
     return {
-        objectPosition: appendArgs(arguments)
+        objectPosition: args.join(' ')
     };
 }

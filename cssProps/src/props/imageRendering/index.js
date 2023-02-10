@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name imageRendering
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns imageRendering property as object
  */
 
-export default function imageRendering() {
+export default function imageRendering(...args) {
     return {
-        imageRendering: appendArgs(arguments)
+        imageRendering: args.join(' ')
     };
 }

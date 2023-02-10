@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name imageOrientation
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns imageOrientation property as object
  */
 
-export default function imageOrientation() {
+export default function imageOrientation(...args) {
     return {
-        imageOrientation: appendArgs(arguments)
+        imageOrientation: args.join(' ')
     };
 }

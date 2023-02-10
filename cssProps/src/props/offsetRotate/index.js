@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name offsetRotate
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns offsetRotate property as object
  */
 
-export default function offsetRotate() {
+export default function offsetRotate(...args) {
     return {
-        offsetRotate: appendArgs(arguments)
+        offsetRotate: args.join(' ')
     };
 }

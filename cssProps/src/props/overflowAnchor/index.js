@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name overflowAnchor
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns overflowAnchor property as object
  */
 
-export default function overflowAnchor() {
+export default function overflowAnchor(...args) {
     return {
-        overflowAnchor: appendArgs(arguments)
+        overflowAnchor: args.join(' ')
     };
 }

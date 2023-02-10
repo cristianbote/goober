@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name paddingInlineEnd
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns paddingInlineEnd property as object
  */
 
-export default function paddingInlineEnd() {
+export default function paddingInlineEnd(...args) {
     return {
-        paddingInlineEnd: appendArgs(arguments)
+        paddingInlineEnd: args.join(' ')
     };
 }

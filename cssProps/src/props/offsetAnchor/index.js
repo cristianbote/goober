@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name offsetAnchor
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns offsetAnchor property as object
  */
 
-export default function offsetAnchor() {
+export default function offsetAnchor(...args) {
     return {
-        offsetAnchor: appendArgs(arguments)
+        offsetAnchor: args.join(' ')
     };
 }

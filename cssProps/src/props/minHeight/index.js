@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name minHeight
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns minHeight property as object
  */
 
-export default function minHeight() {
+export default function minHeight(...args) {
     return {
-        minHeight: appendArgs(arguments)
+        minHeight: args.join(' ')
     };
 }

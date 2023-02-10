@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name outlineColor
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns outlineColor property as object
  */
 
-export default function outlineColor() {
+export default function outlineColor(...args) {
     return {
-        outlineColor: appendArgs(arguments)
+        outlineColor: args.join(' ')
     };
 }

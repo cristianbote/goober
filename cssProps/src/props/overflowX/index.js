@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name overflowX
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns overflowX property as object
  */
 
-export default function overflowX() {
+export default function overflowX(...args) {
     return {
-        overflowX: appendArgs(arguments)
+        overflowX: args.join(' ')
     };
 }

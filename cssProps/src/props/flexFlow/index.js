@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name flexFlow
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns flexFlow property as object
  */
 
-export default function flexFlow() {
+export default function flexFlow(...args) {
     return {
-        flexFlow: appendArgs(arguments)
+        flexFlow: args.join(' ')
     };
 }

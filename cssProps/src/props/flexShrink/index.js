@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name flexShrink
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns flexShrink property as object
  */
 
-export default function flexShrink() {
+export default function flexShrink(...args) {
     return {
-        flexShrink: appendArgs(arguments)
+        flexShrink: args.join(' ')
     };
 }

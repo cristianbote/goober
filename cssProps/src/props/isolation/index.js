@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name isolation
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns isolation property as object
  */
 
-export default function isolation() {
+export default function isolation(...args) {
     return {
-        isolation: appendArgs(arguments)
+        isolation: args.join(' ')
     };
 }

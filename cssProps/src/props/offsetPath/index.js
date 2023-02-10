@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name offsetPath
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns offsetPath property as object
  */
 
-export default function offsetPath() {
+export default function offsetPath(...args) {
     return {
-        offsetPath: appendArgs(arguments)
+        offsetPath: args.join(' ')
     };
 }

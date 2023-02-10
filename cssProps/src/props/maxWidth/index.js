@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name maxWidth
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns maxWidth property as object
  */
 
-export default function maxWidth() {
+export default function maxWidth(...args) {
     return {
-        maxWidth: appendArgs(arguments)
+        maxWidth: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name content
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns content property as object
  */
 
-export default function content() {
+export default function content(...args) {
     return {
-        content: appendArgs(arguments)
+        content: args.join(' ')
     };
 }

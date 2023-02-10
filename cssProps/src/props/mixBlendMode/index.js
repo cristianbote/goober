@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name mixBlendMode
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns mixBlendMode property as object
  */
 
-export default function mixBlendMode() {
+export default function mixBlendMode(...args) {
     return {
-        mixBlendMode: appendArgs(arguments)
+        mixBlendMode: args.join(' ')
     };
 }

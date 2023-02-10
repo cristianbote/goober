@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name listStyleImage
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns listStyleImage property as object
  */
 
-export default function listStyleImage() {
+export default function listStyleImage(...args) {
     return {
-        listStyleImage: appendArgs(arguments)
+        listStyleImage: args.join(' ')
     };
 }

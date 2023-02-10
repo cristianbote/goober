@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name flexGrow
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns flexGrow property as object
  */
 
-export default function flexGrow() {
+export default function flexGrow(...args) {
     return {
-        flexGrow: appendArgs(arguments)
+        flexGrow: args.join(' ')
     };
 }

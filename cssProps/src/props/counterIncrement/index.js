@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name counterIncrement
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns counterIncrement property as object
  */
 
-export default function counterIncrement() {
+export default function counterIncrement(...args) {
     return {
-        counterIncrement: appendArgs(arguments)
+        counterIncrement: args.join(' ')
     };
 }

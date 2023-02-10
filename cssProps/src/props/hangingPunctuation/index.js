@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name hangingPunctuation
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns hangingPunctuation property as object
  */
 
-export default function hangingPunctuation() {
+export default function hangingPunctuation(...args) {
     return {
-        hangingPunctuation: appendArgs(arguments)
+        hangingPunctuation: args.join(' ')
     };
 }

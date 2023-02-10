@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name inset
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns inset property as object
  */
 
-export default function inset() {
+export default function inset(...args) {
     return {
-        inset: appendArgs(arguments)
+        inset: args.join(' ')
     };
 }

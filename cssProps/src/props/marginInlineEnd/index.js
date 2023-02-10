@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name marginInlineEnd
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns marginInlineEnd property as object
  */
 
-export default function marginInlineEnd() {
+export default function marginInlineEnd(...args) {
     return {
-        marginInlineEnd: appendArgs(arguments)
+        marginInlineEnd: args.join(' ')
     };
 }

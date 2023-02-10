@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name outlineStyle
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns outlineStyle property as object
  */
 
-export default function outlineStyle() {
+export default function outlineStyle(...args) {
     return {
-        outlineStyle: appendArgs(arguments)
+        outlineStyle: args.join(' ')
     };
 }

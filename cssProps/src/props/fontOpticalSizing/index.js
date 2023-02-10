@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name fontOpticalSizing
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns fontOpticalSizing property as object
  */
 
-export default function fontOpticalSizing() {
+export default function fontOpticalSizing(...args) {
     return {
-        fontOpticalSizing: appendArgs(arguments)
+        fontOpticalSizing: args.join(' ')
     };
 }

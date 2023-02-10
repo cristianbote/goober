@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name filter
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns filter property as object
  */
 
-export default function filter() {
+export default function filter(...args) {
     return {
-        filter: appendArgs(arguments)
+        filter: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name marginBlockEnd
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns marginBlockEnd property as object
  */
 
-export default function marginBlockEnd() {
+export default function marginBlockEnd(...args) {
     return {
-        marginBlockEnd: appendArgs(arguments)
+        marginBlockEnd: args.join(' ')
     };
 }

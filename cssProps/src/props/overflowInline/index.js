@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name overflowInline
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns overflowInline property as object
  */
 
-export default function overflowInline() {
+export default function overflowInline(...args) {
     return {
-        overflowInline: appendArgs(arguments)
+        overflowInline: args.join(' ')
     };
 }

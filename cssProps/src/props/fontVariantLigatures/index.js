@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name fontVariantLigatures
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns fontVariantLigatures property as object
  */
 
-export default function fontVariantLigatures() {
+export default function fontVariantLigatures(...args) {
     return {
-        fontVariantLigatures: appendArgs(arguments)
+        fontVariantLigatures: args.join(' ')
     };
 }

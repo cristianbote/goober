@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name lineBreak
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns lineBreak property as object
  */
 
-export default function lineBreak() {
+export default function lineBreak(...args) {
     return {
-        lineBreak: appendArgs(arguments)
+        lineBreak: args.join(' ')
     };
 }

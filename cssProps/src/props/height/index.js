@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name height
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns height property as object
  */
 
-export default function height() {
+export default function height(...args) {
     return {
-        height: appendArgs(arguments)
+        height: args.join(' ')
     };
 }

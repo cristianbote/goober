@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name fontSynthesis
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns fontSynthesis property as object
  */
 
-export default function fontSynthesis() {
+export default function fontSynthesis(...args) {
     return {
-        fontSynthesis: appendArgs(arguments)
+        fontSynthesis: args.join(' ')
     };
 }

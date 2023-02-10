@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name maskOrigin
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns maskOrigin property as object
  */
 
-export default function maskOrigin() {
+export default function maskOrigin(...args) {
     return {
-        maskOrigin: appendArgs(arguments)
+        maskOrigin: args.join(' ')
     };
 }

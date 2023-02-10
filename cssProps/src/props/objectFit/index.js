@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name objectFit
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns objectFit property as object
  */
 
-export default function objectFit() {
+export default function objectFit(...args) {
     return {
-        objectFit: appendArgs(arguments)
+        objectFit: args.join(' ')
     };
 }

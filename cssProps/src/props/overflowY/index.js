@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name overflowY
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns overflowY property as object
  */
 
-export default function overflowY() {
+export default function overflowY(...args) {
     return {
-        overflowY: appendArgs(arguments)
+        overflowY: args.join(' ')
     };
 }

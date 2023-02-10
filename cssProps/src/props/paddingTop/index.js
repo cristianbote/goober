@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name paddingTop
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns paddingTop property as object
  */
 
-export default function paddingTop() {
+export default function paddingTop(...args) {
     return {
-        paddingTop: appendArgs(arguments)
+        paddingTop: args.join(' ')
     };
 }

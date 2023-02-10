@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name emptyCells
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns emptyCells property as object
  */
 
-export default function emptyCells() {
+export default function emptyCells(...args) {
     return {
-        emptyCells: appendArgs(arguments)
+        emptyCells: args.join(' ')
     };
 }

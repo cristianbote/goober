@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name columns
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns columns property as object
  */
 
-export default function columns() {
+export default function columns(...args) {
     return {
-        columns: appendArgs(arguments)
+        columns: args.join(' ')
     };
 }

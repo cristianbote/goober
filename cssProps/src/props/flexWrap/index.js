@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name flexWrap
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns flexWrap property as object
  */
 
-export default function flexWrap() {
+export default function flexWrap(...args) {
     return {
-        flexWrap: appendArgs(arguments)
+        flexWrap: args.join(' ')
     };
 }

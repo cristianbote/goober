@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name fontWeight
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns fontWeight property as object
  */
 
-export default function fontWeight() {
+export default function fontWeight(...args) {
     return {
-        fontWeight: appendArgs(arguments)
+        fontWeight: args.join(' ')
     };
 }

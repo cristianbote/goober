@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name mathDepth
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns mathDepth property as object
  */
 
-export default function mathDepth() {
+export default function mathDepth(...args) {
     return {
-        mathDepth: appendArgs(arguments)
+        mathDepth: args.join(' ')
     };
 }

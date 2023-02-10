@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name minBlockSize
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns minBlockSize property as object
  */
 
-export default function minBlockSize() {
+export default function minBlockSize(...args) {
     return {
-        minBlockSize: appendArgs(arguments)
+        minBlockSize: args.join(' ')
     };
 }

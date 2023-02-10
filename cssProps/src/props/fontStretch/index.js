@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name fontStretch
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns fontStretch property as object
  */
 
-export default function fontStretch() {
+export default function fontStretch(...args) {
     return {
-        fontStretch: appendArgs(arguments)
+        fontStretch: args.join(' ')
     };
 }

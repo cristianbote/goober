@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name left
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns left property as object
  */
 
-export default function left() {
+export default function left(...args) {
     return {
-        left: appendArgs(arguments)
+        left: args.join(' ')
     };
 }

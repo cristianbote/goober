@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name maxInlineSize
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns maxInlineSize property as object
  */
 
-export default function maxInlineSize() {
+export default function maxInlineSize(...args) {
     return {
-        maxInlineSize: appendArgs(arguments)
+        maxInlineSize: args.join(' ')
     };
 }

@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name marginInlineStart
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns marginInlineStart property as object
  */
 
-export default function marginInlineStart() {
+export default function marginInlineStart(...args) {
     return {
-        marginInlineStart: appendArgs(arguments)
+        marginInlineStart: args.join(' ')
     };
 }

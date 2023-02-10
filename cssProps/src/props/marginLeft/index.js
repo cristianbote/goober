@@ -1,5 +1,4 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/props.prop.index.mustache */
-import { default as appendArgs } from '../../util/index';
 
 /**
  * @name marginLeft
@@ -12,8 +11,8 @@ import { default as appendArgs } from '../../util/index';
  * @returns marginLeft property as object
  */
 
-export default function marginLeft() {
+export default function marginLeft(...args) {
     return {
-        marginLeft: appendArgs(arguments)
+        marginLeft: args.join(' ')
     };
 }
