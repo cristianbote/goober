@@ -12,19 +12,38 @@ const atRulesListView = {
 };
 
 Object.keys(cssAtRules).forEach((atRule) => {
-    const atRuleCamelCase = atRule.replace(/-[a-z]/g, (g) => g[1].toUpperCase());
+    //Special case for import, since it is a javascript keyword.
+    const atRuleCamelCase =
+        atRule === '@import'
+            ? 'atImport'
+            : atRule.slice(1).replace(/-[a-z]/g, (g) => g[1].toUpperCase());
 
-    atRuleView = { atRule: atRule };
+    const atRuleSyntax = cssAtRules[atRule].syntax;
+    const tokens = atRuleSyntax.split(/\s+/);
+    const hasArgs = tokens[1] !== '{'; //If first token after @rule is {, then only css properties are present
+    const hasProps = tokens.includes('{'); //Found object syntax for @rule
+    const argsAndProps = hasArgs && hasProps;
+    const isKeyframes = atRule === '@keyframes';
+
+    atRuleView = {
+        atRule,
+        atRuleCamelCase,
+        atRuleSyntax,
+        hasArgs,
+        hasProps,
+        argsAndProps,
+        isKeyframes
+    };
     atRulesListView.atRules.push(atRuleView);
 
     const atRulesAtRuleIndexFile = Mustache.render(atRulesAtRuleIndexTemplate, atRuleView);
 
-    jetpack.dir(`./src/atRules/${atRule}`);
-    jetpack.write(`./src/atRules/${atRule}/index.js`, atRulesAtRuleIndexFile);
+    jetpack.dir(`./src/atRules/${atRuleCamelCase}`);
+    jetpack.write(`./src/atRules/${atRuleCamelCase}/index.js`, atRulesAtRuleIndexFile);
 });
 
 const atRulesIndexFile = Mustache.render(atRulesIndexTemplate, atRulesListView);
 jetpack.write('./src/atRules/index.js', atRulesIndexFile);
 
 const atRulesTestFile = Mustache.render(atRulesTestTemplate, atRulesListView);
-jetpack.write('./test/atRules/atRules.test.js', atRulesTestFile);
+jetpack.write('./test/atRules.test.js', atRulesTestFile);

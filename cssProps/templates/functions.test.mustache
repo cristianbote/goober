@@ -1,16 +1,8 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/functions.test.mustache */
-import * as cssFunctions from '../index';
-import { css, setup } from 'goober';
-
-jest.mock('goober', () => ({
-    css: jest.fn().mockReturnValue('css()')
-}));
+import * as cssFunctions from '../src/functions/index';
+import { css } from 'goober';
 
 describe('cssFunctions', () => {
-    beforeEach(() => {
-        css.mockClear();
-    });
-
     {{#Funcs}}
     it('{{func}} type', () => {
         expect(typeof cssFunctions.{{func}}).toEqual('function');

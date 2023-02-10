@@ -2,22 +2,31 @@
 /**
  * @name {{atRuleCamelCase}}
  * @category CssProps Helper
- * @summary {{atRule}} {{atRuleSyntax}}
+ * @summary {{atRule}}
  *
  * @description
- * {{atRule}} {{atRuleSyntax}}
+ *    {{atRule}} 
+ *    {{atRuleSyntax}}
  *
- {{#atRuleParams}}
- * @param {{atRuleParamType}} {{atRuleParamName}} - {{atRuleParamDescription}}
- {{/atRuleParams}}
- * @returns {{atRuleReturnType}} - {{atRuleReturnDescription}}
+{{#hasArgs}}
+ * @param {string} args - a string representation of the arguments following the @rule
+{{/hasArgs}}
+{{#hasProps}}
+ * @param {Object[]} cssProps - Array of css property objects that apply to the @rule
+ * @returns {Object} atRule - returns an object with the {{atRule}} property
+{{/hasProps}}
  */
 
-export default function {{atRuleCamelCase}}({{#hasArgs}}args{{/hasArgs}}{{#hasProps}}, cssProps{{/hasProps}}) {
+{{#hasProps}}
+import { flatten } from '../../util/index';
+{{/hasProps}}
+export default function {{atRuleCamelCase}}({{#hasArgs}}args{{/hasArgs}}{{#argsAndProps}}, {{/argsAndProps}}{{#hasProps}}cssProps{{/hasProps}}) {
+{{^hasProps}}
+    return `{{atRule}}{{#hasArgs}} ${args}{{/hasArgs}}`
+{{/hasProps}}
+{{#hasProps}}
     return {
-        ["{{atRule}}{{#atRuleFunction}}({{rule}}){{/atRuleFunction}}"]: cssProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj)
-        }, {})
+        [`{{atRule}}{{#hasArgs}} ${args}{{/hasArgs}}`]: flatten(cssProps)
     }
+{{/hasProps}}
 }
-

@@ -36,4 +36,4 @@ const functionsIndexFile = Mustache.render(functionsIndexTemplate, funcListView)
 jetpack.write('./src/functions/index.js', functionsIndexFile);
 
 const functionsTestFile = Mustache.render(functionsTestTemplate, funcListView);
-jetpack.write('./test/functions/functions.test.js', functionsTestFile);
+jetpack.write('./test/functions.test.js', functionsTestFile);

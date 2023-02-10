@@ -1,27 +1,37 @@
 /* Do not modify this file.  This file is generated from ./cssProps/templates/atRules.test.mustache */
-import * as cssAtRules from '../index';
-import { color, maxWidth } from '../../props/index';
-import { css, setup } from 'goober';
-
-jest.mock('goober', () => ({
-    css: jest.fn().mockReturnValue('css()')
-}));
+import * as cssAtRules from '../src/atRules/index';
+import { color, maxWidth } from '../src/props/index';
+import { css, extractCss } from 'goober';
 
 describe('cssAtRules', () => {
-    beforeEach(() => {
-        css.mockClear();
-    });
-
-    {{#atRuleTests}}
+{{#atRules}}
     it('{{atRule}} type', () => {
         expect(typeof cssAtRules.{{atRuleCamelCase}}).toEqual('function');
     });
-
     it('{{atRule}}', () => {
-        expect(cssAtRules.{{atRuleCamelCase}}("(param)", [
+        const atRule = cssAtRules.{{atRuleCamelCase}}({{#hasArgs}}"(param)"{{/hasArgs}}{{#argsAndProps}}, {{/argsAndProps}}{{#hasProps}}[
             color("blue"),
             maxWidth("100px")
-        ])).toEqual({"{{atRule}} (param)": {"color": "blue", "maxWidth": "100px"}});
+        ]{{/hasProps}});
+{{^hasProps}}
+        expect(atRule).toEqual("{{atRule}}{{#hasArgs}} (param){{/hasArgs}}");
+{{/hasProps}}
+{{#hasProps}}
+        expect(atRule).toEqual({"{{atRule}}{{#hasArgs}} (param){{/hasArgs}}": {"color": "blue", "maxWidth": "100px"}});
+{{/hasProps}}
+        css(atRule);
+{{^hasProps}}
+        expect(extractCss()).toEqual("{{atRule}}{{#hasArgs}} (param){{/hasArgs}}")
+{{/hasProps}}
+{{#hasProps}}
+{{^isKeyframes}}
+        expect(extractCss().replace(/go\d+/, "go12345")).toEqual("{{atRule}}{{#hasArgs}} (param){{/hasArgs}}{.go12345{color:blue;max-width:100px;}}")
+{{/isKeyframes}}
+{{#isKeyframes}}
+        expect(extractCss().replace(/go\d+/, "go12345")).toEqual("{{atRule}}{{#hasArgs}} (param){{/hasArgs}}{color:blue;max-width:100px;}")
+{{/isKeyframes}}
+{{/hasProps}}
     });
-    {{/atRuleTests}}
+
+{{/atRules}}
 });

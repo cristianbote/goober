@@ -27,7 +27,7 @@ const propsIndexFile = Mustache.render(propsIndexTemplate, propsListView);
 jetpack.write('./src/props/index.js', propsIndexFile);
 
 const propsTestFile = Mustache.render(propsTestTemplate, propsListView);
-jetpack.write('./test/props/props.test.js', propsTestFile);
+jetpack.write('./test/props.test.js', propsTestFile);
 
 function toCamelCase(str) {
     return str.replace(/-[a-z]/g, (g) => g[1].toUpperCase());

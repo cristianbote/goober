@@ -3,6 +3,7 @@ const Mustache = require('mustache');
 
 const constants = jetpack.read('./cssMdnData/constants.json', 'json');
 const constantsIndexTemplate = jetpack.read('./templates/constants.index.mustache');
+const constantsTestTemplate = jetpack.read('./templates/constants.test.mustache');
 
 const constantListView = {
     Constants: []
@@ -18,5 +19,7 @@ constants.forEach((constant) => {
 });
 
 const constantsIndexFile = Mustache.render(constantsIndexTemplate, constantListView);
+const constantsTestFile = Mustache.render(constantsTestTemplate, constantListView);
 
 jetpack.write('./src/constants/index.js', constantsIndexFile);
+jetpack.write('./test/constants.test.js', constantsTestFile);

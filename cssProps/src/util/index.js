@@ -1,3 +1,2 @@
-export { default as append } from './append';
+export { default as flatten } from './flatten';
 export { default as string } from './string';
-export { default as paren } from './paren';

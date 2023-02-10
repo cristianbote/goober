@@ -10,10 +10,9 @@
  * @returns {{pseudo}} property as object with object of css properties
  */
 
-export default function {{pseudoCamelCase}}(arrayOfProps) {
+import { flatten } from '../../util/index';
+export default function {{pseudoCamelCase}}(cssProps) {
     return {
-        "&{{pseudo}}": arrayOfProps.reduce((result, cssPropObj) => {
-            return Object.assign(result, cssPropObj)
-        }, {})
+        "&{{pseudo}}": flatten(cssProps)
     };
 }
