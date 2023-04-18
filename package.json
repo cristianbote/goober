@@ -38,7 +38,7 @@
       "require": "./dist/goober.cjs",
       "import": "./dist/goober.modern.js",
       "umd": "./dist/goober.umd.js",
-      "types": "./dist/goober.d.ts"
+      "types": "./goober.d.ts"
     },
     "./macro": "./macro/index.js",
     "./global": {
