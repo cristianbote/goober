@@ -54,7 +54,8 @@
     "./should-forward-prop": {
       "import": "./should-forward-prop/dist/goober-should-forward-prop.modern.js",
       "require": "./should-forward-prop/dist/goober-should-forward-prop.cjs",
-      "umd": "./should-forward-prop/dist/goober-should-forward-prop.umd.js"
+      "umd": "./should-forward-prop/dist/goober-should-forward-prop.umd.js",
+      "types": "./should-forward-prop/should-forward-prop.d.ts"
     }
   },
   "scripts": {
