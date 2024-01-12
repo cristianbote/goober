@@ -44,12 +44,14 @@
     "./global": {
       "import": "./global/dist/goober-global.modern.js",
       "require": "./global/dist/goober-global.cjs",
-      "umd": "./global/dist/goober-global.umd.js"
+      "umd": "./global/dist/goober-global.umd.js",
+      "types": "./global/global.d.ts"
     },
     "./prefixer": {
       "import": "./prefixer/dist/goober-autoprefixer.modern.js",
       "require": "./prefixer/dist/goober-autoprefixer.cjs",
-      "umd": "./prefixer/dist/goober-autoprefixer.umd.js"
+      "umd": "./prefixer/dist/goober-autoprefixer.umd.js",
+      "types": "./prefixer/autoprefixer.d.ts"
     },
     "./should-forward-prop": {
       "import": "./should-forward-prop/dist/goober-should-forward-prop.modern.js",
