@@ -97,7 +97,7 @@ describe('hash', () => {
 
         const res = hash({ baz: 1 }, 'target');
 
-        expect(toHash).toBeCalledWith('baz1');
+        expect(toHash).toBeCalledWith('baz,10');
         expect(astish).not.toBeCalled();
         expect(parse).toBeCalledWith({ baz: 1 }, '.' + className);
         expect(update).toBeCalledWith('parse()', 'target', undefined, null);
@@ -111,12 +111,12 @@ describe('hash', () => {
 
         // Since it's not yet cached
         hash({ cacheObject: 1 }, 'target');
-        expect(toHash).toBeCalledWith('cacheObject1');
+        expect(toHash).toBeCalledWith('cacheObject,10');
         toHash.mockClear();
 
         // Different object
         hash({ foo: 2 }, 'target');
-        expect(toHash).toBeCalledWith('foo2');
+        expect(toHash).toBeCalledWith('foo,20');
         toHash.mockClear();
 
         // First object should not call .toHash

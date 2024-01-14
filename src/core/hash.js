@@ -9,21 +9,6 @@ import { parse } from './parse';
 let cache = {};
 
 /**
- * Stringifies a object structure
- * @param {Object} data
- * @returns {String}
- */
-let stringify = (data) => {
-    if (typeof data == 'object') {
-        let out = '';
-        for (let p in data) out += p + stringify(data[p]);
-        return out;
-    } else {
-        return data;
-    }
-};
-
-/**
  * Generates the needed className
  * @param {String|Object} compiled
  * @param {Object} sheet StyleSheet target
@@ -34,7 +19,7 @@ let stringify = (data) => {
  */
 export let hash = (compiled, sheet, global, append, keyframes) => {
     // Get a string representation of the object or the value that is called 'compiled'
-    let stringifiedCompiled = stringify(compiled);
+    let stringifiedCompiled = typeof compiled == 'object' ? Object.entries(compiled) + 0 : compiled;
 
     // Retrieve the className from cache or hash it in place
     let className =
