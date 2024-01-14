@@ -20,9 +20,7 @@ function setup(pragma, prefix, theme, forwardProps) {
 function styled(tag, forwardRef) {
     let _ctx = this || {};
 
-    return function wrapper() {
-        let _args = arguments;
-
+    return (..._args) => {
         function Styled(props, ref) {
             // Grab a shallow copy of the props
             let _props = Object.assign({}, props);
