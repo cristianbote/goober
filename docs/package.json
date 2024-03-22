@@ -14,7 +14,7 @@
         "prettier": "prettier --config .prettierrc --write \"**/*.md\""
     },
     "dependencies": {
-        "@docusaurus/core": "2.0.0-alpha.70",
+        "@docusaurus/core": "2.4.3",
         "@docusaurus/preset-classic": "2.0.0-alpha.70",
         "@docusaurus/theme-search-algolia": "^2.0.0-alpha.70",
         "@mdx-js/react": "^1.6.21",
