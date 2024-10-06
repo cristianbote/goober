@@ -11,11 +11,13 @@ declare namespace goober {
 
     interface StyledFunction {
         // used when creating a styled component from a native HTML element
-        <T extends keyof JSX.IntrinsicElements, P extends Object = {}>(
+        <T extends keyof React.JSX.IntrinsicElements, P extends Object = {}>(
             tag: T,
             forwardRef?: ForwardRefFunction
         ): Tagged<
-            JSX.LibraryManagedAttributes<T, JSX.IntrinsicElements[T]> & P & Theme<DefaultTheme>
+            React.JSX.LibraryManagedAttributes<T, React.JSX.IntrinsicElements[T]> &
+                P &
+                Theme<DefaultTheme>
         >;
 
         // used to extend other styled components. Inherits props from the extended component
@@ -26,10 +28,12 @@ declare namespace goober {
 
         // used when creating a component from a string (html native) but using a non HTML standard
         // component, such as when you want to style web components
-        <P extends Object = {}>(tag: string): Tagged<P & Partial<JSX.ElementChildrenAttribute>>;
+        <P extends Object = {}>(tag: string): Tagged<
+            P & Partial<React.JSX.ElementChildrenAttribute>
+        >;
 
         // used to create a styled component from a JSX element (both functional and class-based)
-        <T extends JSX.Element | JSX.ElementClass, P extends Object = {}>(
+        <T extends React.JSX.Element | React.JSX.ElementClass, P extends Object = {}>(
             tag: T,
             forwardRef?: ForwardRefFunction
         ): Tagged<P>;
@@ -37,8 +41,9 @@ declare namespace goober {
 
     // used when creating a styled component from a native HTML element with the babel-plugin-transform-goober parser
     type BabelPluginTransformGooberStyledFunction = {
-        [T in keyof JSX.IntrinsicElements]: Tagged<
-            JSX.LibraryManagedAttributes<T, JSX.IntrinsicElements[T]> & Theme<DefaultTheme>
+        [T in keyof React.JSX.IntrinsicElements]: Tagged<
+            React.JSX.LibraryManagedAttributes<T, React.JSX.IntrinsicElements[T]> &
+                Theme<DefaultTheme>
         >;
     };
 
