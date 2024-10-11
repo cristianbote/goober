@@ -72,6 +72,13 @@ describe('integrations', () => {
         const BoxWithShared = styled('div')(shared);
         const BoxWithSharedAndConditional = styled('div')([shared, { baz: 0 }]);
 
+        const BoxWithHas = styled('div')`
+            label:has(input, select),
+            :has(foo, boo) {
+                color: red;
+            }
+        `;
+
         const refSpy = jest.fn();
 
         render(
@@ -93,6 +100,7 @@ describe('integrations', () => {
                     <BoxWithShared />
                     <BoxWithSharedAndConditional />
                     <div className={css([shared, { background: 'cyan' }])} />
+                    <BoxWithHas />
                 </div>
             </ThemeContext.Provider>,
             target
@@ -114,6 +122,7 @@ describe('integrations', () => {
                 '.go631307347{foo:1;color:red;baz:0;}',
                 '.go3865943372{opacity:0;}',
                 '.go1162430001{opacity:0;baz:0;}',
+                '.go2602823658 label:has(input, select),.go2602823658  :has(foo, boo){color:red;}',
                 '"'
             ].join('')
         );
