@@ -30,10 +30,11 @@ export let compile = (str, defs, data) => {
                 tail = res.props ? '' : parse(res, '');
             } else {
                 // Regular value returned. Can be falsy as well.
-                // Here we check if this is strictly a boolean with false value
-                // define it as `''` to be picked up as empty, otherwise use
-                // res value
-                tail = res === false ? '' : res;
+                // If this is `false`, `undefined` or `null`,
+                // define it as `_;` to be picked up as empty, otherwise use
+                // res value. The semicolon in `_;` is necessary to make `astish()`
+                // ignore such empty values.
+                tail = res === false || res == null ? '_;' : res;
             }
         }
         return out + next + (tail == null ? '' : tail);
