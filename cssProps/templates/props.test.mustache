@@ -1,0 +1,15 @@
+/* Do not modify this file.  This file is generated from ./cssProps/templates/props.test.mustache */
+import * as cssProps from '../src/props/index';
+import { css } from 'goober';
+
+describe('cssProps', () => {
+    {{#Props}}
+    it('{{prop}} type', () => {
+        expect(typeof cssProps.{{prop}}).toEqual('function');
+    });
+
+    it('{{prop}}', () => {
+        expect(cssProps.{{prop}}("value1", "value2")).toEqual({ {{prop}}:'value1 value2'});
+    });
+    {{/Props}}
+});

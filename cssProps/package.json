@@ -1,0 +1,44 @@
+{
+  "name": "@goober/css",
+  "amdName": "gooberCssProps",
+  "version": "0.1.0",
+  "description": "The css property helper functions for goober",
+  "sideEffects": false,
+  "main": "dist/goober-cssProps.js",
+  "module": "dist/goober-cssProps.esm.js",
+  "umd:main": "dist/goober-cssProps.umd.js",
+  "source": "src/index.js",
+  "unpkg": "dist/goober-cssProps.umd.js",
+  "types": "./cssProps.d.ts",
+  "scripts": {
+    "build": "node scripts/generateAtRules.js && node scripts/generateConstants.js && node scripts/generateFunctions.js && node scripts/generateProps.js && node scripts/generatePseudos.js && node scripts/generateSyntaxes.js && node scripts/generateTypes.js && node scripts/generateUnits.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cristianbote/goober.git",
+    "directory": "cssProps"
+  },
+  "author": "Cristian <botecristian@yahoo.com>",
+  "keywords": [
+    "goober",
+    "styled",
+    "cssProps"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "goober": "^2.0.29"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.x",
+    "@babel/preset-env": "^7.x",
+    "babel-jest": "^29.x",
+    "fs-jetpack": "^4.x",
+    "goober": "^2.x",
+    "jest": "^29.x",
+    "mdn-browser-compat-data": "^1.x",
+    "mdn-data": "^2.0.31",
+    "mustache": "^4.x",
+    "preact": "^10.5.6"
+  }
+}

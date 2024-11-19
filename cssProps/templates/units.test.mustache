@@ -1,0 +1,15 @@
+/* Do not modify this file.  This file is generated from ./cssProps/templates/units.test.mustache */
+import * as cssUnits from '../src/units/index';
+import { css, setup } from 'goober';
+
+describe('cssUnits', () => {
+    {{#Units}}
+    it('{{unitName}} type', () => {
+        expect(typeof cssUnits.{{unitName}}).toEqual('function');
+    });
+
+    it('{{unit}}', () => {
+        expect(cssUnits.{{unitName}}(5)).toEqual('5{{unit}}');
+    });
+    {{/Units}}
+});
