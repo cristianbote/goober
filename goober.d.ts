@@ -77,6 +77,7 @@ declare namespace goober {
     type StyledVNode<T> = ((props: T, ...args: any[]) => any) & {
         defaultProps?: T;
         displayName?: string;
+        className?: string;
     };
 
     type StylesGenerator<P extends Object = {}> = (props: P) => CSSAttribute | string;
