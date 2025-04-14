@@ -23,7 +23,7 @@ export let compile = (str, defs, data) => {
 
             if (end) {
                 // If the `end` is defined means it's a className
-                tail = '.' + end;
+                tail = '.' + end.replace(/ \.*/, '.');
             } else if (res && typeof res == 'object') {
                 // If `res` it's an object, we're either dealing with a vnode
                 // or an object returned from a function interpolation

@@ -1,7 +1,10 @@
 import { css } from './css';
 import { parse } from './core/parse';
 
-let h, useTheme, fwdProp;
+let h,
+    useTheme,
+    fwdProp,
+    co = 0;
 function setup(pragma, prefix, theme, forwardProps) {
     // This one needs to stay in here, so we won't have cyclic dependencies
     parse.p = prefix;
@@ -22,6 +25,7 @@ function styled(tag, forwardRef) {
 
     return function wrapper() {
         let _args = arguments;
+        let _uniqueId = 'go' + ++co;
 
         function Styled(props, ref) {
             // Grab a shallow copy of the props
@@ -39,8 +43,11 @@ function styled(tag, forwardRef) {
             _ctx.o = / *go\d+/.test(_previousClassName);
 
             _props.className =
+                _uniqueId +
+                ' ' +
                 // Define the new className
-                css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '');
+                css.apply(_ctx, _args) +
+                (_previousClassName ? ' ' + _previousClassName : '');
 
             // If the forwardRef fun is defined we have the ref
             if (forwardRef) {
