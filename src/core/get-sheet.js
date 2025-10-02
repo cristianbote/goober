@@ -12,13 +12,14 @@ export let getSheet = (target) => {
     if (typeof window === 'object') {
         // Querying the existing target for a previously defined <style> tag
         // We're doing a querySelector because the <head> element doesn't implemented the getElementById api
-        return (
+        let el =
             (target ? target.querySelector('#' + GOOBER_ID) : window[GOOBER_ID]) ||
             Object.assign((target || document.head).appendChild(document.createElement('style')), {
                 innerHTML: ' ',
                 id: GOOBER_ID
-            })
-        ).firstChild;
+            });
+        if (window.__nonce__) el.setAttribute('nonce', window.__nonce__);
+        return el.firstChild;
     }
 
     return target || ssr;
