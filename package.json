@@ -131,7 +131,7 @@
   "typings": "./goober.d.ts",
   "filesize": {
     "./dist/goober.modern.js": {
-      "gzip": "1300B"
+      "gzip": "1301B"
     },
     "./dist/goober.cjs": {
       "gzip": "1300B"

@@ -68,6 +68,7 @@ It's a pun on the tagline.
     -   [Sharing Style](#sharing-style)
     -   [Autoprefixer](#autoprefixer)
     -   [TypeScript](#typescript)
+    -   [Content Security Policy (CSP)](#content-security-policy-csp)-
 -   [Browser Support](#browser-support)
 -   [Contributing](#contributing)
 
@@ -703,6 +704,18 @@ Usage:
 -   [x] `globalStyle` (via `glob`) so one would be able to create global styles
 -   [x] target/extract from elements other than `<head>`
 -   [x] [vendor prefixing](#autoprefixer)
+
+# Content Security Policy (CSP)
+
+goober supports Content Security Policy nonces for inline styles. Set `window.__nonce__` before loading the library:
+
+```js
+<script nonce="your-nonce-here">
+  window.__nonce__ = 'your-nonce-here';
+</script>
+```
+
+The nonce will be added to goober's `<style>` element.
 
 # Sharing style
 
