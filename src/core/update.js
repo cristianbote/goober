@@ -3,12 +3,9 @@ import { getSheet } from './get-sheet';
  * Extracts and wipes the cache
  * @returns {String}
  */
-export let extractCss = (target) => {
-    let sheet = getSheet(target);
-    let out = sheet.data;
-    sheet.data = '';
-    return out;
-};
+export let extractCss = (target, sheet = getSheet(target), out = sheet.data) => (
+    (sheet.data = ''), out
+);
 
 /**
  * Updates the target and keeps a local cache

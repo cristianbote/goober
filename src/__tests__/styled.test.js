@@ -28,7 +28,7 @@ describe('styled', () => {
         expect(() => styled()()()).toThrow();
 
         setup(pragma);
-        const vnode = styled('div')``();
+        const vnode = styled('div')``({});
 
         expect(pragma).toBeCalledTimes(1);
         expect(vnode).toMatchVNode('div', {
@@ -75,7 +75,7 @@ describe('styled', () => {
         `;
 
         // Simulate a render
-        let vnode = Tag();
+        let vnode = Tag({});
         expect(vnode).toMatchVNode('tag', { className: 'go' });
 
         // Simulate a render with
@@ -84,7 +84,7 @@ describe('styled', () => {
         expect(vnode).toMatchVNode('foo', { className: 'go' });
 
         // Simulate a render
-        vnode = Tag();
+        vnode = Tag({});
         expect(vnode).toMatchVNode('tag', { className: 'go' });
     });
 

@@ -4,11 +4,7 @@
  * @param {String} selector
  * @param {String} wrapper
  */
-export let parse = (obj, selector) => {
-    let outer = '';
-    let blocks = '';
-    let current = '';
-
+export let parse = (obj, selector, outer = '', blocks = '', current = '') => {
     for (let key in obj) {
         let val = obj[key];
 
