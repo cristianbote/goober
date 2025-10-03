@@ -23,6 +23,28 @@ describe('getSheet', () => {
         expect(sheet === second).toBeTruthy();
     });
 
+    it('applies nonce from window.__nonce__', () => {
+        const sheet = getSheet();
+        const style = sheet.parentElement;
+        const prevAttr = style.getAttribute('nonce');
+        const hadAttr = style.hasAttribute('nonce');
+        const prevNonce = window.__nonce__;
+
+        style.removeAttribute('nonce');
+        delete window.__nonce__;
+
+        window.__nonce__ = 'secure-nonce';
+        getSheet();
+
+        expect(style.getAttribute('nonce')).toEqual('secure-nonce');
+
+        if (prevAttr != null) style.setAttribute('nonce', prevAttr);
+        else if (!hadAttr) style.removeAttribute('nonce');
+
+        if (prevNonce === undefined) delete window.__nonce__;
+        else window.__nonce__ = prevNonce;
+    });
+
     it('server side', () => {
         const bkp = global.document;
         delete global.document;
