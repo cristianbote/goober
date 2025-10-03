@@ -281,12 +281,13 @@ describe('parse', () => {
                 {
                     div: {
                         opacity: 0,
-                        color: null
+                        color: null,
+                        content: '""'
                     }
                 },
                 ''
             )
-        ).toEqual('div{opacity:0;}');
+        ).toEqual('div{opacity:0;content:"";}');
         expect(
             parse(
                 {
