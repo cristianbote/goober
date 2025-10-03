@@ -1,6 +1,7 @@
+import { css } from 'goober';
 import { cssPropertyAlias, cssPropertyPrefixFlags, cssValuePrefixFlags } from 'style-vendorizer';
 
-export function prefix(property, value) {
+css.p(function prefix(property, value) {
     let cssText = '';
 
     /* Resolve aliases, e.g. `gap` -> `grid-gap` */
@@ -25,4 +26,4 @@ export function prefix(property, value) {
     cssText += `${property}:${value};`;
 
     return cssText;
-}
+});
