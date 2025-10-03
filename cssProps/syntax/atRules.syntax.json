@@ -1,0 +1,13 @@
+{
+  "@charset": "@charset \"<charset>\";",
+  "@counter-style": "@counter-style <counter-style-name> { [ system: <counter-system>; ] || [ symbols: <counter-symbols>; ] || [ additive-symbols: <additive-symbols>; ] || [ negative: <negative-symbol>; ] || [ prefix: <prefix>; ] || [ suffix: <suffix>; ] || [ range: <range>; ] || [ pad: <padding>; ] || [ speak-as: <speak-as>; ] || [ fallback: <counter-style-name>; ] }",
+  "@font-face": "@font-face { [ font-family: <family-name>; ] || [ src: <src>; ] || [ unicode-range: <unicode-range>; ] || [ font-variant: <font-variant>; ] || [ font-feature-settings: <font-feature-settings>; ] || [ font-variation-settings: <font-variation-settings>; ] || [ font-stretch: <font-stretch>; ] || [ font-weight: <font-weight>; ] || [ font-style: <font-style>; ] || [ size-adjust: <size-adjust>; ] || [ ascent-override: <ascent-override>; ] || [ descent-override: <descent-override>; ] || [ line-gap-override: <line-gap-override>; ] }",
+  "@font-feature-values": "@font-feature-values <family-name># { <feature-value-block-list> }",
+  "@import": "@import [ <string> | <url> ] [ <media-query-list> ]?;",
+  "@keyframes": "@keyframes <keyframes-name> { <keyframe-block-list> }",
+  "@media": "@media <media-query-list> { <group-rule-body> }",
+  "@namespace": "@namespace <namespace-prefix>? [ <string> | <url> ];",
+  "@page": "@page <page-selector-list> { <page-body> }",
+  "@supports": "@supports <supports-condition> { <group-rule-body> }",
+  "@viewport": "@viewport { <group-rule-body> }"
+}
