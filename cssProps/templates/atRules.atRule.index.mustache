@@ -1,0 +1,14 @@
+/* Do not modify this file.  This file is generated from ./cssProps/templates/atRules.atRule.index.mustache */
+{{#hasProps}}
+import { flatten } from '../../util/index';
+{{/hasProps}}
+export default function {{atRuleCamelCase}}({{#hasArgs}}args{{/hasArgs}}{{#argsAndProps}}, {{/argsAndProps}}{{#hasProps}}cssProps{{/hasProps}}) {
+{{^hasProps}}
+    return `{{atRule}}{{#hasArgs}} ${args}{{/hasArgs}}`
+{{/hasProps}}
+{{#hasProps}}
+    return {
+        [`{{atRule}}{{#hasArgs}} ${args}{{/hasArgs}}`]: flatten(cssProps)
+    }
+{{/hasProps}}
+}
