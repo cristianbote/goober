@@ -7,9 +7,7 @@
  * @param {String} str
  * @returns {String}
  */
-export let toHash = (str) => {
-    let i = 0,
-        out = 11;
+export let toHash = (str, i = 0, out = 11) => {
     while (i < str.length) out = (101 * out + str.charCodeAt(i++)) >>> 0;
     return 'go' + out;
 };
