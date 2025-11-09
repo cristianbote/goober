@@ -54,43 +54,25 @@ It's a pun on the tagline.
 
 # Usage
 
-goober provides a lightweight css-in-js solution. You use the `css` function to generate class names, and apply them to your elements.
+goober provides a lightweight css-in-js solution using object syntax. You use the `css` function to generate class names, and apply them to your elements.
 
 ```jsx
 import { css } from 'goober';
 
-const buttonClass = css`
-    background: dodgerblue;
-    color: white;
-    border: 1px solid white;
-    padding: 1em;
-
-    &:focus,
-    &:hover {
-        padding: 1.5em;
+const buttonClass = css({
+    background: 'dodgerblue',
+    color: 'white',
+    border: '1px solid white',
+    padding: '1em',
+    '&:focus, &:hover': {
+        padding: '1.5em'
     }
-`;
+});
 
 const Button = (props) => <button className={buttonClass}>{props.children}</button>;
 ```
 
-You can also use dynamic styles with template literals:
-
-```jsx
-import { css } from 'goober';
-
-const Button = ({ color, children }) => {
-    const buttonClass = css`
-        background: ${color};
-        color: white;
-        padding: 1em;
-    `;
-
-    return <button className={buttonClass}>{children}</button>;
-};
-```
-
-Or use object syntax:
+You can also use dynamic styles by passing a function:
 
 ```jsx
 import { css } from 'goober';
@@ -122,83 +104,66 @@ You can get the critical CSS for SSR via `extractCss`. Take a look at this examp
 
 goober supports most CSS syntax. If you find any issues, please submit a ticket, or open a PR with a fix.
 
-### `css(taggedTemplate)`
+### `css(styles)`
 
+-   `@param {Object|Function} styles` - CSS object or function returning CSS object
 -   `@returns {String}` Returns the className.
 
-To create a className, you need to call `css` with your style rules in a tagged template.
+To create a className, call `css` with a style object:
 
 ```js
-import { css } from "goober";
+import { css } from 'goober';
 
-const BtnClassName = css`
-  border-radius: 4px;
-`;
+const BtnClassName = css({
+    borderRadius: '4px'
+});
 
 // vanilla JS
-const btn = document.querySelector("#btn");
+const btn = document.querySelector('#btn');
 // BtnClassName === 'g016232'
 btn.classList.add(BtnClassName);
 
 // JSX
 // BtnClassName === 'g016232'
-const App => <button className={BtnClassName}>click</button>
+const App = () => <button className={BtnClassName}>click</button>;
 ```
 
-#### Different ways of customizing `css`
+#### Dynamic styles
 
-##### Passing props to `css` tagged templates
+You can pass dynamic values directly in the object:
 
 ```js
 import { css } from 'goober';
 
-// JSX
-const CustomButton = (props) => (
+const CustomButton = ({ size }) => (
     <button
-        className={css`
-            border-radius: ${props.size}px;
-        `}
+        className={css({
+            borderRadius: size + 'px'
+        })}
     >
         click
     </button>
 );
 ```
 
-##### Using `css` with JSON/Object
+Or create reusable style functions:
 
 ```js
 import { css } from 'goober';
+
 const BtnClassName = (props) =>
     css({
         background: props.color,
         borderRadius: props.radius + 'px'
     });
-```
-
-**Notice:** using `css` with object can reduce your bundle size.
-
-We can also declare styles at the top of the file by wrapping `css` into a function that we call to get the className.
-
-```js
-import { css } from 'goober';
-
-const BtnClassName = (props) => css`
-    border-radius: ${props.size}px;
-`;
 
 // vanilla JS
-// BtnClassName({size:20}) -> g016360
 const btn = document.querySelector('#btn');
-btn.classList.add(BtnClassName({ size: 20 }));
+btn.classList.add(BtnClassName({ color: 'red', radius: 20 }));
 
 // JSX
-// BtnClassName({size:20}) -> g016360
-const App = () => <button className={BtnClassName({ size: 20 })}>click</button>;
+const App = () => <button className={BtnClassName({ color: 'blue', radius: 4 })}>click</button>;
 ```
-
-The difference between calling `css` directly and wrapping into a function is the timing of its execution. The former is when the component(file) is imported, the latter is when it is actually rendered.
-
-If you use `extractCSS` for SSR, you may prefer to use the latter to avoid inconsistent results.
 
 ### `targets`
 
@@ -227,76 +192,77 @@ const styleTag = `<style id="_goober">${extractCss()}</style>`;
 // Note: To be able to `hydrate` the styles you should use the proper `id` so `goober` can pick it up and use it as the target from now on
 ```
 
+### `glob(styles)`
+
+Define global styles that apply to the entire document:
+
+```js
+import { glob } from 'goober';
+
+glob({
+    html: {
+        background: 'light'
+    },
+    body: {
+        background: 'light'
+    },
+    '*': {
+        boxSizing: 'border-box'
+    }
+});
+```
+
 ### `createGlobalStyles`
 
-To define your global styles you need to create a `GlobalStyles` component and use it as part of your tree. The `createGlobalStyles` is available at `goober/global` addon.
+To define your global styles as a component, use `createGlobalStyles` from the `goober/global` addon:
 
 ```js
 import { createGlobalStyles } from 'goober/global';
 
-const GlobalStyles = createGlobalStyles`
-  html,
-  body {
-    background: light;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-`;
+const GlobalStyles = createGlobalStyles({
+    html: {
+        background: 'light'
+    },
+    body: {
+        background: 'light'
+    },
+    '*': {
+        boxSizing: 'border-box'
+    }
+});
 
 export default function App() {
     return (
         <div id="root">
             <GlobalStyles />
-            <Navigation>
-            <RestOfYourApp>
+            <Navigation />
+            <RestOfYourApp />
         </div>
-    )
+    );
 }
 ```
 
-#### How about using `glob` function directly?
+### `keyframes(styles)`
 
-Before the global addon, `goober/global`, there was a method named `glob` that was part of the main package that would do the same thing, more or less. Having only that method to define global styles usually led to missing global styles from the extracted css, since the pattern did not enforce the evaluation of the styles at render time. The `glob` method is still exported from `goober/global`, in case you have a hard dependency on it. It still has the same API:
-
-```js
-import { glob } from 'goober';
-
-glob`
-  html,
-  body {
-    background: light;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-`;
-```
-
-### `keyframes`
-
-`keyframes` is a helpful method to define reusable animations that can be decoupled from the main style declaration and shared across components.
+Define reusable animations:
 
 ```js
 import { css, keyframes } from 'goober';
 
-const rotate = keyframes`
-    from, to {
-        transform: rotate(0deg);
+const rotate = keyframes({
+    from: {
+        transform: 'rotate(0deg)'
+    },
+    to: {
+        transform: 'rotate(180deg)'
     }
+});
 
-    50% {
-        transform: rotate(180deg);
-    }
-`;
-
-const wickedClass = css`
-    background: tomato;
-    color: white;
-    animation: ${rotate} 1s ease-in-out;
-`;
+const wickedClass = css({
+    background: 'tomato',
+    color: 'white',
+    animation: `${rotate} 1s ease-in-out`
+});
 ```
 
 # Features
