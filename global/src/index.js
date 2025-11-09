@@ -1,4 +1,4 @@
-import { css, styled } from 'goober';
+import { css } from 'goober';
 
 /**
  * CSS Global function to declare global styles
@@ -11,14 +11,14 @@ export let glob = css.bind({ g: 1 });
  * @returns {Function}
  */
 export function createGlobalStyles() {
-    const fn = styled.call({ g: 1 }, 'div').apply(null, arguments);
+    const args = arguments;
 
     /**
      * This is the actual component that gets rendered.
      */
     return function GlobalStyles(props) {
-        // Call the above styled.
-        fn(props);
+        // Call glob with props context
+        glob.apply({ p: props }, args);
 
         // Returns a hole.
         return null;

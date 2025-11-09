@@ -16,7 +16,7 @@
 
 # Motivation
 
-I've always wondered if you could get a working solution for css-in-js with a smaller footprint. While I was working on a side project I wanted to use styled-components, or more accurately the `styled` pattern. Looking at the JavaScript bundle sizes, I quickly realized that I would have to include ~12kB([styled-components](https://github.com/styled-components/styled-components)) or ~11kB([emotion](https://github.com/emotion-js/emotion)) just so I can use the `styled` paradigm. So, I embarked on a mission to create a smaller alternative for these well established APIs.
+I've always wondered if you could get a working solution for css-in-js with a smaller footprint. This library provides a minimal, lightweight alternative focused on the core functionality of CSS-in-JS without the overhead of larger libraries.
 
 # Why the peanuts emoji?
 
@@ -36,66 +36,74 @@ It's a pun on the tagline.
 
 -   [Usage](#usage)
 -   [Examples](#examples)
--   [Tradeoffs](#comparison-and-tradeoffs)
 -   [SSR](#ssr)
--   [Benchmarks](#benchmarks)
-    -   [Browser](#browser)
-    -   [SSR](#ssr-1)
 -   [API](#api)
-    -   [styled](#styledtagname-string--function-forwardref-function)
-    -   [setup](#setuppragma-function-prefixer-function-theme-function-forwardprops-function)
-        -   [With prefixer](#with-prefixer)
-        -   [With theme](#with-theme)
-        -   [With forwardProps](#with-forwardProps)
-    -   [css](#csstaggedtemplate)
-    -   [targets](#targets)
-    -   [extractCss](#extractcsstarget)
-    -   [createGlobalStyles](#createglobalstyles)
+    -   [css](#css)
+    -   [glob](#glob)
     -   [keyframes](#keyframes)
-    -   [shouldForwardProp](#shouldForwardProp)
+    -   [setup](#setup)
+    -   [targets](#targets)
+    -   [extractCss](#extractcss)
+    -   [createGlobalStyles](#createglobalstyles)
 -   [Features](#features)
-    -   [Sharing Style](#sharing-style)
     -   [Autoprefixer](#autoprefixer)
     -   [TypeScript](#typescript)
-    -   [Content Security Policy (CSP)](#content-security-policy-csp)-
+    -   [Content Security Policy (CSP)](#content-security-policy-csp)
 -   [Browser Support](#browser-support)
 -   [Contributing](#contributing)
 
 # Usage
 
-The API is inspired by emotion `styled` function. Meaning, you call it with your `tagName`, and it returns a vDOM component for that tag. Note, `setup` needs to be ran before the `styled` function is used.
+goober provides a lightweight css-in-js solution. You use the `css` function to generate class names, and apply them to your elements.
 
 ```jsx
-import { h } from 'preact';
-import { styled, setup } from 'goober';
+import { css } from 'goober';
 
-// Should be called here, and just once
-setup(h);
-
-const Icon = styled('span')`
-    display: flex;
-    flex: 1;
-    color: red;
-`;
-
-const Button = styled('button')`
+const buttonClass = css`
     background: dodgerblue;
     color: white;
-    border: ${Math.random()}px solid white;
+    border: 1px solid white;
+    padding: 1em;
 
     &:focus,
     &:hover {
-        padding: 1em;
-    }
-
-    .otherClass {
-        margin: 0;
-    }
-
-    ${Icon} {
-        color: black;
+        padding: 1.5em;
     }
 `;
+
+const Button = (props) => <button className={buttonClass}>{props.children}</button>;
+```
+
+You can also use dynamic styles with template literals:
+
+```jsx
+import { css } from 'goober';
+
+const Button = ({ color, children }) => {
+    const buttonClass = css`
+        background: ${color};
+        color: white;
+        padding: 1em;
+    `;
+
+    return <button className={buttonClass}>{children}</button>;
+};
+```
+
+Or use object syntax:
+
+```jsx
+import { css } from 'goober';
+
+const Button = ({ color, children }) => {
+    const buttonClass = css({
+        background: color,
+        color: 'white',
+        padding: '1em'
+    });
+
+    return <button className={buttonClass}>{children}</button>;
+};
 ```
 
 # Examples
@@ -106,269 +114,13 @@ const Button = styled('button')`
 -   [SSR with Preact](https://codesandbox.io/s/7m9zzl6746)
 -   [Fre](https://codesandbox.io/s/fre-goober-ffqjv)
 
-# Comparison and tradeoffs
-
-In this section I would like to compare goober, as objectively as I can, with the latest versions of two most well known css-in-js packages: styled-components and emotion.
-
-I've used the following markers to reflect the state of each feature:
-
--   ✅ Supported
--   🟡 Partially supported
--   🛑 Not supported
-
-Here we go:
-
-| Feature name           | Goober  | Styled Components | Emotion |
-| ---------------------- | ------- | ----------------- | ------- |
-| Base bundle size       | 1.25 kB | 12.6 kB           | 7.4 kB  |
-| Framework agnostic     | ✅      | 🛑                | 🛑      |
-| Render with target \*1 | ✅      | 🛑                | 🛑      |
-| `css` api              | ✅      | ✅                | ✅      |
-| `css` prop             | ✅      | ✅                | ✅      |
-| `styled`               | ✅      | ✅                | ✅      |
-| `styled.<tag>`         | 🛑      | ✅                | ✅      |
-| default export  | 🛑      | ✅                | ✅      |
-| `as`                   | ✅      | ✅                | ✅      |
-| `.withComponent`       | 🛑      | ✅                | ✅      |
-| `.attrs`               | 🛑      | ✅                | 🛑      |
-| `shouldForwardProp`    | ✅      | ✅                | ✅      |
-| `keyframes`            | ✅      | ✅                | ✅      |
-| Labels                 | 🛑      | 🛑                | ✅      |
-| ClassNames             | 🛑      | 🛑                | ✅      |
-| Global styles          | ✅      | ✅                | ✅      |
-| SSR                    | ✅      | ✅                | ✅      |
-| Theming                | ✅      | ✅                | ✅      |
-| Tagged Templates       | ✅      | ✅                | ✅      |
-| Object styles          | ✅      | ✅                | ✅      |
-| Dynamic styles         | ✅      | ✅                | ✅      |
-
-Footnotes
-
--   [1] `goober` can render in _any_ dom target. Meaning you can use `goober` to define scoped styles in any context. Really useful for web-components.
-
 # SSR
 
 You can get the critical CSS for SSR via `extractCss`. Take a look at this example: [CodeSandbox: SSR with Preact and goober](https://codesandbox.io/s/7m9zzl6746) and read the full explanation for `extractCSS` and `targets` below.
 
-# Benchmarks
-
-The results are included inside the build output as well.
-
-## Browser
-
-Coming soon!
-
-## SSR
-
-The benchmark is testing the following scenario:
-
-```jsx
-import styled from '<packageName>';
-
-// Create the dynamic styled component
-const Foo = styled('div')((props) => ({
-    opacity: props.counter > 0.5 ? 1 : 0,
-    '@media (min-width: 1px)': {
-        rule: 'all'
-    },
-    '&:hover': {
-        another: 1,
-        display: 'space'
-    }
-}));
-
-// Serialize the component
-renderToString(<Foo counter={Math.random()} />);
-```
-
-The results are:
-
-```
-goober x 200,437 ops/sec ±1.93% (87 runs sampled)
-styled-components@5.2.1 x 12,650 ops/sec ±9.09% (48 runs sampled)
-emotion@11.0.0 x 104,229 ops/sec ±2.06% (88 runs sampled)
-
-Fastest is: goober
-```
-
 # API
 
-As you can see, goober supports most of the CSS syntax. If you find any issues, please submit a ticket, or open a PR with a fix.
-
-### `styled(tagName: String | Function, forwardRef?: Function)`
-
--   `@param {String|Function} tagName` The name of the DOM element you'd like the styles to be applied to
--   `@param {Function} forwardRef` Forward ref function. Usually `React.forwardRef`
--   `@returns {Function}` Returns the tag template function.
-
-```js
-import { styled } from 'goober';
-
-const Btn = styled('button')`
-    border-radius: 4px;
-`;
-```
-
-#### Different ways of customizing the styles
-
-##### Tagged templates functions
-
-```js
-import { styled } from 'goober';
-
-const Btn = styled('button')`
-    border-radius: ${(props) => props.size}px;
-`;
-
-<Btn size={20} />;
-```
-
-##### Function that returns a string
-
-```js
-import { styled } from 'goober';
-
-const Btn = styled('button')(
-    (props) => `
-  border-radius: ${props.size}px;
-`
-);
-
-<Btn size={20} />;
-```
-
-##### JSON/Object
-
-```js
-import { styled } from 'goober';
-
-const Btn = styled('button')((props) => ({
-    borderRadius: props.size + 'px'
-}));
-
-<Btn size={20} />;
-```
-
-##### Arrays
-
-```js
-import { styled } from 'goober';
-
-const Btn = styled('button')([
-    { color: 'tomato' },
-    ({ isPrimary }) => ({ background: isPrimary ? 'cyan' : 'gray' })
-]);
-
-<Btn />; // This will render the `Button` with `background: gray;`
-<Btn isPrimary />; // This will render the `Button` with `background: cyan;`
-```
-
-##### Forward ref function
-
-As goober is JSX library agnostic, you need to pass in the forward ref function for the library you are using. Here's how you do it for React.
-
-```js
-const Title = styled('h1', React.forwardRef)`
-    font-weight: bold;
-    color: dodgerblue;
-`;
-```
-
-### `setup(pragma: Function, prefixer?: Function, theme?: Function, forwardProps?: Function)`
-
-The call to `setup()` should occur only once. It should be called in the entry file of your project.
-
-Given the fact that `react` uses `createElement` for the transformed elements and `preact` uses `h`, `setup` should be called with the proper _pragma_ function. This was added to reduce the bundled size and being able to bundle an esmodule version. At the moment, it's the best tradeoff I can think of.
-
-```js
-import React from 'react';
-import { setup } from 'goober';
-
-setup(React.createElement);
-```
-
-#### With prefixer
-
-```js
-import React from 'react';
-import { setup } from 'goober';
-
-const customPrefixer = (key, value) => `${key}: ${value};\n`;
-
-setup(React.createElement, customPrefixer);
-```
-
-#### With theme
-
-```js
-import React, { createContext, useContext, createElement } from 'react';
-import { setup, styled } from 'goober';
-
-const theme = { primary: 'blue' };
-const ThemeContext = createContext(theme);
-const useTheme = () => useContext(ThemeContext);
-
-setup(createElement, undefined, useTheme);
-
-const ContainerWithTheme = styled('div')`
-    color: ${(props) => props.theme.primary};
-`;
-```
-
-#### With forwardProps
-
-The `forwardProps` function offers a way to achieve the same `shouldForwardProps` functionality as emotion and styled-components (with transient props) offer. The difference here is that the function receives the whole props and you are in charge of removing the props that should not end up in the DOM.
-
-This is a super useful functionality when paired with theme object, variants, or any other customisation one might need.
-
-```js
-import React from 'react';
-import { setup, styled } from 'goober';
-
-setup(React.createElement, undefined, undefined, (props) => {
-    for (let prop in props) {
-        // Or any other conditions.
-        // This could also check if this is a dev build and not remove the props
-        if (prop === 'size') {
-            delete props[prop];
-        }
-    }
-});
-```
-
-The functionality of "transient props" (with a "\$" prefix) can be implemented as follows:
-
-```js
-import React from 'react';
-import { setup, styled } from 'goober';
-
-setup(React.createElement, undefined, undefined, (props) => {
-    for (let prop in props) {
-        if (prop[0] === '$') {
-            delete props[prop];
-        }
-    }
-});
-```
-
-Alternatively you can use `goober/should-forward-prop` addon to pass only the filter function and not have to deal with the full `props` object.
-
-```js
-import React from 'react';
-import { setup, styled } from 'goober';
-import { shouldForwardProp } from 'goober/should-forward-prop';
-
-setup(
-    React.createElement,
-    undefined,
-    undefined,
-    // This package accepts a `filter` function. If you return false that prop
-    // won't be included in the forwarded props.
-    shouldForwardProp((prop) => {
-        return prop !== 'size';
-    })
-);
-```
+goober supports most CSS syntax. If you find any issues, please submit a ticket, or open a PR with a fix.
 
 ### `css(taggedTemplate)`
 
@@ -446,17 +198,16 @@ const App = () => <button className={BtnClassName({ size: 20 })}>click</button>;
 
 The difference between calling `css` directly and wrapping into a function is the timing of its execution. The former is when the component(file) is imported, the latter is when it is actually rendered.
 
-If you use `extractCSS` for SSR, you may prefer to use the latter, or the `styled` API to avoid inconsistent results.
+If you use `extractCSS` for SSR, you may prefer to use the latter to avoid inconsistent results.
 
 ### `targets`
 
-By default, goober will append a style tag to the `<head>` of a document. You might want to target a different node, for instance, when you want to use goober with web components (so you'd want it to append style tags to individual shadowRoots). For this purpose, you can `.bind` a new target to the `styled` and `css` methods:
+By default, goober will append a style tag to the `<head>` of a document. You might want to target a different node, for instance, when you want to use goober with web components (so you'd want it to append style tags to individual shadowRoots). For this purpose, you can `.bind` a new target to the `css` method:
 
 ```js
 import * as goober from 'goober';
 const target = document.getElementById('target');
 const css = goober.css.bind({ target: target });
-const styled = goober.styled.bind({ target: target });
 ```
 
 If you don't provide a target, goober always defaults to `<head>` and in environments without a DOM (think certain SSR solutions), it will just use a plain string cache to store generated styles which you can extract with `extractCSS`(see below).
@@ -529,7 +280,7 @@ glob`
 `keyframes` is a helpful method to define reusable animations that can be decoupled from the main style declaration and shared across components.
 
 ```js
-import { keyframes } from 'goober';
+import { css, keyframes } from 'goober';
 
 const rotate = keyframes`
     from, to {
@@ -541,48 +292,24 @@ const rotate = keyframes`
     }
 `;
 
-const Wicked = styled('div')`
+const wickedClass = css`
     background: tomato;
     color: white;
     animation: ${rotate} 1s ease-in-out;
 `;
 ```
 
-### `shouldForwardProp`
-
-To implement the `shouldForwardProp` without the need to provide the full loop over `props` you can use the `goober/should-forward-prop` addon.
-
-```js
-import { h } from 'preact';
-import { setup } from 'goober';
-import { shouldForwardProp } from 'goober/should-forward-prop';
-
-setup(
-    h,
-    undefined,
-    undefined,
-    shouldForwardProp((prop) => {
-        // Do NOT forward props that start with `$` symbol
-        return prop['0'] !== '$';
-    })
-);
-```
-
 # Features
 
 -   [x] Basic CSS parsing
 -   [x] Nested rules with pseudo selectors
--   [x] Nested styled components
--   [x] [Extending Styles](#sharing-style)
 -   [x] Media queries (@media)
 -   [x] Keyframes (@keyframes)
 -   [x] Smart (lazy) client-side hydration
--   [x] Styling any component
-    -   via `` const Btn = ({className}) => {...}; const TomatoBtn = styled(Btn)`color: tomato;` ``
--   [x] Vanilla (via `css` function)
--   [x] `globalStyle` (via `glob`) so one would be able to create global styles
--   [x] target/extract from elements other than `<head>`
--   [x] [vendor prefixing](#autoprefixer)
+-   [x] Vanilla CSS via `css` function
+-   [x] Global styles via `glob` and `createGlobalStyles`
+-   [x] Target/extract from elements other than `<head>`
+-   [x] [Vendor prefixing](#autoprefixer)
 
 # Content Security Policy (CSP)
 
@@ -596,53 +323,6 @@ goober supports Content Security Policy nonces for inline styles. Set `window.__
 
 The nonce will be added to goober's `<style>` element.
 
-# Sharing style
-
-There are a couple of ways to effectively share/extend styles across components.
-
-## Extending
-
-You can extend the desired component that needs to be enriched or overwritten with another set of css rules.
-
-```js
-import { styled } from 'goober';
-
-// Let's declare a primitive for our styled component
-const Primitive = styled('span')`
-    margin: 0;
-    padding: 0;
-`;
-
-// Later on we could get the primitive shared styles and also add our owns
-const Container = styled(Primitive)`
-    padding: 1em;
-`;
-```
-
-## Using `as` prop
-
-Another helpful way to extend a certain component is with the `as` property. Given our example above we could modify it like:
-
-```jsx
-import { styled } from 'goober';
-
-// Our primitive element
-const Primitive = styled('span')`
-    margin: 0;
-    padding: 0;
-`;
-
-const Container = styled('div')`
-    padding: 1em;
-`;
-
-// At composition/render time
-<Primitive as={'div'} /> // <div class="go01234" />
-
-// Or using the `Container`
-<Primitive as={Container} /> // <div class="go01234 go56789" />
-```
-
 # Autoprefixer
 
 Autoprefixing is a helpful way to make sure the generated css will work seamlessly on the whole spectrum of browsers. With that in mind, the core `goober` package can't hold that logic to determine the autoprefixing needs, so we added a new package that you can choose to address them.
@@ -653,67 +333,21 @@ npm install goober
 yarn add goober
 ```
 
-After the main package is installed it's time to bootstrap goober with it:
+After the main package is installed it's time to configure goober with it:
 
 ```js
 import { setup } from 'goober';
 import { prefix } from 'goober/prefixer';
 
-// Bootstrap goober
-setup(React.createElement, prefix);
+// Configure goober with autoprefixing
+setup(prefix);
 ```
 
 And voilà! It is done!
 
 # TypeScript
 
-`goober` comes with type definitions build in, making it easy to get started in TypeScript straight away.
-
-## Prop Types
-
-If you're using custom props and wish to style based on them, you can do so as follows:
-
-```ts
-interface Props {
-    size: number;
-}
-
-styled('div')<Props>`
-    border-radius: ${(props) => props.size}px;
-`;
-
-// This also works!
-
-styled<Props>('div')`
-    border-radius: ${(props) => props.size}px;
-`;
-```
-
-## Extending Theme
-
-If you're using a [custom theme](../api/setup.md#with-theme) and want to add types to it, you can create a declaration file at the base of your project.
-
-```ts
-// goober.d.t.s
-
-import 'goober';
-
-declare module 'goober' {
-    export interface DefaultTheme {
-        colors: {
-            primary: string;
-        };
-    }
-}
-```
-
-You should now have autocompletion for your theme.
-
-```ts
-const ThemeContainer = styled('div')`
-    background-color: ${(props) => props.theme.colors.primary};
-`;
-```
+`goober` comes with type definitions built in, making it easy to get started in TypeScript straight away. All the main functions (`css`, `glob`, `keyframes`, `setup`, `extractCss`) are fully typed.
 
 # Browser support
 

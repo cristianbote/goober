@@ -1,3 +1,2 @@
-export { styled, setup } from './styled';
+export { css, glob, keyframes, setup } from './css';
 export { extractCss } from './core/update';
-export { css, glob, keyframes } from './css';

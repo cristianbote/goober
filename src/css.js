@@ -1,6 +1,15 @@
 import { hash } from './core/hash';
 import { compile } from './core/compile';
 import { getSheet } from './core/get-sheet';
+import { parse } from './core/parse';
+
+/**
+ * Setup function to configure the prefixer
+ * @param {Function} prefixer - Optional prefixer function
+ */
+function setup(prefixer) {
+    parse.p = prefixer;
+}
 
 /**
  * css entry
@@ -37,4 +46,4 @@ let glob = css.bind({ g: 1 });
  */
 let keyframes = css.bind({ k: 1 });
 
-export { css, glob, keyframes };
+export { css, glob, keyframes, setup };
