@@ -14,10 +14,6 @@
 [![coverage](https://img.shields.io/codecov/c/github/cristianbote/goober.svg?maxAge=2592000)](https://codecov.io/github/cristianbote/goober?branch=master)
 [![Slack](https://img.shields.io/badge/slack-join-orange)](https://join.slack.com/t/gooberdev/shared_invite/enQtOTM5NjUyOTcwNzI1LWUwNzg0NTQwODY1NDJmMzQ2NzdlODI4YTM3NWUwYjlkY2ZkNGVmMTFlNGMwZGUyOWQyZmI4OTYwYmRiMzE0NGQ)
 
-# 🪒 The Great Shave Off Challenge
-
-Can you shave off bytes from goober? Do it and you're gonna get paid! [More info here](https://goober.rocks/the-great-shave-off)
-
 # Motivation
 
 I've always wondered if you could get a working solution for css-in-js with a smaller footprint. While I was working on a side project I wanted to use styled-components, or more accurately the `styled` pattern. Looking at the JavaScript bundle sizes, I quickly realized that I would have to include ~12kB([styled-components](https://github.com/styled-components/styled-components)) or ~11kB([emotion](https://github.com/emotion-js/emotion)) just so I can use the `styled` paradigm. So, I embarked on a mission to create a smaller alternative for these well established APIs.
@@ -57,13 +53,6 @@ It's a pun on the tagline.
     -   [createGlobalStyles](#createglobalstyles)
     -   [keyframes](#keyframes)
     -   [shouldForwardProp](#shouldForwardProp)
--   [Integrations](#integrations)
-    -   [Babel Plugin](#babel-plugin)
-    -   [Babel Macro Plugin](#babel-macro-plugin)
-    -   [Next.js](#nextjs)
-    -   [Gatsby](#gatsby)
-    -   [Preact CLI Plugin](#preact-cli-plugin)
-    -   [CSS Prop](#css-prop)
 -   [Features](#features)
     -   [Sharing Style](#sharing-style)
     -   [Autoprefixer](#autoprefixer)
@@ -137,7 +126,7 @@ Here we go:
 | `css` api              | ✅      | ✅                | ✅      |
 | `css` prop             | ✅      | ✅                | ✅      |
 | `styled`               | ✅      | ✅                | ✅      |
-| `styled.<tag>`         | ✅ \*2  | ✅                | ✅      |
+| `styled.<tag>`         | 🛑      | ✅                | ✅      |
 | default export  | 🛑      | ✅                | ✅      |
 | `as`                   | ✅      | ✅                | ✅      |
 | `.withComponent`       | 🛑      | ✅                | ✅      |
@@ -156,7 +145,6 @@ Here we go:
 Footnotes
 
 -   [1] `goober` can render in _any_ dom target. Meaning you can use `goober` to define scoped styles in any context. Really useful for web-components.
--   [2] Supported only via `babel-plugin-transform-goober`
 
 # SSR
 
@@ -578,115 +566,6 @@ setup(
         return prop['0'] !== '$';
     })
 );
-```
-
-# Integrations
-
-## Babel plugin
-
-You're in love with the `styled.div` syntax? Fear no more! We got you covered with a babel plugin that will take your lovely syntax from `styled.tag` and translate it to goober's `styled("tag")` call.
-
-```sh
-npm i --save-dev babel-plugin-transform-goober
-# or
-yarn add --dev babel-plugin-transform-goober
-```
-
-Visit the package in here for more info (https://github.com/cristianbote/goober/tree/master/packages/babel-plugin-transform-goober)
-
-## Babel macro plugin
-
-A babel-plugin-macros macro for [🥜goober][goober], rewriting `styled.div` syntax to `styled('div')` calls.
-
-### Usage
-
-Once you've configured [babel-plugin-macros](https://github.com/kentcdodds/babel-plugin-macros), change your imports from `goober` to `goober/macro`.
-
-Now you can create your components using `styled.*` syntax:.
-
-```js
-import { styled } from 'goober/macro';
-
-const Button = styled.button`
-    margin: 0;
-    padding: 1rem;
-    font-size: 1rem;
-    background-color: tomato;
-`;
-```
-
-## [Next.js](https://github.com/vercel/next.js)
-
-Want to use `goober` with Next.js? We've got you covered! Follow the example below or from the main [examples](https://github.com/vercel/next.js/tree/canary/examples/with-goober) directory.
-
-```sh
-npx create-next-app --example with-goober with-goober-app
-# or
-yarn create next-app --example with-goober with-goober-app
-```
-
-## [Gatsby](https://github.com/gatsbyjs/gatsby)
-
-Want to use `goober` with Gatsby? We've got you covered! We have our own plugin to deal with styling your Gatsby projects.
-
-```sh
-npm i --save goober gatsby-plugin-goober
-# or
-yarn add goober gatsby-plugin-goober
-```
-
-## Preact CLI plugin
-
-If you use Goober with Preact CLI, you can use [preact-cli-goober-ssr](https://github.com/gerhardsletten/preact-cli-goober-ssr)
-
-```sh
-npm i --save-dev preact-cli-goober-ssr
-# or
-yarn add --dev preact-cli-goober-ssr
-
-# preact.config.js
-const gooberPlugin = require('preact-cli-goober-ssr')
-
-export default (config, env) => {
-  gooberPlugin(config, env)
-}
-```
-
-When you build your Preact application, this will run `extractCss` on your pre-rendered pages and add critical styles for each page.
-
-## CSS Prop
-
-You can use a custom `css` prop to pass in styles on HTML elements with this Babel plugin.
-
-Installation:
-
-```sh
-npm install --save-dev @agney/babel-plugin-goober-css-prop
-```
-
-List the plugin in `.babelrc`:
-
-```
-{
-  "plugins": [
-    "@agney/babel-plugin-goober-css-prop"
-  ]
-}
-```
-
-Usage:
-
-```javascript
-<main
-    css={`
-        display: flex;
-        min-height: 100vh;
-        justify-content: center;
-        align-items: center;
-    `}
->
-    <h1 css="color: dodgerblue">Goober</h1>
-</main>
 ```
 
 # Features

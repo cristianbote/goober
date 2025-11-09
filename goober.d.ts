@@ -39,21 +39,13 @@ declare namespace goober {
         ): Tagged<P>;
     }
 
-    // used when creating a styled component from a native HTML element with the babel-plugin-transform-goober parser
-    type BabelPluginTransformGooberStyledFunction = {
-        [T in keyof React.JSX.IntrinsicElements]: Tagged<
-            React.JSX.LibraryManagedAttributes<T, React.JSX.IntrinsicElements[T]> &
-                Theme<DefaultTheme>
-        >;
-    };
-
     type ForwardRefFunction = {
         (props: any, ref: any): any;
     };
 
     type ForwardPropsFunction = (props: object) => void;
 
-    const styled: StyledFunction & BabelPluginTransformGooberStyledFunction;
+    const styled: StyledFunction;
     function setup<T>(
         val: T,
         prefixer?: (key: string, val: any) => string,

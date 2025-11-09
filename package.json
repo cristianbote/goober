@@ -12,7 +12,6 @@
   "type": "module",
   "files": [
     "src",
-    "macro",
     "global/dist",
     "global/src",
     "global/package.json",
@@ -40,7 +39,6 @@
       "umd": "./dist/goober.umd.js",
       "types": "./goober.d.ts"
     },
-    "./macro": "./macro/index.js",
     "./global": {
       "import": "./global/dist/goober-global.modern.js",
       "require": "./global/dist/goober-global.cjs",
@@ -64,7 +62,7 @@
     "test": "npm run test-ts && npm run test-unit -- --ci --coverage && npm run build && npm run test-perf",
     "test-perf": "NODE_ENV=production node benchmarks/perf.cjs",
     "test-perf-hash": "NODE_ENV=production node benchmarks/perf-hash.cjs",
-    "test-unit-core": "jest --setupFiles ./tests/setup.js --roots ./src packages",
+    "test-unit-core": "jest --setupFiles ./tests/setup.js --roots ./src",
     "test-unit": "npm run test-unit-core && npm run test-addon-global && npm run test-addon-prefixer",
     "test-addon-global": "cd global && npm run test",
     "test-addon-prefixer": "cd prefixer && npm run test",
@@ -80,7 +78,6 @@
     "build:dist": "npm run build:lib -- --output dist",
     "build:debug": "npm run build:lib -- --output debug --no-compress",
     "dev": "npm run clean && microbundle watch --entry src/index.js --output dist --name goober",
-    "sandbox": "wmr --public sandbox/wmr",
     "deploy": "npm run build && npm publish",
     "format": "prettier \"**/*.{js,ts,tsx,md}\" --write"
   },
@@ -122,8 +119,7 @@
     "react-dom": "^16.12.0",
     "rimraf": "3.0.2",
     "styled-components": "^5.2.1",
-    "typescript": "^3.6.3",
-    "wmr": "^3.7.2"
+    "typescript": "^3.6.3"
   },
   "peerDependencies": {
     "csstype": "^3.0.10"
