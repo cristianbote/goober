@@ -1,9 +1,9 @@
 import { styled } from 'goober';
-import { Box } from '../box/Box';
-import { Button } from '../button/Button';
-import { Text } from '../text/Text';
-import { Nav } from '../nav/Nav';
-import { Logo } from '../logo/Logo';
+import { Box } from '../box/box';
+import { Button } from '../button/button';
+import { Text } from '../text/text';
+import { Nav } from '../nav/nav';
+import { Logo } from '../logo/logo';
 
 const BoxWithBorder = styled(Box)(({ theme }) => ({
     borderTop: `1px solid ${theme.colors['gray-100']}`

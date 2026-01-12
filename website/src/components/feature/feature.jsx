@@ -1,5 +1,5 @@
-import { Box } from '../box/Box';
-import { Text } from '../text/Text';
+import { Box } from '../box/box';
+import { Text } from '../text/text';
 
 export const Feature = ({ title, children, centered = false }) => (
     <Box size={200} fill centered={centered}>

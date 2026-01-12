@@ -1,4 +1,4 @@
-import { Text } from '../text/Text';
+import { Text } from '../text/text';
 
 export const Logo = () => (
     <>

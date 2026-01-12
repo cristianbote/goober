@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from 'preact/hooks';
 import { styled } from 'goober';
-import { Box } from '../box/Box';
-import { Text } from '../text/Text';
+import { Box } from '../box/box';
+import { Text } from '../text/text';
 
 const Wrapper = styled('div')(({ show, theme }) => [
     {
