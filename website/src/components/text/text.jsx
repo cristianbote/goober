@@ -16,7 +16,6 @@ export const Text = styled('p')(
         accent && { color: theme.colors['accent-200'] },
         color && { color: theme.colors[color] },
         mono && { fontFamily: 'monospace' },
-        mono && { fontFamily: 'monospace' },
         spaced && { letterSpacing: '0.01em' },
         superSpaced && { letterSpacing: '0.05em' }
     ]

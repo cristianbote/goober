@@ -1,8 +1,8 @@
 import { styled } from 'goober';
-import { Box } from '../../components/box/box';
-import { Button } from '../../components/button/button';
-import { Text } from '../../components/text/text';
-import { Nav } from '../../components/nav/nav';
+import { Box } from '../box/box';
+import { Button } from '../button/button';
+import { Text } from '../text/text';
+import { Nav } from '../nav/nav';
 import { Logo } from '../logo/logo';
 
 const BoxWithBorder = styled(Box)(({ theme }) => ({
@@ -41,12 +41,20 @@ export function Layout({ children }) {
                                 This website was built with{' '}
                                 <Text
                                     as="a"
-                                    href="https://github.com/preactjs/wmr"
+                                    href="https://vitejs.dev"
                                     color="accent-100"
                                     size={300}
                                     bold
                                 >
-                                    wmr
+                                    vite
+                                </Text>, <Text
+                                    as="a"
+                                    href="https://preactjs.com"
+                                    color="accent-100"
+                                    size={300}
+                                    bold
+                                >
+                                    preact
                                 </Text>{' '}
                                 and{' '}
                                 <Text

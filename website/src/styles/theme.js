@@ -60,5 +60,7 @@ export const props = [
     'superSpaced',
     'ph',
     'pl',
-    'pr'
+    'pr',
+    'fill',
+    'marginAuto'
 ];

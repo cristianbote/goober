@@ -41,11 +41,13 @@ export const Nav = ({ logo, buttons }) => {
     );
 
     useEffect(() => {
+        if (typeof window === 'undefined') return;
         window.addEventListener('scroll', listener, { passive: true });
         return () => {
             window.removeEventListener('scroll', listener);
         };
     }, []);
+
     return (
         <Wrapper show={show}>
             <Box reactive size={300} centered full horizontal bg={'gray-50'}>
