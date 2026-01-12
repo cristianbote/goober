@@ -16,7 +16,12 @@ export const GlobalStyles = createGlobalStyles`
 		color: ${theme.colors.white};
 		background-color: ${theme.colors['gray-50']};
 		position: relative;
-		overflow: 'hidden'
+	}
+
+	#app {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
 	}
 
 	* {

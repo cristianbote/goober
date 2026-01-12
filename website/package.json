@@ -4,18 +4,25 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"start": "wmr",
-		"build": "wmr build --prerender",
-		"postbuild": "cp -r ./static/ ./dist"
+		"dev": "vite",
+		"build": "npm run build:client && npm run build:server && npm run prerender && npm run postbuild",
+		"build:client": "vite build",
+		"build:server": "vite build --mode ssr",
+		"preview": "vite preview",
+		"prerender": "node prerender.js",
+		"postbuild": "cp -r ./public/* ./dist/ && rm -rf ./dist/server"
 	},
 	"eslintConfig": {
 		"extends": "preact"
 	},
 	"dependencies": {
-		"goober": "^2.0.37",
-		"preact-iso": "^2.0.2"
+		"goober": "^2.1.18",
+		"preact": "^10.28.2",
+		"preact-iso": "^2.11.1"
 	},
 	"devDependencies": {
-		"wmr": "^2.1.0"
+		"@preact/preset-vite": "^2.10.2",
+		"vite": "^7.3.1",
+		"style-vendorizer": "^2.2.3"
 	}
 }

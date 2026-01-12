@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from 'preact/hooks';
 import { styled } from 'goober';
-import { Box } from '../box/box';
-import { Text } from '../text/text';
+import { Box } from '../box/Box';
+import { Text } from '../text/Text';
 
 const Wrapper = styled('div')(({ show, theme }) => [
     {
@@ -41,11 +41,13 @@ export const Nav = ({ logo, buttons }) => {
     );
 
     useEffect(() => {
+        if (typeof window === 'undefined') return;
         window.addEventListener('scroll', listener, { passive: true });
         return () => {
             window.removeEventListener('scroll', listener);
         };
     }, []);
+
     return (
         <Wrapper show={show}>
             <Box reactive size={300} centered full horizontal bg={'gray-50'}>

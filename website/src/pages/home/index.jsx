@@ -206,16 +206,17 @@ export default function Home() {
                                 emoji.
                             </Text>
                         </Box>
-                        <Box size={400} />
-                        <Feature title="Build more">
-                            By using{' '}
-                            <Text ph={200} color="accent-100" size={200} bold as="span">
-                                goober
-                            </Text>
-                            , you are practically getting back space in size to build more of the
-                            needed features.
-                        </Feature>
                     </Box>
+                </Box>
+                <Box size={400} centered full fill>
+                    <Feature title="Build more" centered>
+                        By using{' '}
+                        <Text ph={200} color="accent-100" size={200} bold as="span">
+                            goober
+                        </Text>
+                        , you are practically getting back space in size to build more of the
+                        needed features.
+                    </Feature>
                 </Box>
                 <Box size={300} />
                 <Text as="h2" faded>
