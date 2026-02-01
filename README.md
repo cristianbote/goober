@@ -99,7 +99,8 @@ const Button = styled('button')`
         padding: 1em;
     }
 
-    .otherClass {        margin: 0;
+    .otherClass {
+        margin: 0;
     }
 
     ${Icon} {
@@ -128,29 +129,29 @@ I've used the following markers to reflect the state of each feature:
 
 Here we go:
 
-| Feature name           | Goober  | Styled Components | Emotion | css-in-js |
-| ---------------------- | ------- | ----------------- | ------- | --------- |
-| Base bundle size       | 1.25 kB | 12.6 kB           | 7.4 kB  |           |
-| Framework agnostic     | ✅      | 🛑                | ✅ *3   |           |
-| Render with target *1 | ✅      | 🛑                | 🛑      |           |
-| `css` api              | ✅      | ✅                | ✅      |           |
-| `css` prop             | ✅      | ✅                | ✅      |           |
-| `styled`               | ✅      | ✅                | ✅      |           |
-| `styled.<tag>`         | ✅ *2  | ✅                | ✅      |           |
-| default export  | 🛑      | ✅                | ✅      |           |
-| `as`                   | ✅      | ✅                | ✅      |           |
-| `.withComponent`       | 🛑      | ✅                | ✅      |           |
-| `.attrs`               | 🛑      | ✅                | 🛑      |           |
-| `shouldForwardProp`    | ✅      | ✅                | ✅      |           |
-| `keyframes`            | ✅      | ✅                | ✅      |           |
-| Labels                 | 🛑      | 🛑                | ✅      |           |
-| ClassNames             | 🛑      | 🛑                | ✅      |           |
-| Global styles          | ✅      | ✅                | ✅      |           |
-| SSR                    | ✅      | ✅                | ✅      |           |
-| Theming                | ✅      | ✅                | ✅      |           |
-| Tagged Templates       | ✅      | ✅                | ✅      |           |
-| Object styles          | ✅      | ✅                | ✅      |           |
-| Dynamic styles         | ✅      | ✅                | ✅      |           |
+| Feature name           | Goober  | Styled Components | Emotion |
+| ---------------------- | ------- | ----------------- | ------- |
+| Base bundle size       | 1.25 kB | 12.6 kB           | 7.4 kB  |
+| Framework agnostic     | ✅      | 🛑                | ✅ *3   |
+| Render with target *1 | ✅      | 🛑                | 🛑      |
+| `css` api              | ✅      | ✅                | ✅      |
+| `css` prop             | ✅      | ✅                | ✅      |
+| `styled`               | ✅      | ✅                | ✅      |
+| `styled.<tag>`         | ✅ *2  | ✅                | ✅      |
+| default export  | 🛑      | ✅                | ✅      |
+| `as`                   | ✅      | ✅                | ✅      |
+| `.withComponent`       | 🛑      | ✅                | ✅      |
+| `.attrs`               | 🛑      | ✅                | 🛑      |
+| `shouldForwardProp`    | ✅      | ✅                | ✅      |
+| `keyframes`            | ✅      | ✅                | ✅      |
+| Labels                 | 🛑      | 🛑                | ✅      |
+| ClassNames             | 🛑      | 🛑                | ✅      |
+| Global styles          | ✅      | ✅                | ✅      |
+| SSR                    | ✅      | ✅                | ✅      |
+| Theming                | ✅      | ✅                | ✅      |
+| Tagged Templates       | ✅      | ✅                | ✅      |
+| Object styles          | ✅      | ✅                | ✅      |
+| Dynamic styles         | ✅      | ✅                | ✅      |
 
 Footnotes
 
@@ -496,7 +497,7 @@ To define your global styles you need to create a `GlobalStyles` component and u
 import { createGlobalStyles } from 'goober/global';
 
 const GlobalStyles = createGlobalStyles`
-  html,
+  html, 
   body {
     background: light;
   }
@@ -525,7 +526,7 @@ Before the global addon, `goober/global`, there was a method named `glob` that w
 import { glob } from 'goober';
 
 glob`
-  html,
+  html, 
   body {
     background: light;
   }
