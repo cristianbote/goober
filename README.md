@@ -132,12 +132,12 @@ Here we go:
 | Feature name           | Goober  | Styled Components | Emotion |
 | ---------------------- | ------- | ----------------- | ------- |
 | Base bundle size       | 1.25 kB | 12.6 kB           | 7.4 kB  |
-| Framework agnostic     | ✅      | 🛑                | 🛑      |
-| Render with target \*1 | ✅      | 🛑                | 🛑      |
+| Framework agnostic     | ✅      | 🛑                | ✅ *3   |
+| Render with target *1 | ✅      | 🛑                | 🛑      |
 | `css` api              | ✅      | ✅                | ✅      |
 | `css` prop             | ✅      | ✅                | ✅      |
 | `styled`               | ✅      | ✅                | ✅      |
-| `styled.<tag>`         | ✅ \*2  | ✅                | ✅      |
+| `styled.<tag>`         | ✅ *2  | ✅                | ✅      |
 | default export  | 🛑      | ✅                | ✅      |
 | `as`                   | ✅      | ✅                | ✅      |
 | `.withComponent`       | 🛑      | ✅                | ✅      |
@@ -157,6 +157,7 @@ Footnotes
 
 -   [1] `goober` can render in _any_ dom target. Meaning you can use `goober` to define scoped styles in any context. Really useful for web-components.
 -   [2] Supported only via `babel-plugin-transform-goober`
+-   [3] Emotion has a framework-agnostic `css` function. See https://emotion.sh/docs/@emotion/css
 
 # SSR
 
@@ -496,7 +497,7 @@ To define your global styles you need to create a `GlobalStyles` component and u
 import { createGlobalStyles } from 'goober/global';
 
 const GlobalStyles = createGlobalStyles`
-  html,
+  html, 
   body {
     background: light;
   }
@@ -525,7 +526,7 @@ Before the global addon, `goober/global`, there was a method named `glob` that w
 import { glob } from 'goober';
 
 glob`
-  html,
+  html, 
   body {
     background: light;
   }
