@@ -99,8 +99,7 @@ const Button = styled('button')`
         padding: 1em;
     }
 
-    .otherClass {
-        margin: 0;
+    .otherClass {        margin: 0;
     }
 
     ${Icon} {
@@ -129,34 +128,35 @@ I've used the following markers to reflect the state of each feature:
 
 Here we go:
 
-| Feature name           | Goober  | Styled Components | Emotion |
-| ---------------------- | ------- | ----------------- | ------- |
-| Base bundle size       | 1.25 kB | 12.6 kB           | 7.4 kB  |
-| Framework agnostic     | ✅      | 🛑                | 🛑      |
-| Render with target \*1 | ✅      | 🛑                | 🛑      |
-| `css` api              | ✅      | ✅                | ✅      |
-| `css` prop             | ✅      | ✅                | ✅      |
-| `styled`               | ✅      | ✅                | ✅      |
-| `styled.<tag>`         | ✅ \*2  | ✅                | ✅      |
-| default export  | 🛑      | ✅                | ✅      |
-| `as`                   | ✅      | ✅                | ✅      |
-| `.withComponent`       | 🛑      | ✅                | ✅      |
-| `.attrs`               | 🛑      | ✅                | 🛑      |
-| `shouldForwardProp`    | ✅      | ✅                | ✅      |
-| `keyframes`            | ✅      | ✅                | ✅      |
-| Labels                 | 🛑      | 🛑                | ✅      |
-| ClassNames             | 🛑      | 🛑                | ✅      |
-| Global styles          | ✅      | ✅                | ✅      |
-| SSR                    | ✅      | ✅                | ✅      |
-| Theming                | ✅      | ✅                | ✅      |
-| Tagged Templates       | ✅      | ✅                | ✅      |
-| Object styles          | ✅      | ✅                | ✅      |
-| Dynamic styles         | ✅      | ✅                | ✅      |
+| Feature name           | Goober  | Styled Components | Emotion | css-in-js |
+| ---------------------- | ------- | ----------------- | ------- | --------- |
+| Base bundle size       | 1.25 kB | 12.6 kB           | 7.4 kB  |           |
+| Framework agnostic     | ✅      | 🛑                | ✅ *3   |           |
+| Render with target *1 | ✅      | 🛑                | 🛑      |           |
+| `css` api              | ✅      | ✅                | ✅      |           |
+| `css` prop             | ✅      | ✅                | ✅      |           |
+| `styled`               | ✅      | ✅                | ✅      |           |
+| `styled.<tag>`         | ✅ *2  | ✅                | ✅      |           |
+| default export  | 🛑      | ✅                | ✅      |           |
+| `as`                   | ✅      | ✅                | ✅      |           |
+| `.withComponent`       | 🛑      | ✅                | ✅      |           |
+| `.attrs`               | 🛑      | ✅                | 🛑      |           |
+| `shouldForwardProp`    | ✅      | ✅                | ✅      |           |
+| `keyframes`            | ✅      | ✅                | ✅      |           |
+| Labels                 | 🛑      | 🛑                | ✅      |           |
+| ClassNames             | 🛑      | 🛑                | ✅      |           |
+| Global styles          | ✅      | ✅                | ✅      |           |
+| SSR                    | ✅      | ✅                | ✅      |           |
+| Theming                | ✅      | ✅                | ✅      |           |
+| Tagged Templates       | ✅      | ✅                | ✅      |           |
+| Object styles          | ✅      | ✅                | ✅      |           |
+| Dynamic styles         | ✅      | ✅                | ✅      |           |
 
 Footnotes
 
 -   [1] `goober` can render in _any_ dom target. Meaning you can use `goober` to define scoped styles in any context. Really useful for web-components.
 -   [2] Supported only via `babel-plugin-transform-goober`
+-   [3] Emotion has a framework-agnostic `css` function. See https://emotion.sh/docs/@emotion/css
 
 # SSR
 
