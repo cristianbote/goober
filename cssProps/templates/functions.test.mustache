@@ -1,0 +1,15 @@
+/* Do not modify this file.  This file is generated from ./cssProps/templates/functions.test.mustache */
+import * as cssFunctions from '../src/functions/index';
+import { css } from 'goober';
+
+describe('cssFunctions', () => {
+    {{#Funcs}}
+    it('{{func}} type', () => {
+        expect(typeof cssFunctions.{{func}}).toEqual('function');
+    });
+
+    it('{{func}}', () => {
+        expect(cssFunctions.{{func}}(255,255)).toEqual('{{func}}(255,255)');
+    });
+    {{/Funcs}}
+});

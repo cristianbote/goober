@@ -1,0 +1,67 @@
+{
+  "@charset": {
+    "syntax": "@charset \"<charset>\";",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/@charset#syntax"
+  },
+  "@counter-style": {
+    "syntax": "@counter-style <counter-style-name> { [ system: <counter-system>; ] || [ symbols: <counter-symbols>; ] || [ additive-symbols: <additive-symbols>; ] || [ negative: <negative-symbol>; ] || [ prefix: <prefix>; ] || [ suffix: <suffix>; ] || [ range: <range>; ] || [ pad: <padding>; ] || [ speak-as: <speak-as>; ] || [ fallback: <counter-style-name>; ] }",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/@counter-style#syntax"
+  },
+  "@font-face": {
+    "syntax": "@font-face { [ font-family: <family-name>; ] || [ src: <src>; ] || [ unicode-range: <unicode-range>; ] || [ font-variant: <font-variant>; ] || [ font-feature-settings: <font-feature-settings>; ] || [ font-variation-settings: <font-variation-settings>; ] || [ font-stretch: <font-stretch>; ] || [ font-weight: <font-weight>; ] || [ font-style: <font-style>; ] || [ size-adjust: <size-adjust>; ] || [ ascent-override: <ascent-override>; ] || [ descent-override: <descent-override>; ] || [ line-gap-override: <line-gap-override>; ] }",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/@font-face#syntax"
+  },
+  "@font-feature-values": {
+    "syntax": "@font-feature-values <family-name># { <feature-value-block-list> }",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/@font-feature-values#syntax"
+  },
+  "@import": {
+    "syntax": "@import [ <string> | <url> ]    [ layer | layer(<layer-name>) ]?    [ supports( [ <supports-condition> | <declaration> ] ) ]?    <media-query-list>? ;",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/@import#syntax"
+  },
+  "@keyframes": {
+    "syntax": "@keyframes <keyframes-name> { <keyframe-block-list> }",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/@keyframes#syntax"
+  },
+  "@layer": {
+    "syntax": "@layer [ <layer-name># | <layer-name>? { <stylesheet> } ]",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/@layer#syntax"
+  },
+  "@media": {
+    "syntax": "@media <media-query-list> { <group-rule-body> }",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/@media#syntax"
+  },
+  "@namespace": {
+    "syntax": "@namespace <namespace-prefix>? [ <string> | <url> ];",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/@namespace#syntax"
+  },
+  "@page": {
+    "syntax": "@page <page-selector-list> { <page-body> }",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/@page#syntax"
+  },
+  "@scroll-timeline": {
+    "syntax": "@scroll-timeline <timeline-name> { <declaration-list> }",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/@scroll-timeline#syntax"
+  },
+  "@supports": {
+    "syntax": "@supports <supports-condition> { <group-rule-body> }",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/@supports#syntax"
+  },
+  "@viewport": {
+    "syntax": "@viewport { <group-rule-body> }",
+    "status": "standard",
+    "mdn_url": "https://developer.mozilla.org/docs/Web/CSS/@viewport#syntax"
+  }
+}
