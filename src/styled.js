@@ -1,23 +1,18 @@
 import { css } from './css';
-import { parse } from './core/parse';
 
-let h, useTheme, fwdProp;
-function setup(pragma, prefix, theme, forwardProps) {
-    // This one needs to stay in here, so we won't have cyclic dependencies
-    parse.p = prefix;
-
+let h, useTheme;
+function setup(pragma, theme) {
     // These are scope to this context
     h = pragma;
     useTheme = theme;
-    fwdProp = forwardProps;
 }
 
 /**
  * styled function
  * @param {string} tag
- * @param {function} forwardRef
+ * @param {options} options
  */
-function styled(tag, forwardRef) {
+function styled(tag, options) {
     let _ctx = this || {};
 
     return function wrapper() {
@@ -43,7 +38,7 @@ function styled(tag, forwardRef) {
                 css.apply(_ctx, _args) + (_previousClassName ? ' ' + _previousClassName : '');
 
             // If the forwardRef fun is defined we have the ref
-            if (forwardRef) {
+            if (options.forwardRef) {
                 _props.ref = ref;
             }
 
@@ -59,8 +54,8 @@ function styled(tag, forwardRef) {
             }
 
             // Handle the forward props filter if defined and _as is a string
-            if (fwdProp && _as[0]) {
-                fwdProp(_props);
+            if (options.shouldForwardProp && _as[0]) {
+                options.shouldForwardProp(_props);
             }
 
             return h(_as, _props);
