@@ -4,3 +4,4 @@ debug
 sandbox
 coverage
 .cache
+benchmarks/results

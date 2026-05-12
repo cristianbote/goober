@@ -13,14 +13,6 @@ export let glob = css.bind({ g: 1 });
 export function createGlobalStyles() {
     const fn = styled.call({ g: 1 }, 'div').apply(null, arguments);
 
-    /**
-     * This is the actual component that gets rendered.
-     */
-    return function GlobalStyles(props) {
-        // Call the above styled.
-        fn(props);
-
-        // Returns a hole.
-        return null;
-    };
+    // Render hook: call the styled fn for side-effects, return null vnode.
+    return (props) => (fn(props), null);
 }

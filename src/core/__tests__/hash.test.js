@@ -40,7 +40,7 @@ describe('hash', () => {
         const res = hash('compiled', 'target');
 
         expect(toHash).toBeCalledWith('compiled');
-        expect(update).toBeCalledWith('parse()', 'target', undefined, null);
+        expect(update).toBeCalledWith('parse()', 'target', undefined, undefined);
         expect(astish).toBeCalledWith('compiled');
         expect(parse).toBeCalledWith('astish()', '.toHash()');
 
@@ -53,7 +53,7 @@ describe('hash', () => {
         expect(toHash).not.toBeCalled();
         expect(astish).not.toBeCalled();
         expect(parse).not.toBeCalled();
-        expect(update).toBeCalledWith('parse()', 'target', undefined, null);
+        expect(update).toBeCalledWith('parse()', 'target', undefined, undefined);
 
         expect(res).toEqual('toHash()');
     });
@@ -64,7 +64,7 @@ describe('hash', () => {
         expect(toHash).toBeCalledWith('global');
         expect(astish).not.toBeCalled();
         expect(parse).not.toBeCalled();
-        expect(update).toBeCalledWith('parse()', 'target', undefined, null);
+        expect(update).toBeCalledWith('parse()', 'target', undefined, undefined);
 
         expect(res).toEqual('toHash()');
     });
@@ -86,7 +86,7 @@ describe('hash', () => {
         expect(toHash).toBeCalledWith('keyframes');
         expect(astish).not.toBeCalled();
         expect(parse).not.toBeCalled();
-        expect(update).toBeCalledWith('parse()', 'target', undefined, null);
+        expect(update).toBeCalledWith('parse()', 'target', undefined, undefined);
 
         expect(res).toEqual('toHash()');
     });
@@ -100,7 +100,7 @@ describe('hash', () => {
         expect(toHash).toBeCalledWith('baz1');
         expect(astish).not.toBeCalled();
         expect(parse).toBeCalledWith({ baz: 1 }, '.' + className);
-        expect(update).toBeCalledWith('parse()', 'target', undefined, null);
+        expect(update).toBeCalledWith('parse()', 'target', undefined, undefined);
 
         expect(res).toEqual(className);
     });
