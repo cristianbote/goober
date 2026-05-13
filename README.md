@@ -31,7 +31,7 @@ It's a pun on the tagline.
 
 # Talks and Podcasts
 
-* [React Round Up](https://reactroundup.com/wrangle-your-css-in-js-for-peanuts-using-goober-ft-cristian-bote-rru-177) 👉 https://reactroundup.com/wrangle-your-css-in-js-for-peanuts-using-goober-ft-cristian-bote-rru-177
+* [React Round Up]([https://reactroundup.com/wrangle-your-css-in-js-for-peanuts-using-goober-ft-cristian-bote-rru-177](https://dev.to/reactroundup/wrangle-your-css-in-js-for-peanuts-using-goober-ft-cristian-bote-rru-177)) 👉 [https://reactroundup.com/wrangle-your-css-in-js-for-peanuts-using-goober-ft-cristian-bote-rru-177](https://dev.to/reactroundup/wrangle-your-css-in-js-for-peanuts-using-goober-ft-cristian-bote-rru-177)
 * ReactDay Berlin 2019 👉  https://www.youtube.com/watch?v=k4-AVy3acqk
 * [PodRocket](https://podrocket.logrocket.com/) by [LogRocket](https://logrocket.com/) 👉 https://podrocket.logrocket.com/goober
 * [ngParty](https://www.ngparty.cz/) 👉 https://www.youtube.com/watch?v=XKFvOBDPeB0
