@@ -18,7 +18,7 @@ function setup(pragma, prefix, theme, forwardProps) {
  * @param {function} forwardRef
  */
 function styled(tag, forwardRef) {
-    let _ctx = this || {};
+    let _ctx = Object.isExtensible(this) ? this : {};
 
     return function wrapper() {
         let _args = arguments;
