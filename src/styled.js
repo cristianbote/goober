@@ -18,7 +18,7 @@ function setup(pragma, prefix, theme, forwardProps) {
  * @param {function} forwardRef
  */
 function styled(tag, forwardRef) {
-    let _ctx = this || {};
+    let _ctx = (this !== globalThis ? this : undefined) || {};
 
     return function wrapper() {
         let _args = arguments;
