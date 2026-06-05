@@ -37,30 +37,33 @@ export let hash = (compiled, sheet, global, append, keyframes) => {
     let stringifiedCompiled = stringify(compiled);
 
     // Retrieve the className from cache or hash it in place
-    let className =
-        cache[stringifiedCompiled] || (cache[stringifiedCompiled] = toHash(stringifiedCompiled));
+    let className = (cache[stringifiedCompiled] =
+        cache[stringifiedCompiled] || toHash(stringifiedCompiled));
 
     // If there's no entry for the current className
-    if (!cache[className]) {
-        // Build the _ast_-ish structure if needed
-        let ast = stringifiedCompiled !== compiled ? compiled : astish(compiled);
-
-        // Parse it
-        cache[className] = parse(
-            // For keyframes
-            keyframes ? { ['@keyframes ' + className]: ast } : ast,
+    // Parse it
+    let parsed = (cache[className] =
+        cache[className] ||
+        parse(
+        // For keyframes
+        keyframes
+            ? {
+                  ['@keyframes ' + className]:
+                      // Build the _ast_-ish structure if needed
+                      stringifiedCompiled != compiled ? compiled : astish(compiled)
+              }
+            : stringifiedCompiled != compiled
+            ? compiled
+            : astish(compiled),
             global ? '' : '.' + className
-        );
-    }
+        ));
 
     // If the global flag is set, save the current stringified and compiled CSS to `cache.g`
     // to allow replacing styles in <style /> instead of appending them.
     // This is required for using `createGlobalStyles` with themes
-    let cssToReplace = global && cache.g;
-    if (global) cache.g = cache[className];
-
     // add or update
-    update(cache[className], sheet, append, cssToReplace);
+    update(parsed, sheet, append, global && cache.g);
+    global && (cache.g = parsed);
 
     // return hash
     return className;

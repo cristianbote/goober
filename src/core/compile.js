@@ -5,8 +5,8 @@ import { parse } from './parse';
  * @param {String} value
  * @param {Object} [props]
  */
-export let compile = (str, defs, data) => {
-    return str.reduce((out, next, i) => {
+export let compile = (str, defs, data) =>
+    str.reduce((out, next, i) => {
         let tail = defs[i];
 
         // If this is a function we need to:
@@ -36,6 +36,5 @@ export let compile = (str, defs, data) => {
                 tail = res === false ? '' : res;
             }
         }
-        return out + next + (tail == null ? '' : tail);
+        return out + next + (tail ?? '');
     }, '');
-};

@@ -6,7 +6,7 @@ import { getSheet } from './core/get-sheet';
  * css entry
  * @param {String|Object|Function} val
  */
-function css(val) {
+let css = function (val, ...defs) {
     let ctx = this || {};
     let _val = val.call ? val(ctx.p) : val;
 
@@ -14,7 +14,7 @@ function css(val) {
         _val.unshift
             ? _val.raw
                 ? // Tagged templates
-                  compile(_val, [].slice.call(arguments, 1), ctx.p)
+                  compile(_val, defs, ctx.p)
                 : // Regular arrays
                   _val.reduce((o, i) => Object.assign(o, i && i.call ? i(ctx.p) : i), {})
             : _val,
@@ -23,7 +23,7 @@ function css(val) {
         ctx.o,
         ctx.k
     );
-}
+};
 
 /**
  * CSS Global function to declare global styles

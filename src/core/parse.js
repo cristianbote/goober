@@ -31,16 +31,13 @@ export let parse = (obj, selector) => {
                 val,
                 selector
                     ? // Go over the selector and replace the matching multiple selectors if any
-                      selector.replace(/([^,])+/g, (sel) => {
+                      selector.replace(/[^,]+/g, (sel) =>
                           // Return the current selector with the key matching multiple selectors if any
-                          return key.replace(/([^,]*:\S+\([^)]*\))|([^,])+/g, (k) => {
+                          key.replace(/[^,]*:\S+\([^)]+\)|[^,]+/g, (k) =>
                               // If the current `k`(key) has a nested selector replace it
-                              if (/&/.test(k)) return k.replace(/&/g, sel);
-
-                              // If there's a current selector concat it
-                              return sel ? sel + ' ' + k : k;
-                          });
-                      })
+                              /&/.test(k) ? k.replace(/&/g, sel) : sel ? sel + ' ' + k : k
+                          )
+                      )
                     : key
             );
         } else if (val != undefined) {
