@@ -15,7 +15,7 @@ export let getSheet = (target) => {
         let el =
             (target ? target.querySelector('#' + GOOBER_ID) : window[GOOBER_ID]) ||
             Object.assign(document.createElement('style'), {
-                innerHTML: ' ',
+                textContent: ' ',
                 id: GOOBER_ID
             });
         el.nonce = window.__nonce__;

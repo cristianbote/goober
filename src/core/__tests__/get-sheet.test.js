@@ -23,6 +23,28 @@ describe('getSheet', () => {
         expect(sheet === second).toBeTruthy();
     });
 
+    it('initializes a stylesheet without assigning HTML', () => {
+        const custom = document.createElement('div');
+        const innerHTML = jest.spyOn(Element.prototype, 'innerHTML', 'set').mockImplementation(() => {
+            throw new TypeError('This document requires TrustedHTML assignment.');
+        });
+
+        try {
+            const sheet = getSheet(custom);
+
+            expect(sheet.nodeType).toEqual(3);
+            expect(sheet.data).toEqual(' ');
+            sheet.appendData('.example{color:red;}');
+
+            expect(getSheet(custom)).toBe(sheet);
+            expect(custom.querySelectorAll('style').length).toEqual(1);
+            expect(sheet.data).toEqual(' .example{color:red;}');
+            expect(innerHTML).not.toHaveBeenCalled();
+        } finally {
+            innerHTML.mockRestore();
+        }
+    });
+
     it('applies nonce from window.__nonce__', () => {
         const sheet = getSheet();
         const style = sheet.parentElement;
