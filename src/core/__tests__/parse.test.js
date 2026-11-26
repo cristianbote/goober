@@ -275,6 +275,33 @@ describe('parse', () => {
         ).toEqual('div :where(a, b){color:blue;}');
     });
 
+    it.each(['*:has(:focus-visible) > &', ':not(.inactive) &', ':where(.a, .b) > &'])(
+        'keeps the parent selector together for %s',
+        (selector) => {
+            expect(parse({ [selector]: { color: 'blue' } }, '.target')).toEqual(
+                selector.replace('&', '.target') + '{color:blue;}'
+            );
+        }
+    );
+
+    it('keeps functional parent selectors separate from adjacent selectors', () => {
+        expect(parse({ '*:has(.a, .b) > &, &:hover': { color: 'blue' } }, '.target')).toEqual(
+            '*:has(.a, .b) > .target, .target:hover{color:blue;}'
+        );
+    });
+
+    it('only splits selectors on commas outside parentheses', () => {
+        expect(parse({ '&:is(.a, .b) ~ :is(.c, .d)': { color: 'blue' } }, '.target')).toEqual(
+            '.target:is(.a, .b) ~ :is(.c, .d){color:blue;}'
+        );
+        expect(parse({ '&:not(:is(.a, .b))': { color: 'blue' } }, '.target')).toEqual(
+            '.target:not(:is(.a, .b)){color:blue;}'
+        );
+        expect(parse({ '&:is(.a, .b)': { span: { color: 'blue' } } }, '.target')).toEqual(
+            '.target:is(.a, .b) span{color:blue;}'
+        );
+    });
+
     it('should handle null and undefined values', () => {
         expect(
             parse(

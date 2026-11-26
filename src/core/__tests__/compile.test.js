@@ -28,6 +28,9 @@ describe('compile', () => {
             'prop: 1; 0,,,2'
         );
 
+        // A `false` return must not put the text "false" into the compiled string
+        expect(template`margin: ${() => false};`({})).toEqual('margin: ;');
+
         const tmpl = template`
             background: dodgerblue;
             ${(props) =>
