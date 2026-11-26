@@ -18,6 +18,7 @@ export let getSheet = (target) => {
               (el.id = '_goober'),
               (el.textContent = ' '),
               el)),
+          el.firstChild || (el.textContent = ' '),
           (el.nonce = window.__nonce__),
           el.parentNode || (target || document.head).appendChild(el),
           el.firstChild)
