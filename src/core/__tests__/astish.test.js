@@ -216,4 +216,19 @@ describe('astish', () => {
             }
         });
     });
+
+    it('keeps @import statements', () => {
+        expect(astish(`@import url('a.css'); html { color: red; }`)).toEqual({
+            '@import': "url('a.css')",
+            html: { color: 'red' }
+        });
+        expect(astish(`@import "theme.css";`)).toEqual({ '@import': '"theme.css"' });
+    });
+
+    it('closes a block that is directly followed by a declaration', () => {
+        expect(astish(`&:hover{color:blue;}color:red;`)).toEqual({
+            '&:hover': { color: 'blue' },
+            color: 'red'
+        });
+    });
 });
