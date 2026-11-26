@@ -2,6 +2,11 @@ import { update, extractCss } from '../update';
 import { getSheet } from '../get-sheet';
 
 describe('update', () => {
+    beforeEach(() => {
+        const sheet = getSheet();
+        sheet.data = '';
+    });
+
     it('regression', () => {
         const t = { data: '' };
 
@@ -19,33 +24,35 @@ describe('update', () => {
         expect(t.data).toEqual('cssfoo');
     });
 
-    it('regression: extract and flush', () => {
+    it('regression: extract preserves CSS', () => {
         update('filled', getSheet());
-        expect(extractCss()).toEqual(' filled');
-        expect(extractCss()).toEqual('');
+        expect(extractCss()).toEqual('filled');
+        // Non-destructive: data is preserved
+        expect(extractCss()).toEqual('filled');
     });
 
-    it('regression: extract and flush without DOM', () => {
+    it('regression: extract preserves CSS without DOM', () => {
         const bkp = global.self;
         delete global.self;
         update('filled', getSheet());
         expect(extractCss()).toEqual('filled');
-        expect(extractCss()).toEqual('');
+        expect(extractCss()).toEqual('filled');
         global.self = bkp;
     });
 
-    it('regression: extract and flush from custom target', () => {
+    it('regression: extract preserves CSS from custom target', () => {
         const target = document.createElement('div');
         update('filled', getSheet());
         update('filledbody', getSheet(target));
         expect(extractCss(target)).toEqual(' filledbody');
-        expect(extractCss(target)).toEqual('');
+        expect(extractCss(target)).toEqual(' filledbody');
     });
 
     it('regression: append or prepend', () => {
-        extractCss();
         update('end', getSheet());
         update('start', getSheet(), true);
+        expect(extractCss()).toEqual('startend');
+        // Non-destructive: data is preserved
         expect(extractCss()).toEqual('startend');
     });
 

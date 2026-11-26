@@ -1,5 +1,6 @@
 import { styled, setup } from '../styled';
 import { extractCss } from '../core/update';
+import { getSheet } from '../core/get-sheet';
 
 const pragma = jest.fn((tag, props) => {
     return { tag, props: { ...props, className: props.className.replace(/go\d+/g, 'go') } };
@@ -20,7 +21,8 @@ describe('styled', () => {
     beforeEach(() => {
         pragma.mockClear();
         setup(pragma);
-        extractCss();
+        // Clear accumulated CSS for isolation (no leading space in output)
+        getSheet().data = '';
     });
 
     it('calls pragma', () => {

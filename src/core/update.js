@@ -1,13 +1,11 @@
 import { getSheet } from './get-sheet';
 /**
- * Extracts and wipes the cache
+ * Extracts the cache
  * @returns {String}
  */
 export let extractCss = (target) => {
     let sheet = getSheet(target);
-    let out = sheet.data;
-    sheet.data = '';
-    return out;
+    return sheet.data;
 };
 
 /**
@@ -20,5 +18,4 @@ export let extractCss = (target) => {
 export let update = (css, sheet, append, cssToReplace) =>
     cssToReplace && sheet.data.includes(cssToReplace)
         ? (sheet.data = sheet.data.replace(cssToReplace, css))
-        : sheet.data.includes(css) ||
-          (sheet.data = append ? css + sheet.data : sheet.data + css);
+        : sheet.data.includes(css) || (sheet.data = append ? css + sheet.data : sheet.data + css);

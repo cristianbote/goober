@@ -2,8 +2,13 @@ import { h, createContext, render } from 'preact';
 import { useContext, forwardRef } from 'preact/compat';
 import { setup, css, styled, keyframes } from '../index';
 import { extractCss } from '../core/update';
+import { getSheet } from '../core/get-sheet';
 
 describe('integrations', () => {
+    beforeEach(() => {
+        // Clear accumulated CSS for isolation
+        getSheet().data = '';
+    });
     it('preact', () => {
         const ThemeContext = createContext();
         const useTheme = () => useContext(ThemeContext);
@@ -109,7 +114,6 @@ describe('integrations', () => {
         expect(extractCss()).toMatchInlineSnapshot(
             [
                 '"',
-                ' ', // Empty white space that holds the textNode that the styles are appended
                 '@keyframes go384228713{0%{opacity:0;}99%{opacity:1;color:dodgerblue;}}',
                 '.go1127809067{opacity:0;background:cyan;}',
                 '.go3865451590{color:red;}',
@@ -124,7 +128,8 @@ describe('integrations', () => {
                 '.go1162430001{opacity:0;baz:0;}',
                 '.go2602823658 label:has(input, select),.go2602823658  :has(foo, boo){color:red;}',
                 '"'
-            ].join('')
+            ].join(''),
+            `"@keyframes go384228713{0%{opacity:0;}99%{opacity:1;color:dodgerblue;}}.go1127809067{opacity:0;background:cyan;}.go3865451590{color:red;}.go3991234422{color:cyan;}.go3991234422 .go3865451590{border:1px solid red;}.go1925576363{color:blue;}.go3206651468{color:green;}.go4276997079{color:orange;}.go2069586824{opacity:0;animation:go384228713 500ms ease-in-out;}.go631307347{foo:1;color:red;baz:0;}.go3865943372{opacity:0;}.go1162430001{opacity:0;baz:0;}.go2602823658 label:has(input, select),.go2602823658  :has(foo, boo){color:red;}"`
         );
 
         expect(refSpy).toHaveBeenCalledWith(
