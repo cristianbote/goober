@@ -30,31 +30,34 @@ let stringify = (data) => {
  * @param {Object} global Global flag
  * @param {Boolean} append Append or not
  * @param {Boolean} keyframes Keyframes mode. The input is the keyframes body that needs to be wrapped.
+ * @param {Number} salt Per-component salt
  * @returns {String}
  */
-export let hash = (compiled, sheet, global, append, keyframes) => {
+export let hash = (compiled, sheet, global, append, keyframes, salt) => {
     // Get a string representation of the object or the value that is called 'compiled'
     let stringifiedCompiled = stringify(compiled);
 
+    // Salted cache key
+    let key = stringifiedCompiled + (salt || '');
+
     // Retrieve the className from cache or hash it in place
-    let className = (cache[stringifiedCompiled] =
-        cache[stringifiedCompiled] || toHash(stringifiedCompiled));
+    let className = (cache[key] = cache[key] || toHash(key));
 
     // If there's no entry for the current className
     // Parse it
     let parsed = (cache[className] =
         cache[className] ||
         parse(
-        // For keyframes
-        keyframes
-            ? {
-                  ['@keyframes ' + className]:
-                      // Build the _ast_-ish structure if needed
-                      stringifiedCompiled != compiled ? compiled : astish(compiled)
-              }
-            : stringifiedCompiled != compiled
-            ? compiled
-            : astish(compiled),
+            // For keyframes
+            keyframes
+                ? {
+                      ['@keyframes ' + className]:
+                          // Build the _ast_-ish structure if needed
+                          stringifiedCompiled != compiled ? compiled : astish(compiled)
+                  }
+                : stringifiedCompiled != compiled
+                ? compiled
+                : astish(compiled),
             global ? '' : '.' + className
         ));
 

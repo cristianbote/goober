@@ -106,25 +106,8 @@ describe('integrations', () => {
             target
         );
 
-        expect(extractCss()).toMatchInlineSnapshot(
-            [
-                '"',
-                ' ', // Empty white space that holds the textNode that the styles are appended
-                '@keyframes go384228713{0%{opacity:0;}99%{opacity:1;color:dodgerblue;}}',
-                '.go1127809067{opacity:0;background:cyan;}',
-                '.go3865451590{color:red;}',
-                '.go3991234422{color:cyan;}',
-                '.go3991234422 .go3865451590{border:1px solid red;}',
-                '.go1925576363{color:blue;}',
-                '.go3206651468{color:green;}',
-                '.go4276997079{color:orange;}',
-                '.go2069586824{opacity:0;animation:go384228713 500ms ease-in-out;}',
-                '.go631307347{foo:1;color:red;baz:0;}',
-                '.go3865943372{opacity:0;}',
-                '.go1162430001{opacity:0;baz:0;}',
-                '.go2602823658 label:has(input, select),.go2602823658  :has(foo, boo){color:red;}',
-                '"'
-            ].join('')
+        expect(extractCss()).toEqual(
+            ' @keyframes go384228713{0%{opacity:0;}99%{opacity:1;color:dodgerblue;}}.go1127809067{opacity:0;background:cyan;}.go3863553999{color:red;}.go878590034{color:cyan;}.go878590034 .go3863553999{border:1px solid red;}.go3863554001{color:red;}.go3863554002{color:red;}.go1209684396{color:blue;}.go1209684397{color:blue;}.go1749251121{color:green;}.go2479975433{color:orange;}.go2869839071{opacity:0;animation:go384228713 500ms ease-in-out;}.go3632499959{foo:1;color:red;baz:0;}.go3913223989{opacity:0;}.go3838708238{opacity:0;baz:0;}.go4211283680 label:has(input, select),.go4211283680  :has(foo, boo){color:red;}'
         );
 
         expect(refSpy).toHaveBeenCalledWith(
@@ -171,10 +154,10 @@ describe('integrations', () => {
         expect(target.innerHTML).toEqual(
             [
                 '<div>',
-                '<div class="go103173764"></div>',
-                '<div class="go103194166"></div>',
-                '<span class="go2081835032"></span>',
-                '<button class="go1969245729 go1824201605"></button>',
+                '<div class="go208584043"></div>',
+                '<div class="go416704845"></div>',
+                '<span class="go2480855007"></span>',
+                '<button class="go713643136 go2882251333"></button>',
                 '</div>'
             ].join('')
         );
@@ -182,11 +165,11 @@ describe('integrations', () => {
         expect(extractCss()).toMatchInlineSnapshot(
             [
                 '"',
-                '.go1969245729{color:white;padding:0em;margin:1em;}',
-                '.go103173764{color:white;padding:0em;}',
-                '.go103194166{color:white;padding:2em;}',
-                '.go2081835032{color:white;padding:3em;margin:1em;}',
-                '.go1824201605{background:dodgerblue;}',
+                '.go713643136{color:white;padding:0em;margin:1em;}',
+                '.go208584043{color:white;padding:0em;}',
+                '.go416704845{color:white;padding:2em;}',
+                '.go2480855007{color:white;padding:3em;margin:1em;}',
+                '.go2882251333{background:dodgerblue;}',
                 '"'
             ].join('')
         );
@@ -225,22 +208,16 @@ describe('integrations', () => {
         expect(target.innerHTML).toEqual(
             [
                 '<div>',
-                '<div class="go103173764"></div>',
-                '<div class="go103194166"></div>',
-                '<span class="go2081835032"></span>',
+                '<div class="go208584045"></div>',
+                '<div class="go416704847"></div>',
+                '<span class="go2480855009"></span>',
                 '</div>'
             ].join(''),
-            `"<div><div class=\\"go103173764\\"></div><div class=\\"go103194166\\"></div><span class=\\"go2081835032\\"></span></div>"`
+            `"<div><div class=\\"go208584045\\"></div><div class=\\"go416704847\\"></div><span class=\\"go2480855009\\"></span></div>"`
         );
 
-        expect(extractCss()).toMatchInlineSnapshot(
-            [
-                '"',
-                '.go103173764{color:white;padding:0em;}',
-                '.go103194166{color:white;padding:2em;}',
-                '.go2081835032{color:white;padding:3em;margin:1em;}',
-                '"'
-            ].join('')
+        expect(extractCss()).toEqual(
+            '.go208584045{color:white;padding:0em;}.go416704847{color:white;padding:2em;}.go2480855009{color:white;padding:3em;margin:1em;}'
         );
     });
 });

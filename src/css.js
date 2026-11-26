@@ -2,6 +2,9 @@ import { hash } from './core/hash';
 import { compile } from './core/compile';
 import { getSheet } from './core/get-sheet';
 
+// Per-component salt registry: template object -> salt
+export let m = new Map();
+
 /**
  * css entry
  * @param {String|Object|Function} val
@@ -21,7 +24,8 @@ let css = function (val, ...defs) {
         getSheet(ctx.target),
         ctx.g,
         ctx.o,
-        ctx.k
+        ctx.k,
+        m.get(val)
     );
 };
 

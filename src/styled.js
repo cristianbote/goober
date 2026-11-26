@@ -1,6 +1,7 @@
-import { css } from './css';
+import { css, m } from './css';
 import { parse } from './core/parse';
 
+let co = 0;
 let h, useTheme, fwdProp;
 let setup = (pragma, prefix, theme, forwardProps) => {
     // This one needs to stay in here, so we won't have cyclic dependencies
@@ -21,6 +22,8 @@ let styled = function (tag, forwardRef) {
     let _ctx = this || {};
 
     return (..._args) => {
+        m.set(_args[0], ++co);
+
         let Styled = (props, ref) => {
             // Grab a shallow copy of the props
             let _props = Object.assign({}, props);
