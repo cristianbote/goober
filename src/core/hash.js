@@ -36,25 +36,26 @@ export let hash = (compiled, sheet, global, append, keyframes) => {
     // Get a string representation of the object or the value that is called 'compiled'
     let stringifiedCompiled = stringify(compiled);
 
-    // Retrieve the className from cache or hash it in place
-    let className = (cache[stringifiedCompiled] =
-        cache[stringifiedCompiled] || toHash(stringifiedCompiled));
+    // Retrieve the className from cache or hash it in place.
+    // Read before writing: storing on every call slows renders down (#631)
+    let className =
+        cache[stringifiedCompiled] || (cache[stringifiedCompiled] = toHash(stringifiedCompiled));
 
     // If there's no entry for the current className
     // Parse it
-    let parsed = (cache[className] =
+    let parsed =
         cache[className] ||
-        parse(
-        // For keyframes
-        keyframes
-            ? {
-                  ['@keyframes ' + className]:
-                      // Build the _ast_-ish structure if needed
-                      stringifiedCompiled != compiled ? compiled : astish(compiled)
-              }
-            : stringifiedCompiled != compiled
-            ? compiled
-            : astish(compiled),
+        (cache[className] = parse(
+            // For keyframes
+            keyframes
+                ? {
+                      ['@keyframes ' + className]:
+                          // Build the _ast_-ish structure if needed
+                          stringifiedCompiled != compiled ? compiled : astish(compiled)
+                  }
+                : stringifiedCompiled != compiled
+                ? compiled
+                : astish(compiled),
             global ? '' : '.' + className
         ));
 
