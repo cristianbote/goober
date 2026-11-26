@@ -6,12 +6,17 @@ import { getSheet } from '../get-sheet';
  * getSheet must return a usable text node instead of null (fixes #500).
  */
 describe('getSheet with a pre-existing empty style element', () => {
-    it('returns a text node when the found element has no children', () => {
+    // Without a target, getSheet finds the element through window._goober
+    // (named access); with one, through target.querySelector.
+    it.each([
+        ['no target', () => getSheet()],
+        ['a target', () => getSheet(document.head)]
+    ])('returns a text node when the element has no children (%s)', (_, get) => {
         const el = document.createElement('style');
         el.id = '_goober';
         document.head.appendChild(el);
 
-        const sheet = getSheet(document.head);
+        const sheet = get();
 
         expect(sheet).not.toBeNull();
         expect(sheet.nodeType).toBe(3);
