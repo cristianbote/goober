@@ -41,6 +41,30 @@ describe('css/styled this guard', () => {
         expect(typeof styled.call(ns, 'div')`color: red;`({})).toBe('string');
     });
 
+    it('styled does not write onto the object it is called on', () => {
+        // e.g. `goober.styled(...)` on the CJS/UMD exports object
+        const exportsLike = {};
+        styled.call(exportsLike, 'div')`color: red;`({ secret: 1 });
+
+        expect(exportsLike).toEqual({});
+    });
+
+    it('styled keeps the target of a frozen bound context', () => {
+        const target = document.createElement('div');
+        styled.bind(Object.freeze({ target }))('div')`color: navy;`({});
+
+        expect(target.textContent).toContain('{color:navy;}');
+    });
+
+    it('styled reads a target set on the bound context after definition', () => {
+        const ctx = {};
+        const Box = styled.bind(ctx)('div')`color: plum;`;
+        ctx.target = document.createElement('div');
+        Box({});
+
+        expect(ctx.target.textContent).toContain('{color:plum;}');
+    });
+
     it('css keeps reading a frozen bound context', () => {
         const bound = css.bind(Object.freeze({ p: { color: 'tomato' } }));
         const className = bound`color: ${(p) => p.color};`;
