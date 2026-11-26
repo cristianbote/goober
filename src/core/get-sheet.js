@@ -9,7 +9,7 @@ let ssr = {
  */
 export let getSheet = (target) => {
     let el;
-    return typeof document == 'object'
+    return typeof window == 'object' && typeof document == 'object'
         ? ((el =
               // Querying the existing target for a previously defined <style> tag
               // We're doing a querySelector because the <head> element doesn't implemented the getElementById api
