@@ -36,5 +36,5 @@ export let compile = (str, defs, data) =>
                 tail = res === false ? '' : res;
             }
         }
-        return out + next + (tail ?? '');
+        return out + next + (tail == null ? '' : tail);
     }, '');
