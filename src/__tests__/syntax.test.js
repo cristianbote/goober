@@ -2,8 +2,8 @@ import fs from 'fs';
 import path from 'path';
 
 /**
- * The cjs, esm and umd builds keep ES2020 syntax as written. `??` and `?.`
- * there break webpack 4 (it reads the `module` field), Node < 14 and
+ * The cjs, esm and umd builds keep ES2020+ syntax as written. `??`, `?.`, `||=`, `&&=`
+ * there break webpack 4 (it reads the `module` field), older Node and
  * browsers from before 2020, so the source must not use them.
  */
 describe('source syntax', () => {
@@ -15,7 +15,9 @@ describe('source syntax', () => {
             .map((f) => 'core/' + f)
     );
 
-    it.each(files)('%s has no nullish coalescing or optional chaining', (file) => {
-        expect(fs.readFileSync(path.join(root, file), 'utf8')).not.toMatch(/\?\?|\?\.(?!\d)/);
+    it.each(files)('%s has no ES2020+ operators', (file) => {
+        expect(fs.readFileSync(path.join(root, file), 'utf8')).not.toMatch(
+            /\?\?|\?\.(?!\d)|\|\|=|&&=/
+        );
     });
 });
