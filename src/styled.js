@@ -22,7 +22,8 @@ let styled = function (tag, forwardRef) {
     let _ctx = Object.create(this && !this.Object ? this : null);
 
     return (..._args) => {
-        let Styled = (props, ref) => {
+        // A function declaration renders faster here than a `let` arrow (#631)
+        function Styled(props, ref) {
             // Grab a shallow copy of the props
             let _props = Object.assign({}, props);
 
@@ -53,7 +54,7 @@ let styled = function (tag, forwardRef) {
             _as[0] && fwdProp && fwdProp(_props);
 
             return h(_as, _props);
-        };
+        }
 
         return forwardRef ? forwardRef(Styled) : Styled;
     };
