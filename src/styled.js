@@ -18,7 +18,8 @@ let setup = (pragma, prefix, theme, forwardProps) => {
  * @param {function} forwardRef
  */
 let styled = function (tag, forwardRef) {
-    let _ctx = this || {};
+    // Write to our own object; read through to `this` unless it's the global object
+    let _ctx = Object.create(this && !this.Object ? this : null);
 
     return (..._args) => {
         // A function declaration renders faster here than a `let` arrow (#631)
