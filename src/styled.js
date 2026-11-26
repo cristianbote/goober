@@ -18,7 +18,8 @@ let setup = (pragma, prefix, theme, forwardProps) => {
  * @param {function} forwardRef
  */
 let styled = function (tag, forwardRef) {
-    let _ctx = this && this != globalThis && Object.isExtensible(this) ? this : {};
+    // Skip the global object and anything we can't write to, like a module namespace
+    let _ctx = this && !this.Object && Object.isExtensible(this) ? this : {};
 
     return (..._args) => {
         let Styled = (props, ref) => {

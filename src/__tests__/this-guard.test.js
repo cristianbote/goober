@@ -1,87 +1,74 @@
 /**
- * Tests for PR #562/#589 combined guard.
+ * `this` handling in css/styled.
  *
- * #562: Guard `this` against globalThis when used in css/styled
- *       (issue #545: globalThis pollution via css.call(globalThis, ...))
- * #589: In vitest's CJS interop, `this` inside css/styled is module.exports
- *       which is a frozen/non-extensible object, causing
- *       "Cannot add property X, object is not extensible"
- *
- * Combined guard: ((this && this !== globalThis && Object.isExtensible(this))
- *                    ? this
- *                    : undefined) || {}
- *
- * This covers both:
- *   1. globalThis is not used as ctx → no pollution
- *   2. Non-extensible objects get a fresh {} → no TypeError
+ * #545/#562: in sloppy-mode bundles (concatenated UMD, esbuild without
+ * "use strict") a plain call gets the global object as `this`, so globals
+ * like `g`, `k` or `target` change the output and styled writes `p`/`o` to it.
+ * #589: called through a module namespace (vitest), `this` is not
+ * extensible and styled's writes throw.
  */
 
 import { css } from '../css';
 import { styled, setup } from '../styled';
 import { extractCss } from '../core/update';
 
-describe('css/styled this guard (PR #562/#589)', () => {
-    const pragma = jest.fn((tag, props) => ({ tag, props }));
-
+describe('css/styled this guard', () => {
     beforeEach(() => {
-        pragma.mockClear();
-        setup(pragma);
+        setup((tag, props) => props.className);
         extractCss();
     });
 
-    it('does not pollute globalThis when css called with globalThis as this', () => {
-        // #545: When `this` is globalThis, we should not set properties on it
-        const result = css.call(globalThis, `color: red;`);
+    it('css ignores globals when called with the global object as this', () => {
+        globalThis.g = 1;
+        try {
+            const className = css.call(globalThis, `color: red;`);
+            expect(extractCss()).toContain('.' + className + '{color:red;}');
+        } finally {
+            delete globalThis.g;
+        }
+    });
 
-        expect(result).toBeDefined();
-        expect(typeof result).toBe('string');
+    it('styled does not write render props onto the global object', () => {
+        styled.call(globalThis, 'div')`color: red;`({});
+
         expect(globalThis).not.toHaveProperty('p');
         expect(globalThis).not.toHaveProperty('o');
     });
 
-    it('handles non-extensible object as this for css without throwing', () => {
-        // #589: vitest CJS interop — module.exports is frozen
-        const frozenObj = Object.preventExtensions({});
+    it('styled works with a non-extensible this', () => {
+        const ns = Object.preventExtensions({});
 
-        expect(() => {
-            const result = css.call(frozenObj, `color: blue;`);
-            expect(typeof result).toBe('string');
-        }).not.toThrow();
+        expect(typeof styled.call(ns, 'div')`color: red;`({})).toBe('string');
     });
 
-    it('handles non-extensible object as this when creating styled component (styled.call)', () => {
-        // When styled() itself is called with a frozen `this`,
-        // _ctx = this || {} and all property sets happen on `this`.
-        // The non-extensible guard ensures a fresh {} is created instead.
-        const frozenObj = Object.preventExtensions({});
+    it('css keeps reading a frozen bound context', () => {
+        const bound = css.bind(Object.freeze({ p: { color: 'tomato' } }));
+        const className = bound`color: ${(p) => p.color};`;
 
-        expect(() => {
-            const Div = styled.call(frozenObj, 'div')({ color: 'red' });
-            expect(typeof Div).toBe('function');
-            // Calling the returned wrapper exercises _ctx.p and _ctx.o
-            Div({});
-        }).not.toThrow();
+        expect(extractCss()).toContain('.' + className + '{color:tomato;}');
     });
-});
 
-describe('plain calls (strict-mode undefined this)', () => {
-    it('css.call(undefined, ...) does not throw', () => {
-        expect(() => css.call(undefined, `color: green;`)).not.toThrow();
-    });
-    it('plain css tagged template does not throw', () => {
-        expect(
-            () =>
-                css`
-                    color: teal;
-                `
-        ).not.toThrow();
-    });
-    it('plain styled tagged template does not throw', () => {
-        expect(
-            () =>
+    it('does not need globalThis to exist', () => {
+        const root = globalThis;
+        delete root.globalThis;
+        try {
+            expect(() => css.call({}, `color: red;`)).not.toThrow();
+            expect(() =>
                 styled('div')`
-                    color: olive;
-                `
+                    color: red;
+                `({})
+            ).not.toThrow();
+        } finally {
+            root.globalThis = root;
+        }
+    });
+
+    it('plain calls with an undefined this still work', () => {
+        expect(() => css.call(undefined, `color: green;`)).not.toThrow();
+        expect(() =>
+            styled('div')`
+                color: olive;
+            `({})
         ).not.toThrow();
     });
 });
