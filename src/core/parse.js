@@ -31,7 +31,7 @@ export let parse = (obj, selector) => {
                 val,
                 selector
                     ? // Go over the selector and replace the matching multiple selectors if any
-                      selector.replace(/[^,]+/g, (sel) =>
+                      selector.replace(/(?:[^,(]|\([^)]*\))+/g, (sel) =>
                           // Return the current selector with the key matching multiple selectors if any
                           key.replace(/(?:[^,(]|\([^)]*\))+/g, (k) =>
                               // If the current `k`(key) has a nested selector replace it

@@ -297,6 +297,9 @@ describe('parse', () => {
         expect(parse({ '&:not(:is(.a, .b))': { color: 'blue' } }, '.target')).toEqual(
             '.target:not(:is(.a, .b)){color:blue;}'
         );
+        expect(parse({ '&:is(.a, .b)': { span: { color: 'blue' } } }, '.target')).toEqual(
+            '.target:is(.a, .b) span{color:blue;}'
+        );
     });
 
     it('should handle null and undefined values', () => {
