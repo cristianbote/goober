@@ -28,6 +28,9 @@ describe('compile', () => {
             'prop: 1; 0,,,2'
         );
 
+        // #492: a `false` return must not leak into the compiled string
+        expect(template`margin: ${() => false};`({})).toEqual('margin: ;');
+
         const tmpl = template`
             background: dodgerblue;
             ${(props) =>
