@@ -1,4 +1,3 @@
-let GOOBER_ID = '_goober';
 let ssr = {
     data: ''
 };
@@ -9,19 +8,18 @@ let ssr = {
  * @returns {HTMLStyleElement|{data: ''}}
  */
 export let getSheet = (target) => {
-    if (typeof window === 'object') {
-        // Querying the existing target for a previously defined <style> tag
-        // We're doing a querySelector because the <head> element doesn't implemented the getElementById api
-        let el =
-            (target ? target.querySelector('#' + GOOBER_ID) : window[GOOBER_ID]) ||
-            Object.assign(document.createElement('style'), {
-                innerHTML: ' ',
-                id: GOOBER_ID
-            });
-        el.nonce = window.__nonce__;
-        if (!el.parentNode) (target || document.head).appendChild(el);
-        return el.firstChild;
-    }
-
-    return target || ssr;
+    let el;
+    return typeof window == 'object'
+        ? ((el =
+              // Querying the existing target for a previously defined <style> tag
+              // We're doing a querySelector because the <head> element doesn't implemented the getElementById api
+              (target ? target.querySelector('#_goober') : window._goober) ||
+              ((el = document.createElement('style')),
+              (el.id = '_goober'),
+              (el.textContent = ' '),
+              el)),
+          (el.nonce = window.__nonce__),
+          el.parentNode || (target || document.head).appendChild(el),
+          el.firstChild)
+        : target || ssr;
 };
