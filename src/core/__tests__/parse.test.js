@@ -290,6 +290,15 @@ describe('parse', () => {
         );
     });
 
+    it('only splits selectors on commas outside parentheses', () => {
+        expect(parse({ '&:is(.a, .b) ~ :is(.c, .d)': { color: 'blue' } }, '.target')).toEqual(
+            '.target:is(.a, .b) ~ :is(.c, .d){color:blue;}'
+        );
+        expect(parse({ '&:not(:is(.a, .b))': { color: 'blue' } }, '.target')).toEqual(
+            '.target:not(:is(.a, .b)){color:blue;}'
+        );
+    });
+
     it('should handle null and undefined values', () => {
         expect(
             parse(
