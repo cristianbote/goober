@@ -1,4 +1,4 @@
-let newRule = /([^\s:{]+) ?:([^;{]+);|([^;{}]*){|}/g;
+let newRule = /([^\s:;{}]+) ?:?([^;{]+);|([^;{}]*){|}/g;
 
 /**
  * Convert a css style string into a object
