@@ -7,7 +7,7 @@ import { getSheet } from './core/get-sheet';
  * @param {String|Object|Function} val
  */
 let css = function (val, ...defs) {
-    let ctx = this || {};
+    let ctx = this && this != globalThis && Object.isExtensible(this) ? this : {};
     let _val = val.call ? val(ctx.p) : val;
 
     return hash(
