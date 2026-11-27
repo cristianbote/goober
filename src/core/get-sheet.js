@@ -14,10 +14,7 @@ export let getSheet = (target) => {
               // Querying the existing target for a previously defined <style> tag
               // We're doing a querySelector because the <head> element doesn't implemented the getElementById api
               (target ? target.querySelector('#_goober') : window._goober) ||
-              ((el = document.createElement('style')),
-              (el.id = '_goober'),
-              (el.textContent = ' '),
-              el)),
+              ((el = document.createElement('style')), (el.id = '_goober'), el)),
           el.firstChild || (el.textContent = ' '),
           (el.nonce = window.__nonce__),
           el.parentNode || (target || document.head).appendChild(el),
