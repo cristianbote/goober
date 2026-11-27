@@ -10,7 +10,7 @@
 function toHash(str) {
     let i = 0,
         out = 11;
-    while (str[i]) out = (101 * out + str.charCodeAt(i++)) >>> 0;
+    while (i < str.length) out = (101 * out + str.charCodeAt(i++)) >>> 0;
     return 'go' + out;
 }
 
