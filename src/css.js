@@ -17,7 +17,7 @@ let css = function (val, ...defs) {
                 ? // Tagged templates
                   compile(_val, defs, ctx.p)
                 : // Regular arrays
-                  _val.reduce((o, i) => Object.assign(o, i && i.call ? i(ctx.p) : i), {})
+                  Object.assign({}, ..._val.map((i) => (i && i.call ? i(ctx.p) : i)))
             : _val,
         getSheet(ctx.target),
         ctx.g,
